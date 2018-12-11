@@ -12,7 +12,7 @@ const Content = () => {
             width="140"
             height="140"
           />
-          <h2>Heading</h2>
+          <h2>กล้วย</h2>
           <p>
             Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.
             Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo
@@ -33,7 +33,7 @@ const Content = () => {
             width="140"
             height="140"
           />
-          <h2>Heading</h2>
+          <h2>ลุงประหยัด จันทร์โอชุด</h2>
           <p>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
             eget lacinia odio sem nec elit. Cras mattis consectetur purus sit
@@ -54,7 +54,7 @@ const Content = () => {
             width="140"
             height="140"
           />
-          <h2>Heading</h2>
+          <h2>คนิน เทพสาส</h2>
           <p>
             Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
             egestas eget quam. Vestibulum id ligula porta felis euismod semper.
@@ -74,14 +74,12 @@ const Content = () => {
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">
-            First featurette heading.{' '}
-            <span class="text-muted">It'll blow your mind.</span>
+            คะแนนโทอิคดี ก็มีโอกาสได้งานที่ดี{' '}
+            <span class="text-muted">คอร์ส TOEIC รับเพียง 20 คนเท่านั้น</span>
           </h2>
           <p class="lead">
-            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-            ligula porta felis euismod semper. Praesent commodo cursus magna,
-            vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-            commodo.
+            ราคาเพียง 2,000 บาท เท่านั้นครับ... (แบ่งจ่ายได้ครับผม)
+            เรียนทุกวันเสาร์ เวลา 13.00-16.00 น. เริ่มเรียน 15 ธ.ค.61 ครับ
           </p>
         </div>
         <div class="col-md-5">
@@ -98,14 +96,13 @@ const Content = () => {
       <div class="row featurette">
         <div class="col-md-7 order-md-2">
           <h2 class="featurette-heading">
-            Oh yeah, it's that good.{' '}
-            <span class="text-muted">See for yourself.</span>
+            ศิลปะเด็ก 6-11 ปี <br />
+            <span class="text-muted">โดยครูจ้อสสสสสส</span>
           </h2>
           <p class="lead">
-            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-            ligula porta felis euismod semper. Praesent commodo cursus magna,
-            vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-            commodo.
+            วาดสตูดิโอเปิดคอร์ส “ศิลปะสำหรับเด็ก” มุ่งเน้นให้เกิดจินตนาการ
+            และสร้างแรงบันดาลใจ ผ่านงานศิลปะ ให้เด็กได้ “สนุกและมีความสุข”
+            มากกว่าทำให้เกิดตัวผลงานเพียงอย่างเดียว
           </p>
         </div>
         <div class="col-md-5 order-md-1">
@@ -122,13 +119,15 @@ const Content = () => {
       <div class="row featurette">
         <div class="col-md-7">
           <h2 class="featurette-heading">
-            And lastly, this one. <span class="text-muted">Checkmate.</span>
+            Calculus I (แคลคูลัส 1) <br />
+            <span class="text-muted">ขั้นเทพ</span>
           </h2>
           <p class="lead">
-            Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id
-            ligula porta felis euismod semper. Praesent commodo cursus magna,
-            vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus
-            commodo.
+            เนื้อหารายวิชา ฟังก์ชัน ลิมิต ความต่อเนื่อง และอนุพันธ์ กฎลูกโซ่
+            อนุพันธ์อันดับสูง การประยุกต์ของอนุพันธ์ ฟังก์ชันทรานเซนเดลทัล
+            การหาอนุพันธ์และอินทิกรัลของฟังก์ชันทรานเซนเดลทัล การอินทิเกรต
+            อินทิกรัลจำกัดเขตและอินทิกรัลไม่จำกัดเขต เทคนิคของการอินทิเกรต
+            เรขาคณิตวิเคราะห์
           </p>
         </div>
         <div class="col-md-5">

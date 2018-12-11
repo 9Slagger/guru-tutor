@@ -27,7 +27,7 @@ class HomePage extends Component {
                 alt="First slide"
               />
               <div class="carousel-caption d-none d-md-block">
-                <h1>เนื้อหา</h1>
+                <h1>สมัครเรียนวันนี้รับส่วนลด 10,000,000,000,000 กลีบ</h1>
                 <p>ลายละเอียด</p>
               </div>
             </div>
