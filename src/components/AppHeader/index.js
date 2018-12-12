@@ -74,16 +74,22 @@ const AppHeader = props => {
               </div>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link disabled" to="#">
+              <NavLink to="/contact" className="nav-link disabled">
                 ติดต่อเรา
               </NavLink>
             </li>
           </ul>
           <div className=" my-2 my-lg-0">
-            <NavLink to="/" className="btn btn-outline-secondary my-2 my-sm-0 mr-2">
+            <NavLink
+              to="/"
+              className="btn btn-outline-secondary my-2 my-sm-0 mr-2"
+            >
               สมัครสมาชิก
             </NavLink>
-            <NavLink to="signin" className="btn btn-outline-success my-2 my-sm-0">
+            <NavLink
+              to="signin"
+              className="btn btn-outline-success my-2 my-sm-0"
+            >
               เข้าสู่ระบบ
             </NavLink>
           </div>
