@@ -80,12 +80,12 @@ const AppHeader = props => {
             </li>
           </ul>
           <div className=" my-2 my-lg-0">
-            <button className="btn btn-outline-secondary my-2 my-sm-0 mr-2">
+            <NavLink to="/" className="btn btn-outline-secondary my-2 my-sm-0 mr-2">
               สมัครสมาชิก
-            </button>
-            <button className="btn btn-outline-success my-2 my-sm-0">
+            </NavLink>
+            <NavLink to="signin" className="btn btn-outline-success my-2 my-sm-0">
               เข้าสู่ระบบ
-            </button>
+            </NavLink>
           </div>
         </div>
       </div>
