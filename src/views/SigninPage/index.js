@@ -11,7 +11,7 @@ class index extends Component {
     }
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     const { name, value } = e.target
     this.setState({ [name]: value })
   }
@@ -36,7 +36,7 @@ class index extends Component {
                   <img
                     alt="Web Studio"
                     className="img-fluid"
-                    src="https://raw.githubusercontent.com/solodev/vertically-centering/master/images/vc-img-1.jpg"
+                    src="https://scontent.fbkk12-3.fna.fbcdn.net/v/t1.0-9/33045759_176125009894830_6956218333561618432_o.jpg?_nc_cat=110&_nc_eui2=AeG6Ukm9EEkNUzmcYylzsCxxSmXCjBZclEopoypELvwL0VsRIwZb5-5oPgR2bQXzUXTfGfim9xXYRLYjCYZfriKAKkMRh4YgiRjC_C8lP2WtwQ&_nc_ht=scontent.fbkk12-3.fna&oh=56d1d971bbee068f100b218746f80474&oe=5C9BEF5E"
                   />
                 </div>
               </div>
@@ -44,7 +44,7 @@ class index extends Component {
                 <div>
                   <h2>TUTOR NAME</h2>
                   <p className="margin-top-s">
-                    ติวเตอร์ มทส ประตู 4 เนื้อหาละเอียดครบถ้วน มีคอร์สออนไลน์
+                    ติวเตอร์ มทส ประตู 1 เนื้อหาละเอียดครบถ้วน มีคอร์สออนไลน์
                   </p>
                   <form>
                     <div className="form-group">
