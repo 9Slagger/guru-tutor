@@ -78,6 +78,11 @@ const AppHeader = props => {
                 ติดต่อเรา
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/supportproject" className="nav-link disabled">
+                สนับสนุนโครงการ
+              </NavLink>
+            </li>
           </ul>
           <div className=" my-2 my-lg-0">
             <NavLink
