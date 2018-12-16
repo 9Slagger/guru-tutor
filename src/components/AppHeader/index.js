@@ -47,29 +47,11 @@ const AppHeader = props => {
               </NavLink>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <NavLink className="dropdown-item" to="#">
-                  แคลคูลัส
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  ฟิสิกส์ 1
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  เคมีพื้นฐาน
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  STATICS
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  Compro 2
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  Eng 1
+                  ห้องเรียนมอปลาย
                 </NavLink>
                 <div className="dropdown-divider" />
                 <NavLink className="dropdown-item" to="#">
-                  TOEIC
-                </NavLink>
-                <NavLink className="dropdown-item" to="#">
-                  อื่นๆ
+                  ห้องเรียนมหาลัย
                 </NavLink>
               </div>
             </li>
