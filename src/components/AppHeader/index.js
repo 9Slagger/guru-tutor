@@ -71,7 +71,6 @@ class AppHeader extends Component {
             </ul>
             <div className=" my-2 my-lg-0">
               {this.props.auth ?  <MenuAfterSignin /> : <MenuBeforeSignin /> }
-              {this.props.auth ? console.log('debug1') : console.log('debug2') }
             </div>
           </div>
         </div>
