@@ -1,4 +1,4 @@
-import React,{ Component } from 'react'
+import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import MenuBeforeSignin from './components/MenuBeforeSignin'
 import MenuAfterSignin from './components/MenuAfterSignin'
@@ -23,7 +23,7 @@ class AppHeader extends Component {
           >
             <span className="navbar-toggler-icon" />
           </button>
-  
+
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
@@ -53,7 +53,7 @@ class AppHeader extends Component {
                     ห้องเรียนมอปลาย
                   </NavLink>
                   <div className="dropdown-divider" />
-                  <NavLink className="dropdown-item" to="#">
+                  <NavLink className="dropdown-item" to="/roomuniversity">
                     ห้องเรียนมหาลัย
                   </NavLink>
                 </div>
@@ -70,7 +70,7 @@ class AppHeader extends Component {
               </li>
             </ul>
             <div className=" my-2 my-lg-0">
-              {this.props.auth ?  <MenuAfterSignin /> : <MenuBeforeSignin /> }
+              {this.props.auth ? <MenuAfterSignin /> : <MenuBeforeSignin />}
             </div>
           </div>
         </div>
