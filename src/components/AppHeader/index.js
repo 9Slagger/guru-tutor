@@ -1,13 +1,17 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { lifecycle, compose } from 'recompose'
+import MenuBeforeSignin from './components/MenuBeforeSignin'
+import MenuAdmin from './components/MenuAdmin'
+import MenuMember from './components/MenuMember'
+const usertype = 'admin'
 
 const AppHeader = props => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div className="container">
         <NavLink className="navbar-brand" to="">
-          GURUTUTOR
+          GURU TUTOR
         </NavLink>
         <button
           className="navbar-toggler"
@@ -67,18 +71,7 @@ const AppHeader = props => {
             </li>
           </ul>
           <div className=" my-2 my-lg-0">
-            <NavLink
-              to="/"
-              className="btn btn-outline-secondary my-2 my-sm-0 mr-2"
-            >
-              สมัครสมาชิก
-            </NavLink>
-            <NavLink
-              to="signin"
-              className="btn btn-outline-success my-2 my-sm-0"
-            >
-              เข้าสู่ระบบ
-            </NavLink>
+            {usertype === 'admin' ? <MenuAdmin />: usertype ==='member' ? <MenuMember /> : <MenuBeforeSignin /> }
           </div>
         </div>
       </div>
