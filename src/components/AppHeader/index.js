@@ -7,7 +7,7 @@ const AppHeader = props => {
     <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
       <div className="container">
         <NavLink className="navbar-brand" to="">
-          GURU-Tutor
+          GURUTUTOR
         </NavLink>
         <button
           className="navbar-toggler"
