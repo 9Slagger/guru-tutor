@@ -5,7 +5,10 @@ class MenuBeforeSignin extends Component {
   render() {
     return (
       <div>
-        <NavLink to="/" className="btn btn-outline-secondary my-2 my-sm-0 mr-2">
+        <NavLink
+          to="signup"
+          className="btn btn-outline-secondary my-2 my-sm-0 mr-2"
+        >
           สมัครสมาชิก
         </NavLink>
         <NavLink to="signin" className="btn btn-outline-success my-2 my-sm-0">

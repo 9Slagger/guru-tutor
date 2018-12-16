@@ -3,8 +3,8 @@ import './App.css'
 import AppHeader from './components/AppHeader'
 import Routing from './routes'
 import AppFooter from './components/AppFooter'
-import { connect } from 'react-redux';
-import { VerifyAuth } from './actions';
+import { connect } from 'react-redux'
+import { VerifyAuth } from './actions'
 
 class App extends Component {
   constructor(props) {
@@ -23,14 +23,14 @@ class App extends Component {
 }
 
 const mapStateToProps = ({ auth }) => {
-	return { auth };
-};
+  return { auth }
+}
 
 const mapDispatchToProps = {
-	VerifyAuth,
-};
+  VerifyAuth
+}
 
 export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(App);
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

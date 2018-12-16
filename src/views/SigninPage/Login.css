@@ -1,0 +1,16 @@
+.padding_login{
+    padding-top: 9%;
+}
+.form_login {
+    width: 100%;
+    max-width: 90vh;
+    border-radius: 2vh;
+    margin: 0 auto;
+    background-color: white;
+}
+.margin-login{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 5%;
+    margin-left: 5%;
+}

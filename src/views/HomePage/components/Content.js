@@ -5,19 +5,11 @@ const Content = () => {
     <div class="container marketing">
       <div class="row">
         <div class="col-lg-4">
-          <img
-            class="rounded-circle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-            alt="Generic placeholder image"
-            width="140"
-            height="140"
-          />
-          <h2>กล้วย</h2>
+          <i class="fas fa-tv fa-8x mb-5" />
+          <h2>เรียนรู้ได้ทุกที่ทุกเวลา</h2>
           <p>
-            Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod.
-            Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo
-            risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo
-            cursus magna.
+            GURU TUTOR คัดสรรคอร์สคุณภาพและหลากหลายเพื่อคุณ
+            สามารถเข้าถึงเนื้อหาของเราทุกเมื่อที่คุณต้องการเพียงแค่มีอินเตอร์เน็ต
           </p>
           <p>
             <a class="btn btn-secondary" href="#" role="button">
@@ -26,19 +18,11 @@ const Content = () => {
           </p>
         </div>
         <div class="col-lg-4">
-          <img
-            class="rounded-circle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-            alt="Generic placeholder image"
-            width="140"
-            height="140"
-          />
-          <h2>ลุงประหยัด จันทร์โอชุด</h2>
+          <i class="fas fa-graduation-cap fa-8x mb-5" />
+          <h2>สอนจากประสบการณ์ตรง</h2>
           <p>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula,
-            eget lacinia odio sem nec elit. Cras mattis consectetur purus sit
-            amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor
-            mauris condimentum nibh.
+            การสอนที่ปรับใช้จริงไม่ได้ย่อมไม่เกิดประโยชน์ GURU Turot
+            เน้นการเรียนรู้ที่ใช้ได้จริงจากประสบการสอนกว่า 10 ปี
           </p>
           <p>
             <a class="btn btn-secondary" href="#" role="button">
@@ -47,19 +31,11 @@ const Content = () => {
           </p>
         </div>
         <div class="col-lg-4">
-          <img
-            class="rounded-circle"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=="
-            alt="Generic placeholder image"
-            width="140"
-            height="140"
-          />
-          <h2>คนิน เทพสาส</h2>
+          <i class="fas fa-comments fa-8x mb-5" />
+          <h2>สอบถามปัญหาได้ทุกเมื่อ</h2>
           <p>
-            Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-            egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-            Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-            nibh, ut fermentum massa justo sit amet risus.
+            บริการถามตอบจาก Babel Coder ช่วยให้คำปรึกษาในทุกๆหลักสูตร
+            แม้คุณจะไม่ใช่ผู้เรียนของเราก็ตาม
           </p>
           <p>
             <a class="btn btn-secondary" href="#" role="button">

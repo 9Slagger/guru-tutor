@@ -130,3 +130,8 @@ body {
   justify-content: center;
 
 }
+
+.form-signup {
+  margin: auto;
+  max-width: 30rem;
+}

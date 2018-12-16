@@ -18,7 +18,7 @@ class MenuAfterSignin extends Component {
 
   render() {
     return (
-      <p className="nav-item dropdown">
+      <li className="nav-item dropdown">
         <NavLink
           className="nav-link dropdown-toggle"
           to="#"
@@ -34,13 +34,15 @@ class MenuAfterSignin extends Component {
           <NavLink className="dropdown-item" to="#">
             ตั้งค่าบัญชี
           </NavLink>
-          {this.props.auth.UserType === 'admin' ? this.ButtonManageWeb() : false }
+          {this.props.auth.UserType === 'admin'
+            ? this.ButtonManageWeb()
+            : false}
           <div className="dropdown-divider" />
           <button className="dropdown-item" onClick={() => this.signout()}>
             ออกจากระบบ
           </button>
         </div>
-      </p>
+      </li>
     )
   }
 }
