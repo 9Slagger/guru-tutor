@@ -1,88 +1,103 @@
-import React from 'react'
+import React,{ Component } from 'react'
 import { NavLink } from 'react-router-dom'
-import { lifecycle, compose } from 'recompose'
 import MenuBeforeSignin from './components/MenuBeforeSignin'
 import MenuAdmin from './components/MenuAdmin'
 import MenuMember from './components/MenuMember'
-const usertype = 'admin'
+import { connect } from 'react-redux'
 
-const AppHeader = props => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <div className="container">
-        <NavLink className="navbar-brand" to="">
-          GURU TUTOR
-        </NavLink>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon" />
-        </button>
+class AppHeader extends Component {
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item active">
-              <NavLink className="nav-link active" to="">
-                หน้าแรก <span className="sr-only">(current)</span>
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/promotion">
-                โปรโมชั้น
-              </NavLink>
-            </li>
-            <li className="nav-item dropdown">
-              <NavLink
-                className="nav-link dropdown-toggle"
-                to="#"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                ห้องเรียน
-              </NavLink>
-              <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <NavLink className="dropdown-item" to="#">
-                  ห้องเรียนมอปลาย
+  CheckUsertype() {
+      console.log(this.props.auth[0] && this.props.auth[0].UserType)
+    
+  }
+
+  render() {
+    this.CheckUsertype()
+    return (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div className="container">
+          <NavLink className="navbar-brand" to="">
+            GURU TUTOR
+          </NavLink>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon" />
+          </button>
+  
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <NavLink className="nav-link active" to="">
+                  หน้าแรก <span className="sr-only">(current)</span>
                 </NavLink>
-                <div className="dropdown-divider" />
-                <NavLink className="dropdown-item" to="#">
-                  ห้องเรียนมหาลัย
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/promotion">
+                  โปรโมชั้น
                 </NavLink>
-              </div>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/contact" className="nav-link disabled">
-                ติดต่อเรา
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/supportproject" className="nav-link disabled">
-                สนับสนุนโครงการ
-              </NavLink>
-            </li>
-          </ul>
-          <div className=" my-2 my-lg-0">
-            {usertype === 'admin' ? <MenuAdmin />: usertype ==='member' ? <MenuMember /> : <MenuBeforeSignin /> }
+              </li>
+              <li className="nav-item dropdown">
+                <NavLink
+                  className="nav-link dropdown-toggle"
+                  to="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  ห้องเรียน
+                </NavLink>
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <NavLink className="dropdown-item" to="#">
+                    ห้องเรียนมอปลาย
+                  </NavLink>
+                  <div className="dropdown-divider" />
+                  <NavLink className="dropdown-item" to="#">
+                    ห้องเรียนมหาลัย
+                  </NavLink>
+                </div>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/contact" className="nav-link disabled">
+                  ติดต่อเรา
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/supportproject" className="nav-link disabled">
+                  สนับสนุนโครงการ
+                </NavLink>
+              </li>
+            </ul>
+            <div className=" my-2 my-lg-0">
+              {this.props.auth[0] && this.props.auth[0].UserType === 'admin' ? (
+                <MenuAdmin />
+              ) : this.props.auth[0] && this.props.auth[0].UserType === 'member' ? (
+                <MenuMember />
+              ) : (
+                <MenuBeforeSignin />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
-  )
+      </nav>
+    )
+  }
 }
 
-const withLifecycle = lifecycle({
-  componentDidMount() {
-    console.log('test')
-  }
-})
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
 
-export default compose(withLifecycle)(AppHeader)
+export default connect(
+  mapStateToProps,
+  {}
+)(AppHeader)

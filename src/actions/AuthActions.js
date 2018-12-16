@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN_AUTH, CHECK_AUTH, LOGOUT_AUTH } from './type'
+import { LOGIN_AUTH, CHECK_AUTH, LOGOUT_AUTH, VERIFY_AUTH } from './type'
 
 // check token
 export const checkAuth = () => {
@@ -23,6 +23,21 @@ export const signinAuth = user => {
         console.log(error)
         alert('Error')
       })
+  }
+}
+
+export const VerifyAuth = () => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    axios.get(`https://mytutorapi.herokuapp.com/restricted/auth`, {
+      headers: { Authorization: token }
+    })
+    .then(response => {
+      dispatch({ type: VERIFY_AUTH, payload: response.data })
+    })
+    .catch(error => {
+      console.log(error)
+    })
   }
 }
 
