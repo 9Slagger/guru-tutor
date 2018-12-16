@@ -17,7 +17,6 @@ class index extends Component {
   }
 
   signin(email, password) {
-    console.log(this.state)
     const user = {
       email: email,
       password: password

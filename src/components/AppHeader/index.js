@@ -1,19 +1,11 @@
 import React,{ Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import MenuBeforeSignin from './components/MenuBeforeSignin'
-import MenuAdmin from './components/MenuAdmin'
-import MenuMember from './components/MenuMember'
+import MenuAfterSignin from './components/MenuAfterSignin'
 import { connect } from 'react-redux'
 
 class AppHeader extends Component {
-
-  CheckUsertype() {
-      console.log(this.props.auth[0] && this.props.auth[0].UserType)
-    
-  }
-
   render() {
-    this.CheckUsertype()
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
@@ -78,13 +70,8 @@ class AppHeader extends Component {
               </li>
             </ul>
             <div className=" my-2 my-lg-0">
-              {this.props.auth[0] && this.props.auth[0].UserType === 'admin' ? (
-                <MenuAdmin />
-              ) : this.props.auth[0] && this.props.auth[0].UserType === 'member' ? (
-                <MenuMember />
-              ) : (
-                <MenuBeforeSignin />
-              )}
+              {this.props.auth ?  <MenuAfterSignin /> : <MenuBeforeSignin /> }
+              {this.props.auth ? console.log('debug1') : console.log('debug2') }
             </div>
           </div>
         </div>

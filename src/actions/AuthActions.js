@@ -15,9 +15,10 @@ export const signinAuth = user => {
     axios
       .post(`https://mytutorapi.herokuapp.com/login`, user)
       .then(res => {
-        const token = `Bearer +${res.data.token}`
-        localStorage.setItem('token', res.data.token)
-        dispatch({ type: LOGIN_AUTH, payload: token })
+        console.log(res.data.user)
+        const token = `Bearer ${res.data.token}`
+        localStorage.setItem('token', token)
+        dispatch({ type: LOGIN_AUTH, payload: res.data.user })
       })
       .catch(error => {
         console.log(error)
@@ -36,6 +37,7 @@ export const VerifyAuth = () => {
       dispatch({ type: VERIFY_AUTH, payload: response.data })
     })
     .catch(error => {
+      dispatch({ type: VERIFY_AUTH, payload: null })
       console.log(error)
     })
   }
