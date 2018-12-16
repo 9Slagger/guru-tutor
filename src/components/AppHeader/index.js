@@ -50,7 +50,7 @@ const AppHeader = props => {
                   ห้องเรียนมอปลาย
                 </NavLink>
                 <div className="dropdown-divider" />
-                <NavLink className="dropdown-item" to="#">
+                <NavLink className="dropdown-item" to="/roomuniversity">
                   ห้องเรียนมหาลัย
                 </NavLink>
               </div>

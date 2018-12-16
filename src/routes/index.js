@@ -6,6 +6,7 @@ import PromotionPage from '../views/PromotionPage'
 import SupportProjectPage from '../views/SupportProjectPage'
 import SignPage from '../views/SigninPage'
 import Contact from '../views/ContactPage'
+import RoomUniversityPage from '../views/RoomUniversityPage'
 
 const Routing = () => (
   <Switch>
@@ -14,6 +15,7 @@ const Routing = () => (
     <Route exact path="/contact" component={Contact} />
     <Route exact path="/promotion" component={PromotionPage} />
     <Route exact path="/supportproject" component={SupportProjectPage} />
+    <Route exact path="/roomuniversity" component={RoomUniversityPage} />
   </Switch>
 )
 
