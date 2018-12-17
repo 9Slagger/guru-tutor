@@ -21,25 +21,44 @@ class SignupPage extends Component {
             placeholder="รหัสผ่าน"
             required
           />
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="ชื่อ"
+                required
+              />{' '}
+            </div>
+            <div class="col-md-6 mb-3">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="นามสกุล"
+                required
+              />
+            </div>
+          </div>
 
-          <input
-            class="form-control mb-3"
-            type="text"
-            placeholder="ชื่อ"
-            required
-          />
-          <input
-            class="form-control mb-3"
-            type="text"
-            placeholder="นามสกุล"
-            required
-          />
-          <input
-            class="form-control mb-3"
-            type="text"
-            placeholder="เบอร์โทร"
-            required
-          />
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <input
+                class="form-control"
+                type="text"
+                placeholder="ชื่อเล่น"
+                required
+              />{' '}
+            </div>
+            <div class="col-md-8 mb-3">
+              <input
+                class="form-control mb-3"
+                type="text"
+                placeholder="เบอร์โทร"
+                required
+              />
+            </div>
+          </div>
+
           <div class="text-left">
             <label>ที่อยู่</label>
           </div>
