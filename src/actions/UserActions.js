@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { USERS_FETCH, USER_DELETE } from './type'
+import { USERS_CREATE, USERS_FETCH, USER_DELETE } from './type'
 
 export const usersFetch = () => {
   return async dispatch => {
@@ -13,6 +13,16 @@ export const usersFetch = () => {
       })
       .catch(error => {
         console.log(error)
+      })
+  }
+}
+
+export const userCreate = () => {
+  return async dispatch => {
+    axios
+      .post('https://mytutorapi.herokuapp.com/register')
+      .then(response => {
+        dispatch({ type: USERS_CREATE, payload: response.data })
       })
   }
 }

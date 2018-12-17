@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { userCreate } from '../../actions'
 
 class SignupPage extends Component {
   render() {
@@ -178,4 +180,7 @@ class SignupPage extends Component {
   }
 }
 
-export default SignupPage
+export default connect(
+  {},
+  { userCreate }
+)(SignupPage)
