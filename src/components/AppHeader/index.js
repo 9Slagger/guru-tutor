@@ -32,6 +32,11 @@ class AppHeader extends Component {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink to="/news" className="nav-link">
+                  อับเดตข่าว
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink className="nav-link" to="/promotion">
                   โปรโมชั้น
                 </NavLink>
@@ -59,7 +64,7 @@ class AppHeader extends Component {
                 </div>
               </li>
               <li className="nav-item">
-                <NavLink to="/contact" className="nav-link disabled">
+                <NavLink to="/contact" className="nav-link">
                   ติดต่อเรา
                 </NavLink>
               </li>
