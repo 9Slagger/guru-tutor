@@ -67,9 +67,9 @@ class SignupPage extends Component {
         address: `${this.state.District} ${this.state.Province} ${
           this.state.Zipcode
         }`,
-        bday: parseInt(this.state.bday),
-        bmonth: parseInt(this.state.bmonth),
-        byear: parseInt(this.state.byear),
+        bday: parseInt(this.state.bday, 10),
+        bmonth: parseInt(this.state.bmonth, 10),
+        byear: parseInt(this.state.byear, 10),
         Gender: this.state.Gender
       }
       this.props.userCreate(user)
