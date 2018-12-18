@@ -3,7 +3,7 @@ import React from 'react'
 const AppFooter = () => {
   return (
     <footer className="container footer">
-      <hr class="featurette-divider" />
+      <hr className="featurette-divider" />
       <p className="float-right">
         <a href="#">Back to top</a>
       </p>

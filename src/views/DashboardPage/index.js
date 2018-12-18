@@ -4,11 +4,11 @@ import UsersPage from '../UsersPage'
 class DashboardPage extends Component {
   render() {
     return (
-      <div class="container-fluid pt-5">
-        <nav class="nav-justified">
-          <div class="nav nav-tabs text-success" id="nav-tab" role="tablist">
+      <div className="container-fluid pt-5">
+        <nav className="nav-justified">
+          <div className="nav nav-tabs text-success" id="nav-tab" role="tablist">
             <a
-              class="nav-item nav-link active"
+              className="nav-item nav-link active"
               id="nav-home-tab"
               data-toggle="tab"
               href="#nav-home"
@@ -19,7 +19,7 @@ class DashboardPage extends Component {
               จัดการสมาชิก
             </a>
             <a
-              class="nav-item nav-link"
+              className="nav-item nav-link"
               id="nav-profile-tab"
               data-toggle="tab"
               href="#nav-profile"
@@ -30,7 +30,7 @@ class DashboardPage extends Component {
               Profile
             </a>
             <a
-              class="nav-item nav-link"
+              className="nav-item nav-link"
               id="nav-contact-tab"
               data-toggle="tab"
               href="#nav-contact"
@@ -41,7 +41,7 @@ class DashboardPage extends Component {
               Contact
             </a>
             <a
-              class="nav-item nav-link"
+              className="nav-item nav-link"
               id="nav-contact2-tab"
               data-toggle="tab"
               href="#nav-contact2"
@@ -53,9 +53,9 @@ class DashboardPage extends Component {
             </a>
           </div>
         </nav>
-        <div class="tab-content" id="nav-tabContent">
+        <div className="tab-content" id="nav-tabContent">
           <div
-            class="tab-pane fade show active"
+            className="tab-pane fade show active"
             id="nav-home"
             role="tabpanel"
             aria-labelledby="nav-home-tab"
@@ -63,7 +63,7 @@ class DashboardPage extends Component {
            <UsersPage/>
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="nav-profile"
             role="tabpanel"
             aria-labelledby="nav-profile-tab"
@@ -71,7 +71,7 @@ class DashboardPage extends Component {
             ...
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="nav-contact"
             role="tabpanel"
             aria-labelledby="nav-contact-tab"
@@ -79,7 +79,7 @@ class DashboardPage extends Component {
             ...1
           </div>
           <div
-            class="tab-pane fade"
+            className="tab-pane fade"
             id="nav-contact2"
             role="tabpanel"
             aria-labelledby="nav-contact2-tab"

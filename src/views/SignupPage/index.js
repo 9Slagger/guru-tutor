@@ -81,9 +81,9 @@ class SignupPage extends Component {
   render() {
     return (
       <MainLayout>
-      <div class="container text-center pt-5">
-        <h1 class="my-4 pb-2">ลงทะเบียนสมาชิกใหม่ ฟรี!</h1>
-        <form class="form-signup">
+      <div className="container text-center pt-5">
+        <h1 className="my-4 pb-2">ลงทะเบียนสมาชิกใหม่ ฟรี!</h1>
+        <form className="form-signup">
           <input
             type="email"
             name="email"
@@ -92,7 +92,7 @@ class SignupPage extends Component {
             onChange={this.handleChange}
             placeholder="อีเมล"
             required
-            class="form-control mb-3"
+            className="form-control mb-3"
             aria-describedby="emailHelp"
           />
 
@@ -104,10 +104,10 @@ class SignupPage extends Component {
             onChange={this.handleChange}
             placeholder="รหัสผ่าน"
             required
-            class="form-control mb-3"
+            className="form-control mb-3"
           />
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
+          <div className="form-row">
+            <div className="col-md-6 mb-3">
               <input
                 type="text"
                 name="firsname"
@@ -116,10 +116,10 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="ชื่อ"
                 required
-                class="form-control"
+                className="form-control"
               />{' '}
             </div>
-            <div class="col-md-6 mb-3">
+            <div className="col-md-6 mb-3">
               <input
                 type="text"
                 name="lastname"
@@ -128,13 +128,13 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="นามสกุล"
                 required
-                class="form-control"
+                className="form-control"
               />
             </div>
           </div>
 
-          <div class="form-row">
-            <div class="col-md-4 mb-3">
+          <div className="form-row">
+            <div className="col-md-4 mb-3">
               <input
                 type="text"
                 name="nickname"
@@ -143,10 +143,10 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="ชื่อเล่น"
                 required
-                class="form-control"
+                className="form-control"
               />{' '}
             </div>
-            <div class="col-md-8 mb-3">
+            <div className="col-md-8 mb-3">
               <input
                 type="number"
                 name="telephonenumber"
@@ -155,16 +155,16 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="เบอร์โทร"
                 required
-                class="form-control mb-3"
+                className="form-control mb-3"
               />
             </div>
           </div>
 
-          <div class="text-left">
+          <div className="text-left">
             <label>ที่อยู่</label>
           </div>
-          <div class="form-row">
-            <div class="col-md-4 mb-3">
+          <div className="form-row">
+            <div className="col-md-4 mb-3">
               <input
                 type="text"
                 name="District"
@@ -173,11 +173,11 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="อำเภอ/เขต"
                 required
-                class="form-control"
+                className="form-control"
               />
-              <div class="invalid-tooltip">กรุณาป้อน อำเภอ/เขต</div>
+              <div className="invalid-tooltip">กรุณาป้อน อำเภอ/เขต</div>
             </div>
-            <div class="col-md-5 mb-3">
+            <div className="col-md-5 mb-3">
               <input
                 type="text"
                 name="Province"
@@ -186,11 +186,11 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="จังหวัด"
                 required
-                class="form-control"
+                className="form-control"
               />
-              <div class="invalid-tooltip">Please provide a valid state.</div>
+              <div className="invalid-tooltip">Please provide a valid state.</div>
             </div>
-            <div class="col-md-3 mb-3">
+            <div className="col-md-3 mb-3">
               <input
                 type="number"
                 name="Zipcode"
@@ -199,17 +199,17 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="รหัสไปรษณีย์"
                 required
-                class="form-control"
+                className="form-control"
               />
-              <div class="invalid-tooltip">Please provide a valid zip.</div>
+              <div className="invalid-tooltip">Please provide a valid zip.</div>
             </div>
           </div>
 
-          <div class="text-left">
+          <div className="text-left">
             <label>วันเกิด</label>
           </div>
-          <div class="form-row">
-            <div class="form-group col-md-2">
+          <div className="form-row">
+            <div className="form-group col-md-2">
               <input
                 type="number"
                 name="bday"
@@ -218,14 +218,14 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="วัน"
                 required
-                class="form-control"
+                className="form-control"
               />
             </div>
-            <div class="form-group col-md-6 ">
+            <div className="form-group col-md-6 ">
               <select
                 onChange={this.handleChange}
                 name="bmonth"
-                class="form-control"
+                className="form-control"
               >
                 <option value={0} selected>
                   เดือน
@@ -244,7 +244,7 @@ class SignupPage extends Component {
                 <option value={12}>ธันวาคม</option>
               </select>
             </div>
-            <div class="form-group col-md-4">
+            <div className="form-group col-md-4">
               <input
                 type="number"
                 name="byear"
@@ -253,46 +253,46 @@ class SignupPage extends Component {
                 onChange={this.handleChange}
                 placeholder="ปี"
                 required
-                class="form-control"
+                className="form-control"
               />
             </div>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
+          <div className="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               id="customRadioInline1"
               name="customRadioInline1"
-              class="custom-control-input"
+              className="custom-control-input"
             />
-            <label class="custom-control-label" for="customRadioInline1">
+            <label className="custom-control-label" for="customRadioInline1">
               ชาย
             </label>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
+          <div className="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               id="customRadioInline2"
               name="customRadioInline1"
-              class="custom-control-input"
+              className="custom-control-input"
             />
-            <label class="custom-control-label" for="customRadioInline2">
+            <label className="custom-control-label" for="customRadioInline2">
               หญิง
             </label>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
+          <div className="custom-control custom-radio custom-control-inline">
             <input
               type="radio"
               id="customRadioInline3"
               name="customRadioInline1"
-              class="custom-control-input"
+              className="custom-control-input"
             />
-            <label class="custom-control-label" for="customRadioInline3">
+            <label className="custom-control-label" for="customRadioInline3">
               ไม่ระบุ
             </label>
           </div>
         </form>
         <button
-          class="form-signup btn btn-outline-success btn-block mt-3 btn-lg "
+          className="form-signup btn btn-outline-success btn-block mt-3 btn-lg "
           onClick={() => this.Signup()}
         >
           ลงทะเบียน
