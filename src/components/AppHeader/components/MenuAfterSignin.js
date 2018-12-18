@@ -10,7 +10,7 @@ class MenuAfterSignin extends Component {
 
   ButtonManageWeb() {
     return (
-      <NavLink className="dropdown-item" to="/users">
+      <NavLink className="dropdown-item" to="/dashboard">
         จัดการเว็บไซต์
       </NavLink>
     )

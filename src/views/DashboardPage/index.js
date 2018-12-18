@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import UsersPage from '../UsersPage'
 
 class DashboardPage extends Component {
   render() {
     return (
-      <div class="container pt-5">
+      <div class="container-fluid pt-5">
         <nav class="nav-justified">
           <div class="nav nav-tabs text-success" id="nav-tab" role="tablist">
             <a
@@ -15,7 +16,7 @@ class DashboardPage extends Component {
               aria-controls="nav-home"
               aria-selected="true"
             >
-              Home
+              จัดการสมาชิก
             </a>
             <a
               class="nav-item nav-link"
@@ -59,7 +60,7 @@ class DashboardPage extends Component {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-            ...
+           <UsersPage/>
           </div>
           <div
             class="tab-pane fade"

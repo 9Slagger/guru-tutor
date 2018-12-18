@@ -9,7 +9,6 @@ import SignupPage from '../views/SignupPage'
 import Contact from '../views/ContactPage'
 import DashboardPage from '../views/DashboardPage'
 import RoomUniversityPage from '../views/RoomUniversityPage'
-import UsersPage from '../views/UsersPage'
 
 const Routing = () => (
   <Switch>
@@ -21,7 +20,6 @@ const Routing = () => (
     <Route exact path="/dashboard" component={DashboardPage} />
     <Route exact path="/supportproject" component={SupportProjectPage} />
     <Route exact path="/roomuniversity" component={RoomUniversityPage} />
-    <Route exact path="/users" component={UsersPage} />
   </Switch>
 )
 

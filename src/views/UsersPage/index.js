@@ -55,9 +55,9 @@ class User extends Component {
     const { users } = this.props
     console.log(users)
     return (
-      <div className="container">
-        <table className="table table-striped table-hover">
-          <thead>
+      <div className="container-fluid mt-5">
+        <table className="table table-hover">
+          <thead className="thead-dark">
             <tr>
               <th scope="col">#</th>
               <th scope="col">ชื่อ สกุล</th>
