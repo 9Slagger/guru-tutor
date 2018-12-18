@@ -291,7 +291,7 @@ class SignupPage extends Component {
           </div>
         </form>
         <button
-          class="btn btn-outline-success btn-block mt-3 btn-lg "
+          class="form-signup btn btn-outline-success btn-block mt-3 btn-lg "
           onClick={() => this.Signup()}
         >
           ลงทะเบียน
