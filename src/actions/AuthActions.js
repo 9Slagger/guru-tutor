@@ -32,17 +32,18 @@ export const signinAuth = user => {
 export const VerifyAuth = () => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
-    axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/auth`, {
-        headers: { Authorization: token }
-      })
-      .then(response => {
-        dispatch({ type: VERIFY_AUTH, payload: response.data })
-      })
-      .catch(error => {
-        dispatch({ type: VERIFY_AUTH, payload: null })
-        console.log(error)
-      })
+    token &&
+      axios
+        .get(`https://mytutorapi.herokuapp.com/restricted/auth`, {
+          headers: { Authorization: token }
+        })
+        .then(response => {
+          dispatch({ type: VERIFY_AUTH, payload: response.data })
+        })
+        .catch(error => {
+          dispatch({ type: VERIFY_AUTH, payload: [] })
+          console.log(error.message)
+        })
   }
 }
 

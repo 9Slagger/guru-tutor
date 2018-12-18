@@ -76,7 +76,11 @@ class AppHeader extends Component {
             </ul>
             <div className=" my-2 my-lg-0">
               <ul className="navbar-nav mr-auto">
-                {this.props.auth ? <MenuAfterSignin /> : <MenuBeforeSignin />}
+                {this.props.auth && this.props.auth.lenght > 0 ? (
+                  <MenuAfterSignin />
+                ) : (
+                  <MenuBeforeSignin />
+                )}
               </ul>
             </div>
           </div>

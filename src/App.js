@@ -9,6 +9,7 @@ class App extends Component {
     super(props)
     this.props.VerifyAuth()
   }
+
   render() {
     return (
       <div>
