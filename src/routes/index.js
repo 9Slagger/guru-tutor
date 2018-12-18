@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom'
 
 import HomePage from '../views/HomePage'
 import PromotionPage from '../views/PromotionPage'
-import SupportProjectPage from '../views/SupportProjectPage'
 import SignPage from '../views/SigninPage'
 import SignupPage from '../views/SignupPage'
 import Contact from '../views/ContactPage'
@@ -19,7 +18,6 @@ const Routing = () => (
     <Route exact path="/contact" component={Contact} />
     <Route exact path="/promotion" component={PromotionPage} />
     <Route exact path="/dashboard" component={DashboardPage} />
-    <Route exact path="/supportproject" component={SupportProjectPage} />
     <Route exact path="/roomuniversity" component={RoomUniversityPage} />
     <Route exact path="/news" component={NewsPage} />
   </Switch>
