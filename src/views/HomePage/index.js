@@ -47,7 +47,11 @@ class HomePage extends Component {
                     dolor id nibh ultricies vehicula ut id elit.
                   </p>
                   <p>
-                    <a className="btn btn-lg btn-primary" href="#" role="button">
+                    <a
+                      className="btn btn-lg btn-primary"
+                      href="#"
+                      role="button"
+                    >
                       Browse gallery
                     </a>
                   </p>

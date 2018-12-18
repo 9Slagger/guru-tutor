@@ -51,7 +51,9 @@ const Content = () => {
         <div className="col-md-7">
           <h2 className="featurette-heading">
             คะแนนโทอิคดี ก็มีโอกาสได้งานที่ดี{' '}
-            <span className="text-muted">คอร์ส TOEIC รับเพียง 20 คนเท่านั้น</span>
+            <span className="text-muted">
+              คอร์ส TOEIC รับเพียง 20 คนเท่านั้น
+            </span>
           </h2>
           <p className="lead">
             ราคาเพียง 2,000 บาท เท่านั้นครับ... (แบ่งจ่ายได้ครับผม)
@@ -62,7 +64,7 @@ const Content = () => {
           <img
             className="featurette-image img-fluid mx-auto"
             src="https://images.unsplash.com/photo-1523000895257-f6ea8a05be6b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-            alt="Generic placeholder image"
+            alt="Generic placeholder"
           />
         </div>
       </div>
@@ -85,7 +87,7 @@ const Content = () => {
           <img
             className="featurette-image img-fluid mx-auto"
             src="https://images.unsplash.com/photo-1511949860663-92c5c57d48a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-            alt="Generic placeholder image"
+            alt="Generic placeholder"
           />
         </div>
       </div>
@@ -110,7 +112,7 @@ const Content = () => {
           <img
             className="featurette-image img-fluid mx-auto"
             src="https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80"
-            alt="Generic placeholder image"
+            alt="Generic placeholder"
           />
         </div>
       </div>

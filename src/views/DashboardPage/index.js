@@ -6,7 +6,11 @@ class DashboardPage extends Component {
     return (
       <div className="container-fluid pt-5">
         <nav className="nav-justified">
-          <div className="nav nav-tabs text-success" id="nav-tab" role="tablist">
+          <div
+            className="nav nav-tabs text-success"
+            id="nav-tab"
+            role="tablist"
+          >
             <a
               className="nav-item nav-link active"
               id="nav-home-tab"
@@ -60,7 +64,7 @@ class DashboardPage extends Component {
             role="tabpanel"
             aria-labelledby="nav-home-tab"
           >
-           <UsersPage/>
+            <UsersPage />
           </div>
           <div
             className="tab-pane fade"

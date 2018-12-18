@@ -7,7 +7,7 @@ const Card = props => {
       className="card col-lg-3 m-3 d-flex align-items-start flex-column"
       style={{ width: '21rem' }}
     >
-      <img className="card-img-top mb-auto mt-3" src={src} alt="Card image cap" />
+      <img className="card-img-top mb-auto mt-3" src={src} alt="Card cap" />
       <div className="card-body align-self-start mb-auto p-2">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{text}</p>
