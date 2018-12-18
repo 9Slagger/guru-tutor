@@ -44,6 +44,10 @@ body {
   color: #5a5a5a;
 }
 
+.header-nav {
+  padding-top: 3rem;
+}
+
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -136,13 +140,56 @@ body {
 }
 
 .sidebar {
+  height: 100%;
+  width: 200px;
   position: fixed;
+  z-index: 1;
   top: 0;
-  bottom: 0;
   left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 0;
+  background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  padding-top: 43px;
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar .nav-link .feather {
+  margin-right: 4px;
+  color: #999;
+}
+
+.sidebar .nav-link.active {
+  color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  transition: 0.5s;
+}
+
+.b-s {
+  visibility: hidden;
 }

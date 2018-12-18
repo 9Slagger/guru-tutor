@@ -3,6 +3,7 @@ import './App.css'
 import Routing from './routes'
 import { connect } from 'react-redux'
 import { VerifyAuth } from './actions'
+import AppHeader from './components/AppHeader'
 
 class App extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <AppHeader />
         <Routing />
       </div>
     )

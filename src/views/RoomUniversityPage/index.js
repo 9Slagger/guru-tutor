@@ -66,7 +66,7 @@ class RoomUniversityPage extends Component {
   render() {
     return (
       <MainLayout>
-        <div class="container mt-5">
+        <div className="container mt-5">
           <h1>ห้องเรียนมอปลาย</h1>
         </div>
         <div className="card-container row">{this.renderCrad()}</div>

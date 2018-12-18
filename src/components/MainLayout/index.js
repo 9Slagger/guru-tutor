@@ -7,7 +7,7 @@ class MainLayout extends Component {
     return (
       <div>
         <AppHeader />
-        {this.props.children}
+        <div className="header-nav">{this.props.children}</div>
         <AppFooter />
       </div>
     )

@@ -12,6 +12,7 @@ class Contact extends Component {
             <a
               href="https://www.facebook.com/GURU-TUTOR-126127154894616"
               target="_blank"
+              rel="noopener noreferrer"
             >
               Fackbook
             </a>
