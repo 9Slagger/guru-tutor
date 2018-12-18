@@ -17,10 +17,10 @@ export const usersFetch = () => {
   }
 }
 
-export const userCreate = () => {
+export const userCreate = user => {
   return async dispatch => {
     axios
-      .post('https://mytutorapi.herokuapp.com/register')
+      .post('https://mytutorapi.herokuapp.com/register', user)
       .then(response => {
         dispatch({ type: USERS_CREATE, payload: response.data })
       })

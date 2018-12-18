@@ -3,41 +3,144 @@ import { connect } from 'react-redux'
 import { userCreate } from '../../actions'
 
 class SignupPage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: '',
+      password: '',
+      firsname: '',
+      lastname: '',
+      nickname: '',
+      telephonenumber: '',
+      District: '',
+      Province: '',
+      Zipcode: '',
+      bday: '',
+      month: [
+        'มกราคม',
+        'กุมภาพันธ์',
+        'มีนาคม',
+        'เมษายน',
+        'พฤษภาคม',
+        'มิถุนายน',
+        'กรกฎาคม',
+        'สิงหาคม',
+        'กันยายน',
+        'ตุลาคม',
+        'พฤษจิกายน',
+        'ธันวาคม'
+      ],
+      bmonth: '',
+      byear: '',
+      Gender: ''
+    }
+  }
+
+  handleChange = e => {
+    const { name, value } = e.target
+    this.setState({ [name]: value })
+  }
+
+  Signup(
+    email,
+    password,
+    firsname,
+    lastname,
+    nickname,
+    telephonenumber,
+    District,
+    Province,
+    Zipcode,
+    bday,
+    bmonth,
+    byear,
+    Gender
+  ) {
+    const user = {
+      email: email,
+      password: password,
+      firsname: firsname,
+      lastname: lastname,
+      nickname: nickname,
+      telephonenumber: telephonenumber,
+      address: `${District} ${Province} ${Zipcode}`,
+      bday: bday,
+      bmonth: bmonth,
+      byear: byear,
+      Gender: Gender
+    }
+    this.props.userCreate(user)
+  }
+
+  showState() {
+    console.log(this.state)
+  }
+
   render() {
+    const {
+      email,
+      password,
+      firsname,
+      lastname,
+      nickname,
+      telephonenumber,
+      District,
+      Province,
+      Zipcode,
+      bday,
+      bmonth,
+      byear,
+      Gender
+    } = this.state
     return (
       <div class="container text-center pt-5">
         <h1 class="my-4 pb-2">ลงทะเบียนสมาชิกใหม่ ฟรี!</h1>
-        <form class="form-signup">
+        <form class="form-signup" >
           <input
             type="email"
-            class="form-control mb-3"
-            aria-describedby="emailHelp"
+            name="email"
+            id="email"
+            value={this.state.email}
+            onChange={this.handleChange}
             placeholder="อีเมล"
             required
+            class="form-control mb-3"
+            aria-describedby="emailHelp"
           />
 
           <input
             type="password"
-            class="form-control mb-3"
-            id="exampleInputPassword1"
+            name="password"
+            id="password"
+            value={this.state.password}
+            onChange={this.handleChange}
             placeholder="รหัสผ่าน"
             required
+            class="form-control mb-3"
           />
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <input
-                class="form-control"
                 type="text"
+                name="firsname"
+                id="firsname"
+                value={this.state.firsname}
+                onChange={this.handleChange}
                 placeholder="ชื่อ"
                 required
+                class="form-control"
               />{' '}
             </div>
             <div class="col-md-6 mb-3">
               <input
-                class="form-control"
                 type="text"
+                name="lastname"
+                id="lastname"
+                value={this.state.lastname}
+                onChange={this.handleChange}
                 placeholder="นามสกุล"
                 required
+                class="form-control"
               />
             </div>
           </div>
@@ -45,18 +148,26 @@ class SignupPage extends Component {
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <input
-                class="form-control"
                 type="text"
+                name="nickname"
+                id="nickname"
+                value={this.state.nickname}
+                onChange={this.handleChange}
                 placeholder="ชื่อเล่น"
                 required
+                class="form-control"
               />{' '}
             </div>
             <div class="col-md-8 mb-3">
               <input
-                class="form-control mb-3"
                 type="text"
+                name="telephonenumber"
+                id="telephonenumber"
+                value={this.state.telephonenumber}
+                onChange={this.handleChange}
                 placeholder="เบอร์โทร"
                 required
+                class="form-control mb-3"
               />
             </div>
           </div>
@@ -68,30 +179,39 @@ class SignupPage extends Component {
             <div class="col-md-4 mb-3">
               <input
                 type="text"
-                class="form-control"
-                id="validationTooltip03"
+                name="District"
+                id="District"
+                value={this.state.District}
+                onChange={this.handleChange}
                 placeholder="อำเภอ/เขต"
                 required
+                class="form-control"
               />
               <div class="invalid-tooltip">กรุณาป้อน อำเภอ/เขต</div>
             </div>
             <div class="col-md-5 mb-3">
               <input
                 type="text"
-                class="form-control"
-                id="validationTooltip04"
+                name="Province"
+                id="Province"
+                value={this.state.Province}
+                onChange={this.handleChange}
                 placeholder="จังหวัด"
                 required
+                class="form-control"
               />
               <div class="invalid-tooltip">Please provide a valid state.</div>
             </div>
             <div class="col-md-3 mb-3">
               <input
-                type="text"
-                class="form-control"
-                id="validationTooltip05"
+                type="number"
+                name="Zipcode"
+                id="Zipcode"
+                value={this.state.Zipcode}
+                onChange={this.handleChange}
                 placeholder="รหัสไปรษณีย์"
                 required
+                class="form-control"
               />
               <div class="invalid-tooltip">Please provide a valid zip.</div>
             </div>
@@ -103,35 +223,49 @@ class SignupPage extends Component {
           <div class="form-row">
             <div class="form-group col-md-2">
               <input
-                type="text"
-                class="form-control"
+                type="number"
+                name="bday"
+                id="bday"
+                value={this.state.bday}
+                onChange={this.handleChange}
                 placeholder="วัน"
                 required
+                class="form-control"
               />
             </div>
             <div class="form-group col-md-6 ">
-              <select class="form-control">
-                <option selected>เดือน</option>
-                <option>มกราคม</option>
-                <option>กุมภาพันธ์</option>
-                <option>มีนาคม</option>
-                <option>เมษายน</option>
-                <option>พฤษภาคม</option>
-                <option>มิถุนายน</option>
-                <option>กรกฎาคม</option>
-                <option>สิงหาคม</option>
-                <option>กันยายน</option>
-                <option>ตุลาคม</option>
-                <option>พฤษจิกายน</option>
-                <option>ธันวาคม</option>
+              <select
+                onChange={this.handleChange}
+                name="bmonth"
+                class="form-control"
+              >
+                <option value={0} selected>
+                  เดือน
+                </option>
+                <option value={1}>มกราคม</option>
+                <option value={2}>กุมภาพันธ์</option>
+                <option value={3}>มีนาคม</option>
+                <option value={4}>เมษายน</option>
+                <option value={5}>พฤษภาคม</option>
+                <option value={6}>มิถุนายน</option>
+                <option value={7}>กรกฎาคม</option>
+                <option value={8}>สิงหาคม</option>
+                <option value={9}>กันยายน</option>
+                <option value={10}>ตุลาคม</option>
+                <option value={11}>พฤษจิกายน</option>
+                <option value={12}>ธันวาคม</option>
               </select>
             </div>
             <div class="form-group col-md-4">
               <input
-                type="text"
-                class="form-control"
+                type="number"
+                name="byear"
+                id="byear"
+                value={this.state.byear}
+                onChange={this.handleChange}
                 placeholder="ปี"
                 required
+                class="form-control"
               />
             </div>
           </div>
@@ -171,8 +305,31 @@ class SignupPage extends Component {
           <button
             type="submit"
             class="btn btn-outline-success btn-block mt-3 btn-lg "
+            onClick={() =>
+              this.props.Signup(
+                email,
+                password,
+                firsname,
+                lastname,
+                nickname,
+                telephonenumber,
+                District,
+                Province,
+                Zipcode,
+                bday,
+                bmonth,
+                byear,
+                Gender
+              )
+            }
           >
             ลงทะเบียน
+          </button>
+          <button
+            onClick={() => this.showState()}
+            class="btn btn-outline-success btn-block mt-3 btn-lg "
+          >
+            ShowState
           </button>
         </form>
       </div>
@@ -180,7 +337,9 @@ class SignupPage extends Component {
   }
 }
 
+const mapStateToProps = () => {}
+
 export default connect(
-  {},
+  mapStateToProps,
   { userCreate }
 )(SignupPage)
