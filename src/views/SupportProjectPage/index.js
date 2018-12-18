@@ -5,9 +5,9 @@ class SupportProjectPage extends Component {
   render() {
     return (
       <MainLayout>
-      <div className="text-center m-5 p-5">
-        <h1>สนับสนุนโครงการ</h1>
-      </div>
+        <div className="text-center m-5 p-5">
+          <h1>สนับสนุนโครงการ</h1>
+        </div>
       </MainLayout>
     )
   }
