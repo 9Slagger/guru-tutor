@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Content from './components/Content'
+import MainLayout from '../../components/MainLayout'
 
 class HomePage extends Component {
   render() {
     return (
-      <div>
+      <MainLayout>
         <div
           id="carouselExampleIndicators"
           class="carousel slide"
@@ -81,7 +82,7 @@ class HomePage extends Component {
           </a>
         </div>
         <Content />
-      </div>
+      </MainLayout>
     )
   }
 }

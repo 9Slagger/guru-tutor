@@ -9,7 +9,7 @@ class AppHeader extends Component {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
-          <NavLink className="navbar-brand" to="">
+          <NavLink className="navbar-brand" to="/">
             GURU TUTOR
           </NavLink>
           <button
@@ -26,9 +26,9 @@ class AppHeader extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <NavLink className="nav-link active" to="">
-                  หน้าแรก <span className="sr-only">(current)</span>
+            <li className="nav-item">
+                <NavLink to="/" className="nav-link">
+                  หน้าแรก
                 </NavLink>
               </li>
               <li className="nav-item">

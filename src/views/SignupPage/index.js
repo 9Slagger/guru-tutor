@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { userCreate } from '../../actions'
+import MainLayout from '../../components/MainLayout'
 
 class SignupPage extends Component {
   constructor(props) {
@@ -79,6 +80,7 @@ class SignupPage extends Component {
 
   render() {
     return (
+      <MainLayout>
       <div class="container text-center pt-5">
         <h1 class="my-4 pb-2">ลงทะเบียนสมาชิกใหม่ ฟรี!</h1>
         <form class="form-signup">
@@ -146,7 +148,7 @@ class SignupPage extends Component {
             </div>
             <div class="col-md-8 mb-3">
               <input
-                type="text"
+                type="number"
                 name="telephonenumber"
                 id="telephonenumber"
                 value={this.state.telephonenumber}
@@ -296,6 +298,7 @@ class SignupPage extends Component {
           ลงทะเบียน
         </button>
       </div>
+      </MainLayout>
     )
   }
 }

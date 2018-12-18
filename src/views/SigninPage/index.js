@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signinAuth } from '../../actions'
+import MainLayout from '../../components/MainLayout'
 
 class index extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class index extends Component {
 
   render() {
     return (
-      <div>
+      <MainLayout>
         <section className="section mt-5">
           <div className="container">
             <div className="row">
@@ -85,7 +86,7 @@ class index extends Component {
             </div>
           </div>
         </section>
-      </div>
+      </MainLayout>
     )
   }
 }

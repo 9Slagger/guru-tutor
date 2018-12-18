@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import AppHeader from './components/AppHeader'
 import Routing from './routes'
-import AppFooter from './components/AppFooter'
 import { connect } from 'react-redux'
 import { VerifyAuth } from './actions'
 
@@ -14,9 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AppHeader />
         <Routing />
-        <AppFooter />
       </div>
     )
   }

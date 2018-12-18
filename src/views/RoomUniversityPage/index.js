@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Card from '../../components/Card'
+import MainLayout from '../../components/MainLayout'
 
 const card = [
   {
@@ -64,12 +65,12 @@ class RoomUniversityPage extends Component {
   }
   render() {
     return (
-      <div>
+      <MainLayout>
         <div class="container mt-5">
           <h1>ห้องเรียนมอปลาย</h1>
         </div>
         <div className="card-container row">{this.renderCrad()}</div>
-      </div>
+      </MainLayout>
     )
   }
 }
