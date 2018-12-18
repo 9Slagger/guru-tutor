@@ -51,5 +51,6 @@ export const SignoutAuth = () => {
   return dispatch => {
     localStorage.clear()
     dispatch({ type: LOGOUT_AUTH, payload: null })
+    dispatch(push('/'))
   }
 }
