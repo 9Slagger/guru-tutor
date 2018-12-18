@@ -18,7 +18,7 @@ export const signinAuth = user => {
       .then(res => {
         const token = `Bearer ${res.data.token}`
         localStorage.setItem('token', token)
-        dispatch({ type: LOGIN_AUTH, payload: res.data.user })
+        dispatch({ type: LOGIN_AUTH, payload: [res.data.user] })
 
         dispatch(push('/'))
       })
@@ -38,7 +38,7 @@ export const VerifyAuth = () => {
           headers: { Authorization: token }
         })
         .then(response => {
-          dispatch({ type: VERIFY_AUTH, payload: response.data })
+          dispatch({ type: VERIFY_AUTH, payload: [response.data] })
         })
         .catch(error => {
           dispatch({ type: VERIFY_AUTH, payload: [] })

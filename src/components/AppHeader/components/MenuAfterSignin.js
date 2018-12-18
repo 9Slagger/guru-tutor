@@ -28,13 +28,13 @@ class MenuAfterSignin extends Component {
           aria-haspopup="true"
           aria-expanded="false"
         >
-          {this.props.auth && this.props.auth.Email}
+          {this.props.auth && this.props.auth[0].Email}
         </NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
           <NavLink className="dropdown-item" to="#">
             ตั้งค่าบัญชี
           </NavLink>
-          {this.props.auth.UserType === 'admin'
+          {this.props.auth[0].UserType === 'admin'
             ? this.ButtonManageWeb()
             : false}
           <div className="dropdown-divider" />
