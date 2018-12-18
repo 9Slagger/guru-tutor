@@ -50,9 +50,10 @@ class RoomUniversityPage extends Component {
   renderCrad() {
     return (
       card &&
-      card.map(data => {
+      card.map((data, index) => {
         return (
           <Card
+            key={index}
             src={data.src}
             title={data.title}
             text={data.text}

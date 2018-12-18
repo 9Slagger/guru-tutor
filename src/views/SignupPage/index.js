@@ -231,7 +231,7 @@ class SignupPage extends Component {
                   name="bmonth"
                   className="form-control"
                 >
-                  <option value={0} selected>
+                  <option value={0} hidden>
                     เดือน
                   </option>
                   <option value={1}>มกราคม</option>
@@ -268,9 +268,7 @@ class SignupPage extends Component {
                 name="customRadioInline1"
                 className="custom-control-input"
               />
-              <label className="custom-control-label" for="customRadioInline1">
-                ชาย
-              </label>
+              <label className="custom-control-label">ชาย</label>
             </div>
             <div className="custom-control custom-radio custom-control-inline">
               <input
@@ -279,9 +277,7 @@ class SignupPage extends Component {
                 name="customRadioInline1"
                 className="custom-control-input"
               />
-              <label className="custom-control-label" for="customRadioInline2">
-                หญิง
-              </label>
+              <label className="custom-control-label">หญิง</label>
             </div>
             <div className="custom-control custom-radio custom-control-inline">
               <input
@@ -290,9 +286,7 @@ class SignupPage extends Component {
                 name="customRadioInline1"
                 className="custom-control-input"
               />
-              <label className="custom-control-label" for="customRadioInline3">
-                ไม่ระบุ
-              </label>
+              <label className="custom-control-label">ไม่ระบุ</label>
             </div>
           </form>
           <button
