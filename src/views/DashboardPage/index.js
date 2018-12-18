@@ -5,13 +5,11 @@ class DashboardPage extends Component {
     event.preventDefault()
   }
   closeNav = () => {
-    console.log('s')
     document.getElementById('mySidenav').style.width = '0'
     document.getElementById('xxx').style.marginLeft = '0'
     document.getElementById('xxx2').style.visibility = 'visible'
   }
   openNav = () => {
-    console.log('s')
     document.getElementById('mySidenav').style.width = '12rem'
     document.getElementById('xxx').style.marginLeft = '12rem'
     document.getElementById('xxx2').style.visibility = 'hidden'
@@ -41,14 +39,13 @@ class DashboardPage extends Component {
             </span>
           </div>
         </nav>
-        
 
         <div>
-          <nav id="mySidenav" className=" bg-light sidebar">
+          <nav id="mySidenav" className="bg-light sidebar">
             <div className="sidebar-sticky">
               <ul className="nav flex-column">
-                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                  <span>จัดการสมาชิก</span>
+                <div className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 text-muted">
+                  <span />
                   <a
                     className="d-flex align-items-center text-muted"
                     href="#"
@@ -56,7 +53,7 @@ class DashboardPage extends Component {
                   >
                     <i className="fas fa-times-circle" />
                   </a>
-                </h6>
+                </div>
                 <li className="nav-item">
                   <a className="nav-link active" href="#">
                     <span data-feather="home" />
@@ -129,7 +126,7 @@ class DashboardPage extends Component {
 
           <main id="xxx" role="main" className="main pt-3 px-4">
             <button id="xxx2" className="btn b-s" onClick={this.openNav}>
-              Button
+              Menu
             </button>
           </main>
         </div>
