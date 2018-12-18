@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { usersFetch, userDelete } from '../../actions'
+import PrivateMainLayout from '../../components/PrivateMainLayout'
 
 class User extends Component {
   componentDidMount() {
@@ -55,24 +56,26 @@ class User extends Component {
     const { users } = this.props
     console.log(users)
     return (
-      <div className="container-fluid mt-5">
-        <table className="table table-hover">
-          <thead className="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">ชื่อ สกุล</th>
-              <th scope="col">ชื่อเล่น</th>
-              <th scope="col">เบอร์โทร</th>
-              <th scope="col">ที่อยู่</th>
-              <th scope="col">E-mail</th>
-              <th scope="col">ประเภทผู้ใช้</th>
-              <th scope="col">วันที่เป็นสมาชิก</th>
-              <th scope="col">จัดการสมาชิก</th>
-            </tr>
-          </thead>
-          <tbody>{this.renderUser()}</tbody>
-        </table>
-      </div>
+      <PrivateMainLayout>
+        <div className="container-fluid mt-5">
+          <table className="table table-hover">
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ชื่อ สกุล</th>
+                <th scope="col">ชื่อเล่น</th>
+                <th scope="col">เบอร์โทร</th>
+                <th scope="col">ที่อยู่</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">ประเภทผู้ใช้</th>
+                <th scope="col">วันที่เป็นสมาชิก</th>
+                <th scope="col">จัดการสมาชิก</th>
+              </tr>
+            </thead>
+            <tbody>{this.renderUser()}</tbody>
+          </table>
+        </div>
+      </PrivateMainLayout>
     )
   }
 }
