@@ -68,11 +68,6 @@ class AppHeader extends Component {
                   ติดต่อเรา
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/supportproject" className="nav-link disabled">
-                  สนับสนุนโครงการ
-                </NavLink>
-              </li>
             </ul>
             <div className=" my-2 my-lg-0">
               <ul className="navbar-nav mr-auto">

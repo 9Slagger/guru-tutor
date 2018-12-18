@@ -9,6 +9,7 @@ import Contact from '../views/ContactPage'
 import DashboardPage from '../views/DashboardPage'
 import RoomUniversityPage from '../views/RoomUniversityPage'
 import NewsPage from '../views/NewsPage'
+import NotFoundPage from '../views/NotFoundPage'
 
 const Routing = () => (
   <Switch>
@@ -20,6 +21,7 @@ const Routing = () => (
     <Route exact path="/dashboard" component={DashboardPage} />
     <Route exact path="/roomuniversity" component={RoomUniversityPage} />
     <Route exact path="/news" component={NewsPage} />
+    <Route component={NotFoundPage} />
   </Switch>
 )
 
