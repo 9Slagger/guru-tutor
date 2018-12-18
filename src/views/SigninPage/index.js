@@ -90,8 +90,8 @@ class index extends Component {
   }
 }
 
-const mapStateToProps = () => {
-  
+const mapStateToProps = ({auth}) => {
+  return {auth}
 }
 
 export default connect(

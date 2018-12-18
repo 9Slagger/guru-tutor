@@ -41,61 +41,48 @@ class SignupPage extends Component {
     this.setState({ [name]: value })
   }
 
-  Signup(
-    email,
-    password,
-    firsname,
-    lastname,
-    nickname,
-    telephonenumber,
-    District,
-    Province,
-    Zipcode,
-    bday,
-    bmonth,
-    byear,
-    Gender
-  ) {
-    const user = {
-      email: email,
-      password: password,
-      firsname: firsname,
-      lastname: lastname,
-      nickname: nickname,
-      telephonenumber: telephonenumber,
-      address: `${District} ${Province} ${Zipcode}`,
-      bday: bday,
-      bmonth: bmonth,
-      byear: byear,
-      Gender: Gender
+  async Signup() {
+    if (
+      this.state.email &&
+      this.state.password &&
+      this.state.firsname &&
+      this.state.lastname &&
+      this.state.nickname &&
+      this.state.telephonenumber &&
+      this.state.District &&
+      this.state.Province &&
+      this.state.Zipcode &&
+      this.state.bday &&
+      this.state.bmonth &&
+      this.state.byear
+    ) {
+      const user = await {
+        email: this.state.email,
+        password: this.state.password,
+        firsname: this.state.firsname,
+        lastname: this.state.lastname,
+        nickname: this.state.nickname,
+        telephonenumber: this.state.telephonenumber,
+        address: `${this.state.District} ${this.state.Province} ${
+          this.state.Zipcode
+        }`,
+        bday: parseInt(this.state.bday),
+        bmonth: parseInt(this.state.bmonth),
+        byear: parseInt(this.state.byear),
+        Gender: this.state.Gender
+      }
+      this.props.userCreate(user)
     }
-    this.props.userCreate(user)
-  }
-
-  showState() {
-    console.log(this.state)
+    else {
+      alert('กรุณากรอกข้อมูลให้ครบ')
+    }
   }
 
   render() {
-    const {
-      email,
-      password,
-      firsname,
-      lastname,
-      nickname,
-      telephonenumber,
-      District,
-      Province,
-      Zipcode,
-      bday,
-      bmonth,
-      byear,
-      Gender
-    } = this.state
     return (
       <div class="container text-center pt-5">
         <h1 class="my-4 pb-2">ลงทะเบียนสมาชิกใหม่ ฟรี!</h1>
-        <form class="form-signup" >
+        <form class="form-signup">
           <input
             type="email"
             name="email"
@@ -302,42 +289,21 @@ class SignupPage extends Component {
               ไม่ระบุ
             </label>
           </div>
-          <button
-            type="submit"
-            class="btn btn-outline-success btn-block mt-3 btn-lg "
-            onClick={() =>
-              this.props.Signup(
-                email,
-                password,
-                firsname,
-                lastname,
-                nickname,
-                telephonenumber,
-                District,
-                Province,
-                Zipcode,
-                bday,
-                bmonth,
-                byear,
-                Gender
-              )
-            }
-          >
-            ลงทะเบียน
-          </button>
-          <button
-            onClick={() => this.showState()}
-            class="btn btn-outline-success btn-block mt-3 btn-lg "
-          >
-            ShowState
-          </button>
         </form>
+        <button
+          class="btn btn-outline-success btn-block mt-3 btn-lg "
+          onClick={() => this.Signup()}
+        >
+          ลงทะเบียน
+        </button>
       </div>
     )
   }
 }
 
-const mapStateToProps = () => {}
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
 
 export default connect(
   mapStateToProps,
