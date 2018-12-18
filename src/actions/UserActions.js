@@ -1,13 +1,12 @@
 import axios from 'axios'
-import { USERS_FETCH, USER_DELETE } from './type'
-
-const maketoken = localStorage.getItem('token')
+import { USERS_CREATE, USERS_FETCH, USER_DELETE } from './type'
 
 export const usersFetch = () => {
-  return dispatch => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
     axios
       .get('https://mytutorapi.herokuapp.com/restricted/member', {
-        headers: { Authorization: maketoken }
+        headers: { Authorization: token }
       })
       .then(response => {
         dispatch({ type: USERS_FETCH, payload: response.data })
@@ -18,16 +17,27 @@ export const usersFetch = () => {
   }
 }
 
+export const userCreate = () => {
+  return async dispatch => {
+    axios
+      .post('https://mytutorapi.herokuapp.com/register')
+      .then(response => {
+        dispatch({ type: USERS_CREATE, payload: response.data })
+      })
+  }
+}
+
 export const userDelete = id => {
-  return dispatch => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
     axios
       .delete(`https://mytutorapi.herokuapp.com/restricted/member?id=${id}`, {
-        headers: { Authorization: maketoken }
+        headers: { Authorization: token }
       })
       .then(() => {
         axios
           .get('https://mytutorapi.herokuapp.com/restricted/member', {
-            headers: { Authorization: maketoken }
+            headers: { Authorization: token }
           })
           .then(response => {
             dispatch({ type: USER_DELETE, payload: response.data })

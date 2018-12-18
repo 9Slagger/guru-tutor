@@ -16,7 +16,6 @@ export const signinAuth = user => {
     axios
       .post(`https://mytutorapi.herokuapp.com/login`, user)
       .then(res => {
-        console.log(res.data.user)
         const token = `Bearer ${res.data.token}`
         localStorage.setItem('token', token)
         dispatch({ type: LOGIN_AUTH, payload: res.data.user })
