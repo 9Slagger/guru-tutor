@@ -141,7 +141,7 @@ body {
 
 .sidebar {
   height: 100%;
-  width: 12rem;
+  width: 15rem;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -149,13 +149,13 @@ body {
   background-color: #111;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 40px;
+  padding-top: 10px;
 }
 
 .sidebar-sticky {
   position: -webkit-sticky;
   position: sticky;
-  top: 48px; /* Height of navbar */
+  top: 18px; /* Height of navbar */
   height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
@@ -173,7 +173,8 @@ body {
 }
 
 .sidebar .nav-link.active {
-  color: #007bff;
+  font-weight: bold;
+  color: #366b36;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -186,10 +187,22 @@ body {
   text-transform: uppercase;
 }
 .main {
-  margin-left: 200px; /* Same as the width of the sidenav */
+  margin-left: 15rem; /* Same as the width of the sidenav */
   transition: 0.5s;
 }
 
 .b-s {
   visibility: hidden;
+}
+
+button:focus {outline:0;}
+
+.ds-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.ds-link:hover{
+  color: #999;
+  text-decoration: none;
 }

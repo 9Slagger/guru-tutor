@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
-class DashboardPage extends Component {
+class PermissionUserPage extends Component {
   render() {
     return (
       <PrivateMainLayout>
-        <h1>Dashboard</h1>
+        <h1>PermissionUserPage</h1>
       </PrivateMainLayout>
     )
   }
 }
 
-export default DashboardPage
+export default PermissionUserPage

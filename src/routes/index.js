@@ -11,6 +11,7 @@ import RoomUniversityPage from '../views/RoomUniversityPage'
 import NewsPage from '../views/NewsPage'
 import UsersPage from '../views/UsersPage'
 import NotFoundPage from '../views/NotFoundPage'
+import PermissionUserPage from '../views/PermissionUserPage'
 
 const Routing = () => (
   <Switch>
@@ -22,7 +23,12 @@ const Routing = () => (
     <Route exact path="/dashboard" component={DashboardPage} />
     <Route exact path="/roomuniversity" component={RoomUniversityPage} />
     <Route exact path="/news" component={NewsPage} />
-    <Route exact path="/dashbord/users" component={UsersPage} />
+    <Route exact path="/dashboard/users" component={UsersPage} />
+    <Route
+      exact
+      path="/dashboard/userpermission"
+      component={PermissionUserPage}
+    />
     <Route component={NotFoundPage} />
   </Switch>
 )

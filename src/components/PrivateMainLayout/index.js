@@ -1,25 +1,53 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import { ArrowTurn } from 'react-burgers'
+import { connect } from 'react-redux'
+import { SignoutAuth } from '../../actions'
 
 class PrivateMainLayout extends Component {
   showSettings(event) {
     event.preventDefault()
   }
+  state = {
+    isActive: true
+  }
+
+  toggleButton = () => {
+    if (this.state.isActive) {
+      this.closeNav()
+    } else {
+      this.openNav()
+    }
+    this.setState({
+      isActive: !this.state.isActive
+    })
+  }
   closeNav = () => {
     document.getElementById('mySidenav').style.width = '0'
     document.getElementById('xxx').style.marginLeft = '0'
-    document.getElementById('xxx2').style.visibility = 'visible'
+    // document.getElementById('xxx2').style.visibility = 'visible'
   }
   openNav = () => {
-    document.getElementById('mySidenav').style.width = '12rem'
-    document.getElementById('xxx').style.marginLeft = '12rem'
-    document.getElementById('xxx2').style.visibility = 'hidden'
+    document.getElementById('mySidenav').style.width = '15rem'
+    document.getElementById('xxx').style.marginLeft = '15rem'
+    // document.getElementById('xxx2').style.visibility = 'hidden'
+  }
+  signout() {
+    this.props.SignoutAuth()
+  }
+
+  ButtonManageWeb() {
+    return (
+      <NavLink className="dropdown-item" to="/dashboard">
+        จัดการเว็บไซต์
+      </NavLink>
+    )
   }
 
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
+        {/* <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
           <a className="navbar-brand" href="#">
             Admin Manage
           </a>
@@ -42,104 +70,145 @@ class PrivateMainLayout extends Component {
               </NavLink>
             </span>
           </div>
-        </nav>
+        </nav> */}
 
         <div>
           <nav id="mySidenav" className="bg-light sidebar">
             <div className="sidebar-sticky">
               <ul className="nav flex-column">
-                <div className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 text-muted">
-                  <span />
-                  <a
-                    className="d-flex align-items-center text-muted"
-                    href="#"
-                    onClick={this.closeNav}
-                  >
-                    <i className="fas fa-times-circle" />
-                  </a>
-                </div>
+                <h2 className="ml-3 mb-4">Admin Mamage</h2>
                 <li className="nav-item">
-                  <NavLink
-                    to="/dashboard"
-                    className="nav-link"
-                    onClick={this.closeNav}
-                  >
+                  <NavLink to="/dashboard" className="nav-link">
                     <span data-feather="file" />
-                    Dashbord
+                    <h4>Dashbord</h4>
                   </NavLink>
                 </li>
+                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted">
+                  <span>จัดการสมาชิก</span>
+                </h6>
                 <li className="nav-item">
-                  <NavLink
-                    to="/dashbord/users"
-                    className="nav-link"
-                    onClick={this.closeNav}
-                  >
+                  <NavLink to="/dashboard/users" className="nav-link">
                     <span data-feather="file" />
                     จัดการสมาชิก
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink to="/dashboard/userpermission" className="nav-link">
+                    <span data-feather="file" />
+                    จัดการสิทธิสมาชิก
+                  </NavLink>
+                </li>
+                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted">
+                  <span>จัดการเนื้อหาเว็บไซน์</span>
+                </h6>
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="shopping-cart" />
-                    Products
-                  </a>
+                    หน้าแรก
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="users" />
-                    Customers
-                  </a>
+                    หน้าโปรโมชั่น
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="bar-chart-2" />
-                    Reports
-                  </a>
+                    หน้าข่าวสาร
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="layers" />
-                    Integrations
-                  </a>
+                    ติดต่อเรา
+                  </NavLink>
                 </li>
               </ul>
 
-              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                <span>Saved reports</span>
+              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-3 mb-1 text-muted">
+                <span>จัดการห้องเรียน</span>
               </h6>
               <ul className="nav flex-column mb-2">
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="file-text" />
-                    Current month
-                  </a>
+                    เพิ่มรายวิชา
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="file-text" />
-                    Last quarter
-                  </a>
+                    แก้ไขรายวิชา
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="file-text" />
-                    Social engagement
-                  </a>
+                    ลบรายวิชา
+                  </NavLink>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">
+                  <NavLink className="nav-link" to="/dashbord">
                     <span data-feather="file-text" />
-                    Year-end sale
-                  </a>
+                    สิทธิการเข้าถึงรายวิชา
+                  </NavLink>
                 </li>
               </ul>
             </div>
           </nav>
 
           <main id="xxx" role="main" className="main pt-3 px-4">
-            <button id="xxx2" className="btn b-s" onClick={this.openNav}>
-              Menu
-            </button>
+            <div className="row">
+              <div className="col">
+                <ArrowTurn
+                  active={this.state.isActive}
+                  onClick={this.toggleButton}
+                />
+              </div>
+              <div className="col-auto">
+                <NavLink to="/" className="ds-link">
+                  <h2>หน้าเว็บหลัก</h2>
+                </NavLink>
+              </div>
+              <div className="col text-right">
+                {this.props.auth && this.props.auth.length > 0 ? (
+                  <div className="nav-item dropdown">
+                    <NavLink
+                      className="ds-link dropdown-toggle"
+                      to="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      {this.props.auth && this.props.auth[0].Email}
+                    </NavLink>
+                    <div
+                      className="dropdown-menu"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <NavLink className="dropdown-item" to="#">
+                        ตั้งค่าบัญชี
+                      </NavLink>
+                      {this.props.auth[0].UserType === 'admin'
+                        ? this.ButtonManageWeb()
+                        : false}
+                      <div className="dropdown-divider" />
+                      <button
+                        className="dropdown-item"
+                        onClick={() => this.signout()}
+                      >
+                        ออกจากระบบ
+                      </button>
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+
             <div className="header-nav">{this.props.children}</div>
           </main>
         </div>
@@ -147,5 +216,10 @@ class PrivateMainLayout extends Component {
     )
   }
 }
-
-export default PrivateMainLayout
+const mapStateToProps = ({ auth }) => {
+  return { auth }
+}
+export default connect(
+  mapStateToProps,
+  { SignoutAuth }
+)(PrivateMainLayout)

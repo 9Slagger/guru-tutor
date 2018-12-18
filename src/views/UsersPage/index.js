@@ -57,7 +57,7 @@ class User extends Component {
     console.log(users)
     return (
       <PrivateMainLayout>
-        <div className="container-fluid mt-5">
+        <div className="container-fluid">
           <table className="table table-hover">
             <thead className="thead-dark">
               <tr>
