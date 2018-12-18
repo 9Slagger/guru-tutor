@@ -1,97 +1,139 @@
 import React, { Component } from 'react'
-import UsersPage from '../UsersPage'
 
 class DashboardPage extends Component {
+  showSettings(event) {
+    event.preventDefault()
+  }
+  closeNav = () => {
+    console.log('s')
+    document.getElementById('mySidenav').style.width = '0'
+    document.getElementById('xxx').style.marginLeft = '0'
+    document.getElementById('xxx2').style.visibility = 'visible'
+  }
+  openNav = () => {
+    console.log('s')
+    document.getElementById('mySidenav').style.width = '12rem'
+    document.getElementById('xxx').style.marginLeft = '12rem'
+    document.getElementById('xxx2').style.visibility = 'hidden'
+  }
   render() {
     return (
-      <div className="container-fluid pt-5">
-        <nav className="nav-justified">
-          <div
-            className="nav nav-tabs text-success"
-            id="nav-tab"
-            role="tablist"
+      <React.Fragment>
+        <nav className="navbar navbar-expand-lg navbar-dark sticky-top bg-dark">
+          <a className="navbar-brand" href="#">
+            Admin Manage
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
           >
-            <a
-              className="nav-item nav-link active"
-              id="nav-home-tab"
-              data-toggle="tab"
-              href="#nav-home"
-              role="tab"
-              aria-controls="nav-home"
-              aria-selected="true"
-            >
-              จัดการสมาชิก
-            </a>
-            <a
-              className="nav-item nav-link"
-              id="nav-profile-tab"
-              data-toggle="tab"
-              href="#nav-profile"
-              role="tab"
-              aria-controls="nav-profile"
-              aria-selected="false"
-            >
-              Profile
-            </a>
-            <a
-              className="nav-item nav-link"
-              id="nav-contact-tab"
-              data-toggle="tab"
-              href="#nav-contact"
-              role="tab"
-              aria-controls="nav-contact"
-              aria-selected="false"
-            >
-              Contact
-            </a>
-            <a
-              className="nav-item nav-link"
-              id="nav-contact2-tab"
-              data-toggle="tab"
-              href="#nav-contact2"
-              role="tab"
-              aria-controls="nav-contact2"
-              aria-selected="false"
-            >
-              Contact2
-            </a>
+            <span className="navbar-toggler-icon" />
+          </button>
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav mr-auto" />
+            <span className="navbar-text">
+              Navbar text with an inline element
+            </span>
           </div>
         </nav>
-        <div className="tab-content" id="nav-tabContent">
-          <div
-            className="tab-pane fade show active"
-            id="nav-home"
-            role="tabpanel"
-            aria-labelledby="nav-home-tab"
-          >
-            <UsersPage />
-          </div>
-          <div
-            className="tab-pane fade"
-            id="nav-profile"
-            role="tabpanel"
-            aria-labelledby="nav-profile-tab"
-          >
-            ...
-          </div>
-          <div
-            className="tab-pane fade"
-            id="nav-contact"
-            role="tabpanel"
-            aria-labelledby="nav-contact-tab"
-          >
-            ...1
-          </div>
-          <div
-            className="tab-pane fade"
-            id="nav-contact2"
-            role="tabpanel"
-            aria-labelledby="nav-contact2-tab"
-          >
-            ...2
-          </div>
+        
+
+        <div>
+          <nav id="mySidenav" className=" bg-light sidebar">
+            <div className="sidebar-sticky">
+              <ul className="nav flex-column">
+                <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                  <span>จัดการสมาชิก</span>
+                  <a
+                    className="d-flex align-items-center text-muted"
+                    href="#"
+                    onClick={this.closeNav}
+                  >
+                    <i className="fas fa-times-circle" />
+                  </a>
+                </h6>
+                <li className="nav-item">
+                  <a className="nav-link active" href="#">
+                    <span data-feather="home" />
+                    Dashboard <span className="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#" onClick={this.closeNav}>
+                    <span data-feather="file" />
+                    Orders
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="shopping-cart" />
+                    Products
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="users" />
+                    Customers
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="bar-chart-2" />
+                    Reports
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="layers" />
+                    Integrations
+                  </a>
+                </li>
+              </ul>
+
+              <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                <span>Saved reports</span>
+              </h6>
+              <ul className="nav flex-column mb-2">
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="file-text" />
+                    Current month
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="file-text" />
+                    Last quarter
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="file-text" />
+                    Social engagement
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
+                    <span data-feather="file-text" />
+                    Year-end sale
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          <main id="xxx" role="main" className="main pt-3 px-4">
+            <button id="xxx2" className="btn b-s" onClick={this.openNav}>
+              Button
+            </button>
+          </main>
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }
