@@ -37,7 +37,9 @@ class PrivateMainLayout extends Component {
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto" />
             <span className="navbar-text">
-              Navbar text with an inline element
+              <NavLink to="/" onClick={this.closeNav}>
+                กลับหน้าหลัก
+              </NavLink>
             </span>
           </div>
         </nav>
