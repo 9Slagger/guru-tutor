@@ -22,7 +22,7 @@ export const userCreate = user => {
     axios
       .post('https://mytutorapi.herokuapp.com/register', user)
       .then(response => {
-        if(response.status === 200) {
+        if (response.status === 200) {
           dispatch({ type: USERS_CREATE, payload: response.data })
           alert(response.data.Message)
         }

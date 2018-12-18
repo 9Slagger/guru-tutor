@@ -50,7 +50,6 @@ class DashboardPage extends Component {
             >
               Contact2
             </a>
-            
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">

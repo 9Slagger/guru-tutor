@@ -72,8 +72,7 @@ class SignupPage extends Component {
         Gender: this.state.Gender
       }
       this.props.userCreate(user)
-    }
-    else {
+    } else {
       alert('กรุณากรอกข้อมูลให้ครบ')
     }
   }

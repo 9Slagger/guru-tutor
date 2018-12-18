@@ -19,7 +19,9 @@ class User extends Component {
         return (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
-            <td>{user.FirstName} {user.LasttName}</td>
+            <td>
+              {user.FirstName} {user.LasttName}
+            </td>
             <td>{user.NickName}</td>
             <td>{user.TelephoneNumber}</td>
             <td>{user.Address}</td>
