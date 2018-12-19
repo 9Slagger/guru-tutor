@@ -23,84 +23,48 @@ class Content extends Component {
     )
   }
 
+  renderHomeContentThird() {
+    return (
+      this.props.homecontent.homecontentthird &&
+      this.props.homecontent.homecontentthird.map((homecontentthird, index) => {
+        let classN1 = ''
+        let classN2 = ''
+        if (index % 2 === 0) {
+          classN1 = 'col-md-7'
+          classN2 = 'col-md-5'
+        } else {
+          classN1 = 'col-md-7 order-md-2'
+          classN2 = 'col-md-5 order-md-1'
+        }
+        return (
+          <React.Fragment key={index}>
+            <hr className="featurette-divider" />
+            <div className="row featurette">
+              <div className={classN1}>
+                <h2 className="featurette-heading">{homecontentthird.Title}</h2>
+                <p className="lead">{homecontentthird.Detail}</p>
+              </div>
+              <div className={classN2}>
+                <img
+                  className="featurette-image img-fluid mx-auto"
+                  src={homecontentthird.Thumbnail}
+                  alt={`Generic placeholder${homecontentthird.ContentNumber}`}
+                />
+              </div>
+            </div>
+          </React.Fragment>
+        )
+      })
+    )
+  }
+
   render() {
     return (
       <div className="container marketing">
         <div className="row">
           {this.props.homecontent && this.renderHomeContentSecond()}
         </div>
-
-        <hr className="featurette-divider" />
-
-        <div className="row featurette">
-          <div className="col-md-7">
-            <h2 className="featurette-heading">
-              คะแนนโทอิคดี ก็มีโอกาสได้งานที่ดี{' '}
-              <span className="text-muted">
-                คอร์ส TOEIC รับเพียง 20 คนเท่านั้น
-              </span>
-            </h2>
-            <p className="lead">
-              ราคาเพียง 2,000 บาท เท่านั้นครับ... (แบ่งจ่ายได้ครับผม)
-              เรียนทุกวันเสาร์ เวลา 13.00-16.00 น. เริ่มเรียน 15 ธ.ค.61 ครับ
-            </p>
-          </div>
-          <div className="col-md-5">
-            <img
-              className="featurette-image img-fluid mx-auto"
-              src="https://images.unsplash.com/photo-1523000895257-f6ea8a05be6b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-              alt="Generic placeholder"
-            />
-          </div>
-        </div>
-
-        <hr className="featurette-divider" />
-
-        <div className="row featurette">
-          <div className="col-md-7 order-md-2">
-            <h2 className="featurette-heading">
-              ศิลปะเด็ก 6-11 ปี <br />
-              <span className="text-muted">โดยครูจ้อสสสสสส</span>
-            </h2>
-            <p className="lead">
-              วาดสตูดิโอเปิดคอร์ส “ศิลปะสำหรับเด็ก” มุ่งเน้นให้เกิดจินตนาการ
-              และสร้างแรงบันดาลใจ ผ่านงานศิลปะ ให้เด็กได้ “สนุกและมีความสุข”
-              มากกว่าทำให้เกิดตัวผลงานเพียงอย่างเดียว
-            </p>
-          </div>
-          <div className="col-md-5 order-md-1">
-            <img
-              className="featurette-image img-fluid mx-auto"
-              src="https://images.unsplash.com/photo-1511949860663-92c5c57d48a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              alt="Generic placeholder"
-            />
-          </div>
-        </div>
-
-        <hr className="featurette-divider" />
-
-        <div className="row featurette">
-          <div className="col-md-7">
-            <h2 className="featurette-heading">
-              Calculus I (แคลคูลัส 1) <br />
-              <span className="text-muted">ขั้นเทพ</span>
-            </h2>
-            <p className="lead">
-              เนื้อหารายวิชา ฟังก์ชัน ลิมิต ความต่อเนื่อง และอนุพันธ์ กฎลูกโซ่
-              อนุพันธ์อันดับสูง การประยุกต์ของอนุพันธ์ ฟังก์ชันทรานเซนเดลทัล
-              การหาอนุพันธ์และอินทิกรัลของฟังก์ชันทรานเซนเดลทัล การอินทิเกรต
-              อินทิกรัลจำกัดเขตและอินทิกรัลไม่จำกัดเขต เทคนิคของการอินทิเกรต
-              เรขาคณิตวิเคราะห์
-            </p>
-          </div>
-          <div className="col-md-5">
-            <img
-              className="featurette-image img-fluid mx-auto"
-              src="https://images.unsplash.com/photo-1518133835878-5a93cc3f89e5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80"
-              alt="Generic placeholder"
-            />
-          </div>
-        </div>
+        {this.props.homecontent && this.renderHomeContentThird()}
       </div>
     )
   }
