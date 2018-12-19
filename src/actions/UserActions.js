@@ -58,12 +58,15 @@ export const userDelete = id => {
   }
 }
 
-export const userEditTpye = id => {
+export const userEditTpye = (id, selectType) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
+    const data = await { usertype: selectType }
+    console.log(data)
     axios
       .put(
-        `https://mytutorapi.herokuapp.com/restricted/member/usertype?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/member?id=${id}`,
+        data,
         {
           headers: { Authorization: token }
         }
@@ -75,12 +78,15 @@ export const userEditTpye = id => {
           })
           .then(response => {
             dispatch({ type: USER_EDIT_TYPE, payload: response.data })
+            alert(`แก้ไขสิทธิเป็น ${selectType} สำเร็จ`)
           })
           .catch(error => {
+            alert(`แก้ไขสิทธิเป็น ${selectType} สำเร็จ`)
             console.log(error)
           })
       })
       .catch(error => {
+        alert(`แก้ไขสิทธิ ล้มเหลว`)
         console.log(error)
       })
   }

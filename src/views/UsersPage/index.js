@@ -16,7 +16,6 @@ class User extends Component {
     return (
       this.props.users &&
       this.props.users.map((user, index) => {
-        var date = new Date(Date.parse(user.Timestamp))
         return (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
@@ -25,11 +24,8 @@ class User extends Component {
             </td>
             <td>{user.NickName}</td>
             <td>{user.TelephoneNumber}</td>
-            <td>{user.Address}</td>
             <td>{user.Email}</td>
             <td>{user.UserType}</td>
-            <td
-            >{`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</td>
             <td>
               <button
                 type="button"
@@ -65,10 +61,8 @@ class User extends Component {
                 <th scope="col">ชื่อ สกุล</th>
                 <th scope="col">ชื่อเล่น</th>
                 <th scope="col">เบอร์โทร</th>
-                <th scope="col">ที่อยู่</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">ประเภทผู้ใช้</th>
-                <th scope="col">วันที่เป็นสมาชิก</th>
                 <th scope="col">จัดการสมาชิก</th>
               </tr>
             </thead>
