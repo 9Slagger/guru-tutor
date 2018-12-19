@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { usersFetch, userEditTpye } from '../../actions'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
+import Swal from 'sweetalert2'
 
 class PermissionUserPage extends Component {
   componentDidMount() {
@@ -12,9 +13,21 @@ class PermissionUserPage extends Component {
     this.props.userEditTpye(id, name, selectType)
   }
 
-  onSelect(e, id, name) {
-    const selectType = e.target.value
-    this.userEditTpye(id, name, selectType)
+  async onSelect(e, id, name) {
+    const selectType = await e.target.value
+    Swal({
+      title: 'Are you sure?',
+      text: `ต้องการเปลี่ยนสิทธิให้คุณ ${name} เป็น ${selectType} ใช่หรือไม่`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่ !'
+    }).then(result => {
+      if (result.value) {
+        this.userEditTpye(id, name, selectType)
+      }
+    })
   }
 
   renderUser() {
