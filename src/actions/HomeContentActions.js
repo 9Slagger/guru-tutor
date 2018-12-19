@@ -5,7 +5,7 @@ export const fetchHomeContent = () => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     axios
-      .get('https://mytutorapi.herokuapp.com/restricted/homecontent', {
+      .get('https://mytutorapi.herokuapp.com/homecontent', {
         headers: { Authorization: token }
       })
       .then(response => {

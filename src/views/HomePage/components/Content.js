@@ -5,28 +5,21 @@ import { fetchHomeContent } from '../../../actions'
 class Content extends Component {
   renderHomeContentSecond() {
     return (
-      this.props.homecontent.homecontentfirst &&
-      this.props.homecontent.homecontentfirst.map((homecontentfirst, index) => {
-        let classN = ''
-        if (index === 0) {
-          classN = 'carousel-item active'
-        } else {
-          classN = 'carousel-item'
-        }
-        return (
-          <div className={classN} key={index}>
-            <img
-              className="d-block w-100"
-              src={homecontentfirst.Thumbnail}
-              alt={`slide${homecontentfirst.ContentNumber}`}
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h1>{homecontentfirst.Title}</h1>
-              <p>{homecontentfirst.Detail}</p>
-            </div>
+      this.props.homecontent.homecontentsecond &&
+      this.props.homecontent.homecontentsecond.map(
+        (homecontentsecond, index) => (
+          <div className="col-lg-4" key={index}>
+            <i className={homecontentsecond.Icon} />
+            <h2>{homecontentsecond.Title}</h2>
+            <p>{homecontentsecond.Detail}</p>
+            <p>
+              <a className="btn btn-secondary" href="#" role="button">
+                ดูรายละเอียดเพิ่มเติม &raquo;
+              </a>
+            </p>
           </div>
         )
-      })
+      )
     )
   }
 
@@ -34,45 +27,7 @@ class Content extends Component {
     return (
       <div className="container marketing">
         <div className="row">
-          <div className="col-lg-4">
-            <i className="fas fa-tv fa-8x mb-5" />
-            <h2>เรียนรู้ได้ทุกที่ทุกเวลา</h2>
-            <p>
-              GURU TUTOR คัดสรรคอร์สคุณภาพและหลากหลายเพื่อคุณ
-              สามารถเข้าถึงเนื้อหาของเราทุกเมื่อที่คุณต้องการเพียงแค่มีอินเตอร์เน็ต
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#" role="button">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-          <div className="col-lg-4">
-            <i className="fas fa-graduation-cap fa-8x mb-5" />
-            <h2>สอนจากประสบการณ์ตรง</h2>
-            <p>
-              การสอนที่ปรับใช้จริงไม่ได้ย่อมไม่เกิดประโยชน์ GURU Turot
-              เน้นการเรียนรู้ที่ใช้ได้จริงจากประสบการสอนกว่า 10 ปี
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#" role="button">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
-          <div className="col-lg-4">
-            <i className="fas fa-comments fa-8x mb-5" />
-            <h2>สอบถามปัญหาได้ทุกเมื่อ</h2>
-            <p>
-              บริการถามตอบจาก Babel Coder ช่วยให้คำปรึกษาในทุกๆหลักสูตร
-              แม้คุณจะไม่ใช่ผู้เรียนของเราก็ตาม
-            </p>
-            <p>
-              <a className="btn btn-secondary" href="#" role="button">
-                View details &raquo;
-              </a>
-            </p>
-          </div>
+          {this.props.homecontent && this.renderHomeContentSecond()}
         </div>
 
         <hr className="featurette-divider" />
