@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Content from './components/Content'
 import MainLayout from '../../components/MainLayout'
+import { connect } from 'react-redux'
+import { fetchHomeContent } from '../../actions'
 
 class HomePage extends Component {
   render() {
@@ -91,4 +93,11 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage
+const mapStateToProps = ({ homecontent }) => {
+  return { homecontent }
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchHomeContent }
+)(HomePage)
