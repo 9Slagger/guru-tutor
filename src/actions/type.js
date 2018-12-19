@@ -1,6 +1,7 @@
 export const USERS_FETCH = 'users_fetch'
 export const USERS_CREATE = 'users_create'
 export const USER_EDIT = 'user_edit'
+export const USER_EDIT_TYPE = 'user_edittype'
 export const USER_DELETE = 'user_delete'
 export const LOGIN_AUTH = 'login_auth'
 export const CHECK_AUTH = 'check_auth'

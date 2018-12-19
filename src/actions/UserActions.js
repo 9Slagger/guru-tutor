@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { USERS_CREATE, USERS_FETCH, USER_DELETE } from './type'
+import { USERS_CREATE, USERS_FETCH, USER_DELETE, USER_EDIT_TYPE } from './type'
 
 export const usersFetch = () => {
   return async dispatch => {
@@ -47,6 +47,34 @@ export const userDelete = id => {
           })
           .then(response => {
             dispatch({ type: USER_DELETE, payload: response.data })
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+}
+
+export const userEditTpye = id => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    axios
+      .put(
+        `https://mytutorapi.herokuapp.com/restricted/member/usertype?id=${id}`,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        axios
+          .get('https://mytutorapi.herokuapp.com/restricted/member', {
+            headers: { Authorization: token }
+          })
+          .then(response => {
+            dispatch({ type: USER_EDIT_TYPE, payload: response.data })
           })
           .catch(error => {
             console.log(error)
