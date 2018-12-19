@@ -1,6 +1,35 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { fetchHomeContent } from '../../../actions'
 
 class Content extends Component {
+  renderHomeContentSecond() {
+    return (
+      this.props.homecontent.homecontentfirst &&
+      this.props.homecontent.homecontentfirst.map((homecontentfirst, index) => {
+        let classN = ''
+        if (index === 0) {
+          classN = 'carousel-item active'
+        } else {
+          classN = 'carousel-item'
+        }
+        return (
+          <div className={classN} key={index}>
+            <img
+              className="d-block w-100"
+              src={homecontentfirst.Thumbnail}
+              alt={`slide${homecontentfirst.ContentNumber}`}
+            />
+            <div className="carousel-caption d-none d-md-block">
+              <h1>{homecontentfirst.Title}</h1>
+              <p>{homecontentfirst.Detail}</p>
+            </div>
+          </div>
+        )
+      })
+    )
+  }
+
   render() {
     return (
       <div className="container marketing">
@@ -122,4 +151,11 @@ class Content extends Component {
   }
 }
 
-export default Content
+const mapStateToProps = ({ homecontent }) => {
+  return { homecontent }
+}
+
+export default connect(
+  mapStateToProps,
+  { fetchHomeContent }
+)(Content)
