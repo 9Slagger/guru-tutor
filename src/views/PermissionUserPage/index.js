@@ -4,13 +4,6 @@ import { usersFetch, userEditTpye } from '../../actions'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
 class PermissionUserPage extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      selectType: ''
-    }
-  }
-
   componentDidMount() {
     this.props.usersFetch()
   }
@@ -19,13 +12,9 @@ class PermissionUserPage extends Component {
     this.props.userEditTpye(id, name, selectType)
   }
 
-  handleChange = e => {
-    const { name, value } = e.target
-    this.setState({ [name]: value })
-  }
-
-  enanleButton(id) {
-    document.getElementById(id).disabled = false
+  onSelect(e, id, name) {
+    const selectType = e.target.value
+    this.userEditTpye(id, name, selectType)
   }
 
   renderUser() {
@@ -43,7 +32,13 @@ class PermissionUserPage extends Component {
             <td>{user.Email}</td>
             <td>
               <select
-                onChange={this.handleChange}
+                onChange={e =>
+                  this.onSelect(
+                    e,
+                    user.ID,
+                    `${user.FirstName} ${user.LastName}`
+                  )
+                }
                 name="selectType"
                 className="form-control"
                 defaultValue={user.UserType}
@@ -52,22 +47,6 @@ class PermissionUserPage extends Component {
                 <option value="tutor">tutor</option>
                 <option value="member">member</option>
               </select>
-            </td>
-            <td>
-              <button
-                id={user.ID}
-                type="button"
-                className="btn btn-success"
-                onClick={() =>
-                  this.userEditTpye(
-                    user.ID,
-                    `${user.FirstName} ${user.LastName}`,
-                    this.state.selectType
-                  )
-                }
-              >
-                บันทึก
-              </button>
             </td>
           </tr>
         )
@@ -88,7 +67,6 @@ class PermissionUserPage extends Component {
                 <th scope="col">เบอร์โทร</th>
                 <th scope="col">E-mail</th>
                 <th scope="col">ประเภทผู้ใช้</th>
-                <th scope="col">จัดการสมาชิก</th>
               </tr>
             </thead>
             <tbody>{this.renderUser()}</tbody>
