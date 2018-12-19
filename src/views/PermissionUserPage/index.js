@@ -15,14 +15,17 @@ class PermissionUserPage extends Component {
     this.props.usersFetch()
   }
 
-  userEditTpye(id, selectType) {
-    this.props.userEditTpye(id, selectType)
-    console.log(selectType)
+  userEditTpye(id, name, selectType) {
+    this.props.userEditTpye(id, name, selectType)
   }
 
   handleChange = e => {
     const { name, value } = e.target
     this.setState({ [name]: value })
+  }
+
+  enanleButton(id) {
+    document.getElementById(id).disabled = false
   }
 
   renderUser() {
@@ -52,11 +55,16 @@ class PermissionUserPage extends Component {
             </td>
             <td>
               <button
+                id={user.ID}
+                disabled
                 type="button"
-                // disabled
                 className="btn btn-success"
                 onClick={() =>
-                  this.userEditTpye(user.ID, this.state.selectType)
+                  this.userEditTpye(
+                    user.ID,
+                    `${user.FirstName} ${user.LastName}`,
+                    this.state.selectType
+                  )
                 }
               >
                 บันทึก

@@ -58,11 +58,10 @@ export const userDelete = id => {
   }
 }
 
-export const userEditTpye = (id, selectType) => {
+export const userEditTpye = (id, name, selectType) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     const data = await { usertype: selectType }
-    console.log(data)
     axios
       .put(
         `https://mytutorapi.herokuapp.com/restricted/member?id=${id}`,
@@ -78,7 +77,7 @@ export const userEditTpye = (id, selectType) => {
           })
           .then(response => {
             dispatch({ type: USER_EDIT_TYPE, payload: response.data })
-            alert(`แก้ไขสิทธิเป็น ${selectType} สำเร็จ`)
+            alert(`แก้ไขสิทธิให้ คุณ ${name} เป็น ${selectType} สำเร็จ`)
           })
           .catch(error => {
             alert(`แก้ไขสิทธิเป็น ${selectType} สำเร็จ`)
