@@ -56,7 +56,6 @@ class PermissionUserPage extends Component {
             <td>
               <button
                 id={user.ID}
-                disabled
                 type="button"
                 className="btn btn-success"
                 onClick={() =>
