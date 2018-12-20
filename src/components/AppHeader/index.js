@@ -54,12 +54,12 @@ class AppHeader extends Component {
                   ห้องเรียน
                 </NavLink>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <NavLink className="dropdown-item" to="#">
-                    ห้องเรียนมอปลาย
+                  <NavLink className="dropdown-item" to="/roomhighschool">
+                    ห้องเรียนมัธยม
                   </NavLink>
                   <div className="dropdown-divider" />
                   <NavLink className="dropdown-item" to="/roomuniversity">
-                    ห้องเรียนมหาลัย
+                    ห้องเรียนมหาลวิทยาลัย
                   </NavLink>
                 </div>
               </li>
