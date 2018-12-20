@@ -7,6 +7,7 @@ import SignPage from '../views/SigninPage'
 import SignupPage from '../views/SignupPage'
 import Contact from '../views/ContactPage'
 import DashboardPage from '../views/DashboardPage'
+import RoomHighschoolPage from '../views/RoomHighschoolPage'
 import RoomUniversityPage from '../views/RoomUniversityPage'
 import NewsPage from '../views/NewsPage'
 import UsersPage from '../views/UsersPage'
@@ -21,6 +22,7 @@ const Routing = () => (
     <Route exact path="/contact" component={Contact} />
     <Route exact path="/promotion" component={PromotionPage} />
     <Route exact path="/dashboard" component={DashboardPage} />
+    <Route exact path="/roomhighschool" component={RoomHighschoolPage} />
     <Route exact path="/roomuniversity" component={RoomUniversityPage} />
     <Route exact path="/news" component={NewsPage} />
     <Route exact path="/dashboard/users" component={UsersPage} />
