@@ -65,7 +65,7 @@ export const userEditTpye = (id, name, selectType) => {
     const data = await { usertype: selectType }
     axios
       .put(
-        `https://mytutorapi.herokuapp.com/restricted/member?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/member/usertype?id=${id}`,
         data,
         {
           headers: { Authorization: token }
