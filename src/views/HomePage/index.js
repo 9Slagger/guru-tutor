@@ -36,6 +36,19 @@ class HomePage extends Component {
     )
   }
 
+  renderListCarouselIndicators() {
+    this.props.homecontent.homecontentfirst &&
+      this.props.homecontent.homecontentfirst.map((homecontentfirst, index) => {
+        return (
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to={index}
+            className={index === 0 ? 'active' : ''}
+          />
+        )
+      })
+  }
+
   render() {
     return (
       <MainLayout>
@@ -45,13 +58,14 @@ class HomePage extends Component {
           data-ride="carousel"
         >
           <ol className="carousel-indicators">
-            <li
+            {this.props.homecontent && this.renderListCarouselIndicators()}
+            {/* <li
               data-target="#carouselExampleIndicators"
               data-slide-to="0"
               className="active"
             />
             <li data-target="#carouselExampleIndicators" data-slide-to="1" />
-            <li data-target="#carouselExampleIndicators" data-slide-to="2" />
+            <li data-target="#carouselExampleIndicators" data-slide-to="2" /> */}
           </ol>
           <div className="carousel-inner">
             {this.props.homecontent && this.renderHomeContentFirst()}
