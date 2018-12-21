@@ -33,20 +33,6 @@ class HomePage extends Component {
     )
   }
 
-  renderListCarouselIndicators() {
-    this.props.homecontent.homecontentfirst &&
-      this.props.homecontent.homecontentfirst.map((homecontentfirst, index) => {
-        return (
-          <li
-            data-target="#carouselExampleIndicators"
-            data-slide-to={index}
-            key={index}
-            id={homecontentfirst.ID}
-          />
-        )
-      })
-  }
-
   render() {
     return (
       <MainLayout>
@@ -55,9 +41,6 @@ class HomePage extends Component {
           className="carousel slide"
           data-ride="carousel"
         >
-          <ol className="carousel-indicators">
-            {/* {this.props.homecontent && this.props.homecontent && this.renderListCarouselIndicators()}  */}
-          </ol>
           <div className="carousel-inner">
             {this.props.homecontent && this.renderHomeContentFirst()}
           </div>
