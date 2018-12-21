@@ -5,6 +5,7 @@ import { USERS_CREATE, USERS_FETCH, USER_DELETE, USER_EDIT_TYPE } from './type'
 export const usersFetch = () => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
+    dispatch({ type: USERS_FETCH, payload: { isLoadingData: true } })
     axios
       .get('https://mytutorapi.herokuapp.com/restricted/member', {
         headers: { Authorization: token }

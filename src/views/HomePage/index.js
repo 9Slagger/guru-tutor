@@ -21,7 +21,7 @@ class HomePage extends Component {
             <img
               className="d-block w-100"
               src={homecontentfirst.Thumbnail}
-              alt={`slide${homecontentfirst.ContentNumber}`}
+              alt={homecontentfirst.Title}
             />
             <div className="carousel-caption d-none d-md-block">
               <h1>{homecontentfirst.Title}</h1>

@@ -30,10 +30,10 @@ class PermissionUserPage extends Component {
     })
   }
 
-  renderUser() {
+  renderUser(users) {
     return (
-      this.props.users &&
-      this.props.users.map((user, index) => {
+      users &&
+      users.map((user, index) => {
         return (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
@@ -68,9 +68,15 @@ class PermissionUserPage extends Component {
   }
 
   render() {
+    const { users } = this.props
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
+          {users && users.isLoadingData ? (
+            <h1 className="text-center">กำลังโหลดข้อมูล</h1>
+          ) : (
+            ''
+          )}
           <table className="table table-hover">
             <thead className="thead-dark">
               <tr>
@@ -82,7 +88,7 @@ class PermissionUserPage extends Component {
                 <th scope="col">ประเภทผู้ใช้</th>
               </tr>
             </thead>
-            <tbody>{this.renderUser()}</tbody>
+            <tbody>{users.length > 0 && this.renderUser(users)}</tbody>
           </table>
         </div>
       </PrivateMainLayout>
