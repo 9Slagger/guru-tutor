@@ -32,7 +32,12 @@
   overflow: hidden;
 }
 .crop2 {
+  height: 500px;
   overflow: hidden;
+}
+
+.text_left {
+  background-image: linear-gradient(to bottom  , rgb(10, 10, 10) , transparent);
 }
 
 /* GLOBAL STYLES
