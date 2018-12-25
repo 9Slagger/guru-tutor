@@ -5,6 +5,7 @@ import {
   createFHomeContent,
   createTHomeContent
 } from '../../actions'
+// import HomeContentForm from './components/HomeContentForm'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
 class ManageHomePage extends Component {
@@ -59,6 +60,7 @@ class ManageHomePage extends Component {
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
+          {/* <HomeContentForm /> */}
           <form>
             <h2>เพิ่มเนื้อหาส่วนที่ 1</h2>
             <div className="form-group">
