@@ -10,7 +10,7 @@ class PromotionPage extends Component {
           <div className="card bg-dark text-white crop2 mb-2">
             <img
               className="card-img"
-              src="https://images.unsplash.com/photo-1524059633949-c157729ae351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
+              src="https://images.unsplash.com/photo-1506409961384-d525f7ed5587?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80"
               alt="picture1"
             />
             <div className="card-img-overlay text_left">
