@@ -9,28 +9,23 @@ class HomePage extends Component {
     this.props.fetchHomeContent()
   }
 
-  renderHomeContentFirst() {
-    return (
-      this.props.homecontent.homecontentfirst &&
-      this.props.homecontent.homecontentfirst.map((homecontentfirst, index) => {
-        return (
-          <div
-            className={index === 0 ? 'carousel-item active' : 'carousel-item'}
-            key={index}
-          >
-            <img
-              className="d-block w-100"
-              src={homecontentfirst.Thumbnail}
-              alt={homecontentfirst.Title}
-            />
-            <div className="carousel-caption d-none d-md-block">
-              <h1>{homecontentfirst.Title}</h1>
-              <p>{homecontentfirst.Detail}</p>
-            </div>
-          </div>
-        )
-      })
-    )
+  renderHomeContentFirst(homecontentfirsts) {
+    return homecontentfirsts.map((homecontentfirst, index) => (
+      <div
+        className={index === 0 ? 'carousel-item active' : 'carousel-item'}
+        key={index}
+      >
+        <img
+          className="d-block w-100"
+          src={homecontentfirst.Thumbnail}
+          alt={homecontentfirst.Title}
+        />
+        <div className="carousel-caption d-none d-md-block">
+          <h1>{homecontentfirst.Title}</h1>
+          <p>{homecontentfirst.Detail}</p>
+        </div>
+      </div>
+    ))
   }
 
   render() {
@@ -42,7 +37,10 @@ class HomePage extends Component {
           data-ride="carousel"
         >
           <div className="carousel-inner">
-            {this.props.homecontent && this.renderHomeContentFirst()}
+            {this.props.homecontent.data.homecontentfirst &&
+              this.renderHomeContentFirst(
+                this.props.homecontent.data.homecontentfirst
+              )}
           </div>
           <a
             className="carousel-control-prev"

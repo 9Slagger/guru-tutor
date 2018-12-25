@@ -7,9 +7,16 @@ export const fetchHomeContent = () => {
     axios
       .get('https://mytutorapi.herokuapp.com/homecontent')
       .then(response => {
-        dispatch({ type: FETCH_HOME_CONTENT, payload: response.data })
+        dispatch({
+          type: FETCH_HOME_CONTENT,
+          payload: { data: response.data, isFetching: true, isError: false }
+        })
       })
       .catch(error => {
+        dispatch({
+          type: FETCH_HOME_CONTENT,
+          payload: { data: [], isFetching: true, isError: true }
+        })
         console.log(error)
       })
   }
@@ -27,7 +34,10 @@ export const createFHomeContent = data => {
         }
       )
       .then(response => {
-        dispatch({ type: CREATE_HOME_CONTENT, payload: response.data })
+        dispatch({
+          type: CREATE_HOME_CONTENT,
+          payload: { data: response.data, isFetching: true, isError: false }
+        })
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
@@ -54,7 +64,10 @@ export const createTHomeContent = data => {
         }
       )
       .then(response => {
-        dispatch({ type: CREATE_HOME_CONTENT, payload: response.data })
+        dispatch({
+          type: CREATE_HOME_CONTENT,
+          payload: { data: response.data, isFetching: true, isError: false }
+        })
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'

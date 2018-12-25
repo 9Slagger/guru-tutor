@@ -199,7 +199,13 @@ const mapStateToProps = ({ homecontent }) => {
   return { homecontent }
 }
 
+const mapDispatchToProps = {
+  fetchHomeContent,
+  createFHomeContent,
+  createTHomeContent
+}
+
 export default connect(
   mapStateToProps,
-  { fetchHomeContent, createFHomeContent, createTHomeContent }
+  mapDispatchToProps
 )(ManageHomePage)
