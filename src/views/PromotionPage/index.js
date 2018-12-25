@@ -11,7 +11,7 @@ class PromotionPage extends Component {
             <img
               className="card-img"
               src="https://images.unsplash.com/photo-1524059633949-c157729ae351?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              alt="img photo picture"
+              alt="picture1"
             />
             <div className="card-img-overlay text_left">
               <h1 className="card-title">Card title</h1>
@@ -27,7 +27,7 @@ class PromotionPage extends Component {
             <img
               className="card-img"
               src="https://images.unsplash.com/photo-1531303435785-3853ba035cda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              alt="img photo picture"
+              alt="picture2"
             />
             <div className="card-img-overlay text_left">
               <h1 className="card-title">Card title</h1>
