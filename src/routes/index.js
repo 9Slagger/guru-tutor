@@ -13,6 +13,7 @@ import NewsPage from '../views/NewsPage'
 import UsersPage from '../views/UsersPage'
 import NotFoundPage from '../views/NotFoundPage'
 import PermissionUserPage from '../views/PermissionUserPage'
+import ManageHomePage from '../views/ManageHomePage'
 
 const Routing = () => (
   <Switch>
@@ -31,6 +32,7 @@ const Routing = () => (
       path="/dashboard/userpermission"
       component={PermissionUserPage}
     />
+    <Route exact path="/dashboard/managehome" component={ManageHomePage} />
     <Route component={NotFoundPage} />
   </Switch>
 )

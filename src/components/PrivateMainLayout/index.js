@@ -102,7 +102,7 @@ class PrivateMainLayout extends Component {
                   <span>จัดการเนื้อหาเว็บไซน์</span>
                 </h6>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
+                  <NavLink className="nav-link" to="/dashboard/managehome">
                     <span data-feather="shopping-cart" />
                     หน้าแรก
                   </NavLink>
