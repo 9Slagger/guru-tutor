@@ -15,12 +15,39 @@ export const fetchHomeContent = () => {
   }
 }
 
-export const createHomeContent = data => {
+export const createFHomeContent = data => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     axios
       .post(
         `https://mytutorapi.herokuapp.com/restricted/homecontentfirst`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(response => {
+        dispatch({ type: CREATE_HOME_CONTENT, payload: response.data })
+        Swal({
+          type: 'success',
+          title: 'เพิ่มเนื้อหาสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มเนื้อหาล้มเหลว!'
+        })
+      })
+  }
+}
+export const createTHomeContent = data => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    axios
+      .post(
+        `https://mytutorapi.herokuapp.com/restricted/homecontentthird`,
         data,
         {
           headers: { Authorization: token }

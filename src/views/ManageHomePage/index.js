@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchHomeContent, createHomeContent } from '../../actions'
+import {
+  fetchHomeContent,
+  createFHomeContent,
+  createTHomeContent
+} from '../../actions'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
 class ManageHomePage extends Component {
@@ -10,7 +14,15 @@ class ManageHomePage extends Component {
       fcontentnumber: '',
       ftitle: '',
       fdetail: '',
-      fthumbnail: ''
+      fthumbnail: '',
+      scontentnumber: '',
+      stitle: '',
+      sdetail: '',
+      sthumbnail: '',
+      tcontentnumber: '',
+      ttitle: '',
+      tdetail: '',
+      tthumbnail: ''
     }
   }
 
@@ -30,7 +42,17 @@ class ManageHomePage extends Component {
       detail: fdetail,
       thumbnail: fthumbnail
     }
-    this.props.createHomeContent(data)
+    this.props.createFHomeContent(data)
+  }
+
+  async saveHomecontentThird(fcontentnumber, ftitle, fdetail, fthumbnail) {
+    const data = await {
+      contentnumber: parseInt(fcontentnumber, 10),
+      title: ftitle,
+      detail: fdetail,
+      thumbnail: fthumbnail
+    }
+    this.props.createTHomeContent(data)
   }
 
   render() {
@@ -38,6 +60,7 @@ class ManageHomePage extends Component {
       <PrivateMainLayout>
         <div className="container-fluid">
           <form>
+            <h2>เพิ่มเนื้อหาส่วนที่ 1</h2>
             <div className="form-group">
               <label>ลำดับการแสดงเนื้อหา</label>
               <input
@@ -101,6 +124,71 @@ class ManageHomePage extends Component {
               บันทึก
             </button>
           </form>
+          <form>
+            <h2>เพิ่มเนื้อหาส่วนที่ 3</h2>
+            <div className="form-group">
+              <label>ลำดับการแสดงเนื้อหา</label>
+              <input
+                type="number"
+                className="form-control"
+                id="tcontentnumber"
+                name="tcontentnumber"
+                placeholder="ลำดับการแสดงเนื้อหา(ตัวเลข)"
+                value={this.state.tcontentnumber}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>หัวข้อ</label>
+              <input
+                type="text"
+                className="form-control"
+                id="ttitle"
+                name="ttitle"
+                placeholder="หัวข้อ"
+                value={this.state.ttitle}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>รายละเอียด</label>
+              <input
+                type="text"
+                className="form-control"
+                id="tdetail"
+                name="tdetail"
+                placeholder="รายละเอียด"
+                value={this.state.tdetail}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>รูปภาพ</label>
+              <input
+                type="text"
+                className="form-control"
+                id="tthumbnail"
+                name="tthumbnail"
+                placeholder="Link รูปภาพ"
+                value={this.state.tthumbnail}
+                onChange={this.handleChange}
+              />
+            </div>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() =>
+                this.saveHomecontentThird(
+                  this.state.tcontentnumber,
+                  this.state.ttitle,
+                  this.state.tdetail,
+                  this.state.tthumbnail
+                )
+              }
+            >
+              บันทึก
+            </button>
+          </form>
         </div>
       </PrivateMainLayout>
     )
@@ -113,5 +201,5 @@ const mapStateToProps = ({ homecontent }) => {
 
 export default connect(
   mapStateToProps,
-  { fetchHomeContent, createHomeContent }
+  { fetchHomeContent, createFHomeContent, createTHomeContent }
 )(ManageHomePage)
