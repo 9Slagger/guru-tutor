@@ -54,10 +54,10 @@ class User extends Component {
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
-          {users && users.isLoadingData ? (
+          {users.data && users.isFetching ? (
             <h1 className="text-center">กำลังโหลดข้อมูล</h1>
           ) : (
-            ''
+            false
           )}
           <table className="table table-hover">
             <thead className="thead-dark">
@@ -71,7 +71,11 @@ class User extends Component {
                 <th scope="col">จัดการสมาชิก</th>
               </tr>
             </thead>
-            <tbody>{users.length > 0 && this.renderUser(users)}</tbody>
+            <tbody>
+              {users.data &&
+                users.data.length > 0 &&
+                this.renderUser(users.data)}
+            </tbody>
           </table>
         </div>
       </PrivateMainLayout>
