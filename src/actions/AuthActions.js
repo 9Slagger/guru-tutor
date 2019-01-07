@@ -6,7 +6,10 @@ import { LOGIN_AUTH, CHECK_AUTH, LOGOUT_AUTH, VERIFY_AUTH } from './type'
 export const checkAuth = () => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
-    dispatch({ type: CHECK_AUTH, payload: token })
+    dispatch({
+      type: CHECK_AUTH,
+      payload: { data: token, isFetching: true, isError: false }
+    })
   }
 }
 
@@ -18,8 +21,10 @@ export const signinAuth = user => {
       .then(res => {
         const token = `Bearer ${res.data.token}`
         localStorage.setItem('token', token)
-        dispatch({ type: LOGIN_AUTH, payload: [res.data.user] })
-
+        dispatch({
+          type: LOGIN_AUTH,
+          payload: { data: [res.data.user], isFetching: true, isError: false }
+        })
         dispatch(push('/'))
       })
       .catch(error => {
@@ -37,8 +42,11 @@ export const VerifyAuth = () => {
         .get(`https://mytutorapi.herokuapp.com/restricted/auth`, {
           headers: { Authorization: token }
         })
-        .then(response => {
-          dispatch({ type: VERIFY_AUTH, payload: [response.data] })
+        .then(res => {
+          dispatch({
+            type: VERIFY_AUTH,
+            payload: { data: [res.data], isFetching: true, isError: false }
+          })
         })
         .catch(error => {
           dispatch({ type: VERIFY_AUTH, payload: [] })
@@ -51,7 +59,7 @@ export const VerifyAuth = () => {
 export const SignoutAuth = () => {
   return dispatch => {
     localStorage.clear()
-    dispatch({ type: LOGOUT_AUTH, payload: null })
+    dispatch({ type: LOGOUT_AUTH })
     dispatch(push('/'))
   }
 }

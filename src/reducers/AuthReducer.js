@@ -5,14 +5,20 @@ import {
   VERIFY_AUTH
 } from '../actions/type'
 
-export default function(state = [], action) {
+const initialState = {
+  data: [],
+  isFetching: false,
+  isError: false
+}
+
+export default function(state = initialState, action) {
   switch (action.type) {
     case LOGIN_AUTH:
       return action.payload
     case CHECK_AUTH:
       return action.payload
     case LOGOUT_AUTH:
-      return action.payload
+      return initialState
     case VERIFY_AUTH:
       return action.payload
     default:

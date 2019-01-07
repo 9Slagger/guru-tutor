@@ -71,10 +71,12 @@ class AppHeader extends Component {
             </ul>
             <div className=" my-2 my-lg-0">
               <ul className="navbar-nav mr-auto">
-                {this.props.auth && this.props.auth.length > 0 ? (
+                {this.props.auth.data && this.props.auth.data.length > 0 ? (
                   <MenuAfterSignin />
-                ) : (
+                ) : this.props.auth.isFetching ? (
                   <MenuBeforeSignin />
+                ) : (
+                  'กำลังยืนยันตัวตน...'
                 )}
               </ul>
             </div>

@@ -22,7 +22,7 @@ export const fetchHomeContent = () => {
   }
 }
 
-export const createFHomeContent = data => {
+export const createHomeContentFirst = data => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     axios
@@ -33,15 +33,26 @@ export const createFHomeContent = data => {
           headers: { Authorization: token }
         }
       )
-      .then(response => {
-        dispatch({
-          type: CREATE_HOME_CONTENT,
-          payload: { data: response.data, isFetching: true, isError: false }
-        })
+      .then(() => {
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
         })
+        axios
+          .get('https://mytutorapi.herokuapp.com/homecontent')
+          .then(response => {
+            dispatch({
+              type: CREATE_HOME_CONTENT,
+              payload: { data: response.data, isFetching: true, isError: false }
+            })
+          })
+          .catch(error => {
+            dispatch({
+              type: CREATE_HOME_CONTENT,
+              payload: { data: [], isFetching: true, isError: true }
+            })
+            console.log(error)
+          })
       })
       .catch(error => {
         console.log(error)
@@ -52,7 +63,8 @@ export const createFHomeContent = data => {
       })
   }
 }
-export const createTHomeContent = data => {
+
+export const createHomeContentThird = data => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     axios
@@ -63,15 +75,26 @@ export const createTHomeContent = data => {
           headers: { Authorization: token }
         }
       )
-      .then(response => {
-        dispatch({
-          type: CREATE_HOME_CONTENT,
-          payload: { data: response.data, isFetching: true, isError: false }
-        })
+      .then(() => {
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
         })
+        axios
+          .get('https://mytutorapi.herokuapp.com/homecontent')
+          .then(response => {
+            dispatch({
+              type: CREATE_HOME_CONTENT,
+              payload: { data: response.data, isFetching: true, isError: false }
+            })
+          })
+          .catch(error => {
+            dispatch({
+              type: CREATE_HOME_CONTENT,
+              payload: { data: [], isFetching: true, isError: true }
+            })
+            console.log(error)
+          })
       })
       .catch(error => {
         console.log(error)

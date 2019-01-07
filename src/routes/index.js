@@ -14,6 +14,9 @@ import UsersPage from '../views/UsersPage'
 import NotFoundPage from '../views/NotFoundPage'
 import PermissionUserPage from '../views/PermissionUserPage'
 import ManageHomePage from '../views/ManageHomePage'
+import AddHomecontentFirst from '../views/ManageHomePage/AddHomeContentFirst'
+import AddHomecontentSecond from '../views/ManageHomePage/AddHomecontentSecond'
+import AddHomeContentThird from '../views/ManageHomePage/AddHomeContentThird'
 
 const Routing = () => (
   <Switch>
@@ -33,6 +36,21 @@ const Routing = () => (
       component={PermissionUserPage}
     />
     <Route exact path="/dashboard/managehome" component={ManageHomePage} />
+    <Route
+      exact
+      path="/dashboard/managehome/homecontentfirst/add"
+      component={AddHomecontentFirst}
+    />
+    <Route
+      exact
+      path="/dashboard/managehome/homecontentsecond/add"
+      component={AddHomecontentSecond}
+    />
+    <Route
+      exact
+      path="/dashboard/managehome/homecontentthird/add"
+      component={AddHomeContentThird}
+    />
     <Route component={NotFoundPage} />
   </Switch>
 )
