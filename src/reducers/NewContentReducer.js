@@ -1,9 +1,24 @@
-import { FETCH_NEW_CONTENT } from '../actions/type'
+import {
+  FETCH_NEW_CONTENT,
+  FETCH_NEW_CONTENT_SUCESS,
+  FETCH_NEW_CONTENT_FAILURE
+} from '../actions/type'
 
-export default function(state = [], action) {
-  switch (action.type) {
+const initialState = {
+  data: [],
+  isFetching: false,
+  isError: false
+}
+
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
     case FETCH_NEW_CONTENT:
-      return action.payload
+      return { ...state, data: [], isFetching: true, isError: false }
+    case FETCH_NEW_CONTENT_SUCESS:
+      return { ...state, data: payload, isFetching: false, isError: false }
+    case FETCH_NEW_CONTENT_FAILURE:
+      return { ...state, data: [], isFetching: false, isError: true }
+
     default:
       return state
   }

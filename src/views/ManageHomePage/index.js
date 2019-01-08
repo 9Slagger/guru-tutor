@@ -64,7 +64,12 @@ class ManageHomePage extends Component {
           alt={homecontentfirst.Title}
         />
         <div className="carousel-caption d-none d-md-block">
-          <button className="btn btn-outline-warning mt-2 mr-2">แก้ไข</button>
+          <Link
+            className="btn btn-outline-warning mt-2 mr-2"
+            to={`managehome/homecontentfirst/edit/${homecontentfirst.ID}`}
+          >
+            แก้ไข
+          </Link>
           <button
             className="btn btn-outline-danger mt-2"
             onClick={() => this.DeleteHomeContentFirst(homecontentfirst.ID)}

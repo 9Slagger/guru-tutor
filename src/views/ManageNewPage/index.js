@@ -1,13 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchNewContent } from '../../actions'
+import { fetchNewContent, deleteNewContent } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 class ManageHomePage extends Component {
   componentDidMount() {
     this.props.fetchNewContent()
+  }
+
+  DeleteNewContent(id) {
+    Swal({
+      title: 'คุณต้องการลบเนื้อหานี้ใช่หรือไม่?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่ !'
+    }).then(result => {
+      if (result.value) {
+        this.props.deleteNewContent(id)
+      }
+    })
   }
 
   renderNews(newcontents) {
@@ -32,7 +47,12 @@ class ManageHomePage extends Component {
               <button className="btn btn-outline-warning mt-2 mr-2">
                 แก้ไข
               </button>
-              <button className="btn btn-outline-danger mt-2">ลบ</button>
+              <button
+                className="btn btn-outline-danger mt-2"
+                onClick={() => this.DeleteNewContent(newcontent.ID)}
+              >
+                ลบ
+              </button>
             </div>
           </div>
         </div>
@@ -55,7 +75,7 @@ class ManageHomePage extends Component {
         </div>
         <div className="mt-5 container">
           <h1 className="mb-3">ข่าวสาร</h1>
-          {this.props.newcontent && this.renderNews(newcontent)}
+          {this.props.newcontent.data && this.renderNews(newcontent.data)}
         </div>
       </PrivateMainLayout>
     )
@@ -67,7 +87,8 @@ const mapStateToProps = ({ newcontent }) => {
 }
 
 const mapDispatchToProps = {
-  fetchNewContent
+  fetchNewContent,
+  deleteNewContent
 }
 
 export default connect(
