@@ -21,6 +21,7 @@ import AddNewContent from '../views/ManageNewPage/AddNewContent'
 import AddPromotionContent from '../views/ManagePromotionPage/AddPromotionContent'
 import ManageNewPage from '../views/ManageNewPage'
 import ManagePromotionPage from '../views/ManagePromotionPage'
+import ProfilePage from '../views/ProfilePage'
 
 const Routing = () => (
   <Switch>
@@ -33,6 +34,7 @@ const Routing = () => (
     <Route exact path="/roomhighschool" component={RoomHighschoolPage} />
     <Route exact path="/roomuniversity" component={RoomUniversityPage} />
     <Route exact path="/news" component={NewsPage} />
+    <Route exact path="/profile" component={ProfilePage} />
     <Route exact path="/dashboard/users" component={UsersPage} />
     <Route
       exact
