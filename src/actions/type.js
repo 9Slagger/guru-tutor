@@ -28,8 +28,6 @@ export const CHECK_AUTH_SUCESS = 'check_auth_sucess'
 export const CHECK_AUTH_FAILURE = 'check_auth_fail'
 // LOGOUT_AUTH
 export const LOGOUT_AUTH = 'logout_auth'
-export const LOGOUT_AUTH_SUCESS = 'logout_auth_sucess'
-export const LOGOUT_AUTH_FAILURE = 'logout_auth_fail'
 // VERIFY_AUTH
 export const VERIFY_AUTH = 'Verify_auth'
 export const VERIFY_AUTH_SUCESS = 'Verify_auth_sucess'

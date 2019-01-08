@@ -74,9 +74,9 @@ class AppHeader extends Component {
                 {this.props.auth.data && this.props.auth.data.length > 0 ? (
                   <MenuAfterSignin />
                 ) : this.props.auth.isFetching ? (
-                  <MenuBeforeSignin />
-                ) : (
                   'กำลังยืนยันตัวตน...'
+                ) : (
+                  <MenuBeforeSignin />
                 )}
               </ul>
             </div>
