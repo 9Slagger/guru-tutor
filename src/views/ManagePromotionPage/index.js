@@ -1,43 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchPromotionContent } from '../../actions'
+import { fetchPromotionContent, deletePromotionContent } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 class ManagePromotionPage extends Component {
   componentDidMount() {
     this.props.fetchPromotionContent()
   }
 
-  renderNews(newcontents) {
-    return (
-      newcontents &&
-      newcontents.map((newcontent, index) => (
-        <div className="card mb-3" key={index}>
-          <div className="crop">
-            <img
-              className="card-img-top"
-              src={newcontent.Thumbnail}
-              alt={newcontent.Title}
-            />
-          </div>
-          <div className="card-body">
-            <h5 className="card-title">{newcontent.Title}</h5>
-            <p className="card-text">{newcontent.Detail}</p>
-            <p className="card-text">
-              <small className="text-muted">{newcontent.Timestamp}</small>
-            </p>
-            <div id="news" className="text-right">
-              <button className="btn btn-outline-warning mt-2 mr-2">
-                แก้ไข
-              </button>
-              <button className="btn btn-outline-danger mt-2">ลบ</button>
-            </div>
-          </div>
-        </div>
-      ))
-    )
+  DeletePromotionContent(id) {
+    Swal({
+      title: 'คุณต้องการลบเนื้อหานี้ใช่หรือไม่?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่ !'
+    }).then(result => {
+      if (result.value) {
+        this.props.deletePromotionContent(id)
+      }
+    })
   }
 
   renderPromotion(promotioncontents) {
@@ -57,7 +42,12 @@ class ManagePromotionPage extends Component {
         </div>
         <div id="news" className="text-right mb-2">
           <button className="btn btn-outline-warning mr-2">แก้ไข</button>
-          <button className="btn btn-outline-danger">ลบ</button>
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => this.DeletePromotionContent(promotioncontent.ID)}
+          >
+            ลบ
+          </button>
         </div>
       </div>
     ))
@@ -90,7 +80,8 @@ const mapStateToProps = ({ promotioncontent }) => {
 }
 
 const mapDispatchToProps = {
-  fetchPromotionContent
+  fetchPromotionContent,
+  deletePromotionContent
 }
 
 export default connect(
