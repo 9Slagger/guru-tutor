@@ -108,13 +108,13 @@ class PrivateMainLayout extends Component {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
+                  <NavLink className="nav-link" to="/dashboard/managepromotion">
                     <span data-feather="users" />
                     หน้าโปรโมชั่น
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
+                  <NavLink className="nav-link" to="/dashboard/managenew">
                     <span data-feather="bar-chart-2" />
                     หน้าข่าวสาร
                   </NavLink>

@@ -17,6 +17,7 @@ import ManageHomePage from '../views/ManageHomePage'
 import AddHomecontentFirst from '../views/ManageHomePage/AddHomeContentFirst'
 import AddHomecontentSecond from '../views/ManageHomePage/AddHomecontentSecond'
 import AddHomeContentThird from '../views/ManageHomePage/AddHomeContentThird'
+import ManageNewPage from '../views/ManageNewPage'
 
 const Routing = () => (
   <Switch>
@@ -43,7 +44,12 @@ const Routing = () => (
     />
     <Route
       exact
-      path="/dashboard/managehome/homecontentsecond/add"
+      path="/dashboard/managehome/homecontentfirst/edit/:id"
+      component={AddHomecontentFirst}
+    />
+    <Route
+      exact
+      path="/dashboard/managehome/homecontentsecond/edit/:id"
       component={AddHomecontentSecond}
     />
     <Route
@@ -51,6 +57,12 @@ const Routing = () => (
       path="/dashboard/managehome/homecontentthird/add"
       component={AddHomeContentThird}
     />
+    <Route
+      exact
+      path="/dashboard/managehome/homecontentthird/edit:id"
+      component={AddHomeContentThird}
+    />
+    <Route exact path="/dashboard/managenew" component={ManageNewPage} />
     <Route component={NotFoundPage} />
   </Switch>
 )

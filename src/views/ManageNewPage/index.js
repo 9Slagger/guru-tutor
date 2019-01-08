@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
 import { fetchNewContent } from '../../actions'
+import { Link } from 'react-router-dom'
+import PrivateMainLayout from '../../components/PrivateMainLayout'
+// import Swal from 'sweetalert2'
 
-class NewsPage extends Component {
+class ManageHomePage extends Component {
   componentDidMount() {
     this.props.fetchNewContent()
   }
@@ -20,28 +22,45 @@ class NewsPage extends Component {
               alt={newcontent.Title}
             />
           </div>
-
           <div className="card-body">
             <h5 className="card-title">{newcontent.Title}</h5>
             <p className="card-text">{newcontent.Detail}</p>
             <p className="card-text">
               <small className="text-muted">{newcontent.Timestamp}</small>
             </p>
+            <div id="news" className="text-right">
+              <button className="btn btn-outline-warning mt-2 mr-2">
+                แก้ไข
+              </button>
+              <button className="btn btn-outline-danger mt-2">ลบ</button>
+            </div>
           </div>
         </div>
       ))
     )
   }
 
+  scrollToSection(id) {
+    document.getElementById(id).scrollIntoView()
+  }
+
   render() {
     const { newcontent } = this.props
     return (
-      <MainLayout>
+      <PrivateMainLayout>
+        <div id="news" className="text-right">
+          <Link
+            className="btn btn-primary"
+            to="/dashboard/managehome/homecontentfirst/add"
+          >
+            เพิ่มสข่าวสาร
+          </Link>
+        </div>
         <div className="mt-5 container">
           <h1 className="mb-3">ข่าวสาร</h1>
           {this.props.newcontent && this.renderNews(newcontent)}
         </div>
-      </MainLayout>
+      </PrivateMainLayout>
     )
   }
 }
@@ -57,4 +76,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(NewsPage)
+)(ManageHomePage)
