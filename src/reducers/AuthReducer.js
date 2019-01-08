@@ -37,7 +37,7 @@ export default function(state = initialState, { type, payload }) {
       return { ...state, data: [], isFetching: false, isError: false }
 
     case VERIFY_AUTH:
-      return { ...state, data: [], isFetching: false, isError: false }
+      return { ...state, data: [], isFetching: true, isError: false }
     case VERIFY_AUTH_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case VERIFY_AUTH_FAILURE:
