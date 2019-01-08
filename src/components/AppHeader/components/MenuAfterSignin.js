@@ -23,8 +23,8 @@ class MenuAfterSignin extends Component {
           {this.props.auth.data && this.props.auth.data[0].Email}
         </NavLink>
         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <NavLink className="dropdown-item" to="#">
-            ตั้งค่าบัญชี
+          <NavLink className="dropdown-item" to="/profile">
+            โปรไฟล์
           </NavLink>
           {this.props.auth.data[0].UserType === 'admin' ? (
             <NavLink className="dropdown-item" to="/dashboard">
