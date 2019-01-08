@@ -13,7 +13,13 @@ import {
   USER_EDIT_TYPE_FAILURE
 } from '../actions/type'
 
-export default function(state = [], { type, payload }) {
+const initialState = {
+  data: [],
+  isFetching: false,
+  isError: false
+}
+
+export default function(state = initialState, { type, payload }) {
   switch (type) {
     case USERS_FETCH:
       return { ...state, data: [], isFetching: true, isError: false }

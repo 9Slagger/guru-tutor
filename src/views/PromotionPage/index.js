@@ -1,48 +1,52 @@
 import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
+import { connect } from 'react-redux'
+import { fetchPromotionContent } from '../../actions'
 
 class PromotionPage extends Component {
+  componentDidMount() {
+    this.props.fetchPromotionContent()
+  }
+
+  renderPromotion(promotioncontents) {
+    return promotioncontents.map((promotioncontent, index) => (
+      <div className="card bg-dark text-white crop2 mb-2" key={index}>
+        <img
+          className="card-img"
+          src={promotioncontent.Thumbnail}
+          alt={promotioncontent.Title}
+        />
+        <div className="card-img-overlay text_left">
+          <h1 className="card-title">{promotioncontent.Title}</h1>
+          <p className="card-text">{promotioncontent.Detail}</p>
+          <p className="card-text">{promotioncontent.Timestamp}</p>
+        </div>
+      </div>
+    ))
+  }
+
   render() {
+    const { promotioncontent } = this.props
     return (
       <MainLayout>
         <div className="mt-5 px-5 mx-5">
           <h1 className="mb-3">โปรโมชั่น</h1>
-          <div className="card bg-dark text-white crop2 mb-2">
-            <img
-              className="card-img"
-              src="https://images.unsplash.com/photo-1506409961384-d525f7ed5587?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80"
-              alt="picture1"
-            />
-            <div className="card-img-overlay text_left">
-              <h1 className="card-title">Card title</h1>
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
-          <div className="card bg-dark text-white crop2 mb-2">
-            <img
-              className="card-img"
-              src="https://images.unsplash.com/photo-1531303435785-3853ba035cda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              alt="picture2"
-            />
-            <div className="card-img-overlay text_left">
-              <h1 className="card-title">Card title</h1>
-              <p className="card-text">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-              <p className="card-text">Last updated 3 mins ago</p>
-            </div>
-          </div>
+          {promotioncontent.data && this.renderPromotion(promotioncontent.data)}
         </div>
       </MainLayout>
     )
   }
 }
 
-export default PromotionPage
+const mapStateToProps = ({ promotioncontent }) => {
+  return { promotioncontent }
+}
+
+const mapDispatchToProps = {
+  fetchPromotionContent
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PromotionPage)

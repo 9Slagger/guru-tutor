@@ -72,3 +72,27 @@ export const FETCH_NEW_CONTENT_FAILURE = 'fetch_newcontent_fail'
 export const CREATE_NEW_CONTEN = 'create_newcontent'
 export const CREATE_NEW_CONTEN_SUCESS = 'create_newcontent_sucess'
 export const CREATE_NEW_CONTEN_FAILURE = 'create_newcontent_fail'
+// DELETE_NEW_CONTEN
+export const DELETE_NEW_CONTEN = 'delete_newcontent'
+export const DELETE_NEW_CONTEN_SUCESS = 'delete_newcontent_sucess'
+export const DELETE_NEW_CONTEN_FAILURE = 'delete_newcontent_fail'
+// EDIT_NEW_CONTEN
+export const EDIT_NEW_CONTEN = 'edit_newcontent'
+export const EDIT_NEW_CONTEN_SUCESS = 'edit_newcontent_sucess'
+export const EDIT_NEW_CONTEN_FAILURE = 'edit_newcontent_fail'
+// FETCH_PROMOTION_CONTENT
+export const FETCH_PROMOTION_CONTENT = 'fetch_promotioncontent'
+export const FETCH_PROMOTION_CONTENT_SUCESS = 'fetch_promotioncontent_sucess'
+export const FETCH_PROMOTION_CONTENT_FAILURE = 'fetch_promotioncontent_fail'
+// CREATE_PROMOTION_CONTEN
+export const CREATE_PROMOTION_CONTEN = 'create_promotioncontent'
+export const CREATE_PROMOTION_CONTEN_SUCESS = 'create_promotioncontent_sucess'
+export const CREATE_PROMOTION_CONTEN_FAILURE = 'create_promotioncontent_fail'
+// DELETE_PROMOTION_CONTEN
+export const DELETE_PROMOTION_CONTEN = 'delete_promotioncontent'
+export const DELETE_PROMOTION_CONTEN_SUCESS = 'delete_promotioncontent_sucess'
+export const DELETE_PROMOTION_CONTEN_FAILURE = 'delete_promotioncontent_fail'
+// EDIT_PROMOTION_CONTEN
+export const EDIT_PROMOTION_CONTEN = 'edit_promotioncontent'
+export const EDIT_PROMOTION_CONTEN_SUCESS = 'edit_promotioncontent_sucess'
+export const EDIT_PROMOTION_CONTEN_FAILURE = 'edit_promotioncontent_fail'
