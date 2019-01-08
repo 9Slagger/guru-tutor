@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchHomeContent, createHomeContentFirst } from '../../actions'
+import {
+  fetchHomeContent,
+  deleteHomeContentFirst,
+  deleteHomeContentThird
+} from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
+import Swal from 'sweetalert2'
 
 class ManageHomePage extends Component {
   componentDidMount() {
@@ -11,6 +16,36 @@ class ManageHomePage extends Component {
 
   scrollToSection(id) {
     document.getElementById(id).scrollIntoView()
+  }
+
+  DeleteHomeContentFirst(id) {
+    Swal({
+      title: 'คุณต้องการลบเนื้อหานี้ใช่หรือไม่?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่ !'
+    }).then(result => {
+      if (result.value) {
+        this.props.deleteHomeContentFirst(id)
+      }
+    })
+  }
+
+  DeleteHomeContentThird(id) {
+    Swal({
+      title: 'คุณต้องการลบเนื้อหานี้ใช่หรือไม่?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ใช่ !'
+    }).then(result => {
+      if (result.value) {
+        this.props.deleteHomeContentThird(id)
+      }
+    })
   }
 
   renderHomeContentFirst(homecontentfirsts) {
@@ -30,7 +65,12 @@ class ManageHomePage extends Component {
         />
         <div className="carousel-caption d-none d-md-block">
           <button className="btn btn-outline-warning mt-2 mr-2">แก้ไข</button>
-          <button className="btn btn-outline-danger mt-2">ลบ</button>
+          <button
+            className="btn btn-outline-danger mt-2"
+            onClick={() => this.DeleteHomeContentFirst(homecontentfirst.ID)}
+          >
+            ลบ
+          </button>
           <h1>{homecontentfirst.Title}</h1>
           <p>{homecontentfirst.Detail}</p>
         </div>
@@ -60,7 +100,12 @@ class ManageHomePage extends Component {
         <hr className="featurette-divider" />
         <div className="text-right mb-2">
           <button className="btn btn-outline-warning mt-2 mr-2">แก้ไข</button>
-          <button className="btn btn-outline-danger mt-2">ลบ</button>
+          <button
+            className="btn btn-outline-danger mt-2"
+            onClick={() => this.DeleteHomeContentThird(homecontentthird.ID)}
+          >
+            ลบ
+          </button>
         </div>
         <div className="row featurette">
           <div className={index % 2 === 0 ? 'col-md-7' : 'col-md-7 order-md-2'}>
@@ -220,7 +265,8 @@ const mapStateToProps = ({ homecontent }) => {
 
 const mapDispatchToProps = {
   fetchHomeContent,
-  createHomeContentFirst
+  deleteHomeContentFirst,
+  deleteHomeContentThird
 }
 
 export default connect(
