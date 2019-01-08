@@ -56,8 +56,10 @@ export const signinAuth = user => {
 
 export const VerifyAuth = () => {
   return async dispatch => {
-    dispatch({ type: VERIFY_AUTH })
     const token = await localStorage.getItem('token')
+    if (token) {
+      dispatch({ type: VERIFY_AUTH })
+    }
     token &&
       axios
         .get(`https://mytutorapi.herokuapp.com/restricted/auth`, {

@@ -10,9 +10,9 @@ import {
   CREATE_HOME_CONTENT_SECOND,
   CREATE_HOME_CONTENT_SECOND_SUCESS,
   CREATE_HOME_CONTENT_SECOND_FAILURE,
-  // EDIT_HOME_CONTENT_FIRST,
-  // EDIT_HOME_CONTENT_FIRST_SUCESS_sucess,
-  // EDIT_HOME_CONTENT_FIRST_FAILURE,
+  EDIT_HOME_CONTENT_FIRST,
+  EDIT_HOME_CONTENT_FIRST_SUCESS,
+  EDIT_HOME_CONTENT_FIRST_FAILURE,
   DELETE_HOME_CONTENT_FIRST,
   DELETE_HOME_CONTENT_FIRST_SUCESS,
   DELETE_HOME_CONTENT_FIRST_FAILURE,
@@ -85,6 +85,52 @@ export const createHomeContentFirst = data => {
         Swal({
           type: 'error',
           title: 'เพิ่มเนื้อหาล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const editHomecontentFirst = (id, data) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: EDIT_HOME_CONTENT_FIRST })
+    axios
+      .put(
+        `https://mytutorapi.herokuapp.com/restricted/homecontentfirst?id=${id}`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        Swal({
+          type: 'success',
+          title: 'แก้ไขเนื้อหาสำเร็จ!'
+        })
+        dispatch({ type: EDIT_HOME_CONTENT_FIRST_SUCESS })
+        axios
+          .get('https://mytutorapi.herokuapp.com/homecontent')
+          .then(response => {
+            dispatch({
+              type: FETCH_HOME_CONTENT_SUCESS,
+              payload: response.data
+            })
+          })
+          .catch(error => {
+            dispatch({
+              type: FETCH_HOME_CONTENT_FAILURE
+            })
+            console.log(error)
+          })
+      })
+      .catch(error => {
+        dispatch({
+          type: EDIT_HOME_CONTENT_FIRST_FAILURE
+        })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'แก้ไขเนื้อหาล้มเหลว!'
         })
       })
   }
