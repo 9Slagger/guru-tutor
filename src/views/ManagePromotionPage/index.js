@@ -72,10 +72,7 @@ class ManagePromotionPage extends Component {
     return (
       <PrivateMainLayout>
         <div id="news" className="text-right">
-          <Link
-            className="btn btn-primary"
-            to="/dashboard/managehome/homecontentfirst/add"
-          >
+          <Link className="btn btn-primary" to="/dashboard/managepromotion/add">
             เพิ่มโปรโมชัน
           </Link>
         </div>

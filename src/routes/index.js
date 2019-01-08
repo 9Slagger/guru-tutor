@@ -17,6 +17,8 @@ import ManageHomePage from '../views/ManageHomePage'
 import AddHomecontentFirst from '../views/ManageHomePage/AddHomeContentFirst'
 import AddHomecontentSecond from '../views/ManageHomePage/AddHomecontentSecond'
 import AddHomeContentThird from '../views/ManageHomePage/AddHomeContentThird'
+import AddNewContent from '../views/ManageNewPage/AddNewContent'
+import AddPromotionContent from '../views/ManagePromotionPage/AddPromotionContent'
 import ManageNewPage from '../views/ManageNewPage'
 import ManagePromotionPage from '../views/ManagePromotionPage'
 
@@ -64,6 +66,12 @@ const Routing = () => (
       component={AddHomeContentThird}
     />
     <Route exact path="/dashboard/managenew" component={ManageNewPage} />
+    <Route exact path="/dashboard/managenew/add" component={AddNewContent} />
+    <Route
+      exact
+      path="/dashboard/managepromotion/add"
+      component={AddPromotionContent}
+    />
     <Route
       exact
       path="/dashboard/managepromotion"
