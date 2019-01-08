@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   fetchHomeContent,
+  fetchOneHomeContent,
   createHomeContentFirst,
   editHomecontentFirst
 } from '../../../actions'
@@ -13,12 +14,17 @@ class AddHomecontentFirst extends Component {
     this.props.createHomeContentFirst(values)
   }
 
+  componentDidMount() {
+    this.props.fetchOneHomeContent(this.props.match.params.id)
+  }
+
   editHomecontentFirst = values => {
     this.props.editHomecontentFirst(this.props.match.params.id, values)
   }
 
   render() {
-    const { match } = this.props
+    const { formValues, match } = this.props
+    console.log(formValues)
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
@@ -37,12 +43,16 @@ class AddHomecontentFirst extends Component {
   }
 }
 
-const mapStateToProps = ({ homecontent }) => {
-  return { homecontent }
+const mapStateToProps = ({ form, homecontent }) => {
+  return {
+    formValues: form.HomecontentFirst,
+    homecontent
+  }
 }
 
 const mapDispatchToProps = {
   fetchHomeContent,
+  fetchOneHomeContent,
   createHomeContentFirst,
   editHomecontentFirst
 }

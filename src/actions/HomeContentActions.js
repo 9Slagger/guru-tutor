@@ -44,6 +44,32 @@ export const fetchHomeContent = () => {
   }
 }
 
+export const fetchOneHomeContent = id => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: FETCH_HOME_CONTENT })
+    axios
+      .get(
+        `https://mytutorapi.herokuapp.com/restricted/homecontentfirstone?id=${id}`,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(response => {
+        dispatch({
+          type: FETCH_HOME_CONTENT_SUCESS,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: FETCH_HOME_CONTENT_FAILURE
+        })
+        console.log(error)
+      })
+  }
+}
+
 export const createHomeContentFirst = data => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
