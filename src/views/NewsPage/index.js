@@ -39,7 +39,7 @@ class NewsPage extends Component {
       <MainLayout>
         <div className="mt-5 container">
           <h1 className="mb-3">ข่าวสาร</h1>
-          {this.props.newcontent && this.renderNews(newcontent)}
+          {this.props.newcontent.data && this.renderNews(newcontent.data)}
         </div>
       </MainLayout>
     )

@@ -212,14 +212,14 @@ button:focus {outline:0;}
   text-decoration: none;
 }
 
-.crop2 {
+.crop3 {
   width: 300px;
   height: 300px;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.crop2 img {
+.crop3 img {
   height: 100%;
   margin: 0 0 0 -110px;
 }
