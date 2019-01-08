@@ -120,7 +120,7 @@ class PrivateMainLayout extends Component {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
+                  <NavLink className="nav-link" to="/dashboard">
                     <span data-feather="layers" />
                     ติดต่อเรา
                   </NavLink>

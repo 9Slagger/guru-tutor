@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchNewContent } from '../../actions'
+import { fetchPromotionContent } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 // import Swal from 'sweetalert2'
 
-class ManageHomePage extends Component {
+class ManagePromotionPage extends Component {
   componentDidMount() {
-    this.props.fetchNewContent()
+    this.props.fetchPromotionContent()
   }
 
   renderNews(newcontents) {
@@ -40,12 +40,35 @@ class ManageHomePage extends Component {
     )
   }
 
+  renderPromotion(promotioncontents) {
+    return promotioncontents.map((promotioncontent, index) => (
+      <div key={index}>
+        <div className="card bg-dark text-white crop2 mb-2">
+          <img
+            className="card-img"
+            src={promotioncontent.Thumbnail}
+            alt={promotioncontent.Title}
+          />
+          <div className="card-img-overlay text_left">
+            <h1 className="card-title">{promotioncontent.Title}</h1>
+            <p className="card-text">{promotioncontent.Detail}</p>
+            <p className="card-text">{promotioncontent.Timestamp}</p>
+          </div>
+        </div>
+        <div id="news" className="text-right mb-2">
+          <button className="btn btn-outline-warning mr-2">แก้ไข</button>
+          <button className="btn btn-outline-danger">ลบ</button>
+        </div>
+      </div>
+    ))
+  }
+
   scrollToSection(id) {
     document.getElementById(id).scrollIntoView()
   }
 
   render() {
-    const { newcontent } = this.props
+    const { promotioncontent } = this.props
     return (
       <PrivateMainLayout>
         <div id="news" className="text-right">
@@ -53,27 +76,27 @@ class ManageHomePage extends Component {
             className="btn btn-primary"
             to="/dashboard/managehome/homecontentfirst/add"
           >
-            เพิ่มข่าวสาร
+            เพิ่มโปรโมชัน
           </Link>
         </div>
-        <div className="mt-5 container">
-          <h1 className="mb-3">ข่าวสาร</h1>
-          {this.props.newcontent && this.renderNews(newcontent)}
+        <div className="mt-5 px-5 mx-5">
+          <h1 className="mb-3">โปรโมชั่น</h1>
+          {promotioncontent.data && this.renderPromotion(promotioncontent.data)}
         </div>
       </PrivateMainLayout>
     )
   }
 }
 
-const mapStateToProps = ({ newcontent }) => {
-  return { newcontent }
+const mapStateToProps = ({ promotioncontent }) => {
+  return { promotioncontent }
 }
 
 const mapDispatchToProps = {
-  fetchNewContent
+  fetchPromotionContent
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ManageHomePage)
+)(ManagePromotionPage)
