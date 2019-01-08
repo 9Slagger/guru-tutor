@@ -36,18 +36,34 @@ export const VERIFY_AUTH_FAILURE = 'Verify_auth_fail'
 export const FETCH_HOME_CONTENT = 'fetch_homecontent'
 export const FETCH_HOME_CONTENT_SUCESS = 'fetch_homecontent_sucess'
 export const FETCH_HOME_CONTENT_FAILURE = 'fetch_homecontent_fail'
-// CREATE_HOME_CONTENT
-export const CREATE_HOME_CONTENT = 'create_homecontent'
-export const CREATE_HOME_CONTENT_SUCESS = 'create_homecontent_sucess'
-export const CREATE_HOME_CONTENT_FAILURE = 'create_homecontent_fail'
-// EDIT_HOME_CONTENT
-export const EDIT_HOME_CONTENT = 'edit_homecontent'
-export const EDIT_HOME_CONTENT_SUCESS = 'edit_homecontent_sucess'
-export const EDIT_HOME_CONTENT_FAILURE = 'edit_homecontent_fail'
-// DELETE_HOME_CONTENT
-export const DELETE_HOME_CONTENT = 'delete_homecontent'
-export const DELETE_HOME_CONTENT_SUCESS = 'delete_homecontent_sucess'
-export const DELETE_HOME_CONTENT_FAILURE = 'delete_homecontent_fail'
+// CREATE_HOME_CONTENT_FIRST
+export const CREATE_HOME_CONTENT_FIRST = 'create_homecontentfirst'
+export const CREATE_HOME_CONTENT_FIRST_SUCESS = 'create_homecontentfirst_sucess'
+export const CREATE_HOME_CONTENT_FIRST_FAILURE = 'create_homecontentfirst_fail'
+// EDIT_HOME_CONTENT_FIRST
+export const EDIT_HOME_CONTENT_FIRST = 'edit_homecontentfirst'
+export const EDIT_HOME_CONTENT_FIRST_SUCESS = 'edit_homecontentfirst_sucess'
+export const EDIT_HOME_CONTENT_FIRST_FAILURE = 'edit_homecontentfirst_fail'
+// DELETE_HOME_CONTENT_FIRST
+export const DELETE_HOME_CONTENT_FIRST = 'delete_homecontentfirst'
+export const DELETE_HOME_CONTENT_FIRST_SUCESS = 'delete_homecontentfirst_sucess'
+export const DELETE_HOME_CONTENT_FIRST_FAILURE = 'delete_homecontentfirst_fail'
+// CREATE_HOME_CONTENT_SECOND
+export const CREATE_HOME_CONTENT_SECOND = 'create_homecontentsecond'
+export const CREATE_HOME_CONTENT_SECOND_SUCESS =
+  'create_homecontentsecond_sucess'
+export const CREATE_HOME_CONTENT_SECOND_FAILURE =
+  'create_homecontentsecond_fail'
+// EDIT_HOME_CONTENT_SECOND
+export const EDIT_HOME_CONTENT_SECOND = 'edit_homecontentsecond'
+export const EDIT_HOME_CONTENT_SECOND_SUCESS = 'edit_homecontentsecond_sucess'
+export const EDIT_HOME_CONTENT_SECOND_FAILURE = 'edit_homecontentsecond_fail'
+// DELETE_HOME_CONTENT_SECOND
+export const DELETE_HOME_CONTENT_SECOND = 'delete_homecontentsecond'
+export const DELETE_HOME_CONTENT_SECOND_SUCESS =
+  'delete_homecontentsecond_sucess'
+export const DELETE_HOME_CONTENT_SECOND_FAILURE =
+  'delete_homecontentsecond_fail'
 // FETCH_NEW_CONTENT
 export const FETCH_NEW_CONTENT = 'fetch_newcontent'
 export const FETCH_NEW_CONTENT_SUCESS = 'fetch_newcontent_sucess'
