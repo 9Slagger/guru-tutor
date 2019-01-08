@@ -89,19 +89,19 @@ class ManageHomePage extends Component {
               onClick={() => this.scrollToSection('content1')}
               disabled
             >
-              ไปที่เนื้อหาส่วนที่1
+              ไปที่สไลด์บาร์
             </button>
             <button
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content2')}
             >
-              ไปที่เนื้อหาส่วนที่2
+              ไปที่คำอธิบาย
             </button>
             <button
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content3')}
             >
-              ไปที่เนื้อหาส่วนที่3
+              ไปที่คอลัมน์
             </button>
             <Link
               className="btn btn-primary"
@@ -152,27 +152,21 @@ class ManageHomePage extends Component {
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content1')}
             >
-              ไปที่เนื้อหาส่วนที่1
+              ไปที่สไลด์บาร์
             </button>
             <button
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content2')}
               disabled
             >
-              ไปที่เนื้อหาส่วนที่2
+              ไปที่คำอธิบาย
             </button>
             <button
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content3')}
             >
-              ไปที่เนื้อหาส่วนที่3
+              ไปที่คอลัมน์
             </button>
-            <Link
-              className="btn btn-primary"
-              to="/dashboard/managehome/homecontentsecond/add"
-            >
-              เพิ่มเนื้อหา2
-            </Link>
             <div className="container marketing">
               <div className="row">
                 {this.props.homecontent.data.homecontentsecond &&
@@ -188,26 +182,26 @@ class ManageHomePage extends Component {
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content1')}
             >
-              ไปที่เนื้อหาส่วนที่1
+              ไปที่สไลด์บาร์
             </button>
             <button
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content2')}
             >
-              ไปที่เนื้อหาส่วนที่2
+              ไปที่คำอธิบาย
             </button>
             <button
               className="btn btn-info mr-2"
               onClick={() => this.scrollToSection('content3')}
               disabled
             >
-              ไปที่เนื้อหาส่วนที่3
+              ไปที่คอลัมน์
             </button>
             <Link
               className="btn btn-primary"
               to="/dashboard/managehome/homecontentthird/add"
             >
-              เพิ่มเนื้อหา3
+              เพิ่มคอลัมน์
             </Link>
             {this.props.homecontent.data.homecontentthird &&
               this.renderHomeContentthird(
