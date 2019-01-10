@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import PrivateMainLayout from '../../../components/PrivateMainLayout'
 import {
-  fetchHomeContent,
   fetchOneHomeContent,
   createHomeContentFirst,
   editHomecontentFirst
 } from '../../../actions'
-import PrivateMainLayout from '../../../components/PrivateMainLayout'
 import HomecontentFirstForm from './Components/HomecontentFirstForm'
 
 class AddHomecontentFirst extends Component {
@@ -15,7 +14,8 @@ class AddHomecontentFirst extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchOneHomeContent(this.props.match.params.id)
+    if (this.props.match.path.indexOf('edit') > 0)
+      this.props.fetchOneHomeContent(this.props.match.params.id)
   }
 
   editHomecontentFirst = values => {
@@ -23,21 +23,20 @@ class AddHomecontentFirst extends Component {
   }
 
   render() {
-    const { formValues, match } = this.props
-    console.log(formValues)
+    const { match } = this.props
     return (
       <PrivateMainLayout>
-        <div className="container-fluid">
-          <h2 className="text-center">เพิ่มเนื้อหาสไลด์บาร์ของหน้าแรก</h2>
-          <HomecontentFirstForm
-            onSubmit={
-              match.path.indexOf('add') > 0
-                ? this.saveHomecontentFirst
-                : this.editHomecontentFirst
-            }
-            Match={match}
-          />
-        </div>
+        {match.path.indexOf('add') > 0 ? (
+          <div className="container-fluid">
+            <h2 className="text-center">เพิ่มเนื้อหาสไลด์บาร์ของหน้าแรก</h2>
+            <HomecontentFirstForm onSubmit={this.saveHomecontentFirst} />
+          </div>
+        ) : (
+          <div className="container-fluid">
+            <h2 className="text-center">แก้ไขเนื้อหาสไลด์บาร์ของหน้าแรก</h2>
+            <HomecontentFirstForm onSubmit={this.editHomecontentFirst} />
+          </div>
+        )}
       </PrivateMainLayout>
     )
   }
@@ -51,7 +50,6 @@ const mapStateToProps = ({ form, homecontent }) => {
 }
 
 const mapDispatchToProps = {
-  fetchHomeContent,
   fetchOneHomeContent,
   createHomeContentFirst,
   editHomecontentFirst

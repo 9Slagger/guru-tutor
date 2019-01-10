@@ -23,8 +23,6 @@ class AddHomecontentFirst extends Component {
 
   render() {
     const { handleSubmit } = this.props
-    // console.log('initialValues', initialValues)
-    // console.log(Match.params.id)
     return (
       <form onSubmit={handleSubmit}>
         {this.renderFields(HomecontentFirstFormFields)}
@@ -47,13 +45,15 @@ const validate = values => {
 }
 
 const mapStateToProps = ({ homecontent }) => {
-  console.log(homecontent.data)
-  return { initialValues: homecontent.data }
+  if (homecontent.data && homecontent.data.id)
+    return { initialValues: homecontent.data ? homecontent.data : null }
+  else return {}
 }
 
 const AddHomecontentFirstForm = reduxForm({
   validate,
-  form: 'HomecontentFirst'
+  form: 'HomecontentFirst',
+  enableReinitialize: true
 })(AddHomecontentFirst)
 
 export default connect(
