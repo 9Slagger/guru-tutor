@@ -30,6 +30,24 @@ export const fetchNewContent = () => {
   }
 }
 
+export const fetchOneNewContent = id => {
+  return dispatch => {
+    dispatch({ type: FETCH_NEW_CONTENT })
+    axios
+      .get(`https://mytutorapi.herokuapp.com/newsone?id=${id}`)
+      .then(response => {
+        dispatch({
+          type: FETCH_NEW_CONTENT_SUCESS,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        dispatch({ type: FETCH_NEW_CONTENT_FAILURE })
+        console.log(error)
+      })
+  }
+}
+
 export const editNewContent = (id, data) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')

@@ -33,6 +33,24 @@ export const fetchPromotionContent = () => {
   }
 }
 
+export const fetchOnePromotionContent = id => {
+  return dispatch => {
+    dispatch({ type: FETCH_PROMOTION_CONTENT })
+    axios
+      .get(`https://mytutorapi.herokuapp.com/promotionone?id=${id}`)
+      .then(response => {
+        dispatch({
+          type: FETCH_PROMOTION_CONTENT_SUCESS,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        dispatch({ type: FETCH_PROMOTION_CONTENT_FAILURE })
+        console.log(error)
+      })
+  }
+}
+
 export const createPromotionContent = data => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
