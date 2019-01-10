@@ -42,6 +42,6 @@ export const HomecontentSecondFormFields = [
     name: 'Icon',
     type: 'select',
     required: true,
-    placeholder: ''
+    placeholder: 'ไอคอน'
   }
 ]

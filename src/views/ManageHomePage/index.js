@@ -93,7 +93,12 @@ class ManageHomePage extends Component {
           <a className="btn btn-secondary" href="#" role="button">
             ดูรายละเอียดเพิ่มเติม &raquo;
           </a>
-          <button className="btn btn-outline-warning ml-2">แก้ไข</button>
+          <Link
+            className="btn btn-outline-warning ml-2"
+            to={`managehome/homecontentsecond/edit/${homecontentsecond.ID}`}
+          >
+            แก้ไข
+          </Link>
         </p>
       </div>
     ))
@@ -104,7 +109,12 @@ class ManageHomePage extends Component {
       <React.Fragment key={index}>
         <hr className="featurette-divider" />
         <div className="text-right mb-2">
-          <button className="btn btn-outline-warning mt-2 mr-2">แก้ไข</button>
+          <Link
+            className="btn btn-outline-warning mt-2 mr-2"
+            to={`managehome/homecontentthird/edit/${homecontentthird.ID}`}
+          >
+            แก้ไข
+          </Link>
           <button
             className="btn btn-outline-danger mt-2"
             onClick={() => this.DeleteHomeContentThird(homecontentthird.ID)}

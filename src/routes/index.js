@@ -64,7 +64,7 @@ const Routing = () => (
     />
     <Route
       exact
-      path="/dashboard/managehome/homecontentthird/edit:id"
+      path="/dashboard/managehome/homecontentthird/edit/:id"
       component={AddHomeContentThird}
     />
     <Route exact path="/dashboard/managenew" component={ManageNewPage} />

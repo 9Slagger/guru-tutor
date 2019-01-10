@@ -1,21 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchHomeContent, createHomeContentFirst } from '../../../actions'
+import {
+  fetchOneHomeContentSecond,
+  editHomecontentSecond
+} from '../../../actions'
 import PrivateMainLayout from '../../../components/PrivateMainLayout'
 import HomecontentSecondForm from './components/HomecontentSecondForm'
 
 class AddHomecontentSecond extends Component {
-  saveHomecontentSecond = async values => {
-    this.props.createHomeContentFirst(values)
+  componentDidMount() {
+    if (this.props.match.path.indexOf('edit') > 0)
+      this.props.fetchOneHomeContentSecond(this.props.match.params.id)
+  }
+
+  editHomecontentSecond = values => {
+    this.props.editHomecontentSecond(this.props.match.params.id, values)
   }
 
   render() {
+    const { match } = this.props
     return (
       <PrivateMainLayout>
-        <div className="container-fluid">
-          <h2 className="text-center">เพิ่มเนื้อหาไอคอนของหน้าแรก</h2>
-          <HomecontentSecondForm onSubmit={this.saveHomecontentSecond} />
-        </div>
+        {match.path.indexOf('add') > 0 ? (
+          <div className="container-fluid">
+            <h2 className="text-center">เพิ่มเนื้อหาไอคอนของหน้าแรก</h2>
+            <HomecontentSecondForm onSubmit={this.editHomecontentSecond} />
+          </div>
+        ) : (
+          <div className="container-fluid">
+            <h2 className="text-center">แก้ไขเนื้อหาไอคอนของหน้าแรก</h2>
+            <HomecontentSecondForm onSubmit={this.editHomecontentSecond} />
+          </div>
+        )}
       </PrivateMainLayout>
     )
   }
@@ -26,8 +42,8 @@ const mapStateToProps = ({ homecontent }) => {
 }
 
 const mapDispatchToProps = {
-  fetchHomeContent,
-  createHomeContentFirst
+  fetchOneHomeContentSecond,
+  editHomecontentSecond
 }
 
 export default connect(

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PrivateMainLayout from '../../../components/PrivateMainLayout'
 import {
-  fetchOneHomeContent,
+  fetchOneHomeContentFrist,
   createHomeContentFirst,
   editHomecontentFirst
 } from '../../../actions'
@@ -15,7 +15,7 @@ class AddHomecontentFirst extends Component {
 
   componentDidMount() {
     if (this.props.match.path.indexOf('edit') > 0)
-      this.props.fetchOneHomeContent(this.props.match.params.id)
+      this.props.fetchOneHomeContentFrist(this.props.match.params.id)
   }
 
   editHomecontentFirst = values => {
@@ -50,7 +50,7 @@ const mapStateToProps = ({ form, homecontent }) => {
 }
 
 const mapDispatchToProps = {
-  fetchOneHomeContent,
+  fetchOneHomeContentFrist,
   createHomeContentFirst,
   editHomecontentFirst
 }

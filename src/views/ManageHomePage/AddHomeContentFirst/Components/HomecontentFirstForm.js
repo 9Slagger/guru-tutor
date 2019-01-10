@@ -45,7 +45,7 @@ const validate = values => {
 }
 
 const mapStateToProps = ({ homecontent }) => {
-  if (homecontent.data && homecontent.data.id)
+  if (homecontent.data && homecontent.data.ID)
     return { initialValues: homecontent.data ? homecontent.data : null }
   else return {}
 }
