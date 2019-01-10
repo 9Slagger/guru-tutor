@@ -40,18 +40,7 @@ export const createNewContent = data => {
       })
       .then(() => {
         dispatch({ type: CREATE_NEW_CONTEN_SUCESS })
-        axios
-          .get('https://mytutorapi.herokuapp.com/news')
-          .then(response => {
-            dispatch({
-              type: FETCH_NEW_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({ type: FETCH_NEW_CONTENT_FAILURE })
-            console.log(error)
-          })
+        dispatch(fetchNewContent())
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
@@ -78,18 +67,7 @@ export const deleteNewContent = id => {
       })
       .then(() => {
         dispatch({ type: DELETE_NEW_CONTEN_SUCESS })
-        axios
-          .get('https://mytutorapi.herokuapp.com/news')
-          .then(response => {
-            dispatch({
-              type: FETCH_NEW_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({ type: FETCH_NEW_CONTENT_FAILURE })
-            console.log(error)
-          })
+        dispatch(fetchNewContent())
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'

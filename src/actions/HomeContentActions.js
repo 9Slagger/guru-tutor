@@ -156,7 +156,7 @@ export const createHomeContentFirst = data => {
           title: 'เพิ่มเนื้อหาสำเร็จ!'
         })
         dispatch({ type: CREATE_HOME_CONTENT_FIRST_SUCESS })
-        dispatch(fetchHomeContent)
+        dispatch(fetchHomeContent())
       })
       .catch(error => {
         dispatch({
@@ -287,20 +287,7 @@ export const deleteHomeContentFirst = id => {
           title: 'ลบเนื้อหาสำเร็จ!'
         })
         dispatch({ type: DELETE_HOME_CONTENT_FIRST_SUCESS })
-        axios
-          .get('https://mytutorapi.herokuapp.com/homecontent')
-          .then(response => {
-            dispatch({
-              type: FETCH_HOME_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({
-              type: FETCH_HOME_CONTENT_FAILURE
-            })
-            console.log(error)
-          })
+        dispatch(fetchHomeContent())
       })
       .catch(error => {
         dispatch({
@@ -332,20 +319,7 @@ export const deleteHomeContentThird = id => {
           title: 'ลบเนื้อหาสำเร็จ!'
         })
         dispatch({ type: DELETE_HOME_CONTENT_SECOND_SUCESS })
-        axios
-          .get('https://mytutorapi.herokuapp.com/homecontent')
-          .then(response => {
-            dispatch({
-              type: FETCH_HOME_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({
-              type: FETCH_HOME_CONTENT_FAILURE
-            })
-            console.log(error)
-          })
+        dispatch(fetchHomeContent())
       })
       .catch(error => {
         dispatch({
@@ -380,20 +354,7 @@ export const createHomeContentThird = data => {
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
         })
-        axios
-          .get('https://mytutorapi.herokuapp.com/homecontent')
-          .then(response => {
-            dispatch({
-              type: FETCH_HOME_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({
-              type: FETCH_HOME_CONTENT_FAILURE
-            })
-            console.log(error)
-          })
+        dispatch(fetchHomeContent())
       })
       .catch(error => {
         dispatch({
