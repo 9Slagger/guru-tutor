@@ -60,17 +60,9 @@ export const userDelete = id => {
         headers: { Authorization: token }
       })
       .then(() => {
-        axios
-          .get('https://mytutorapi.herokuapp.com/restricted/member', {
-            headers: { Authorization: token }
-          })
-          .then(response => {
-            dispatch({ type: USER_DELETE_SUCESS, payload: response.data })
-          })
-          .catch(error => {
-            dispatch({ type: USERS_FETCH_FAILURE })
-            console.log(error)
-          })
+        dispatch({ type: USER_DELETE_SUCESS })
+        dispatch(usersFetch())
+        Swal('ลบผู้ใช้สำเร็จ สำเร็จ', 'success')
       })
       .catch(error => {
         dispatch({ type: USER_DELETE_FAILURE })
@@ -93,23 +85,13 @@ export const userEditTpye = (id, name, selectType) => {
         }
       )
       .then(() => {
-        axios
-          .get('https://mytutorapi.herokuapp.com/restricted/member', {
-            headers: { Authorization: token }
-          })
-          .then(response => {
-            dispatch({ type: USER_EDIT_TYPE_SUCESS, payload: response.data })
-            Swal(
-              'แก้ไขสิทธื สำเร็จ',
-              `แก้ไขสิทธิให้ คุณ ${name} เป็น ${selectType} สำเร็จ`,
-              'success'
-            )
-          })
-          .catch(error => {
-            dispatch({ type: USERS_FETCH_FAILURE })
-            alert(`แก้ไขสิทธิเป็น ${selectType} สำเร็จ`)
-            console.log(error)
-          })
+        dispatch({ type: USER_EDIT_TYPE_SUCESS })
+        dispatch(usersFetch())
+        Swal(
+          'แก้ไขสิทธื สำเร็จ',
+          `แก้ไขสิทธิให้ คุณ ${name} เป็น ${selectType} สำเร็จ`,
+          'success'
+        )
       })
       .catch(error => {
         dispatch({ type: USER_EDIT_TYPE_FAILURE })

@@ -22,32 +22,32 @@ const initialState = {
 export default function(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_HOME_CONTENT:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case FETCH_HOME_CONTENT_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case FETCH_HOME_CONTENT_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     case FETCH_HOME_CONTENT_FIRST:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case FETCH_HOME_CONTENT_FIRST_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case FETCH_HOME_CONTENT_FIRST_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     case FETCH_HOME_CONTENT_SECONDE:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case FETCH_HOME_CONTENT_SECONDE_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case FETCH_HOME_CONTENT_SECONDE_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     case FETCH_HOME_CONTENT_THIRD:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case FETCH_HOME_CONTENT_THIRD_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case FETCH_HOME_CONTENT_THIRD_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
     default:
       return state
   }

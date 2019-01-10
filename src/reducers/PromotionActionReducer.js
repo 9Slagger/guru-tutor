@@ -13,11 +13,11 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case FETCH_PROMOTION_CONTENT:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case FETCH_PROMOTION_CONTENT_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case FETCH_PROMOTION_CONTENT_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     default:
       return state

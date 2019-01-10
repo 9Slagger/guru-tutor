@@ -22,32 +22,32 @@ const initialState = {
 export default function(state = initialState, { type, payload }) {
   switch (type) {
     case USERS_FETCH:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case USERS_FETCH_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case USERS_FETCH_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     case USERS_CREATE:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case USERS_CREATE_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case USERS_CREATE_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     case USER_DELETE:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case USER_DELETE_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case USER_DELETE_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     case USER_EDIT_TYPE:
-      return { ...state, data: [], isFetching: true, isError: false }
+      return { ...state, isFetching: true, isError: false }
     case USER_EDIT_TYPE_SUCESS:
       return { ...state, data: payload, isFetching: false, isError: false }
     case USER_EDIT_TYPE_FAILURE:
-      return { ...state, data: [], isFetching: false, isError: true }
+      return { ...state, isFetching: false, isError: true }
 
     default:
       return state

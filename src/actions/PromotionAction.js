@@ -40,18 +40,7 @@ export const createPromotionContent = data => {
       })
       .then(() => {
         dispatch({ type: CREATE_PROMOTION_CONTEN_SUCESS })
-        axios
-          .get('https://mytutorapi.herokuapp.com/promotion')
-          .then(response => {
-            dispatch({
-              type: FETCH_PROMOTION_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({ type: FETCH_PROMOTION_CONTENT_FAILURE })
-            console.log(error)
-          })
+        dispatch(fetchPromotionContent())
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
@@ -81,18 +70,7 @@ export const deletePromotionContent = id => {
       )
       .then(() => {
         dispatch({ type: DELETE_PROMOTION_CONTEN_SUCESS })
-        axios
-          .get('https://mytutorapi.herokuapp.com/promotion')
-          .then(response => {
-            dispatch({
-              type: FETCH_PROMOTION_CONTENT_SUCESS,
-              payload: response.data
-            })
-          })
-          .catch(error => {
-            dispatch({ type: FETCH_PROMOTION_CONTENT_FAILURE })
-            console.log(error)
-          })
+        dispatch(fetchPromotionContent())
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
