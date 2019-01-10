@@ -9,7 +9,10 @@ import {
   DELETE_PROMOTION_CONTEN_FAILURE,
   CREATE_PROMOTION_CONTEN,
   CREATE_PROMOTION_CONTEN_SUCESS,
-  CREATE_PROMOTION_CONTEN_FAILURE
+  CREATE_PROMOTION_CONTEN_FAILURE,
+  EDIT_NEW_CONTEN,
+  EDIT_NEW_CONTEN_SUCESS,
+  EDIT_NEW_CONTEN_FAILURE
 } from './type'
 
 export const fetchPromotionContent = () => {
@@ -48,6 +51,33 @@ export const createPromotionContent = data => {
       })
       .catch(error => {
         dispatch({ type: CREATE_PROMOTION_CONTEN_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มเนื้อหาล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const editNewContent = (id, data) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: EDIT_NEW_CONTEN })
+    axios
+      .put(`https://mytutorapi.herokuapp.com/restricted/news?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: EDIT_NEW_CONTEN_SUCESS })
+        dispatch(fetchPromotionContent())
+        Swal({
+          type: 'success',
+          title: 'เพิ่มเนื้อหาสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: EDIT_NEW_CONTEN_FAILURE })
         console.log(error)
         Swal({
           type: 'error',

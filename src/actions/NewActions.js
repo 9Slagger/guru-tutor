@@ -4,9 +4,9 @@ import {
   FETCH_NEW_CONTENT,
   FETCH_NEW_CONTENT_SUCESS,
   FETCH_NEW_CONTENT_FAILURE,
-  CREATE_NEW_CONTEN,
-  CREATE_NEW_CONTEN_SUCESS,
-  CREATE_NEW_CONTEN_FAILURE,
+  EDIT_NEW_CONTEN,
+  EDIT_NEW_CONTEN_SUCESS,
+  EDIT_NEW_CONTEN_FAILURE,
   DELETE_NEW_CONTEN,
   DELETE_NEW_CONTEN_SUCESS,
   DELETE_NEW_CONTEN_FAILURE
@@ -30,16 +30,16 @@ export const fetchNewContent = () => {
   }
 }
 
-export const createNewContent = data => {
+export const editNewContent = (id, data) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
-    dispatch({ type: CREATE_NEW_CONTEN })
+    dispatch({ type: EDIT_NEW_CONTEN })
     axios
-      .post(`https://mytutorapi.herokuapp.com/restricted/news`, data, {
+      .put(`https://mytutorapi.herokuapp.com/restricted/news?id=${id}`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
-        dispatch({ type: CREATE_NEW_CONTEN_SUCESS })
+        dispatch({ type: EDIT_NEW_CONTEN_SUCESS })
         dispatch(fetchNewContent())
         Swal({
           type: 'success',
@@ -47,7 +47,7 @@ export const createNewContent = data => {
         })
       })
       .catch(error => {
-        dispatch({ type: CREATE_NEW_CONTEN_FAILURE })
+        dispatch({ type: EDIT_NEW_CONTEN_FAILURE })
         console.log(error)
         Swal({
           type: 'error',
