@@ -33,6 +33,12 @@ export const usersFetch = () => {
   }
 }
 
+export const usersChangeEditStatus = data => {
+  return dispatch => {
+    dispatch({ type: USERS_FETCH_SUCESS, payload: data })
+  }
+}
+
 export const userCreate = user => {
   return async dispatch => {
     dispatch({ type: USERS_CREATE })
@@ -88,7 +94,7 @@ export const userEditTpye = (id, name, selectType) => {
         dispatch({ type: USER_EDIT_TYPE_SUCESS })
         dispatch(usersFetch())
         Swal(
-          'แก้ไขสิทธื สำเร็จ',
+          'แก้ไขสิทธิ สำเร็จ',
           `แก้ไขสิทธิให้ คุณ ${name} เป็น ${selectType} สำเร็จ`,
           'success'
         )
