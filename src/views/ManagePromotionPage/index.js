@@ -26,31 +26,40 @@ class ManagePromotionPage extends Component {
   }
 
   renderPromotion(promotioncontents) {
-    return promotioncontents.map((promotioncontent, index) => (
-      <div key={index}>
-        <div className="card bg-dark text-white crop2 mb-2">
-          <img
-            className="card-img"
-            src={promotioncontent.Thumbnail}
-            alt={promotioncontent.Title}
-          />
-          <div className="card-img-overlay text_left">
-            <h1 className="card-title">{promotioncontent.Title}</h1>
-            <p className="card-text">{promotioncontent.Detail}</p>
-            <p className="card-text">{promotioncontent.Timestamp}</p>
+    return (
+      Array.isArray(promotioncontents) &&
+      promotioncontents &&
+      promotioncontents.map((promotioncontent, index) => (
+        <div key={index}>
+          <div className="card bg-dark text-white crop2 mb-2">
+            <img
+              className="card-img"
+              src={promotioncontent.Thumbnail}
+              alt={promotioncontent.Title}
+            />
+            <div className="card-img-overlay text_left">
+              <h1 className="card-title">{promotioncontent.Title}</h1>
+              <p className="card-text">{promotioncontent.Detail}</p>
+              <p className="card-text">{promotioncontent.Timestamp}</p>
+            </div>
+          </div>
+          <div id="news" className="text-right mb-2">
+            <Link
+              className="btn btn-outline-warning mr-2"
+              to={`/dashboard/managepromotion/edit/${promotioncontent.ID}`}
+            >
+              แก้ไข
+            </Link>
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => this.DeletePromotionContent(promotioncontent.ID)}
+            >
+              ลบ
+            </button>
           </div>
         </div>
-        <div id="news" className="text-right mb-2">
-          <button className="btn btn-outline-warning mr-2">แก้ไข</button>
-          <button
-            className="btn btn-outline-danger"
-            onClick={() => this.DeletePromotionContent(promotioncontent.ID)}
-          >
-            ลบ
-          </button>
-        </div>
-      </div>
-    ))
+      ))
+    )
   }
 
   scrollToSection(id) {

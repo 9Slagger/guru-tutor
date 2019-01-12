@@ -49,94 +49,110 @@ class ManageHomePage extends Component {
   }
 
   renderHomeContentFirst(homecontentfirsts) {
-    return homecontentfirsts.map((homecontentfirst, index) => (
-      <div
-        className={
-          index === 0
-            ? 'carousel-item active border-top mt-2 mb-3'
-            : 'carousel-item border-top mt-2 mb-3'
-        }
-        key={index}
-      >
-        <img
-          className="d-block w-100"
-          src={homecontentfirst.Thumbnail}
-          alt={homecontentfirst.Title}
-        />
-        <div className="carousel-caption d-none d-md-block">
-          <Link
-            className="btn btn-outline-warning mt-2 mr-2"
-            to={`managehome/homecontentfirst/edit/${homecontentfirst.ID}`}
-          >
-            แก้ไข
-          </Link>
-          <button
-            className="btn btn-outline-danger mt-2"
-            onClick={() => this.DeleteHomeContentFirst(homecontentfirst.ID)}
-          >
-            ลบ
-          </button>
-          <h1>{homecontentfirst.Title}</h1>
-          <p>{homecontentfirst.Detail}</p>
+    return (
+      Array.isArray(homecontentfirsts) &&
+      homecontentfirsts &&
+      homecontentfirsts.map((homecontentfirst, index) => (
+        <div
+          className={
+            index === 0
+              ? 'carousel-item active border-top mt-2 mb-3'
+              : 'carousel-item border-top mt-2 mb-3'
+          }
+          key={index}
+        >
+          <img
+            className="d-block w-100"
+            src={homecontentfirst.Thumbnail}
+            alt={homecontentfirst.Title}
+          />
+          <div className="carousel-caption d-none d-md-block">
+            <Link
+              className="btn btn-outline-warning mt-2 mr-2"
+              to={`managehome/homecontentfirst/edit/${homecontentfirst.ID}`}
+            >
+              แก้ไข
+            </Link>
+            <button
+              className="btn btn-outline-danger mt-2"
+              onClick={() => this.DeleteHomeContentFirst(homecontentfirst.ID)}
+            >
+              ลบ
+            </button>
+            <h1>{homecontentfirst.Title}</h1>
+            <p>{homecontentfirst.Detail}</p>
+          </div>
         </div>
-      </div>
-    ))
+      ))
+    )
   }
 
   renderHomeContentsecond(homecontentseconds) {
-    return homecontentseconds.map((homecontentsecond, index) => (
-      <div className="col-lg-4" key={index}>
-        <i className={homecontentsecond.Icon} />
-        <h2>{homecontentsecond.Title}</h2>
-        <p>{homecontentsecond.Detail}</p>
-        <p>
-          <a className="btn btn-secondary" href="#" role="button">
-            ดูรายละเอียดเพิ่มเติม &raquo;
-          </a>
-          <Link
-            className="btn btn-outline-warning ml-2"
-            to={`managehome/homecontentsecond/edit/${homecontentsecond.ID}`}
-          >
-            แก้ไข
-          </Link>
-        </p>
-      </div>
-    ))
+    return (
+      Array.isArray(homecontentseconds) &&
+      homecontentseconds &&
+      homecontentseconds.map((homecontentsecond, index) => (
+        <div className="col-lg-4" key={index}>
+          <i className={homecontentsecond.Icon} />
+          <h2>{homecontentsecond.Title}</h2>
+          <p>{homecontentsecond.Detail}</p>
+          <p>
+            <a className="btn btn-secondary" href="#" role="button">
+              ดูรายละเอียดเพิ่มเติม &raquo;
+            </a>
+            <Link
+              className="btn btn-outline-warning ml-2"
+              to={`managehome/homecontentsecond/edit/${homecontentsecond.ID}`}
+            >
+              แก้ไข
+            </Link>
+          </p>
+        </div>
+      ))
+    )
   }
 
   renderHomeContentthird(homecontentthirds) {
-    return homecontentthirds.map((homecontentthird, index) => (
-      <React.Fragment key={index}>
-        <hr className="featurette-divider" />
-        <div className="text-right mb-2">
-          <Link
-            className="btn btn-outline-warning mt-2 mr-2"
-            to={`managehome/homecontentthird/edit/${homecontentthird.ID}`}
-          >
-            แก้ไข
-          </Link>
-          <button
-            className="btn btn-outline-danger mt-2"
-            onClick={() => this.DeleteHomeContentThird(homecontentthird.ID)}
-          >
-            ลบ
-          </button>
-        </div>
-        <div className="row featurette">
-          <div className={index % 2 === 0 ? 'col-md-7' : 'col-md-7 order-md-2'}>
-            <h2 className="featurette-heading">{homecontentthird.Title}</h2>
-            <p className="lead">{homecontentthird.Detail}</p>
+    return (
+      Array.isArray(homecontentthirds) &&
+      homecontentthirds &&
+      homecontentthirds.map((homecontentthird, index) => (
+        <React.Fragment key={index}>
+          <hr className="featurette-divider" />
+          <div className="text-right mb-2">
+            <Link
+              className="btn btn-outline-warning mt-2 mr-2"
+              to={`managehome/homecontentthird/edit/${homecontentthird.ID}`}
+            >
+              แก้ไข
+            </Link>
+            <button
+              className="btn btn-outline-danger mt-2"
+              onClick={() => this.DeleteHomeContentThird(homecontentthird.ID)}
+            >
+              ลบ
+            </button>
           </div>
-          <div className={index % 2 === 0 ? 'col-md-5' : 'col-md-5 order-md-1'}>
-            <img
-              className="featurette-image img-fluid mx-auto"
-              src={homecontentthird.Thumbnail}
-              alt={`Generic placeholder${homecontentthird.ContentNumber}`}
-            />
+          <div className="row featurette">
+            <div
+              className={index % 2 === 0 ? 'col-md-7' : 'col-md-7 order-md-2'}
+            >
+              <h2 className="featurette-heading">{homecontentthird.Title}</h2>
+              <p className="lead">{homecontentthird.Detail}</p>
+            </div>
+            <div
+              className={index % 2 === 0 ? 'col-md-5' : 'col-md-5 order-md-1'}
+            >
+              <img
+                className="featurette-image img-fluid mx-auto"
+                src={homecontentthird.Thumbnail}
+                alt={`Generic placeholder${homecontentthird.ContentNumber}`}
+              />
+            </div>
           </div>
-        </div>
-      </React.Fragment>
-    ))
+        </React.Fragment>
+      ))
+    )
   }
 
   render() {

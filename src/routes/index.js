@@ -71,7 +71,22 @@ const Routing = () => (
     <Route exact path="/dashboard/managenew/add" component={AddNewContent} />
     <Route
       exact
+      path="/dashboard/managenew/edit/:id"
+      component={AddNewContent}
+    />
+    <Route
+      exact
       path="/dashboard/managepromotion/add"
+      component={AddPromotionContent}
+    />
+    <Route
+      exact
+      path="/dashboard/managepromotion/edit/:id"
+      component={AddPromotionContent}
+    />
+    <Route
+      exact
+      path="/dashboard/managenew/edit/:id"
       component={AddPromotionContent}
     />
     <Route

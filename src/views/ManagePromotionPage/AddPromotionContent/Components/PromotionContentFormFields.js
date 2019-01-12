@@ -44,13 +44,18 @@ const validate = values => {
   return errors
 }
 
-const mapStateToProps = ({ homecontent }) => {
-  return { homecontent }
+const mapStateToProps = ({ promotioncontent }) => {
+  if (promotioncontent.data && promotioncontent.data.ID)
+    return {
+      initialValues: promotioncontent.data ? promotioncontent.data : null
+    }
+  else return {}
 }
 
 const AddHomecontentFirstForm = reduxForm({
   validate,
-  form: 'HomecontentFirst'
+  form: 'HomecontentFirst',
+  enableReinitialize: true
 })(AddHomecontentFirst)
 
 export default connect(

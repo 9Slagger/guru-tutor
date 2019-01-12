@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { push } from 'connected-react-router'
 import axios from 'axios'
 import {
   FETCH_PROMOTION_CONTENT,
@@ -34,10 +35,16 @@ export const fetchPromotionContent = () => {
 }
 
 export const fetchOnePromotionContent = id => {
-  return dispatch => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_PROMOTION_CONTENT })
     axios
-      .get(`https://mytutorapi.herokuapp.com/promotionone?id=${id}`)
+      .get(
+        `https://mytutorapi.herokuapp.com/restricted/promotionone?id=${id}`,
+        {
+          headers: { Authorization: token }
+        }
+      )
       .then(response => {
         dispatch({
           type: FETCH_PROMOTION_CONTENT_SUCESS,
@@ -78,16 +85,21 @@ export const createPromotionContent = data => {
   }
 }
 
-export const editNewContent = (id, data) => {
+export const editPromotionContent = (id, data) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_NEW_CONTEN })
     axios
-      .put(`https://mytutorapi.herokuapp.com/restricted/news?id=${id}`, data, {
-        headers: { Authorization: token }
-      })
+      .put(
+        `https://mytutorapi.herokuapp.com/restricted/promotion?id=${id}`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
       .then(() => {
         dispatch({ type: EDIT_NEW_CONTEN_SUCESS })
+        dispatch(push('/dashboard/managepromotion'))
         dispatch(fetchPromotionContent())
         Swal({
           type: 'success',

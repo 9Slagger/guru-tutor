@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { push } from 'connected-react-router'
 import axios from 'axios'
 import {
   FETCH_NEW_CONTENT,
@@ -9,7 +10,10 @@ import {
   EDIT_NEW_CONTEN_FAILURE,
   DELETE_NEW_CONTEN,
   DELETE_NEW_CONTEN_SUCESS,
-  DELETE_NEW_CONTEN_FAILURE
+  DELETE_NEW_CONTEN_FAILURE,
+  CREATE_NEW_CONTEN,
+  CREATE_NEW_CONTEN_FAILURE,
+  CREATE_NEW_CONTEN_SUCESS
 } from './type'
 
 export const fetchNewContent = () => {
@@ -31,10 +35,13 @@ export const fetchNewContent = () => {
 }
 
 export const fetchOneNewContent = id => {
-  return dispatch => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_NEW_CONTENT })
     axios
-      .get(`https://mytutorapi.herokuapp.com/newsone?id=${id}`)
+      .get(`https://mytutorapi.herokuapp.com/restricted/newsone?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(response => {
         dispatch({
           type: FETCH_NEW_CONTENT_SUCESS,
@@ -59,6 +66,7 @@ export const editNewContent = (id, data) => {
       .then(() => {
         dispatch({ type: EDIT_NEW_CONTEN_SUCESS })
         dispatch(fetchNewContent())
+        dispatch(push('/dashboard/managenew'))
         Swal({
           type: 'success',
           title: 'เพิ่มเนื้อหาสำเร็จ!'
@@ -66,6 +74,33 @@ export const editNewContent = (id, data) => {
       })
       .catch(error => {
         dispatch({ type: EDIT_NEW_CONTEN_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มเนื้อหาล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const createNewContent = data => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: CREATE_NEW_CONTEN })
+    axios
+      .post(`https://mytutorapi.herokuapp.com/restricted/news`, data, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: CREATE_NEW_CONTEN_SUCESS })
+        dispatch(fetchNewContent())
+        Swal({
+          type: 'success',
+          title: 'เพิ่มเนื้อหาสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: CREATE_NEW_CONTEN_FAILURE })
         console.log(error)
         Swal({
           type: 'error',

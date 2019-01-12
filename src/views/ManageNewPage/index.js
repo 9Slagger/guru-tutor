@@ -27,6 +27,7 @@ class ManageHomePage extends Component {
 
   renderNews(newcontents) {
     return (
+      Array.isArray(newcontents) &&
       newcontents &&
       newcontents.map((newcontent, index) => (
         <div className="card mb-3" key={index}>
@@ -44,9 +45,12 @@ class ManageHomePage extends Component {
               <small className="text-muted">{newcontent.Timestamp}</small>
             </p>
             <div id="news" className="text-right">
-              <button className="btn btn-outline-warning mt-2 mr-2">
+              <Link
+                className="btn btn-outline-warning mt-2 mr-2"
+                to={`/dashboard/managenew/edit/${newcontent.ID}`}
+              >
                 แก้ไข
-              </button>
+              </Link>
               <button
                 className="btn btn-outline-danger mt-2"
                 onClick={() => this.DeleteNewContent(newcontent.ID)}
@@ -60,10 +64,6 @@ class ManageHomePage extends Component {
     )
   }
 
-  scrollToSection(id) {
-    document.getElementById(id).scrollIntoView()
-  }
-
   render() {
     const { newcontent } = this.props
     return (
@@ -75,7 +75,7 @@ class ManageHomePage extends Component {
         </div>
         <div className="mt-5 container">
           <h1 className="mb-3">ข่าวสาร</h1>
-          {this.props.newcontent.data && this.renderNews(newcontent.data)}
+          {newcontent.data && this.renderNews(newcontent.data)}
         </div>
       </PrivateMainLayout>
     )
