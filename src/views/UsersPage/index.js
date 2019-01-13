@@ -59,9 +59,7 @@ class User extends Component {
         return (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
-            <td>
-              {user.FirstName} {user.LasttName}
-            </td>
+            <td>{user.FirstName + ' ' + user.LastName}</td>
             <td>{user.NickName}</td>
             <td>{user.TelephoneNumber}</td>
             <td>{user.Email}</td>
@@ -132,7 +130,6 @@ class User extends Component {
 
   render() {
     const { users } = this.props
-    console.log('Re Render')
     return (
       <PrivateMainLayout>
         <div className="container-fluid">

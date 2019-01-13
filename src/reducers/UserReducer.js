@@ -31,21 +31,21 @@ export default function(state = initialState, { type, payload }) {
     case USERS_CREATE:
       return { ...state, isFetching: true, isError: false }
     case USERS_CREATE_SUCESS:
-      return { ...state, data: payload, isFetching: false, isError: false }
+      return { ...state, isFetching: false, isError: false }
     case USERS_CREATE_FAILURE:
       return { ...state, isFetching: false, isError: true }
 
     case USER_DELETE:
       return { ...state, isFetching: true, isError: false }
     case USER_DELETE_SUCESS:
-      return { ...state, data: payload, isFetching: false, isError: false }
+      return { ...state, isFetching: false, isError: false }
     case USER_DELETE_FAILURE:
       return { ...state, isFetching: false, isError: true }
 
     case USER_EDIT_TYPE:
       return { ...state, isFetching: true, isError: false }
     case USER_EDIT_TYPE_SUCESS:
-      return { ...state, data: payload, isFetching: false, isError: false }
+      return { ...state, isFetching: false, isError: false }
     case USER_EDIT_TYPE_FAILURE:
       return { ...state, isFetching: false, isError: true }
 
