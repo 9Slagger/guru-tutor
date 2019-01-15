@@ -27,12 +27,18 @@ export const CourseFormFields = [
     required: true,
     placeholder: '9000'
   },
-
   {
     label: 'ชั่วโมง',
     name: 'hour',
     type: 'number',
     required: true,
     placeholder: '10'
+  },
+  {
+    label: 'ประเภท',
+    name: 'type',
+    type: 'text',
+    required: true,
+    placeholder: 'university'
   }
 ]

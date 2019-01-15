@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CourseFormFirst from './Components/CourseFormFirst'
+import { createCourse } from '../../../actions'
 import PrivateMainLayout from '../../../components/PrivateMainLayout'
 
 class AddCoursePage extends Component {
   saveCourse = values => {
-    this.props.createNewContent(values)
+    this.props.createCourse(values)
   }
 
   render() {
@@ -24,7 +25,9 @@ const mapStateToProps = ({ courses }) => {
   return { courses }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  createCourse
+}
 
 export default connect(
   mapStateToProps,
