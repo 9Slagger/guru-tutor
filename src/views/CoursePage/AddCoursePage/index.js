@@ -1,37 +1,32 @@
 import React, { Component } from 'react'
-import PrivateMainLayout from '../../components/PrivateMainLayout'
+import { connect } from 'react-redux'
+import CourseFormFirst from './Components/CourseFormFirst'
+import PrivateMainLayout from '../../../components/PrivateMainLayout'
 
 class AddCoursePage extends Component {
+  saveCourse = values => {
+    this.props.createNewContent(values)
+  }
+
   render() {
     return (
       <PrivateMainLayout>
-        <div>
-          <from>
-            <div>
-              <label>ชื่อคอร์ส</label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="แคลคูลัส"
-              />
-            </div>
-            <div>
-              <label>ชั่วโมง</label>
-              <input className="form-control" type="number" placeholder="10" />
-            </div>
-            <div>
-              <label>ราคา</label>
-              <input
-                className="form-control"
-                type="number"
-                placeholder="9000"
-              />
-            </div>
-          </from>
+        <div className="container-fluid">
+          <h2 className="text-center">เพิ่มคอร์ส</h2>
+          <CourseFormFirst onSubmit={this.saveCourse} />
         </div>
       </PrivateMainLayout>
     )
   }
 }
 
-export default AddCoursePage
+const mapStateToProps = ({ courses }) => {
+  return { courses }
+}
+
+const mapDispatchToProps = {}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddCoursePage)

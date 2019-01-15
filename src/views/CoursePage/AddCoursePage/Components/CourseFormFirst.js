@@ -4,7 +4,7 @@ import { reduxForm, Field } from 'redux-form'
 import FormField from '../../../../components/FormField'
 import { CourseFormFields } from '../../components/formFields'
 
-class CourseForm extends Component {
+class CourseFormFirst extends Component {
   renderFields(CourseFormFields) {
     return CourseFormFields.map(
       ({ label, name, type, required, placeholder }) => (
@@ -45,18 +45,16 @@ const validate = values => {
 }
 
 const mapStateToProps = ({ homecontent }) => {
-  if (homecontent.data && homecontent.data.ID)
-    return { initialValues: homecontent.data ? homecontent.data : null }
-  else return {}
+  return {}
 }
 
-const AddCourseForm = reduxForm({
+const AddCourse = reduxForm({
   validate,
-  form: 'HomecontentFirst',
+  form: 'Course',
   enableReinitialize: true
-})(CourseForm)
+})(CourseFormFirst)
 
 export default connect(
   mapStateToProps,
   null
-)(AddCourseForm)
+)(AddCourse)

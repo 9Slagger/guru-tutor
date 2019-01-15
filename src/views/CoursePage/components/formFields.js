@@ -7,11 +7,18 @@ export const CourseFormFields = [
     placeholder: 'แคลคูลัส 1'
   },
   {
-    label: 'ชั่วโมง',
-    name: 'hour',
-    type: 'number',
+    label: 'รายละเอียด',
+    name: 'detail',
+    type: 'text',
     required: true,
-    placeholder: '10'
+    placeholder: 'รายละเอียด.....'
+  },
+  {
+    label: 'รูปภาพ',
+    name: 'thumbnail',
+    type: 'text',
+    required: true,
+    placeholder: 'รูปภาพ...'
   },
   {
     label: 'ราคา',
@@ -19,5 +26,13 @@ export const CourseFormFields = [
     type: 'number',
     required: true,
     placeholder: '9000'
+  },
+
+  {
+    label: 'ชั่วโมง',
+    name: 'hour',
+    type: 'number',
+    required: true,
+    placeholder: '10'
   }
 ]
