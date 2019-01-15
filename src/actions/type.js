@@ -118,3 +118,7 @@ export const DELETE_PROMOTION_CONTEN_FAILURE = 'delete_promotioncontent_fail'
 export const EDIT_PROMOTION_CONTEN = 'edit_promotioncontent'
 export const EDIT_PROMOTION_CONTEN_SUCESS = 'edit_promotioncontent_sucess'
 export const EDIT_PROMOTION_CONTEN_FAILURE = 'edit_promotioncontent_fail'
+// FETCH_COURSE
+export const FETCH_COURSE = 'FETCH_COURSE'
+export const FETCH_COURSE_SUCESS = 'FETCH_COURSE_SUCESS'
+export const FETCH_COURSE_FAILURE = 'FETCH_COURSE_FAILURE'

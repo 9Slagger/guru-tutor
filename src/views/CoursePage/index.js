@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import Card from '../../components/Card'
 import { connect } from 'react-redux'
+import { fetchCourse } from '../../actions'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
 class AddCoursePage extends Component {
+  componentDidMount() {
+    console.log(this.props.courses)
+  }
   renderCrad(c) {
     return (
       c &&
@@ -41,9 +45,13 @@ class AddCoursePage extends Component {
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = ({ courses }) => {
+  return { courses }
+}
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  fetchCourse
+}
 
 export default connect(
   mapStateToProps,
