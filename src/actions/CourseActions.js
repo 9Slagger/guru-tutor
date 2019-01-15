@@ -6,7 +6,7 @@ export const fetchCourse = user => {
   return dispatch => {
     dispatch({ type: FETCH_COURSE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/course`, user)
+      .get(`https://mytutorapi.herokuapp.com/course`, user)
       .then(res => {
         dispatch({ type: FETCH_COURSE_SUCESS, payload: res.data })
       })
