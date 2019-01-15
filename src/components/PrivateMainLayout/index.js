@@ -132,9 +132,9 @@ class PrivateMainLayout extends Component {
               </h6>
               <ul className="nav flex-column mb-2">
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
+                  <NavLink className="nav-link" to="/dashboard/course">
                     <span data-feather="file-text" />
-                    เพิ่มรายวิชา
+                    รายวิชา
                   </NavLink>
                 </li>
                 <li className="nav-item">

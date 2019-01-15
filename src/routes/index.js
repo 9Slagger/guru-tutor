@@ -22,6 +22,7 @@ import AddPromotionContent from '../views/ManagePromotionPage/AddPromotionConten
 import ManageNewPage from '../views/ManageNewPage'
 import ManagePromotionPage from '../views/ManagePromotionPage'
 import ProfilePage from '../views/ProfilePage'
+import CoursePage from '../views/CoursePage'
 
 const Routing = () => (
   <Switch>
@@ -94,6 +95,7 @@ const Routing = () => (
       path="/dashboard/managepromotion"
       component={ManagePromotionPage}
     />
+    <Route exact path="/dashboard/course" component={CoursePage} />
     <Route component={NotFoundPage} />
   </Switch>
 )
