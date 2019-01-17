@@ -1,15 +1,125 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchOneCourse } from '../../actions'
+import { fetchOneCourse, createSection } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
+import SectionFormFields from '../ManageSectionPage/AddSectionPage/Components/SectionFormFields'
+import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
 
 class ManageCoursePage extends Component {
   componentDidMount() {
     this.props.fetchOneCourse(this.props.match.params.id)
   }
 
-  renderCourse() {
+  saveSection = values => {
+    this.props.createSection(this.props.match.params.id, values)
+  }
+
+  renderModalSection() {
+    return (
+      <div>
+        <button
+          type="button"
+          className="btn btn-primary"
+          data-toggle="modal"
+          data-target=".bd-example-modal-xl"
+        >
+          เพิ่ม Section
+        </button>
+
+        <div
+          className="modal fade bd-example-modal-xl"
+          role="dialog"
+          aria-labelledby="myExtraLargeModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  เพิ่ม Section
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <SectionFormFields onSubmit={this.saveSection} />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  ยกเลิก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  renderModalLecture() {
+    return (
+      <React.Fragment>
+        <button
+          type="button"
+          className="btn-primary btn-sm float-right mr-2"
+          data-toggle="modal"
+          data-target=".video"
+        >
+          เพิ่ม Video
+        </button>
+
+        <div
+          className="modal fade bd-example-modal-xl video"
+          role="dialog"
+          aria-labelledby="myExtraLargeModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  เพิ่ม Video
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <VideoFormFields onSubmit={this.saveSection} />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  ยกเลิก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    )
+  }
+
+  renderCourse(course) {
     return (
       <div>
         <div>
@@ -17,41 +127,35 @@ class ManageCoursePage extends Component {
             กลับ
           </Link>
           <div className="text-center">
-            <h3>{makedata.name}</h3>
+            <h3>{course.name}</h3>
           </div>
         </div>
         <div className="text-center">
           <img
             className="card-img-top mb-auto w-50 h-50 mt-3"
-            src={makedata.thumbnail}
+            src={course.thumbnail}
             alt="Card cap"
             height="100px"
           />
         </div>
         <div className="mt-3">
-          <h6>{makedata.detail}</h6>
-          <span className="badge badge-danger">{makedata.price + ' บาท'}</span>
+          <h6>{course.detail}</h6>
+          <span className="badge badge-danger">{course.price + ' บาท'}</span>
         </div>
-        <div className="text-right mb-3">
-          <Link className="btn btn-primary" to="#">
-            เพิ่ม Section
-          </Link>
-        </div>
-        {this.renderSection(makedata.section)}
+        <div className="text-right mb-3">{this.renderModalSection()}</div>
+        {this.renderSection(course.section)}
       </div>
     )
   }
 
   renderSection(sections) {
     return sections.map((section, index) => (
-      <div className="card" key={index}>
+      <div className="card mb-1" key={index}>
         <div className="card-header">
           {section.name}
           <button className="btn btn-danger btn-sm float-right ml-2">ลบ</button>
           <button className="btn btn-warning btn-sm float-right ">แก้ไข</button>
-          <Link className="btn-primary btn-sm float-right mr-2" to="#">
-            เพิ่ม Video
-          </Link>
+          {this.renderModalLecture()}
         </div>
         <div className="text-right mt-2 mr-1" />
         <div className="card-body">
@@ -74,62 +178,15 @@ class ManageCoursePage extends Component {
   }
 
   render() {
-    return <PrivateMainLayout>{this.renderCourse()}</PrivateMainLayout>
+    const { courses } = this.props
+    return (
+      <PrivateMainLayout>
+        {!Array.isArray(courses.data) &&
+          courses.data &&
+          this.renderCourse(courses.data)}
+      </PrivateMainLayout>
+    )
   }
-}
-
-const makedata = {
-  id: '5c3f019f6fd3337e169f0d75',
-  name: 'แคล1',
-  hour: '400',
-  creator: {
-    ID: '5c1886cb6fd3337e16d3ccaf',
-    UserType: 'admin',
-    Email: 'test123@gmail.com',
-    FirstName: 'พีระพงศ์',
-    LastName: ' วิชชุวัชรากร',
-    NickName: 'จ้อส',
-    TelephoneNumber: '0973243399',
-    Address:
-      '111, ถนน มหาวิทยาลัย ตำบล สุรนารี อำเภอเมืองนครราชสีมา นครราชสีมา 30000',
-    Birthday: '2019-01-04T00:00:00Z',
-    Timestamp: '2018-12-18T05:34:03.244Z'
-  },
-  price: '1200',
-  type: 'university',
-  detail: 'แคลๅ ง่ายๆ แค่ฉีกเติมน้ำร้อน รอ 3 นาที ก็ได้Aแคล ได้ง่ายๆ ',
-  thumbnail:
-    'https://images.unsplash.com/photo-1484415063229-3d6335668531?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1988&q=80',
-  section: [
-    {
-      id: '5c3f01b2e3b5dfe974f8e219',
-      name: 'ตรีโกนมิติ 1',
-      lectures: [
-        {
-          id: '5c3f0765e3b5dfecc6c5e879',
-          name: 'หามุม',
-          time: 21.3,
-          link: 'https://www.youtube.com/watch?v=8LhONcvskPg',
-          comment: []
-        },
-        {
-          id: '5c3f0765e3b5dfecc6c5e879',
-          name: 'หามุม',
-          time: 21.3,
-          link: 'https://www.youtube.com/watch?v=8LhONcvskPg',
-          comment: []
-        },
-        {
-          id: '5c3f0765e3b5dfecc6c5e879',
-          name: 'หามุม',
-          time: 21.3,
-          link: 'https://www.youtube.com/watch?v=8LhONcvskPg',
-          comment: []
-        }
-      ]
-    }
-  ],
-  Timestamp: '0001-01-01T00:00:00Z'
 }
 
 const mapStateToProps = ({ courses }) => {
@@ -137,7 +194,8 @@ const mapStateToProps = ({ courses }) => {
 }
 
 const mapDispatchToProps = {
-  fetchOneCourse
+  fetchOneCourse,
+  createSection
 }
 
 export default connect(
