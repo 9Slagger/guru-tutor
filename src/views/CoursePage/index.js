@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Card from '../../components/Card'
 import { connect } from 'react-redux'
 import { fetchCourse } from '../../actions'
+import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
 class AddCoursePage extends Component {
@@ -18,8 +19,10 @@ class AddCoursePage extends Component {
             src={course.thumbnail}
             title={course.name}
             text={course.detail}
-            btn="รายละเอียด"
-            btnlink="#"
+            btn1="รายละเอียด"
+            btnlink1=""
+            btn="แก้ไข"
+            btnlink={`/dashboard/course/edit/${course.id}`}
           />
         )
       })
@@ -39,6 +42,11 @@ class AddCoursePage extends Component {
     return (
       <PrivateMainLayout>
         <div>
+          <div className="text-right">
+            <Link className="btn btn-primary" to="/dashboard/course/add">
+              เพิ่มคอร์ส
+            </Link>
+          </div>
           <div className="container mt-5">
             <h1>ห้องเรียนมัธยมต้น</h1>
           </div>

@@ -98,6 +98,7 @@ const Routing = () => (
     />
     <Route exact path="/dashboard/course" component={CoursePage} />
     <Route exact path="/dashboard/course/add" component={AddCoursePage} />
+    <Route exact path="/dashboard/course/edit/:id" component={AddCoursePage} />
     <Route component={NotFoundPage} />
   </Switch>
 )
