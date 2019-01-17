@@ -30,15 +30,24 @@ class AddCoursePage extends Component {
   }
   render() {
     const { courses } = this.props
-    const juniorhighschool = courses.data.filter(course => {
-      return course.type === 'juniorhighschool'
-    })
-    const seniorhighschool = courses.data.filter(course => {
-      return course.type === 'seniorhighschool'
-    })
-    const university = courses.data.filter(course => {
-      return course.type === 'university'
-    })
+    const juniorhighschool =
+      Array.isArray(courses.data) &&
+      courses.data &&
+      courses.data.filter(course => {
+        return course.type === 'juniorhighschool'
+      })
+    const seniorhighschool =
+      Array.isArray(courses.data) &&
+      courses.data &&
+      courses.data.filter(course => {
+        return course.type === 'seniorhighschool'
+      })
+    const university =
+      Array.isArray(courses.data) &&
+      courses.data &&
+      courses.data.filter(course => {
+        return course.type === 'university'
+      })
     return (
       <PrivateMainLayout>
         <div>

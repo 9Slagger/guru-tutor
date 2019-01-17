@@ -44,8 +44,10 @@ const validate = values => {
   return errors
 }
 
-const mapStateToProps = ({ homecontent }) => {
-  return {}
+const mapStateToProps = ({ courses }) => {
+  if (courses.data && courses.data.id)
+    return { initialValues: courses.data ? courses.data : null }
+  else return {}
 }
 
 const AddCourse = reduxForm({

@@ -14,13 +14,13 @@ const Card = props => {
         <p className="card-text">{text}</p>
       </div>
       <div className="row">
-        <div className="col-6">
-          <Link className="btn btn-primary mb-3" to={btnlink1}>
+        <div className="col-6 mb-3">
+          <Link className="btn btn-primary" to={btnlink1}>
             {btn1}
           </Link>
         </div>
-        <div className="col-6">
-          <Link to={btnlink} className="btn btn-warning mb-3">
+        <div className="col-6 mb-3">
+          <Link className="btn btn-warning " to={btnlink}>
             {btn}
           </Link>
         </div>
