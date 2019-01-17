@@ -27,28 +27,28 @@ class ProfilePage extends Component {
     return (
       <MainLayout>
         <div className="m-5 p-5">
-          <div class="row">
-            <div class="col-5">
-              <div class="crop2">
+          <div className="row">
+            <div className="col-5">
+              <div className="crop2">
                 <img
                   src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80"
                   alt="..."
-                  class=""
+                  className=""
                 />
               </div>
             </div>
-            <div class="col">
+            <div className="col">
               {this.state.currentEdit ? (
                 <form>
-                  <div class="input-group">
+                  <div className="input-group">
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="ชื่อจริง"
                     />
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="นามสกุล"
                     />
                   </div>
@@ -56,21 +56,21 @@ class ProfilePage extends Component {
 
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="อีเมล"
                   />
                   <br />
-                  <div class="input-group">
+                  <div className="input-group">
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="ช่ือเล่น"
                     />
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="เบอร์โทร"
                     />
                   </div>
@@ -174,14 +174,14 @@ class ProfilePage extends Component {
 
                   <button
                     type="submit"
-                    class="btn btn-dark mr-2"
+                    className="btn btn-dark mr-2"
                     onClick={this.edit}
                   >
                     save
                   </button>
                   <button
                     type="submit"
-                    class="btn btn-dark"
+                    className="btn btn-dark"
                     onClick={this.edit}
                   >
                     ยกเลิก
@@ -218,7 +218,7 @@ class ProfilePage extends Component {
                   <br />
                   <button
                     type="button"
-                    class="btn btn-dark"
+                    className="btn btn-dark"
                     onClick={this.edit}
                   >
                     แก้ไขข้อมูลส่วนตัว
