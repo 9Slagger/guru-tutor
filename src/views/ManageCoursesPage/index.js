@@ -20,7 +20,7 @@ class AddCoursePage extends Component {
             title={course.name}
             text={course.detail}
             btn1="รายละเอียด"
-            btnlink1=""
+            btnlink1={`/dashboard/course/${course.id}`}
             btn="แก้ไข"
             btnlink={`/dashboard/course/edit/${course.id}`}
           />

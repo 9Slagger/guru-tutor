@@ -33,7 +33,7 @@ export const fetchOneCourse = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_COURSE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/courseone?id=${id}`, {
+      .get(`https://mytutorapi.herokuapp.com/restricted/courseone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(res => {
