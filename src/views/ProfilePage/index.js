@@ -28,7 +28,7 @@ class ProfilePage extends Component {
       <MainLayout>
         <div className="m-5 p-5">
           <div class="row">
-            <div class="col-5">
+            <div class="col-5 mx-auto">
               <div class="crop2">
                 <img
                   src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2689&q=80"
