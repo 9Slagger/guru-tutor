@@ -7,17 +7,36 @@ import { CourseFormFields } from '../../components/formFields'
 class CourseFormFirst extends Component {
   renderFields(CourseFormFields) {
     return CourseFormFields.map(
-      ({ label, name, type, required, placeholder }) => (
-        <Field
-          key={name}
-          label={label}
-          name={name}
-          type={type}
-          required={required}
-          placeholder={placeholder}
-          component={FormField}
-        />
-      )
+      ({ label, name, type, required, placeholder, option }) => {
+        if (type !== 'select') {
+          return (
+            <Field
+              key={name}
+              label={label}
+              name={name}
+              type={type}
+              required={required}
+              placeholder={placeholder}
+              component={FormField}
+            />
+          )
+        } else {
+          return (
+            <div className="form-group" key={name}>
+              <label>{label}</label>
+              <div>
+                <Field className="form-control" name={name} component="select">
+                  {option.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.name}
+                    </option>
+                  ))}
+                </Field>
+              </div>
+            </div>
+          )
+        }
+      }
     )
   }
 
