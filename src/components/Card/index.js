@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Card = props => {
   const { src, title, text, btn, btnlink } = props
@@ -13,9 +14,9 @@ const Card = props => {
         <p className="card-text">{text}</p>
       </div>
 
-      <a href={btnlink} className="btn btn-primary mb-3">
+      <Link to={btnlink} className="btn btn-primary mb-3">
         {btn}
-      </a>
+      </Link>
     </div>
   )
 }

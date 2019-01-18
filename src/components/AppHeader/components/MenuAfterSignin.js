@@ -10,39 +10,46 @@ class MenuAfterSignin extends Component {
 
   render() {
     return (
-      <li className="nav-item dropdown">
-        <NavLink
-          className="nav-link dropdown-toggle"
-          to="#"
-          id="navbarDropdown"
-          role="button"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          {this.props.auth.data && this.props.auth.data[0].Email}
-        </NavLink>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-          <NavLink className="dropdown-item" to="/profile">
-            โปรไฟล์
+      <React.Fragment>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/myclass">
+            คอร์สเรียนของฉัน
           </NavLink>
-          {this.props.auth.data[0].UserType === 'admin' ? (
-            <NavLink className="dropdown-item" to="/dashboard">
-              จัดการเว็บไซต์
+        </li>
+        <li className="nav-item dropdown">
+          <NavLink
+            className="nav-link dropdown-toggle"
+            to="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            {this.props.auth.data && this.props.auth.data[0].Email}
+          </NavLink>
+          <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <NavLink className="dropdown-item" to="/profile">
+              โปรไฟล์
             </NavLink>
-          ) : this.props.auth.data[0].UserType === 'tutor' ? (
-            <NavLink className="dropdown-item" to="/dashboard">
-              จัดการเว็บไซต์
-            </NavLink>
-          ) : (
-            false
-          )}
-          <div className="dropdown-divider" />
-          <button className="dropdown-item" onClick={() => this.signout()}>
-            ออกจากระบบ
-          </button>
-        </div>
-      </li>
+            {this.props.auth.data[0].UserType === 'admin' ? (
+              <NavLink className="dropdown-item" to="/dashboard">
+                จัดการเว็บไซต์
+              </NavLink>
+            ) : this.props.auth.data[0].UserType === 'tutor' ? (
+              <NavLink className="dropdown-item" to="/dashboard">
+                จัดการเว็บไซต์
+              </NavLink>
+            ) : (
+              false
+            )}
+            <div className="dropdown-divider" />
+            <button className="dropdown-item" onClick={() => this.signout()}>
+              ออกจากระบบ
+            </button>
+          </div>
+        </li>
+      </React.Fragment>
     )
   }
 }

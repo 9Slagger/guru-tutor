@@ -227,3 +227,7 @@ button:focus {outline:0;}
 small { 
   font-size: 1.5rem;
 }
+
+.class {
+  background-color: #42424A;
+}

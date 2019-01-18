@@ -22,6 +22,8 @@ import AddPromotionContent from '../views/ManagePromotionPage/AddPromotionConten
 import ManageNewPage from '../views/ManageNewPage'
 import ManagePromotionPage from '../views/ManagePromotionPage'
 import ProfilePage from '../views/ProfilePage'
+import MyClassPage from '../views/MyClassPage'
+import ClassPage from '../views/ClassPage'
 
 const Routing = () => (
   <Switch>
@@ -36,6 +38,8 @@ const Routing = () => (
     <Route exact path="/news" component={NewsPage} />
     <Route exact path="/profile" component={ProfilePage} />
     <Route exact path="/dashboard/users" component={UsersPage} />
+    <Route exact path="/myclass" component={MyClassPage} />
+    <Route exact path="/myclass/class" component={ClassPage} />
     <Route
       exact
       path="/dashboard/userpermission"
