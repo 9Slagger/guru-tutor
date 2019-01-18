@@ -20,7 +20,7 @@ const Card = props => {
           </Link>
         </div>
         <div className="col-6 mb-3">
-          <Link className="btn btn-warning " to={btnlink}>
+          <Link className="btn btn-warning mb-3" to={btnlink}>
             {btn}
           </Link>
         </div>

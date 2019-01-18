@@ -228,6 +228,7 @@ small {
   font-size: 1.5rem;
 }
 
+
 @media (min-width: 992px) {
   .modal-xl {
     max-width: 800px;
@@ -238,4 +239,8 @@ small {
   .modal-xl {
     max-width: 1140px;
   }
+}
+
+.class {
+  background-color: #42424A;
 }

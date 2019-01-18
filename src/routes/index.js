@@ -25,6 +25,8 @@ import ProfilePage from '../views/ProfilePage'
 import CoursePage from '../views/ManageCoursesPage'
 import AddCoursePage from '../views/ManageCoursesPage/AddCoursePage'
 import ManageCoursePage from '../views/ManageCoursePage'
+import MyClassPage from '../views/MyClassPage'
+import ClassPage from '../views/ClassPage'
 
 const Routing = () => (
   <Switch>
@@ -39,6 +41,8 @@ const Routing = () => (
     <Route exact path="/news" component={NewsPage} />
     <Route exact path="/profile" component={ProfilePage} />
     <Route exact path="/dashboard/users" component={UsersPage} />
+    <Route exact path="/myclass" component={MyClassPage} />
+    <Route exact path="/myclass/class" component={ClassPage} />
     <Route
       exact
       path="/dashboard/userpermission"
