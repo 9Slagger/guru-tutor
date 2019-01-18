@@ -14,11 +14,15 @@ const Card = props => {
         <p className="card-text">{text}</p>
       </div>
       <div className="row">
-        <div className="col-6 mb-3">
-          <Link className="btn btn-primary" to={btnlink1}>
-            {btn1}
-          </Link>
-        </div>
+        {btn1 && btnlink1 ? (
+          <div className="col-6 mb-3">
+            <Link className="btn btn-primary" to={btnlink1}>
+              {btn1}
+            </Link>
+          </div>
+        ) : (
+          false
+        )}
         <div className="col-6 mb-3">
           <Link className="btn btn-warning mb-3" to={btnlink}>
             {btn}
