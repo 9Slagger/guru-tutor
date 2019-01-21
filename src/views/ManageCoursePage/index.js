@@ -21,7 +21,10 @@ class ManageCoursePage extends Component {
   }
 
   EditSection = values => {
-    this.props.editSection(this.props.match.params.id, values)
+    this.props.editSection(
+      this.props.sections.dataone && this.props.sections.dataone.id,
+      values
+    )
   }
 
   renderModalSection() {
@@ -76,20 +79,20 @@ class ManageCoursePage extends Component {
     )
   }
 
-  renderModalLectureAdd() {
+  renderModalSectionAdd() {
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn-primary btn-sm float-right mr-2"
           data-toggle="modal"
-          data-target=".video"
+          data-target=".addvideo"
         >
           เพิ่ม Video
         </button>
 
         <div
-          className="modal fade bd-example-modal-xl video"
+          className="modal fade bd-example-modal-xl addvideo"
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -128,20 +131,20 @@ class ManageCoursePage extends Component {
     )
   }
 
-  renderModalLectureEdit() {
+  renderModalSectionEdit() {
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn btn-warning btn-sm float-right"
           data-toggle="modal"
-          data-target=".video"
+          data-target=".editsection"
           onClick={() => this.props.fetchOneSection(this.props.match.params.id)}
         >
-          แก้ไข Video
+          แก้ไข Section
         </button>
         <div
-          className="modal fade bd-example-modal-xl video"
+          className="modal fade bd-example-modal-xl editsection"
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -150,7 +153,7 @@ class ManageCoursePage extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                  เพิ่ม Video
+                  แก้ไข Section
                 </h5>
                 <button
                   type="button"
@@ -217,10 +220,10 @@ class ManageCoursePage extends Component {
           <div className="card-header">
             {section.name}
             <button className="btn btn-danger btn-sm float-right ml-2">
-              ลบ
+              ลบ Section
             </button>
-            {this.renderModalLectureEdit()}
-            {this.renderModalLectureAdd()}
+            {this.renderModalSectionEdit()}
+            {this.renderModalSectionAdd()}
           </div>
           <div className="text-right mt-2 mr-1" />
           <div className="card-body">
@@ -235,9 +238,11 @@ class ManageCoursePage extends Component {
     return lectures.map((lecture, index) => (
       <div className="card-header" key={index}>
         {lecture.name}
-        <button className="btn btn-danger btn-sm float-right ml-2">ลบ</button>
+        <button className="btn btn-danger btn-sm float-right ml-2">
+          ลบ Video
+        </button>
         <button className="btn btn-warning btn-sm float-right ml-2">
-          แก้ไข
+          แก้ไข Video
         </button>
       </div>
     ))
@@ -255,8 +260,8 @@ class ManageCoursePage extends Component {
   }
 }
 
-const mapStateToProps = ({ courses }) => {
-  return { courses }
+const mapStateToProps = ({ courses, sections }) => {
+  return { courses, sections }
 }
 
 const mapDispatchToProps = {

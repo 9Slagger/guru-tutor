@@ -33,7 +33,7 @@ export const editSection = (id, data) => {
     dispatch({ type: EDIT_SECTION })
     axios
       .put(
-        `https://mytutorapi.herokuapp.com/restricted/course?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/section?id=${id}`,
         data,
         {
           headers: { Authorization: token }

@@ -64,8 +64,8 @@ const validate = values => {
 }
 
 const mapStateToProps = ({ courses }) => {
-  if (courses.data && courses.data.id)
-    return { initialValues: courses.data ? courses.data : null }
+  if (courses.dataone && courses.dataone.id)
+    return { initialValues: courses.dataone ? courses.dataone : null }
   else return {}
 }
 
