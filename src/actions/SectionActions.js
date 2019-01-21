@@ -9,7 +9,10 @@ import {
   EDIT_SECTION_SUCESS,
   CREATE_SECTION,
   CREATE_SECTION_FAILURE,
-  CREATE_SECTION_SUCESS
+  CREATE_SECTION_SUCESS,
+  DELETE_SECTION,
+  DELETE_SECTION_FAILURE,
+  DELETE_SECTION_SUCESS
 } from './type'
 
 export const fetchOneSection = id => {
@@ -85,6 +88,35 @@ export const createSection = (id, data) => {
         Swal({
           type: 'error',
           title: 'เพิ่มSectionล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const deleteSection = (idsec, idcourse) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: DELETE_SECTION })
+    axios
+      .delete(
+        `https://mytutorapi.herokuapp.com/restricted/section?idsec=${idsec}&idcourse=${idcourse}`,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        dispatch({ type: DELETE_SECTION_SUCESS })
+        Swal({
+          type: 'success',
+          title: 'ลบSectionสสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_SECTION_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'ลบSectionล้มเหลว!'
         })
       })
   }

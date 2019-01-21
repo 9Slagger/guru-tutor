@@ -7,7 +7,9 @@ import {
   fetchOneSection,
   fetchOneLecture,
   createLecture,
-  editLecture
+  editLecture,
+  deleteSection,
+  deleteLecture
 } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
@@ -44,6 +46,14 @@ class ManageCoursePage extends Component {
       this.props.sections.dataone && this.props.sections.dataone.id,
       values
     )
+  }
+
+  RemoveSection(idsec, idcourse) {
+    this.props.deleteSection(idsec, idcourse)
+  }
+
+  RemoveLecture(idlec, idsec) {
+    this.props.deleteLecture(idlec, idsec)
   }
 
   renderModalSection() {
@@ -283,19 +293,22 @@ class ManageCoursePage extends Component {
           <span className="badge badge-danger">{course.price + ' บาท'}</span>
         </div>
         <div className="text-right mb-3">{this.renderModalSection()}</div>
-        {this.renderSection(course.section)}
+        {this.renderSection(course.section, course.id)}
       </div>
     )
   }
 
-  renderSection(sections) {
+  renderSection(sections, idcourse) {
     return (
       sections &&
       sections.map((section, index) => (
         <div className="card mb-1" key={index}>
           <div className="card-header">
             {section.name}
-            <button className="btn btn-danger btn-sm float-right ml-2">
+            <button
+              className="btn btn-danger btn-sm float-right ml-2"
+              onClick={() => this.RemoveSection(section.id, idcourse)}
+            >
               ลบ Section
             </button>
             {this.renderModalSectionEdit(section.id)}
@@ -303,18 +316,23 @@ class ManageCoursePage extends Component {
           </div>
           <div className="text-right mt-2 mr-1" />
           <div className="card-body">
-            <div className="card">{this.renderLecture(section.lectures)}</div>
+            <div className="card">
+              {this.renderLecture(section.lectures, section.id)}
+            </div>
           </div>
         </div>
       ))
     )
   }
 
-  renderLecture(lectures) {
+  renderLecture(lectures, idsec) {
     return lectures.map((lecture, index) => (
       <div className="card-header" key={index}>
         {lecture.name}
-        <button className="btn btn-danger btn-sm float-right ml-2">
+        <button
+          className="btn btn-danger btn-sm float-right ml-2"
+          onClick={() => this.RemoveLecture(lecture.id, idsec)}
+        >
           ลบ Video
         </button>
         {this.renderModalLectureEdit(lecture.id)}
@@ -345,7 +363,9 @@ const mapDispatchToProps = {
   fetchOneSection,
   fetchOneLecture,
   createLecture,
-  editLecture
+  editLecture,
+  deleteSection,
+  deleteLecture
 }
 
 export default connect(

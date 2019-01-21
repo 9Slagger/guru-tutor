@@ -9,7 +9,10 @@ import {
   EDIT_LECTURE_SUCESS,
   FETCH_ONE_LECTURE,
   FETCH_ONE_LECTURE_FAILURE,
-  FETCH_ONE_LECTURE_SUCESS
+  FETCH_ONE_LECTURE_SUCESS,
+  DELETE_LECTURE,
+  DELETE_LECTURE_FAILURE,
+  DELETE_LECTURE_SUCESS
 } from './type'
 
 export const fetchOneLecture = id => {
@@ -87,6 +90,35 @@ export const createLecture = (id, data) => {
         Swal({
           type: 'error',
           title: 'เพิ่มLectureล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const deleteLecture = (idlec, idsec) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: DELETE_LECTURE })
+    axios
+      .delete(
+        `https://mytutorapi.herokuapp.com/restricted/lectures?idlec=${idlec}&idsec=${idsec}`,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        dispatch({ type: DELETE_LECTURE_SUCESS })
+        Swal({
+          type: 'success',
+          title: 'ลบVideoสสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_LECTURE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'ลบVideoล้มเหลว!'
         })
       })
   }
