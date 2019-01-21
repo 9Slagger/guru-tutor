@@ -6,7 +6,10 @@ import {
   FETCH_ONE_SECTION_SUCESS,
   EDIT_SECTION,
   EDIT_SECTION_FAILURE,
-  EDIT_SECTION_SUCESS
+  EDIT_SECTION_SUCESS,
+  CREATE_SECTION,
+  CREATE_SECTION_FAILURE,
+  CREATE_SECTION_SUCESS
 } from './type'
 
 export const fetchOneSection = id => {
@@ -52,6 +55,36 @@ export const editSection = (id, data) => {
         Swal({
           type: 'error',
           title: 'แก้ไขSectionล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const createSection = (id, data) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: CREATE_SECTION })
+    axios
+      .post(
+        `https://mytutorapi.herokuapp.com/restricted/section?id=${id}`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        dispatch({ type: CREATE_SECTION_SUCESS })
+        Swal({
+          type: 'success',
+          title: 'เพิ่มSectionสสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: CREATE_SECTION_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มSectionล้มเหลว!'
         })
       })
   }

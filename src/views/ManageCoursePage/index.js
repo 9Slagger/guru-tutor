@@ -4,7 +4,10 @@ import {
   fetchOneCourse,
   createSection,
   editSection,
-  fetchOneSection
+  fetchOneSection,
+  fetchOneLecture,
+  createLecture,
+  editLecture
 } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
@@ -18,6 +21,22 @@ class ManageCoursePage extends Component {
 
   saveSection = values => {
     this.props.createSection(this.props.match.params.id, values)
+  }
+
+  saveVideo = async (id, values) => {
+    let temp = await values
+    let { time } = await values
+    time = await parseInt(time, 10)
+    temp.time = time
+    this.props.createLecture(id, temp)
+  }
+
+  editVideo = async (id, values) => {
+    let temp = await values
+    let { time } = await values
+    time = await parseInt(time, 10)
+    temp.time = time
+    this.props.editLecture(id, temp)
   }
 
   EditSection = values => {
@@ -79,7 +98,62 @@ class ManageCoursePage extends Component {
     )
   }
 
-  renderModalSectionAdd() {
+  renderModalLectureEdit(id) {
+    return (
+      <React.Fragment>
+        <button
+          type="button"
+          className="btn btn-warning btn-sm float-right ml-2"
+          data-toggle="modal"
+          data-target=".editvideo"
+          onClick={() => this.props.fetchOneLecture(id)}
+        >
+          แก้ไข Video
+        </button>
+
+        <div
+          className="modal fade bd-example-modal-xl editvideo"
+          role="dialog"
+          aria-labelledby="myExtraLargeModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  แก้ไข Video
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <VideoFormFields
+                  onSubmit={values => this.editVideo(id, values)}
+                />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  ยกเลิก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    )
+  }
+
+  renderModalLectureAdd(id) {
     return (
       <React.Fragment>
         <button
@@ -113,7 +187,9 @@ class ManageCoursePage extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <VideoFormFields onSubmit={this.saveSection} />
+                <VideoFormFields
+                  onSubmit={values => this.saveVideo(id, values)}
+                />
               </div>
               <div className="modal-footer">
                 <button
@@ -131,7 +207,7 @@ class ManageCoursePage extends Component {
     )
   }
 
-  renderModalSectionEdit() {
+  renderModalSectionEdit(id) {
     return (
       <React.Fragment>
         <button
@@ -139,7 +215,7 @@ class ManageCoursePage extends Component {
           className="btn btn-warning btn-sm float-right"
           data-toggle="modal"
           data-target=".editsection"
-          onClick={() => this.props.fetchOneSection(this.props.match.params.id)}
+          onClick={() => this.props.fetchOneSection(id)}
         >
           แก้ไข Section
         </button>
@@ -222,8 +298,8 @@ class ManageCoursePage extends Component {
             <button className="btn btn-danger btn-sm float-right ml-2">
               ลบ Section
             </button>
-            {this.renderModalSectionEdit()}
-            {this.renderModalSectionAdd()}
+            {this.renderModalSectionEdit(section.id)}
+            {this.renderModalLectureAdd(section.id)}
           </div>
           <div className="text-right mt-2 mr-1" />
           <div className="card-body">
@@ -241,9 +317,7 @@ class ManageCoursePage extends Component {
         <button className="btn btn-danger btn-sm float-right ml-2">
           ลบ Video
         </button>
-        <button className="btn btn-warning btn-sm float-right ml-2">
-          แก้ไข Video
-        </button>
+        {this.renderModalLectureEdit(lecture.id)}
       </div>
     ))
   }
@@ -268,7 +342,10 @@ const mapDispatchToProps = {
   fetchOneCourse,
   createSection,
   editSection,
-  fetchOneSection
+  fetchOneSection,
+  fetchOneLecture,
+  createLecture,
+  editLecture
 }
 
 export default connect(

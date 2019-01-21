@@ -44,9 +44,9 @@ const validate = values => {
   return errors
 }
 
-const mapStateToProps = ({ newcontent }) => {
-  if (newcontent.data && newcontent.data.ID)
-    return { initialValues: newcontent.data ? newcontent.data : null }
+const mapStateToProps = ({ lectures }) => {
+  if (lectures.dataone && lectures.dataone.id)
+    return { initialValues: lectures.dataone ? lectures.dataone : null }
   else return {}
 }
 
