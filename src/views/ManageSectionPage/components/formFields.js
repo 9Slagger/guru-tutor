@@ -19,7 +19,7 @@ export const LectureFormFields = [
   {
     label: 'เวลา Video',
     name: 'time',
-    type: 'text',
+    type: 'number',
     required: true,
     placeholder: '12.31'
   },
