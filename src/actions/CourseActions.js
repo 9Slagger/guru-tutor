@@ -11,12 +11,12 @@ import {
   EDIT_COURSE,
   EDIT_COURSE_FAILURE,
   EDIT_COURSE_SUCESS,
-  EDIT_SECTION,
-  EDIT_SECTION_FAILURE,
-  EDIT_SECTION_SUCESS,
   CREATE_SECTION,
   CREATE_SECTION_FAILURE,
-  CREATE_SECTION_SUCESS
+  CREATE_SECTION_SUCESS,
+  FETCH_ONE_COURSE,
+  FETCH_ONE_COURSE_FAILURE,
+  FETCH_ONE_COURSE_SUCESS
 } from './type'
 
 export const fetchCourse = () => {
@@ -37,16 +37,16 @@ export const fetchCourse = () => {
 export const fetchOneCourse = id => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
-    dispatch({ type: FETCH_COURSE })
+    dispatch({ type: FETCH_ONE_COURSE })
     axios
       .get(`https://mytutorapi.herokuapp.com/restricted/courseone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(res => {
-        dispatch({ type: FETCH_COURSE_SUCESS, payload: res.data })
+        dispatch({ type: FETCH_ONE_COURSE_SUCESS, payload: res.data })
       })
       .catch(error => {
-        dispatch({ type: FETCH_COURSE_FAILURE })
+        dispatch({ type: FETCH_ONE_COURSE_FAILURE })
         console.log(error)
       })
   }
@@ -135,36 +135,6 @@ export const createSection = (id, data) => {
         Swal({
           type: 'error',
           title: 'เพิ่มSectionล้มเหลว!'
-        })
-      })
-  }
-}
-
-export const editSection = (id, data) => {
-  return async dispatch => {
-    const token = await localStorage.getItem('token')
-    dispatch({ type: EDIT_SECTION })
-    axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/course?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
-      .then(() => {
-        dispatch({ type: EDIT_SECTION_SUCESS })
-        Swal({
-          type: 'success',
-          title: 'แก้ไขSectionสำเร็จ!'
-        })
-      })
-      .catch(error => {
-        dispatch({ type: EDIT_SECTION_FAILURE })
-        console.log(error)
-        Swal({
-          type: 'error',
-          title: 'แก้ไขSectionล้มเหลว!'
         })
       })
   }

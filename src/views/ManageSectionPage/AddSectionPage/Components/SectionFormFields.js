@@ -44,15 +44,15 @@ const validate = values => {
   return errors
 }
 
-const mapStateToProps = ({ newcontent }) => {
-  if (newcontent.data && newcontent.data.ID)
-    return { initialValues: newcontent.data ? newcontent.data : null }
+const mapStateToProps = ({ sections }) => {
+  if (sections.dataone && sections.dataone.id)
+    return { initialValues: sections.dataone ? sections.dataone : null }
   else return {}
 }
 
 const AddSectionFormFieldsForm = reduxForm({
   validate,
-  form: 'HomecontentFirst',
+  form: 'SectionFormFields',
   enableReinitialize: true
 })(AddSectionFormFields)
 

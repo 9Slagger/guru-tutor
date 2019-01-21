@@ -7,6 +7,7 @@ import HomeContentReducers from './HomeContentReducers'
 import NewContentReducer from './NewContentReducer'
 import PromotionActionReducer from './PromotionActionReducer'
 import CourseReducer from './CourseReducer'
+import SectionReducer from './SectionReducer'
 
 export default history =>
   combineReducers({
@@ -16,6 +17,7 @@ export default history =>
     newcontent: NewContentReducer,
     promotioncontent: PromotionActionReducer,
     courses: CourseReducer,
+    sections: SectionReducer,
     form: reduxForm,
     router: connectRouter(history)
   })
