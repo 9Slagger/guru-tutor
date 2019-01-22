@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import plyr from 'plyr';
-
+import plyr from 'plyr'
 
 class PlayVideo extends Component {
   componentDidMount() {
-    const options = {};
-    this.player = plyr.setup('#plyr-player', options);
+    const options = {}
+    this.player = plyr.setup('#plyr-player', options)
   }
   componentWillUnmount() {
     if (this.player.length > 0) {
       for (const playerEl of this.player) {
-        playerEl.destroy();
+        playerEl.destroy()
       }
     }
   }
