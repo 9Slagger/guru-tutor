@@ -62,6 +62,14 @@ class ManageCoursePage extends Component {
     this.props.deleteLecture(idlec, idsec, this.props.match.params.id)
   }
 
+  makeid() {
+    var text = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    for (var i = 0; i < 15; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length))
+    return text
+  }
+
   renderModalSection() {
     return (
       <div>
@@ -114,21 +122,22 @@ class ManageCoursePage extends Component {
     )
   }
 
-  renderModalLectureEdit(id) {
+  renderModalLectureEdit(lecture) {
+    const { id, name } = lecture
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn btn-warning btn-sm float-right ml-2"
           data-toggle="modal"
-          data-target=".editvideo"
+          data-target={`.${name}`}
           onClick={() => this.props.fetchOneLecture(id)}
         >
           แก้ไข Video
         </button>
 
         <div
-          className="modal fade bd-example-modal-xl editvideo"
+          className={`modal fade bd-example-modal-xl ${name}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -332,18 +341,19 @@ class ManageCoursePage extends Component {
   }
 
   renderPlayerLecture(lecture) {
+    const name = this.makeid()
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn btn-success btn-sm float-right ml-2"
           data-toggle="modal"
-          data-target={`.playlecture`}
+          data-target={`.${name}`}
         >
           ดู Video
         </button>
         <div
-          className={`modal fade bd-example-modal-xl playlecture`}
+          className={`modal fade bd-example-modal-xl ${name}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -392,7 +402,7 @@ class ManageCoursePage extends Component {
         >
           ลบ Video
         </button>
-        {this.renderModalLectureEdit(lecture.id)}
+        {this.renderModalLectureEdit(lecture)}
         {this.renderPlayerLecture(lecture)}
       </div>
     ))
