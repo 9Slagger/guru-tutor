@@ -12,8 +12,13 @@ import {
   USER_DELETE_FAILURE,
   USER_EDIT_TYPE,
   USER_EDIT_TYPE_SUCESS,
-  USER_EDIT_TYPE_FAILURE
+  USER_EDIT_TYPE_FAILURE,
+  USER_EDIT,
+  USER_EDIT_FAILURE,
+  USER_EDIT_SUCESS
 } from './type'
+
+import { VerifyAuth } from './AuthActions'
 
 export const usersFetch = () => {
   return async dispatch => {
@@ -102,6 +107,31 @@ export const userEditTpye = (id, name, selectType) => {
       .catch(error => {
         dispatch({ type: USER_EDIT_TYPE_FAILURE })
         alert(`แก้ไขสิทธิ ล้มเหลว`)
+        console.log(error)
+      })
+  }
+}
+
+export const userEditProfile = (id, data) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: USER_EDIT })
+    axios
+      .put(
+        `https://mytutorapi.herokuapp.com/restricted/member/user?id=${id}`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        dispatch({ type: USER_EDIT_SUCESS })
+        dispatch(VerifyAuth())
+        Swal('แก้ไขโปรไฟล์ สำเร็จ', 'success')
+      })
+      .catch(error => {
+        dispatch({ type: USER_EDIT_FAILURE })
+        alert(`แก้ไขโปรไฟล์ ล้มเหลว`)
         console.log(error)
       })
   }

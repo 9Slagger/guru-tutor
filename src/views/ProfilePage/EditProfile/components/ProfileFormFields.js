@@ -41,13 +41,20 @@ class ProfileFormFields extends Component {
     )
   }
 
+  onEdit = () => {
+    this.props.edit()
+  }
+
   render() {
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit}>
         {this.renderFields(ProfileFields)}
-        <button className="btn btn-block btn-info title" type="submit">
+        <button className="btn btn-info title mr-3" type="submit">
           บันทึก
+        </button>
+        <button className="btn btn-dark" onClick={this.onEdit}>
+          ยกเลิก
         </button>
       </form>
     )

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {} from '../../../actions'
+import { userEditProfile } from '../../../actions'
 import ProfileFormFields from './components/ProfileFormFields'
 
 class EditProfile extends Component {
   editProfile = values => {
-    console.log(values)
+    // this.props.userEditProfile(id, values)
+    alert('coming soon')
   }
 
-  onConfirmClick = () => {
+  onEdit = () => {
     this.props.edit()
   }
 
@@ -16,11 +17,8 @@ class EditProfile extends Component {
     return (
       <div>
         <div className="container-fluid">
-          <button className="btn btn-dark" onClick={this.onConfirmClick}>
-            ยกเลิก
-          </button>
           <h2 className="text-center">แก้ไข โปรไฟล์</h2>
-          <ProfileFormFields onSubmit={this.editProfile} />
+          <ProfileFormFields onSubmit={this.editProfile} edit={this.onEdit} />
         </div>
       </div>
     )
@@ -31,7 +29,7 @@ const mapStateToProps = ({ auth }) => {
   return { auth }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = { userEditProfile }
 
 export default connect(
   mapStateToProps,
