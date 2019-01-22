@@ -338,12 +338,12 @@ class ManageCoursePage extends Component {
           type="button"
           className="btn btn-success btn-sm float-right ml-2"
           data-toggle="modal"
-          data-target=".playlecture"
+          data-target={`.playlecture`}
         >
           ดู Video
         </button>
         <div
-          className="modal fade bd-example-modal-xl playlecture"
+          className={`modal fade bd-example-modal-xl playlecture`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
