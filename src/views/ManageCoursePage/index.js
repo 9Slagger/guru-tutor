@@ -22,7 +22,11 @@ class ManageCoursePage extends Component {
   }
 
   saveSection = values => {
-    this.props.createSection(this.props.match.params.id, values)
+    this.props.createSection(
+      this.props.match.params.id,
+      values,
+      this.props.match.params.id
+    )
   }
 
   saveVideo = async (id, values) => {
@@ -30,7 +34,7 @@ class ManageCoursePage extends Component {
     let { time } = await values
     time = await parseInt(time, 10)
     temp.time = time
-    this.props.createLecture(id, temp)
+    this.props.createLecture(id, temp, this.props.match.params.id)
   }
 
   editVideo = async (id, values) => {
@@ -38,22 +42,23 @@ class ManageCoursePage extends Component {
     let { time } = await values
     time = await parseInt(time, 10)
     temp.time = time
-    this.props.editLecture(id, temp)
+    this.props.editLecture(id, temp, this.props.match.params.id)
   }
 
   EditSection = values => {
     this.props.editSection(
       this.props.sections.dataone && this.props.sections.dataone.id,
-      values
+      values,
+      this.props.match.params.id
     )
   }
 
   RemoveSection(idsec, idcourse) {
-    this.props.deleteSection(idsec, idcourse)
+    this.props.deleteSection(idsec, idcourse, this.props.match.params.id)
   }
 
   RemoveLecture(idlec, idsec) {
-    this.props.deleteLecture(idlec, idsec)
+    this.props.deleteLecture(idlec, idsec, this.props.match.params.id)
   }
 
   renderModalSection() {

@@ -14,6 +14,7 @@ import {
   DELETE_SECTION_FAILURE,
   DELETE_SECTION_SUCESS
 } from './type'
+import { fetchOneCourse } from './CourseActions'
 
 export const fetchOneSection = id => {
   return async dispatch => {
@@ -33,13 +34,13 @@ export const fetchOneSection = id => {
   }
 }
 
-export const editSection = (id, data) => {
+export const editSection = (idsec, data, id) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_SECTION })
     axios
       .put(
-        `https://mytutorapi.herokuapp.com/restricted/section?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/section?id=${idsec}`,
         data,
         {
           headers: { Authorization: token }
@@ -47,6 +48,7 @@ export const editSection = (id, data) => {
       )
       .then(() => {
         dispatch({ type: EDIT_SECTION_SUCESS })
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
           title: 'แก้ไขSectionสำเร็จ!'
@@ -63,13 +65,13 @@ export const editSection = (id, data) => {
   }
 }
 
-export const createSection = (id, data) => {
+export const createSection = (idsec, data, id) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_SECTION })
     axios
       .post(
-        `https://mytutorapi.herokuapp.com/restricted/section?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/section?id=${idsec}`,
         data,
         {
           headers: { Authorization: token }
@@ -77,6 +79,7 @@ export const createSection = (id, data) => {
       )
       .then(() => {
         dispatch({ type: CREATE_SECTION_SUCESS })
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
           title: 'เพิ่มSectionสสำเร็จ!'
@@ -93,7 +96,7 @@ export const createSection = (id, data) => {
   }
 }
 
-export const deleteSection = (idsec, idcourse) => {
+export const deleteSection = (idsec, idcourse, id) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_SECTION })
@@ -106,6 +109,7 @@ export const deleteSection = (idsec, idcourse) => {
       )
       .then(() => {
         dispatch({ type: DELETE_SECTION_SUCESS })
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
           title: 'ลบSectionสสำเร็จ!'

@@ -14,6 +14,7 @@ import {
   DELETE_LECTURE_FAILURE,
   DELETE_LECTURE_SUCESS
 } from './type'
+import { fetchOneCourse } from './CourseActions'
 
 export const fetchOneLecture = id => {
   return async dispatch => {
@@ -33,13 +34,13 @@ export const fetchOneLecture = id => {
   }
 }
 
-export const editLecture = (id, data) => {
+export const editLecture = (idlec, data, id) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_LECTURE })
     axios
       .put(
-        `https://mytutorapi.herokuapp.com/restricted/lectures?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/lectures?id=${idlec}`,
         data,
         {
           headers: { Authorization: token }
@@ -47,6 +48,7 @@ export const editLecture = (id, data) => {
       )
       .then(() => {
         dispatch({ type: EDIT_LECTURE_SUCESS })
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
           title: 'แก้ไขLectureสำเร็จ!'
@@ -63,15 +65,13 @@ export const editLecture = (id, data) => {
   }
 }
 
-export const createLecture = (id, data) => {
+export const createLecture = (idsec, data, id) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_LECTURE })
-    console.log('id = ', id)
-    console.log('data = ', data)
     axios
       .post(
-        `https://mytutorapi.herokuapp.com/restricted/lectures?id=${id}`,
+        `https://mytutorapi.herokuapp.com/restricted/lectures?id=${idsec}`,
         data,
         {
           headers: { Authorization: token }
@@ -79,6 +79,7 @@ export const createLecture = (id, data) => {
       )
       .then(() => {
         dispatch({ type: CREATE_LECTURE_SUCESS })
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
           title: 'เพิ่มLectureสสำเร็จ!'
@@ -95,7 +96,7 @@ export const createLecture = (id, data) => {
   }
 }
 
-export const deleteLecture = (idlec, idsec) => {
+export const deleteLecture = (idlec, idsec, id) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_LECTURE })
@@ -108,6 +109,7 @@ export const deleteLecture = (idlec, idsec) => {
       )
       .then(() => {
         dispatch({ type: DELETE_LECTURE_SUCESS })
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
           title: 'ลบVideoสสำเร็จ!'
