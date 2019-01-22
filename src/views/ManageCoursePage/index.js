@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SectionFormFields from '../ManageSectionPage/AddSectionPage/Components/SectionFormFields'
 import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
+import PlayVideo from '../PlayVideoPage'
 
 class ManageCoursePage extends Component {
   componentDidMount() {
@@ -330,6 +331,57 @@ class ManageCoursePage extends Component {
     )
   }
 
+  renderPlayerLecture(lecture) {
+    return (
+      <React.Fragment>
+        <button
+          type="button"
+          className="btn btn-success btn-sm float-right ml-2"
+          data-toggle="modal"
+          data-target=".playlecture"
+        >
+          ดู Video
+        </button>
+        <div
+          className="modal fade bd-example-modal-xl playlecture"
+          role="dialog"
+          aria-labelledby="myExtraLargeModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-xl">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  {lecture.name}
+                </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <PlayVideo link={lecture.link} />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  ยกเลิก
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
+    )
+  }
+
   renderLecture(lectures, idsec) {
     return lectures.map((lecture, index) => (
       <div className="card-header" key={index}>
@@ -341,6 +393,7 @@ class ManageCoursePage extends Component {
           ลบ Video
         </button>
         {this.renderModalLectureEdit(lecture.id)}
+        {this.renderPlayerLecture(lecture)}
       </div>
     ))
   }
