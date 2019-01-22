@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
+import plyr from 'plyr';
+
 
 class PlayVideo extends Component {
+  componentDidMount() {
+    const options = {};
+    this.player = plyr.setup('#plyr-player', options);
+  }
+  componentWillUnmount() {
+    if (this.player.length > 0) {
+      for (const playerEl of this.player) {
+        playerEl.destroy();
+      }
+    }
+  }
   render() {
     // const { link } = this.props
     // const shortlink = link.split('=')
+
     return (
       <div className="text-center">
         <div class="container">
@@ -13,7 +27,7 @@ class PlayVideo extends Component {
             crossorigin
             playsinline
             poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
-            id="player"
+            id="plyr-player"
           >
             <source
               src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"

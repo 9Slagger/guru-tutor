@@ -6139,7 +6139,7 @@ pluralize@^7.0.0:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
   integrity sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==
 
-plyr@^3.4.8:
+plyr@^3.3.21, plyr@^3.4.8:
   version "3.4.8"
   resolved "https://registry.yarnpkg.com/plyr/-/plyr-3.4.8.tgz#8472dc6ba8545a9a50d9d0260fe31f6aaf956b82"
   integrity sha512-xoHff5+Ul5X36Cqk9OzRLA/cF/TNUGFwuEIo8HbwPO1h7Zc2Nc8S21e2lWzO7oNO8/ek7zmy/mUtQ281xlF/kQ==
@@ -6841,6 +6841,14 @@ react-modal@^3.1.7:
     prop-types "^15.5.10"
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
+
+react-plyr@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-plyr/-/react-plyr-2.1.1.tgz#d370b57b6cdb083c62f675f7d048a5d15682bf59"
+  integrity sha512-RhKxLClTW0CXWov7IT9stufWNjnv77fr3dekioF6c2Mgs9FvmrPagl3qGsZda8kjf4qoVVYH9pui6Cgt9FgoBA==
+  dependencies:
+    plyr "^3.3.21"
+    prop-types "^15.6.2"
 
 react-redux@^6.0.0:
   version "6.0.0"
