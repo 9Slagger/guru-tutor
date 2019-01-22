@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Card from '../../components/Card'
 import { connect } from 'react-redux'
-import { fetchCourse } from '../../actions'
+import { fetchCourse, deleteCourse } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 
@@ -9,6 +9,11 @@ class AddCoursePage extends Component {
   componentDidMount() {
     this.props.fetchCourse()
   }
+
+  onDelete(id) {
+    this.props.deleteCourse(id)
+  }
+
   renderCrad(courses) {
     return (
       courses &&
@@ -19,15 +24,19 @@ class AddCoursePage extends Component {
             src={course.thumbnail}
             title={course.name}
             text={course.detail}
-            btn1="รายละเอียด"
-            btnlink1={`/dashboard/course/${course.id}`}
             btn="แก้ไข"
             btnlink={`/dashboard/course/edit/${course.id}`}
+            btn1="รายละเอียด"
+            btnlink1={`/dashboard/course/${course.id}`}
+            btn2="ลบ"
+            mes2={course.name}
+            delete={() => this.onDelete(course.id)}
           />
         )
       })
     )
   }
+
   render() {
     const { courses } = this.props
     const juniorhighschool =
@@ -94,7 +103,8 @@ const mapStateToProps = ({ courses }) => {
 }
 
 const mapDispatchToProps = {
-  fetchCourse
+  fetchCourse,
+  deleteCourse
 }
 
 export default connect(

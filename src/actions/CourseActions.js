@@ -13,7 +13,10 @@ import {
   EDIT_COURSE_SUCESS,
   FETCH_ONE_COURSE,
   FETCH_ONE_COURSE_FAILURE,
-  FETCH_ONE_COURSE_SUCESS
+  FETCH_ONE_COURSE_SUCESS,
+  DELETE_COURSE,
+  DELETE_COURSE_FAILURE,
+  DELETE_COURSE_SUCESS
 } from './type'
 
 export const fetchCourse = () => {
@@ -102,6 +105,33 @@ export const editCourse = (id, data) => {
         Swal({
           type: 'error',
           title: 'แก้ไขคอร์สล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const deleteCourse = id => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: DELETE_COURSE })
+    axios
+      .delete(`https://mytutorapi.herokuapp.com/restricted/course?id=${id}`, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: DELETE_COURSE_SUCESS })
+        dispatch(fetchCourse())
+        Swal({
+          type: 'success',
+          title: 'ลบคอร์สสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_COURSE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'ลบคอร์สล้มเหลว!'
         })
       })
   }
