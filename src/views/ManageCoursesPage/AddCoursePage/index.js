@@ -12,6 +12,7 @@ class AddCoursePage extends Component {
 
   saveCourse = values => {
     this.props.createCourse(values)
+    console.log(values)
   }
 
   editCourse = values => {

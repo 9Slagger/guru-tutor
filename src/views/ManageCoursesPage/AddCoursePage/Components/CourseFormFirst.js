@@ -7,7 +7,7 @@ import { CourseFormFields } from '../../components/formFields'
 class CourseFormFirst extends Component {
   renderFields(CourseFormFields) {
     return CourseFormFields.map(
-      ({ label, name, type, required, placeholder, option }) => {
+      ({ label, name, type, required, placeholder, option, hidden }) => {
         if (type !== 'select') {
           return (
             <Field
@@ -26,11 +26,21 @@ class CourseFormFirst extends Component {
               <label>{label}</label>
               <div>
                 <Field className="form-control" name={name} component="select">
-                  {option.map(option => (
-                    <option key={option.value} value={option.value}>
-                      {option.name}
-                    </option>
-                  ))}
+                  {option.map(option => {
+                    if (option.hidden) {
+                      return (
+                        <option key={option.value} hidden value={option.value}>
+                          {option.name}
+                        </option>
+                      )
+                    } else {
+                      return (
+                        <option key={option.value} value={option.value}>
+                          {option.name}
+                        </option>
+                      )
+                    }
+                  })}
                 </Field>
               </div>
             </div>
