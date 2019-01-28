@@ -18,7 +18,7 @@ class User extends Component {
     this.props.userEditTpye(id, name, selectType)
   }
 
-  async onSelect(e, id, name) {
+  async onSelect(e, id, name, oldtype) {
     const selectType = await e.target.value
     Swal({
       title: 'แก้ไขสิทธิ?',
@@ -31,6 +31,10 @@ class User extends Component {
     }).then(result => {
       if (result.value) {
         this.userEditTpye(id, name, selectType)
+      } else {
+        // oldtype
+        const index = oldtype === 'admin' ? 0 : oldtype === 'tutor' ? 1 : 2
+        document.getElementById(`select${id}`).selectedIndex = index
       }
     })
   }
@@ -70,10 +74,12 @@ class User extends Component {
                     this.onSelect(
                       e,
                       user.ID,
-                      `${user.FirstName} ${user.LastName}`
+                      `${user.FirstName} ${user.LastName}`,
+                      user.UserType
                     )
                   }
                   name="selectType"
+                  id={`select${user.ID}`}
                   className="form-control"
                   defaultValue={user.UserType}
                 >
