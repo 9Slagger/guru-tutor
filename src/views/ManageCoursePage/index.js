@@ -124,20 +124,21 @@ class ManageCoursePage extends Component {
 
   renderModalLectureEdit(lecture) {
     const { id, name } = lecture
+    const targetname = name.split(' ')
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn btn-warning btn-sm float-right ml-2"
           data-toggle="modal"
-          data-target={`.${name}`}
+          data-target={`.${targetname[0]}`}
           onClick={() => this.props.fetchOneLecture(id)}
         >
           แก้ไข Video
         </button>
 
         <div
-          className={`modal fade bd-example-modal-xl ${name}`}
+          className={`modal fade bd-example-modal-xl ${targetname[0]}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
