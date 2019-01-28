@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signinAuth } from '../../actions'
 import MainLayout from '../../components/MainLayout'
+import Signin from './Signin'
 
 class index extends Component {
   constructor(props) {
@@ -46,41 +47,7 @@ class index extends Component {
                   <p className="margin-top-s">
                     ติวเตอร์ มทส ประตู 1 เนื้อหาละเอียดครบถ้วน มีคอร์สออนไลน์
                   </p>
-                  <form>
-                    <div className="form-group">
-                      <label>E-mail</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="email"
-                        name="email"
-                        placeholder="your email"
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Password</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        id="password"
-                        name="password"
-                        placeholder="your password"
-                        value={this.state.password}
-                        onChange={this.handleChange}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      className="btn btn-primary"
-                      onClick={() =>
-                        this.signin(this.state.email, this.state.password)
-                      }
-                    >
-                      Sign in
-                    </button>
-                  </form>
+                  <Signin />
                 </div>
               </div>
             </div>
