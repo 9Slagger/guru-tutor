@@ -15,13 +15,14 @@ import {
   DELETE_LECTURE_SUCESS
 } from './type'
 import { fetchOneCourse } from './CourseActions'
+import { api } from './api'
 
 export const fetchOneLecture = id => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_ONE_LECTURE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/lecturesone?id=${id}`, {
+      .get(`${api}/restricted/lecturesone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(res => {
@@ -39,13 +40,9 @@ export const editLecture = (idlec, data, id) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_LECTURE })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/lectures?id=${idlec}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/lectures?id=${idlec}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: EDIT_LECTURE_SUCESS })
         dispatch(fetchOneCourse(id))
@@ -70,13 +67,9 @@ export const createLecture = (idsec, data, id) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_LECTURE })
     axios
-      .post(
-        `https://mytutorapi.herokuapp.com/restricted/lectures?id=${idsec}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .post(`${api}/restricted/lectures?id=${idsec}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: CREATE_LECTURE_SUCESS })
         dispatch(fetchOneCourse(id))
@@ -101,12 +94,9 @@ export const deleteLecture = (idlec, idsec, id) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_LECTURE })
     axios
-      .delete(
-        `https://mytutorapi.herokuapp.com/restricted/lectures?idlec=${idlec}&idsec=${idsec}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .delete(`${api}/restricted/lectures?idlec=${idlec}&idsec=${idsec}`, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: DELETE_LECTURE_SUCESS })
         dispatch(fetchOneCourse(id))

@@ -13,6 +13,8 @@ import {
   VERIFY_AUTH_FAILURE
 } from './type'
 
+import { api } from './api'
+
 // check token
 export const checkAuth = () => {
   return async dispatch => {
@@ -36,7 +38,7 @@ export const signinAuth = user => {
   return dispatch => {
     dispatch({ type: LOGIN_AUTH })
     axios
-      .post(`https://mytutorapi.herokuapp.com/login`, user)
+      .post(`${api}/login`, user)
       .then(res => {
         const token = `Bearer ${res.data.token}`
         localStorage.setItem('token', token)
@@ -62,7 +64,7 @@ export const VerifyAuth = () => {
     }
     token &&
       axios
-        .get(`https://mytutorapi.herokuapp.com/restricted/auth`, {
+        .get(`${api}/restricted/auth`, {
           headers: { Authorization: token }
         })
         .then(res => {

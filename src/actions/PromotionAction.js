@@ -15,12 +15,13 @@ import {
   EDIT_NEW_CONTEN_SUCESS,
   EDIT_NEW_CONTEN_FAILURE
 } from './type'
+import { api } from './api'
 
 export const fetchPromotionContent = () => {
   return dispatch => {
     dispatch({ type: FETCH_PROMOTION_CONTENT })
     axios
-      .get('https://mytutorapi.herokuapp.com/promotion')
+      .get(`${api}/promotion`)
       .then(response => {
         dispatch({
           type: FETCH_PROMOTION_CONTENT_SUCESS,
@@ -39,12 +40,9 @@ export const fetchOnePromotionContent = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_PROMOTION_CONTENT })
     axios
-      .get(
-        `https://mytutorapi.herokuapp.com/restricted/promotionone?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .get(`${api}/restricted/promotionone?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(response => {
         dispatch({
           type: FETCH_PROMOTION_CONTENT_SUCESS,
@@ -63,7 +61,7 @@ export const createPromotionContent = data => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_PROMOTION_CONTEN })
     axios
-      .post(`https://mytutorapi.herokuapp.com/restricted/promotion`, data, {
+      .post(`${api}/restricted/promotion`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
@@ -90,13 +88,9 @@ export const editPromotionContent = (id, data) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_NEW_CONTEN })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/promotion?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/promotion?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: EDIT_NEW_CONTEN_SUCESS })
         dispatch(push('/dashboard/managepromotion'))
@@ -122,12 +116,9 @@ export const deletePromotionContent = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_PROMOTION_CONTEN })
     axios
-      .delete(
-        `https://mytutorapi.herokuapp.com/restricted/promotion?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .delete(`${api}/restricted/promotion?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: DELETE_PROMOTION_CONTEN_SUCESS })
         dispatch(fetchPromotionContent())

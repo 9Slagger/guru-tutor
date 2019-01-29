@@ -15,13 +15,14 @@ import {
   DELETE_SECTION_SUCESS
 } from './type'
 import { fetchOneCourse } from './CourseActions'
+import { api } from './api'
 
 export const fetchOneSection = id => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_ONE_SECTION })
     axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/sectionone?id=${id}`, {
+      .get(`${api}/restricted/sectionone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(res => {
@@ -39,13 +40,9 @@ export const editSection = (idsec, data, id) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_SECTION })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/section?id=${idsec}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/section?id=${idsec}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: EDIT_SECTION_SUCESS })
         dispatch(fetchOneCourse(id))
@@ -70,13 +67,9 @@ export const createSection = (idsec, data, id) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_SECTION })
     axios
-      .post(
-        `https://mytutorapi.herokuapp.com/restricted/section?id=${idsec}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .post(`${api}/restricted/section?id=${idsec}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: CREATE_SECTION_SUCESS })
         dispatch(fetchOneCourse(id))
@@ -101,12 +94,9 @@ export const deleteSection = (idsec, idcourse, id) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_SECTION })
     axios
-      .delete(
-        `https://mytutorapi.herokuapp.com/restricted/section?idsec=${idsec}&idcourse=${idcourse}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .delete(`${api}/restricted/section?idsec=${idsec}&idcourse=${idcourse}`, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: DELETE_SECTION_SUCESS })
         dispatch(fetchOneCourse(id))

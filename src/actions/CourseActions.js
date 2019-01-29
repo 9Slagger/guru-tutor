@@ -18,12 +18,13 @@ import {
   DELETE_COURSE_FAILURE,
   DELETE_COURSE_SUCESS
 } from './type'
+import { api } from './api'
 
 export const fetchCourse = () => {
   return dispatch => {
     dispatch({ type: FETCH_COURSE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/course`)
+      .get(`${api}/course`)
       .then(res => {
         dispatch({ type: FETCH_COURSE_SUCESS, payload: res.data })
       })
@@ -39,7 +40,7 @@ export const fetchOneCourse = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_ONE_COURSE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/courseone?id=${id}`, {
+      .get(`${api}/restricted/courseone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(res => {
@@ -57,7 +58,7 @@ export const createCourse = data => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_COURSE })
     axios
-      .post(`https://mytutorapi.herokuapp.com/restricted/course`, data, {
+      .post(`${api}/restricted/course`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
@@ -84,13 +85,9 @@ export const editCourse = (id, data) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/course?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/course?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
         dispatch(push('/dashboard/course'))
@@ -115,7 +112,7 @@ export const deleteCourse = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_COURSE })
     axios
-      .delete(`https://mytutorapi.herokuapp.com/restricted/course?id=${id}`, {
+      .delete(`${api}/restricted/course?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(() => {

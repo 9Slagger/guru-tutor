@@ -16,6 +16,7 @@ import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SectionFormFields from '../ManageSectionPage/AddSectionPage/Components/SectionFormFields'
 import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
 import PlayVideo from '../PlayVideoPage'
+import UploadFile from '../../components/UploadFile'
 
 class ManageCoursePage extends Component {
   componentDidMount() {
@@ -213,9 +214,7 @@ class ManageCoursePage extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <VideoFormFields
-                  onSubmit={values => this.saveVideo(id, values)}
-                />
+                <UploadFile />
               </div>
               <div className="modal-footer">
                 <button

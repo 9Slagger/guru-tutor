@@ -15,12 +15,13 @@ import {
   CREATE_NEW_CONTEN_FAILURE,
   CREATE_NEW_CONTEN_SUCESS
 } from './type'
+import { api } from './api'
 
 export const fetchNewContent = () => {
   return dispatch => {
     dispatch({ type: FETCH_NEW_CONTENT })
     axios
-      .get('https://mytutorapi.herokuapp.com/news')
+      .get(`${api}/news`)
       .then(response => {
         dispatch({
           type: FETCH_NEW_CONTENT_SUCESS,
@@ -39,7 +40,7 @@ export const fetchOneNewContent = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_NEW_CONTENT })
     axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/newsone?id=${id}`, {
+      .get(`${api}/restricted/newsone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(response => {
@@ -60,7 +61,7 @@ export const editNewContent = (id, data) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_NEW_CONTEN })
     axios
-      .put(`https://mytutorapi.herokuapp.com/restricted/news?id=${id}`, data, {
+      .put(`${api}/restricted/news?id=${id}`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
@@ -88,7 +89,7 @@ export const createNewContent = data => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_NEW_CONTEN })
     axios
-      .post(`https://mytutorapi.herokuapp.com/restricted/news`, data, {
+      .post(`${api}/restricted/news`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
@@ -115,7 +116,7 @@ export const deleteNewContent = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_NEW_CONTEN })
     axios
-      .delete(`https://mytutorapi.herokuapp.com/restricted/news?id=${id}`, {
+      .delete(`${api}/restricted/news?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(() => {
