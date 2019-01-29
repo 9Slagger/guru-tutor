@@ -5,8 +5,7 @@ import ProfileFormFields from './components/ProfileFormFields'
 
 class EditProfile extends Component {
   editProfile = values => {
-    // this.props.userEditProfile(id, values)
-    alert('coming soon')
+    this.props.userEditProfile(this.props.auth.data[0].ID, values)
   }
 
   onEdit = () => {

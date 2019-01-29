@@ -109,6 +109,7 @@ export const userEditTpye = (id, name, selectType) => {
 }
 
 export const userEditProfile = (id, data) => {
+  console.log('values', data)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: USER_EDIT })
