@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Progress } from 'react-sweet-progress'
 import 'react-sweet-progress/lib/style.css'
 import { api } from '../../actions/api'
+import { connect } from 'react-redux'
+import { fetchOneCourse } from '../../actions'
 class SimpleReactFileUpload extends React.Component {
   constructor(props) {
     super(props)
@@ -23,12 +25,15 @@ class SimpleReactFileUpload extends React.Component {
   onChange(e) {
     this.setState({ file: e.target.files[0] })
   }
-  fileUpload(file) {
+  async fileUpload(file) {
+    const token = await localStorage.getItem('token')
     if (!file) {
       this.setState({ error: 'กรุณาเลือกไฟล์ที่ต้องการอัพโหลด' })
     } else {
       this.setState({ statusupload: true })
-      const url = `${api}/restricted/lectures?idsec=5c4ff2b52bd6660345dcdc52&quality=1080`
+      const url = `${api}/restricted/lectures?idsec=${
+        this.props.idlec
+      }&quality=1080`
       const formData = new FormData()
       formData.append('file', file)
       const config = {
@@ -38,8 +43,7 @@ class SimpleReactFileUpload extends React.Component {
           }),
         headers: {
           'content-type': 'multipart/form-data',
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyVHlwZSI6ImFkbWluIiwiZXhwIjoxNTc0NDM4MjA2LCJpZCI6IjVjMTg4NmNiNmZkMzMzN2UxNmQzY2NhZiJ9.qrmz0ZT3P1eYp0dHG26guDw1VwDTFvg7dvEJ9Acy-qw'
+          Authorization: `Bearer ${token}`
         }
       }
       axios
@@ -47,6 +51,7 @@ class SimpleReactFileUpload extends React.Component {
         .then(res => {
           console.log(res)
           this.setState({ error: 'อัพโหลดสำเร็จ' })
+          this.props.fetchOneCourse(this.props.idcourse)
         })
         .catch(error => {
           console.log(error)
@@ -106,4 +111,15 @@ class SimpleReactFileUpload extends React.Component {
   }
 }
 
-export default SimpleReactFileUpload
+const mapStateToProps = ({ courses, sections }) => {
+  return { courses, sections }
+}
+
+const mapDispatchToProps = {
+  fetchOneCourse
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SimpleReactFileUpload)

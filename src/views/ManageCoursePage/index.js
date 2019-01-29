@@ -187,13 +187,13 @@ class ManageCoursePage extends Component {
           type="button"
           className="btn-primary btn-sm float-right mr-2"
           data-toggle="modal"
-          data-target=".addvideo"
+          data-target={`.addvi${id}`}
         >
           เพิ่ม Video
         </button>
 
         <div
-          className="modal fade bd-example-modal-xl addvideo"
+          className={`modal fade bd-example-modal-xl addvi${id}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -214,7 +214,7 @@ class ManageCoursePage extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <UploadFile />
+                <UploadFile idlec={id} idcourse={this.props.match.params.id} />
               </div>
               <div className="modal-footer">
                 <button
