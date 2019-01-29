@@ -5,6 +5,8 @@ import 'react-sweet-progress/lib/style.css'
 import { api } from '../../actions/api'
 import { connect } from 'react-redux'
 import { fetchOneCourse } from '../../actions'
+import Swal from 'sweetalert2'
+
 class SimpleReactFileUpload extends React.Component {
   constructor(props) {
     super(props)
@@ -12,7 +14,8 @@ class SimpleReactFileUpload extends React.Component {
       loading: 0,
       file: null,
       error: '',
-      statusupload: false
+      statusupload: false,
+      size: 0
     }
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -29,8 +32,16 @@ class SimpleReactFileUpload extends React.Component {
     const token = await localStorage.getItem('token')
     if (!file) {
       this.setState({ error: 'กรุณาเลือกไฟล์ที่ต้องการอัพโหลด' })
+    } else if (file.size / 1024 / 1014 > 300) {
+      Swal({
+        type: 'warning',
+        title: 'ไฟล์ขนาดใหญ่เกิน 300 MB'
+      })
     } else {
-      this.setState({ statusupload: true })
+      this.setState({
+        statusupload: true,
+        size: (file.size / 1024 / 1014).toFixed(2)
+      })
       const url = `${api}/restricted/lectures?idsec=${
         this.props.idlec
       }&quality=1080`
@@ -43,25 +54,32 @@ class SimpleReactFileUpload extends React.Component {
           }),
         headers: {
           'content-type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`
+          Authorization: token
         }
       }
       axios
         .post(url, formData, config)
-        .then(res => {
-          console.log(res)
+        .then(() => {
           this.setState({ error: 'อัพโหลดสำเร็จ' })
+          Swal({
+            type: 'success',
+            title: 'อัพโหลด Video สำเร็จ'
+          })
           this.props.fetchOneCourse(this.props.idcourse)
         })
         .catch(error => {
-          console.log(error)
+          const message = error && error.response && error.response.data.message
+          Swal({
+            type: 'error',
+            title: message
+          })
         })
     }
   }
 
   render() {
     const percent = parseInt(this.state.loading, 10)
-    const { error, statusupload } = this.state
+    const { error, statusupload, size } = this.state
     return (
       <form onSubmit={this.onFormSubmit}>
         <h1>File Upload</h1>
@@ -89,9 +107,9 @@ class SimpleReactFileUpload extends React.Component {
           </div>
         </div>
         <div>{error && <p className="text-danger">{error}</p>}</div>
-        <div>
-          <label>กำลังอัพโหลด</label>
-          {statusupload ? (
+        {statusupload ? (
+          <div>
+            <label>กำลังอัพโหลดไฟล์ขนาด {size} MB</label>
             <Progress
               percent={percent}
               status="error"
@@ -102,10 +120,10 @@ class SimpleReactFileUpload extends React.Component {
                 }
               }}
             />
-          ) : (
-            false
-          )}
-        </div>
+          </div>
+        ) : (
+          false
+        )}
       </form>
     )
   }

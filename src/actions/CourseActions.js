@@ -107,6 +107,33 @@ export const editCourse = (id, data) => {
   }
 }
 
+export const editCoursePublic = (id, status) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: EDIT_COURSE })
+    axios
+      .put(`${api}/restricted/course/publish?id=${id}&p=${status}`, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: EDIT_COURSE_SUCESS })
+        dispatch(push('/dashboard/course'))
+        Swal({
+          type: 'success',
+          title: 'แก้ไขคอร์สสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: EDIT_COURSE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'แก้ไขคอร์สล้มเหลว!'
+        })
+      })
+  }
+}
+
 export const deleteCourse = id => {
   return async dispatch => {
     const token = await localStorage.getItem('token')

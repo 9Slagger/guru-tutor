@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import plyr from 'plyr'
-// import axios from 'axios'
 import { api } from '../../actions/api'
 
 class PlayVideo extends Component {
@@ -32,7 +31,6 @@ class PlayVideo extends Component {
     }
   }
   render() {
-    console.log(`${api}${this.props.link}`)
     return (
       <div className="text-center">
         <div className="container">

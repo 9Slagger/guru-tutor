@@ -6901,6 +6901,13 @@ react-sweet-progress@^1.1.2:
   dependencies:
     classnames "^2.2.5"
 
+react-switch@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/react-switch/-/react-switch-3.0.4.tgz#52958b2736b4d21b4f0050997955c5365019ca7b"
+  integrity sha512-11WipoiPNHZx4fWzF/fsYXu+w+HZb8tzNTo7ymaJES8uc3nJZl46rxg1DAB1u669W7SOnshDNnJZOi28IblOeg==
+  dependencies:
+    prop-types "^15.6.1"
+
 react-ui-cards@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/react-ui-cards/-/react-ui-cards-1.5.0.tgz#2b5d0c5f793e45ce350d4bcef7ff1c56c5277736"

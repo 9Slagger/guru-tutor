@@ -9,9 +9,11 @@ import {
   createLecture,
   editLecture,
   deleteSection,
-  deleteLecture
+  deleteLecture,
+  editCoursePublic
 } from '../../actions'
 import { Link } from 'react-router-dom'
+import Switch from 'react-switch'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SectionFormFields from '../ManageSectionPage/AddSectionPage/Components/SectionFormFields'
 import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
@@ -19,6 +21,16 @@ import PlayVideo from '../PlayVideoPage'
 import UploadFile from '../../components/UploadFile'
 
 class ManageCoursePage extends Component {
+  constructor() {
+    super()
+    this.state = { checked: false }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(id, checked) {
+    this.props.editCoursePublic(id, checked.toString())
+  }
+
   componentDidMount() {
     this.props.fetchOneCourse(this.props.match.params.id)
   }
@@ -71,9 +83,28 @@ class ManageCoursePage extends Component {
     return text
   }
 
-  renderModalSection() {
+  renderModalSection(id) {
     return (
       <div>
+        <div>
+          {this.props.courses.dataone &&
+          this.props.courses.dataone.publish === true ? (
+            <Switch
+              onChange={checked => this.handleChange(id, checked)}
+              checked={this.props.courses.dataone.publish}
+              id="normal-switch"
+            />
+          ) : this.props.courses.dataone &&
+          this.props.courses.dataone.publish === false ? (
+            <Switch
+              onChange={checked => this.handleChange(id, checked)}
+              checked={this.props.courses.dataone.publish}
+              id="normal-switch"
+            />
+          ) : (
+            false
+          )}
+        </div>
         <button
           type="button"
           className="btn btn-primary"
@@ -307,7 +338,9 @@ class ManageCoursePage extends Component {
           <h6>{course.detail}</h6>
           <span className="badge badge-danger">{course.price + ' บาท'}</span>
         </div>
-        <div className="text-right mb-3">{this.renderModalSection()}</div>
+        <div className="text-right mb-3">
+          {this.renderModalSection(course.id)}
+        </div>
         {this.renderSection(course.section, course.id)}
       </div>
     )
@@ -433,7 +466,8 @@ const mapDispatchToProps = {
   createLecture,
   editLecture,
   deleteSection,
-  deleteLecture
+  deleteLecture,
+  editCoursePublic
 }
 
 export default connect(
