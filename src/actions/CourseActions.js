@@ -1,24 +1,25 @@
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import { push } from 'connected-react-router'
 import {
-  FETCH_COURSE,
-  FETCH_COURSE_FAILURE,
-  FETCH_COURSE_SUCESS,
   CREATE_COURSE,
-  CREATE_COURSE_SUCESS,
   CREATE_COURSE_FAILURE,
+  CREATE_COURSE_SUCESS,
+  DELETE_COURSE,
+  DELETE_COURSE_FAILURE,
+  DELETE_COURSE_SUCESS,
   EDIT_COURSE,
   EDIT_COURSE_FAILURE,
   EDIT_COURSE_SUCESS,
+  FETCH_COURSE,
+  FETCH_COURSE_FAILURE,
+  FETCH_COURSE_SUCESS,
   FETCH_ONE_COURSE,
   FETCH_ONE_COURSE_FAILURE,
-  FETCH_ONE_COURSE_SUCESS,
-  DELETE_COURSE,
-  DELETE_COURSE_FAILURE,
-  DELETE_COURSE_SUCESS
+  FETCH_ONE_COURSE_SUCESS
 } from './type'
+
+import Swal from 'sweetalert2'
 import { api } from './api'
+import axios from 'axios'
+import { push } from 'connected-react-router'
 
 export const fetchCourse = () => {
   return dispatch => {

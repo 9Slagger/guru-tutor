@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { deleteCourse, fetchCourse } from '../../actions'
+
 import Card from '../../components/Card'
-import { connect } from 'react-redux'
-import { fetchCourse, deleteCourse } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
+import { connect } from 'react-redux'
 
 class AddCoursePage extends Component {
   componentDidMount() {
@@ -30,6 +31,8 @@ class AddCoursePage extends Component {
             btnlink1={`/dashboard/course/${course.id}`}
             btn2="ลบ"
             mes2={course.name}
+            management={true}
+            price={course.price}
             delete={() => this.onDelete(course.id)}
           />
         )
@@ -70,8 +73,8 @@ class AddCoursePage extends Component {
           </div>
 
           <div className="card-container row">
-            {Array.isArray(seniorhighschool) &&
-              seniorhighschool &&
+            {Array.isArray(juniorhighschool) &&
+              juniorhighschool &&
               this.renderCrad(juniorhighschool)}
           </div>
           <div className="container mt-5">
