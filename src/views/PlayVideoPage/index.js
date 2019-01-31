@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
-import plyr from 'plyr';
-
+import plyr from 'plyr'
 
 class PlayVideo extends Component {
   componentDidMount() {
-    const options = {};
-    this.player = plyr.setup('#plyr-player', options);
+    const options = {}
+    this.player = plyr.setup('#plyr-player', options)
   }
   componentWillUnmount() {
     if (this.player.length > 0) {
       for (const playerEl of this.player) {
-        playerEl.destroy();
+        playerEl.destroy()
       }
     }
   }
@@ -48,20 +47,6 @@ class PlayVideo extends Component {
               src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4"
               type="video/mp4"
               size="1440"
-            />
-
-            <track
-              kind="captions"
-              label="English"
-              srclang="en"
-              src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.en.vtt"
-              default
-            />
-            <track
-              kind="captions"
-              label="Français"
-              srclang="fr"
-              src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.fr.vtt"
             />
 
             <a
