@@ -1,9 +1,26 @@
 import React, { Component } from 'react'
 import plyr from 'plyr'
+import { api } from '../../actions/api'
 
 class PlayVideo extends Component {
   componentDidMount() {
-    const options = {}
+    const options = {
+      toggleInvert: true,
+      seekTime: 10,
+      controls: [
+        'play-large',
+        'play',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'captions',
+        'settings',
+        'pip',
+        'airplay',
+        'fullscreen'
+      ]
+    }
     this.player = plyr.setup('#plyr-player', options)
   }
   componentWillUnmount() {
@@ -14,47 +31,19 @@ class PlayVideo extends Component {
     }
   }
   render() {
-    // const { link } = this.props
-    // const shortlink = link.split('=')
-
     return (
       <div className="text-center">
-        <div class="container">
+        <div className="container">
           <video
             controls
-            settings
-            crossorigin
-            playsinline
             poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg"
             id="plyr-player"
           >
             <source
-              src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-              type="video/mp4"
-              size="576"
-            />
-            <source
-              src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4"
-              type="video/mp4"
-              size="720"
-            />
-            <source
-              src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1080p.mp4"
+              src={`${api}${this.props.link}`}
               type="video/mp4"
               size="1080"
             />
-            <source
-              src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-1440p.mp4"
-              type="video/mp4"
-              size="1440"
-            />
-
-            <a
-              href="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4"
-              download
-            >
-              Download
-            </a>
           </video>
         </div>
       </div>

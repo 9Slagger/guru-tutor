@@ -1,29 +1,31 @@
-import axios from 'axios'
-import Swal from 'sweetalert2'
-import { push } from 'connected-react-router'
 import {
-  FETCH_COURSE,
-  FETCH_COURSE_FAILURE,
-  FETCH_COURSE_SUCESS,
   CREATE_COURSE,
-  CREATE_COURSE_SUCESS,
   CREATE_COURSE_FAILURE,
+  CREATE_COURSE_SUCESS,
+  DELETE_COURSE,
+  DELETE_COURSE_FAILURE,
+  DELETE_COURSE_SUCESS,
   EDIT_COURSE,
   EDIT_COURSE_FAILURE,
   EDIT_COURSE_SUCESS,
+  FETCH_COURSE,
+  FETCH_COURSE_FAILURE,
+  FETCH_COURSE_SUCESS,
   FETCH_ONE_COURSE,
   FETCH_ONE_COURSE_FAILURE,
-  FETCH_ONE_COURSE_SUCESS,
-  DELETE_COURSE,
-  DELETE_COURSE_FAILURE,
-  DELETE_COURSE_SUCESS
+  FETCH_ONE_COURSE_SUCESS
 } from './type'
+
+import Swal from 'sweetalert2'
+import { api } from './api'
+import axios from 'axios'
+import { push } from 'connected-react-router'
 
 export const fetchCourse = () => {
   return dispatch => {
     dispatch({ type: FETCH_COURSE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/course`)
+      .get(`${api}/course`)
       .then(res => {
         dispatch({ type: FETCH_COURSE_SUCESS, payload: res.data })
       })
@@ -39,7 +41,7 @@ export const fetchOneCourse = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_ONE_COURSE })
     axios
-      .get(`https://mytutorapi.herokuapp.com/restricted/courseone?id=${id}`, {
+      .get(`${api}/restricted/courseone?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(res => {
@@ -57,7 +59,7 @@ export const createCourse = data => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_COURSE })
     axios
-      .post(`https://mytutorapi.herokuapp.com/restricted/course`, data, {
+      .post(`${api}/restricted/course`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
@@ -80,17 +82,49 @@ export const createCourse = data => {
 }
 
 export const editCourse = (id, data) => {
+ 
+  const course = {
+    name: data.name,
+    price: data.price,
+    detail: data.detail,
+    thumbnail: data.thumbnail,
+    type: data.type
+  }
+  console.log("data >>>>",course)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/course?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`http://localhost:80/restricted/course?id=${id}`, course, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: EDIT_COURSE_SUCESS })
+        dispatch(push('/dashboard/course'))
+        Swal({
+          type: 'success',
+          title: 'แก้ไขคอร์สสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: EDIT_COURSE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'แก้ไขคอร์สล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const editCoursePublic = (id, status) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: EDIT_COURSE })
+    axios
+      .put(`${api}/restricted/course/publish?id=${id}&p=${status}`, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
         dispatch(push('/dashboard/course'))
@@ -115,7 +149,7 @@ export const deleteCourse = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_COURSE })
     axios
-      .delete(`https://mytutorapi.herokuapp.com/restricted/course?id=${id}`, {
+      .delete(`${api}/restricted/course?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(() => {

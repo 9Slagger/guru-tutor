@@ -9,15 +9,28 @@ import {
   createLecture,
   editLecture,
   deleteSection,
-  deleteLecture
+  deleteLecture,
+  editCoursePublic
 } from '../../actions'
 import { Link } from 'react-router-dom'
+import Switch from 'react-switch'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SectionFormFields from '../ManageSectionPage/AddSectionPage/Components/SectionFormFields'
 import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
 import PlayVideo from '../PlayVideoPage'
+import UploadFile from '../../components/UploadFile'
 
 class ManageCoursePage extends Component {
+  constructor() {
+    super()
+    this.state = { checked: false }
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleChange(id, checked) {
+    this.props.editCoursePublic(id, checked.toString())
+  }
+
   componentDidMount() {
     this.props.fetchOneCourse(this.props.match.params.id)
   }
@@ -62,9 +75,36 @@ class ManageCoursePage extends Component {
     this.props.deleteLecture(idlec, idsec, this.props.match.params.id)
   }
 
-  renderModalSection() {
+  makeid() {
+    var text = ''
+    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    for (var i = 0; i < 15; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length))
+    return text
+  }
+
+  renderModalSection(id) {
     return (
       <div>
+        <div>
+          {this.props.courses.dataone &&
+          this.props.courses.dataone.publish === true ? (
+            <Switch
+              onChange={checked => this.handleChange(id, checked)}
+              checked={this.props.courses.dataone.publish}
+              id="normal-switch"
+            />
+          ) : this.props.courses.dataone &&
+          this.props.courses.dataone.publish === false ? (
+            <Switch
+              onChange={checked => this.handleChange(id, checked)}
+              checked={this.props.courses.dataone.publish}
+              id="normal-switch"
+            />
+          ) : (
+            false
+          )}
+        </div>
         <button
           type="button"
           className="btn btn-primary"
@@ -114,21 +154,23 @@ class ManageCoursePage extends Component {
     )
   }
 
-  renderModalLectureEdit(id) {
+  renderModalLectureEdit(lecture) {
+    const { id, name } = lecture
+    const targetname = name.split(' ')
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn btn-warning btn-sm float-right ml-2"
           data-toggle="modal"
-          data-target=".editvideo"
+          data-target={`.${targetname[0]}`}
           onClick={() => this.props.fetchOneLecture(id)}
         >
           แก้ไข Video
         </button>
 
         <div
-          className="modal fade bd-example-modal-xl editvideo"
+          className={`modal fade bd-example-modal-xl ${targetname[0]}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -176,13 +218,13 @@ class ManageCoursePage extends Component {
           type="button"
           className="btn-primary btn-sm float-right mr-2"
           data-toggle="modal"
-          data-target=".addvideo"
+          data-target={`.addvi${id}`}
         >
           เพิ่ม Video
         </button>
 
         <div
-          className="modal fade bd-example-modal-xl addvideo"
+          className={`modal fade bd-example-modal-xl addvi${id}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -203,9 +245,7 @@ class ManageCoursePage extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <VideoFormFields
-                  onSubmit={values => this.saveVideo(id, values)}
-                />
+                <UploadFile idlec={id} idcourse={this.props.match.params.id} />
               </div>
               <div className="modal-footer">
                 <button
@@ -298,7 +338,9 @@ class ManageCoursePage extends Component {
           <h6>{course.detail}</h6>
           <span className="badge badge-danger">{course.price + ' บาท'}</span>
         </div>
-        <div className="text-right mb-3">{this.renderModalSection()}</div>
+        <div className="text-right mb-3">
+          {this.renderModalSection(course.id)}
+        </div>
         {this.renderSection(course.section, course.id)}
       </div>
     )
@@ -332,18 +374,19 @@ class ManageCoursePage extends Component {
   }
 
   renderPlayerLecture(lecture) {
+    const name = this.makeid()
     return (
       <React.Fragment>
         <button
           type="button"
           className="btn btn-success btn-sm float-right ml-2"
           data-toggle="modal"
-          data-target={`.playlecture`}
+          data-target={`.${name}`}
         >
           ดู Video
         </button>
         <div
-          className={`modal fade bd-example-modal-xl playlecture`}
+          className={`modal fade bd-example-modal-xl ${name}`}
           role="dialog"
           aria-labelledby="myExtraLargeModalLabel"
           aria-hidden="true"
@@ -392,7 +435,7 @@ class ManageCoursePage extends Component {
         >
           ลบ Video
         </button>
-        {this.renderModalLectureEdit(lecture.id)}
+        {this.renderModalLectureEdit(lecture)}
         {this.renderPlayerLecture(lecture)}
       </div>
     ))
@@ -423,7 +466,8 @@ const mapDispatchToProps = {
   createLecture,
   editLecture,
   deleteSection,
-  deleteLecture
+  deleteLecture,
+  editCoursePublic
 }
 
 export default connect(

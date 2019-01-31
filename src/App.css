@@ -23,8 +23,12 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .crop {
@@ -37,7 +41,7 @@
 }
 
 .text_left {
-  background-image: linear-gradient(to bottom  , rgb(10, 10, 10) , transparent);
+  background-image: linear-gradient(to bottom, rgb(10, 10, 10), transparent);
 }
 
 /* GLOBAL STYLES
@@ -52,7 +56,6 @@ body {
 .header-nav {
   padding-top: 3rem;
 }
-
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -69,7 +72,7 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-   height: 32rem;
+  height: 32rem;
   background-color: #777;
   overflow: hidden;
 }
@@ -92,10 +95,9 @@ body {
   font-weight: 400;
 }
 .marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
 }
-
 
 /* Featurettes
 ------------------------- */
@@ -108,9 +110,8 @@ body {
 .featurette-heading {
   font-weight: 300;
   line-height: 1;
-  letter-spacing: -.05rem;
+  letter-spacing: -0.05rem;
 }
-
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
@@ -136,7 +137,6 @@ body {
 
 .card-container {
   justify-content: center;
-
 }
 
 .form-signup {
@@ -162,7 +162,7 @@ body {
   position: sticky;
   top: 18px; /* Height of navbar */
   height: calc(100vh - 48px);
-  padding-top: .5rem;
+  padding-top: 0.5rem;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
@@ -188,7 +188,7 @@ body {
 }
 
 .sidebar-heading {
-  font-size: .75rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
 }
 .main {
@@ -200,14 +200,16 @@ body {
   visibility: hidden;
 }
 
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
 .ds-link {
   font-weight: 500;
   color: #333;
 }
 
-.ds-link:hover{
+.ds-link:hover {
   color: #999;
   text-decoration: none;
 }
@@ -224,10 +226,9 @@ button:focus {outline:0;}
   margin: 0 0 0 -110px;
 }
 
-small { 
+small {
   font-size: 1.5rem;
 }
-
 
 @media (min-width: 992px) {
   .modal-xl {
@@ -242,5 +243,13 @@ small {
 }
 
 .class {
-  background-color: #42424A;
+  background-color: #42424a;
+}
+
+.link-not-active:hover,
+.link-not-active:visited,
+.link-not-active:link,
+.link-not-active:active {
+  color: #000000;
+  text-decoration: none;
 }

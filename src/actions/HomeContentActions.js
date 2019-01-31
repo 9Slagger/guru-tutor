@@ -39,12 +39,13 @@ import {
   DELETE_HOME_CONTENT_SECOND_SUCESS,
   DELETE_HOME_CONTENT_SECOND_FAILURE
 } from './type'
+import { api } from './api'
 
 export const fetchHomeContent = () => {
   return dispatch => {
     dispatch({ type: FETCH_HOME_CONTENT })
     axios
-      .get('https://mytutorapi.herokuapp.com/homecontent')
+      .get(`${api}/homecontent`)
       .then(response => {
         dispatch({
           type: FETCH_HOME_CONTENT_SUCESS,
@@ -65,12 +66,9 @@ export const fetchOneHomeContentFrist = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_HOME_CONTENT_FIRST })
     axios
-      .get(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentfirstone?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .get(`${api}/restricted/homecontentfirstone?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(response => {
         dispatch({
           type: FETCH_HOME_CONTENT_FIRST_SUCESS,
@@ -91,12 +89,9 @@ export const fetchOneHomeContentSecond = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_HOME_CONTENT_SECONDE })
     axios
-      .get(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentsecondone?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .get(`${api}/restricted/homecontentsecondone?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(response => {
         dispatch({
           type: FETCH_HOME_CONTENT_SECONDE_SUCESS,
@@ -117,12 +112,9 @@ export const fetchOneHomeContentThird = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_HOME_CONTENT_THIRD })
     axios
-      .get(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentthirdone?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .get(`${api}/restricted/homecontentthirdone?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(response => {
         dispatch({
           type: FETCH_HOME_CONTENT_THIRD_SUCESS,
@@ -143,13 +135,9 @@ export const createHomeContentFirst = data => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_HOME_CONTENT_FIRST })
     axios
-      .post(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentfirst`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .post(`${api}/restricted/homecontentfirst`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         Swal({
           type: 'success',
@@ -176,13 +164,9 @@ export const editHomecontentThird = (id, data) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_HOME_CONTENT_THIRD })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentthird?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/homecontentthird?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         Swal({
           type: 'success',
@@ -209,13 +193,9 @@ export const editHomecontentSecond = (id, data) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_HOME_CONTENT_SOCOND })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentsecond?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/homecontentsecond?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         Swal({
           type: 'success',
@@ -242,13 +222,9 @@ export const editHomecontentFirst = (id, data) => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_HOME_CONTENT_FIRST })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentfirst?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/homecontentfirst?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         Swal({
           type: 'success',
@@ -275,12 +251,9 @@ export const deleteHomeContentFirst = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_HOME_CONTENT_FIRST })
     axios
-      .delete(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentfirst?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .delete(`${api}/restricted/homecontentfirst?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         Swal({
           type: 'success',
@@ -307,12 +280,9 @@ export const deleteHomeContentThird = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: DELETE_HOME_CONTENT_SECOND })
     axios
-      .delete(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentthird?id=${id}`,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .delete(`${api}/restricted/homecontentthird?id=${id}`, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         Swal({
           type: 'success',
@@ -339,13 +309,9 @@ export const createHomeContentThird = data => {
     const token = await localStorage.getItem('token')
     dispatch({ type: CREATE_HOME_CONTENT_SECOND })
     axios
-      .post(
-        `https://mytutorapi.herokuapp.com/restricted/homecontentthird`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .post(`${api}/restricted/homecontentthird`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({
           type: CREATE_HOME_CONTENT_SECOND_SUCESS

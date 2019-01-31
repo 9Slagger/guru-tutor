@@ -24,7 +24,6 @@ class ProfilePage extends Component {
   }
   render() {
     const { auth } = this.props
-    console.log(auth.data)
     return (
       <MainLayout>
         <div className="m-5 p-5">

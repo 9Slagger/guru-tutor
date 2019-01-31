@@ -1,99 +1,93 @@
 import React, { Component } from 'react'
+import { deleteCourse, fetchCourse } from '../../actions'
+
 import Card from '../../components/Card'
 import MainLayout from '../../components/MainLayout'
+import { connect } from 'react-redux'
 
-const card = [
-  {
-    src:
-      'https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80',
-    title: 'คณิตศาสตร์',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'ลายละเอียด',
-    btnlink: '#'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1504275107627-0c2ba7a43dba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80',
-    title: 'วิทยาศาสตร์',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'ลายละเอียด',
-    btnlink: '#'
+class AddCoursePage extends Component {
+  componentDidMount() {
+    this.props.fetchCourse()
   }
-]
-const card2 = [
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'คณิตศาสตร์',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'ลายละเอียด',
-    btnlink: '#'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'ฟิสิกส์',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'ลายละเอียด',
-    btnlink: '#'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'เคมี',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'ลายละเอียด',
-    btnlink: '#'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'ชีววิทยา',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'ลายละเอียด',
-    btnlink: '#'
+
+  onDelete(id) {
+    this.props.deleteCourse(id)
   }
-]
-class RoomHighschoolPage extends Component {
-  renderCrad(c) {
+
+  renderCrad(courses) {
     return (
-      c &&
-      c.map((data, index) => {
+      courses &&
+      courses.map((course, index) => {
         return (
           <Card
             key={index}
-            src={data.src}
-            title={data.title}
-            text={data.text}
-            btn={data.btn}
-            btnlink={data.btnlink}
+            src={course.thumbnail}
+            title={course.name}
+            text={course.detail}
+            btn=""
+            btnlink=""
+            btn1=""
+            btnlink1=""
+            btn2=""
+            mes2={course.name}
+            management={false}
+            price={course.price}
+            delete={() => this.onDelete(course.id)}
           />
         )
       })
     )
   }
+
   render() {
+    const { courses } = this.props
+    const juniorhighschool =
+      Array.isArray(courses.data) &&
+      courses.data &&
+      courses.data.filter(course => {
+        return course.type === 'juniorhighschool'
+      })
+    const seniorhighschool =
+      Array.isArray(courses.data) &&
+      courses.data &&
+      courses.data.filter(course => {
+        return course.type === 'seniorhighschool'
+      })
     return (
       <MainLayout>
         <div className="container mt-5">
           <h1>ห้องเรียนมัธยมต้น</h1>
         </div>
 
-        <div className="card-container row">{this.renderCrad(card)}</div>
+        <div className="card-container row">
+          {Array.isArray(juniorhighschool) &&
+            juniorhighschool &&
+            this.renderCrad(juniorhighschool)}
+        </div>
         <div className="container mt-5">
           <h1>ห้องเรียนมัธยมปลาย</h1>
         </div>
 
-        <div className="card-container row">{this.renderCrad(card2)}</div>
+        <div className="card-container row">
+          {Array.isArray(seniorhighschool) &&
+            seniorhighschool &&
+            this.renderCrad(seniorhighschool)}
+        </div>
       </MainLayout>
     )
   }
 }
 
-export default RoomHighschoolPage
+const mapStateToProps = ({ courses }) => {
+  return { courses }
+}
+
+const mapDispatchToProps = {
+  fetchCourse,
+  deleteCourse
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddCoursePage)

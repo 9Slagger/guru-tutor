@@ -17,7 +17,7 @@ import {
   USER_EDIT_FAILURE,
   USER_EDIT_SUCESS
 } from './type'
-
+import { api } from './api'
 import { VerifyAuth } from './AuthActions'
 
 export const usersFetch = () => {
@@ -25,7 +25,7 @@ export const usersFetch = () => {
     const token = await localStorage.getItem('token')
     dispatch({ type: USERS_FETCH })
     axios
-      .get('https://mytutorapi.herokuapp.com/restricted/member', {
+      .get(`${api}/restricted/member`, {
         headers: { Authorization: token }
       })
       .then(response => {
@@ -48,7 +48,7 @@ export const userCreate = user => {
   return async dispatch => {
     dispatch({ type: USERS_CREATE })
     axios
-      .post('https://mytutorapi.herokuapp.com/register', user)
+      .post(`${api}/register`, user)
       .then(response => {
         if (response.status === 200) {
           dispatch({ type: USERS_CREATE_SUCESS })
@@ -67,7 +67,7 @@ export const userDelete = id => {
     const token = await localStorage.getItem('token')
     dispatch({ type: USER_DELETE })
     axios
-      .delete(`https://mytutorapi.herokuapp.com/restricted/member?id=${id}`, {
+      .delete(`${api}/restricted/member?id=${id}`, {
         headers: { Authorization: token }
       })
       .then(() => {
@@ -88,13 +88,9 @@ export const userEditTpye = (id, name, selectType) => {
     const data = await { usertype: selectType }
     dispatch({ type: USER_EDIT_TYPE })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/member/usertype?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/member/usertype?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: USER_EDIT_TYPE_SUCESS })
         dispatch(usersFetch())
@@ -113,17 +109,14 @@ export const userEditTpye = (id, name, selectType) => {
 }
 
 export const userEditProfile = (id, data) => {
+  console.log('values', data)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: USER_EDIT })
     axios
-      .put(
-        `https://mytutorapi.herokuapp.com/restricted/member/user?id=${id}`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
+      .put(`${api}/restricted/member?id=${id}`, data, {
+        headers: { Authorization: token }
+      })
       .then(() => {
         dispatch({ type: USER_EDIT_SUCESS })
         dispatch(VerifyAuth())

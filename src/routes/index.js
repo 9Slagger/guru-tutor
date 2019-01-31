@@ -27,6 +27,7 @@ import AddCoursePage from '../views/ManageCoursesPage/AddCoursePage'
 import ManageCoursePage from '../views/ManageCoursePage'
 import MyClassPage from '../views/MyClassPage'
 import ClassPage from '../views/ClassPage'
+import UploadFile from '../components/UploadFile'
 
 const Routing = () => (
   <Switch>
@@ -105,6 +106,7 @@ const Routing = () => (
     <Route exact path="/dashboard/course/add" component={AddCoursePage} />
     <Route exact path="/dashboard/course/edit/:id" component={AddCoursePage} />
     <Route exact path="/dashboard/course/:id" component={ManageCoursePage} />
+    <Route exact path="/upload" component={UploadFile} />
     <Route component={NotFoundPage} />
   </Switch>
 )
