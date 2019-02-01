@@ -82,20 +82,19 @@ export const createCourse = data => {
 }
 
 export const editCourse = (id, data) => {
- 
   const course = {
     name: data.name,
     price: data.price,
     detail: data.detail,
     thumbnail: data.thumbnail,
+    hour: data.hour,
     type: data.type
   }
-  console.log("data >>>>",course)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(`http://localhost:80/restricted/course?id=${id}`, course, {
+      .put(`${api}/restricted/course?id=${id}`, course, {
         headers: { Authorization: token }
       })
       .then(() => {
