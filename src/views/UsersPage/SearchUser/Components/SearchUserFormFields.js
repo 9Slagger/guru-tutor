@@ -25,7 +25,7 @@ class SearchUser extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
+      <form className="form-inline mb-1" onSubmit={handleSubmit}>
         {this.renderFields(SearchUserFormFields)}
       </form>
     )
