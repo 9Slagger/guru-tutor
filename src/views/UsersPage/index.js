@@ -1,17 +1,32 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
-  usersFetch,
   userDelete,
+  userEditTpye,
   usersChangeEditStatus,
-  userEditTpye
+  usersFetch
 } from '../../actions'
+
+import Fuse from 'fuse.js'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
+import SearchUser from './SearchUser'
 import Swal from 'sweetalert2'
+import { connect } from 'react-redux'
 
 class User extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      keyword: ''
+    }
+  }
+
   componentDidMount() {
     this.props.usersFetch()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    nextProps.form.SearchUser.values &&
+      this.setState({ keyword: nextProps.form.SearchUser.values.keyword })
   }
 
   userEditTpye(id, name, selectType) {
@@ -32,7 +47,6 @@ class User extends Component {
       if (result.value) {
         this.userEditTpye(id, name, selectType)
       } else {
-        // oldtype
         const index = oldtype === 'admin' ? 0 : oldtype === 'tutor' ? 1 : 2
         document.getElementById(`select${id}`).selectedIndex = index
       }
@@ -44,7 +58,6 @@ class User extends Component {
     const tempUsers = await this.props.users.data
     if (tempUser.EditStatus || !tempUser.EditStatus) {
       tempUser.EditStatus = status
-      console.log('debug')
     } else {
       tempUser = Object.assign({ EditStatus: status }, tempUser)
     }
@@ -57,31 +70,52 @@ class User extends Component {
   }
 
   renderUser(users) {
+    var options = {
+      findAllMatches: true,
+      includeMatches: true,
+      threshold: 0.6,
+      location: 0,
+      distance: 100,
+      maxPatternLength: 32,
+      minMatchCharLength: 1,
+      keys: [
+        'FirstName',
+        'LastName',
+        'NickName',
+        'TelephoneNumber',
+        'Email',
+        'UserType'
+      ]
+    }
+    var fuse = new Fuse(users, options)
+    var result = this.state.keyword
+      ? fuse.search(this.state.keyword)
+      : fuse.search('@')
     return (
-      users &&
-      users.map((user, index) => {
+      result &&
+      result.map((user, index) => {
         return (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
-            <td>{user.FirstName + ' ' + user.LastName}</td>
-            <td>{user.NickName}</td>
-            <td>{user.TelephoneNumber}</td>
-            <td>{user.Email}</td>
-            {user.EditStatus && user.EditStatus ? (
+            <td>{user.item.FirstName + ' ' + user.item.LastName}</td>
+            <td>{user.item.NickName}</td>
+            <td>{user.item.TelephoneNumber}</td>
+            <td>{user.item.Email}</td>
+            {user.item.EditStatus && user.item.EditStatus ? (
               <td>
                 <select
                   onChange={e =>
                     this.onSelect(
                       e,
-                      user.ID,
-                      `${user.FirstName} ${user.LastName}`,
-                      user.UserType
+                      user.item.ID,
+                      `${user.item.FirstName} ${user.item.LastName}`,
+                      user.item.UserType
                     )
                   }
                   name="selectType"
-                  id={`select${user.ID}`}
+                  id={`select${user.item.ID}`}
                   className="form-control"
-                  defaultValue={user.UserType}
+                  defaultValue={user.item.UserType}
                 >
                   <option value="admin">admin</option>
                   <option value="tutor">tutor</option>
@@ -89,10 +123,10 @@ class User extends Component {
                 </select>
               </td>
             ) : (
-              <td>{user.UserType}</td>
+              <td>{user.item.UserType}</td>
             )}
             <td>
-              {user.EditStatus && user.EditStatus ? (
+              {user.item.EditStatus && user.item.EditStatus ? (
                 <button
                   type="button"
                   className="btn btn-success mr-3"
@@ -109,11 +143,11 @@ class User extends Component {
                   แก้ไข
                 </button>
               )}
-              {user.UserType === 'admin' ? (
+              {user.item.UserType === 'admin' ? (
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => this.deleteUser(user.ID)}
+                  onClick={() => this.deleteUser(user.item.ID)}
                   disabled
                 >
                   ลบ
@@ -122,7 +156,7 @@ class User extends Component {
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={() => this.deleteUser(user.ID)}
+                  onClick={() => this.deleteUser(user.item.ID)}
                 >
                   ลบ
                 </button>
@@ -139,6 +173,9 @@ class User extends Component {
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
+          <SearchUser
+            Search={fuse => this.setState({ keyword: fuse.keyword })}
+          />
           {users.data && users.isFetching ? (
             <h1 className="text-center">กำลังโหลดข้อมูล</h1>
           ) : (
@@ -168,8 +205,8 @@ class User extends Component {
   }
 }
 
-const mapStateToProps = ({ users }) => {
-  return { users }
+const mapStateToProps = ({ users, form }) => {
+  return { users, form }
 }
 
 const mapDispatchToProps = {

@@ -87,6 +87,7 @@ export const editCourse = (id, data) => {
     price: data.price,
     detail: data.detail,
     thumbnail: data.thumbnail,
+    hour: data.hour,
     type: data.type
   }
   return async dispatch => {
