@@ -82,7 +82,6 @@ export const createCourse = data => {
 }
 
 export const editCourse = (id, data) => {
- 
   const course = {
     name: data.name,
     price: data.price,
@@ -90,16 +89,16 @@ export const editCourse = (id, data) => {
     thumbnail: data.thumbnail,
     type: data.type
   }
-  console.log("data >>>>",course)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(`http://localhost:80/restricted/course?id=${id}`, course, {
+      .put(`${api}/restricted/course?id=${id}`, course, {
         headers: { Authorization: token }
       })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
+        dispatch(fetchCourse(id))
         dispatch(push('/dashboard/course'))
         Swal({
           type: 'success',
@@ -118,19 +117,20 @@ export const editCourse = (id, data) => {
 }
 
 export const editCoursePublic = (id, status) => {
+  const masess = status === 'true' ? 'เผยแพร่คอร์ส' : 'หยุดเผยแพร่คอร์ส'
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(`${api}/restricted/course/publish?id=${id}&p=${status}`, {
+      .get(`${api}/restricted/course/publish?id=${id}&p=${status}`, {
         headers: { Authorization: token }
       })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
-        dispatch(push('/dashboard/course'))
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
-          title: 'แก้ไขคอร์สสำเร็จ!'
+          title: masess
         })
       })
       .catch(error => {
