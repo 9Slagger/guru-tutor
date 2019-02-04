@@ -171,6 +171,11 @@ class User extends Component {
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
+          <div className="mb-1 text-center">
+            <h3>
+              เพิ่มผู้ใช้เข้าคอร์ส {courses.dataone && courses.dataone.name}
+            </h3>
+          </div>
           <SearchUser
             Search={fuse => this.setState({ keyword: fuse.keyword })}
           />
