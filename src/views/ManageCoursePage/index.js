@@ -108,13 +108,15 @@ class ManageCoursePage extends Component {
         </div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary mr-2"
           data-toggle="modal"
           data-target=".bd-example-modal-xl"
         >
           เพิ่ม Section
         </button>
-
+        <Link className="btn btn-primary" to="#">
+          เพิ่ม User
+        </Link>
         <div
           className="modal fade bd-example-modal-xl"
           role="dialog"

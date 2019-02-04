@@ -4,7 +4,7 @@ export const SectionFormFields = [
     name: 'name',
     type: 'text',
     required: true,
-    placeholder: 'ตรีโกณมิติ'
+    placeholder: 'ชื่อ Section'
   }
 ]
 
@@ -14,14 +14,14 @@ export const LectureFormFields = [
     name: 'name',
     type: 'text',
     required: true,
-    placeholder: 'กราฟของสมการอิงตัวแปรเสริม'
+    placeholder: 'ชื่อ Video'
   },
   {
     label: 'เวลา Video',
     name: 'time',
     type: 'number',
     required: true,
-    placeholder: '12.31'
+    placeholder: 'เวลา'
   },
   {
     label: 'Link ของ Video',

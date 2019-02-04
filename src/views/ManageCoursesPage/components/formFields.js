@@ -4,35 +4,35 @@ export const CourseFormFields = [
     name: 'name',
     type: 'text',
     required: true,
-    placeholder: 'แคลคูลัส 1'
+    placeholder: 'ชื่อหัวข้อ'
   },
   {
     label: 'รายละเอียด',
     name: 'detail',
     type: 'text',
     required: true,
-    placeholder: 'รายละเอียด.....'
+    placeholder: 'รายละเอียด'
   },
   {
     label: 'รูปภาพ',
     name: 'thumbnail',
     type: 'text',
     required: true,
-    placeholder: 'รูปภาพ...'
+    placeholder: 'รูปภาพ'
   },
   {
     label: 'ราคา',
     name: 'price',
     type: 'number',
     required: true,
-    placeholder: '9000'
+    placeholder: 'ราคา'
   },
   {
     label: 'ชั่วโมง',
     name: 'hour',
     type: 'number',
     required: true,
-    placeholder: '10'
+    placeholder: 'ชั่วโมง'
   },
   {
     label: 'ประเภท',
