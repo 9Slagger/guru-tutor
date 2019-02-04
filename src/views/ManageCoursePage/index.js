@@ -114,7 +114,10 @@ class ManageCoursePage extends Component {
         >
           เพิ่ม Section
         </button>
-        <Link className="btn btn-primary" to="#">
+        <Link
+          className="btn btn-primary"
+          to={`/dashboard/adduserforcourse/${id}`}
+        >
           เพิ่ม User
         </Link>
         <div

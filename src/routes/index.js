@@ -1,33 +1,34 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
-import HomePage from '../views/HomePage'
-import PromotionPage from '../views/PromotionPage'
-import SignPage from '../views/SigninPage'
-import SignupPage from '../views/SignupPage'
-import Contact from '../views/ContactPage'
-import DashboardPage from '../views/DashboardPage'
-import RoomHighschoolPage from '../views/RoomHighschoolPage'
-import RoomUniversityPage from '../views/RoomUniversityPage'
-import NewsPage from '../views/NewsPage'
-import UsersPage from '../views/UsersPage'
-import NotFoundPage from '../views/NotFoundPage'
-import PermissionUserPage from '../views/PermissionUserPage'
-import ManageHomePage from '../views/ManageHomePage'
+import AddCoursePage from '../views/ManageCoursesPage/AddCoursePage'
+import AddHomeContentThird from '../views/ManageHomePage/AddHomeContentThird'
 import AddHomecontentFirst from '../views/ManageHomePage/AddHomeContentFirst'
 import AddHomecontentSecond from '../views/ManageHomePage/AddHomecontentSecond'
-import AddHomeContentThird from '../views/ManageHomePage/AddHomeContentThird'
 import AddNewContent from '../views/ManageNewPage/AddNewContent'
 import AddPromotionContent from '../views/ManagePromotionPage/AddPromotionContent'
+import ClassPage from '../views/ClassPage'
+import Contact from '../views/ContactPage'
+import CoursePage from '../views/ManageCoursesPage'
+import DashboardPage from '../views/DashboardPage'
+import HomePage from '../views/HomePage'
+import ManageCoursePage from '../views/ManageCoursePage'
+import ManageHomePage from '../views/ManageHomePage'
 import ManageNewPage from '../views/ManageNewPage'
 import ManagePromotionPage from '../views/ManagePromotionPage'
-import ProfilePage from '../views/ProfilePage'
-import CoursePage from '../views/ManageCoursesPage'
-import AddCoursePage from '../views/ManageCoursesPage/AddCoursePage'
-import ManageCoursePage from '../views/ManageCoursePage'
+import ManageUserbyCoursePage from '../views/ManageUserbyCoursePage'
 import MyClassPage from '../views/MyClassPage'
-import ClassPage from '../views/ClassPage'
+import NewsPage from '../views/NewsPage'
+import NotFoundPage from '../views/NotFoundPage'
+import PermissionUserPage from '../views/PermissionUserPage'
+import ProfilePage from '../views/ProfilePage'
+import PromotionPage from '../views/PromotionPage'
+import React from 'react'
+import RoomHighschoolPage from '../views/RoomHighschoolPage'
+import RoomUniversityPage from '../views/RoomUniversityPage'
+import SignPage from '../views/SigninPage'
+import SignupPage from '../views/SignupPage'
 import UploadFile from '../components/UploadFile'
+import UsersPage from '../views/UsersPage'
 
 const Routing = () => (
   <Switch>
@@ -69,6 +70,11 @@ const Routing = () => (
       exact
       path="/dashboard/managehome/homecontentthird/add"
       component={AddHomeContentThird}
+    />
+    <Route
+      exact
+      path="/dashboard/adduserforcourse/:id"
+      component={ManageUserbyCoursePage}
     />
     <Route
       exact
