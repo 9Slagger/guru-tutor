@@ -27,7 +27,7 @@ class RoomUniversityPage extends Component {
             btn=""
             btnlink=""
             btn1=""
-            btnlink1=""
+            btnlink1={`/watch/course/${course.id}`}
             btn2=""
             mes2={course.name}
             management={false}
