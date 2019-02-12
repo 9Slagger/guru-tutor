@@ -31,10 +31,12 @@ import UploadFile from '../components/UploadFile'
 import UsersPage from '../views/UsersPage'
 import WatchCousePage from '../views/WatchCousePage'
 import WatchVideoPage from '../views/WatchVideoPage'
+import TestPage from '../views/TestPage'
 
 const Routing = () => (
   <Switch>
     <Route exact path="/" component={HomePage} />
+    <Route exact path="/test" component={TestPage} />
     <Route exact path="/signin" component={SignPage} />
     <Route exact path="/signup" component={SignupPage} />
     <Route exact path="/contact" component={Contact} />
