@@ -29,5 +29,15 @@ export const LectureFormFields = [
     type: 'text',
     required: true,
     placeholder: 'https://www.youtube.com/watch?v=w4JKq3PIKJk'
+  },
+  {
+    label: 'Video ตัวอย่าง',
+    name: 'publish',
+    type: 'select',
+    option: [
+      { value: false, name: 'Video ตัวอย่าง', hidden: true },
+      { value: false, name: 'ไม่เผยแพร่' },
+      { value: true, name: 'เผยแพร่' }
+    ]
   }
 ]

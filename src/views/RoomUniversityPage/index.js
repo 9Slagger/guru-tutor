@@ -18,23 +18,25 @@ class RoomUniversityPage extends Component {
     return (
       courses &&
       courses.map((course, index) => {
-        return (
-          <Card
-            key={index}
-            src={course.thumbnail}
-            title={course.name}
-            text={course.detail}
-            btn=""
-            btnlink=""
-            btn1=""
-            btnlink1={`/watch/course/${course.id}`}
-            btn2=""
-            mes2={course.name}
-            management={false}
-            price={course.price}
-            delete={() => this.onDelete(course.id)}
-          />
-        )
+        if (course.publish) {
+          return (
+            <Card
+              key={index}
+              src={course.thumbnail}
+              title={course.name}
+              text={course.detail}
+              btn=""
+              btnlink=""
+              btn1=""
+              btnlink1={`/watch/course/${course.id}`}
+              btn2=""
+              mes2={course.name}
+              management={false}
+              price={course.price}
+              delete={() => this.onDelete(course.id)}
+            />
+          )
+        } else return false
       })
     )
   }
