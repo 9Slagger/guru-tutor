@@ -16,7 +16,10 @@ import {
   FETCH_ONE_COURSE_SUCESS,
   ADD_USER_BUY_COURSE,
   ADD_USER_BUY_COURSE_FAILURE,
-  ADD_USER_BUY_COURSE_SUCESS
+  ADD_USER_BUY_COURSE_SUCESS,
+  FETCH_ONE_COURSE_PUBLISH,
+  FETCH_ONE_COURSE_PUBLISH_FAILURE,
+  FETCH_ONE_COURSE_PUBLISH_SUCESS
 } from './type'
 
 import { usersFetch } from './UserActions'
@@ -53,6 +56,25 @@ export const fetchOneCourse = id => {
       })
       .catch(error => {
         dispatch({ type: FETCH_ONE_COURSE_FAILURE })
+        console.log(error)
+      })
+  }
+}
+
+export const fetchOneCoursePublish = id => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: FETCH_ONE_COURSE_PUBLISH })
+    axios
+      .get(`${api}/courseone?id=${id}`, {
+        headers: { Authorization: token }
+      })
+      .then(res => {
+        console.log('res.data', res.data)
+        dispatch({ type: FETCH_ONE_COURSE_PUBLISH_SUCESS, payload: res.data })
+      })
+      .catch(error => {
+        dispatch({ type: FETCH_ONE_COURSE_PUBLISH_FAILURE })
         console.log(error)
       })
   }
