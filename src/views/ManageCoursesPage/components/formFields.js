@@ -31,7 +31,7 @@ export const CourseFormFields = [
     label: 'ชั่วโมง',
     name: 'hour',
     type: 'number',
-    required: true,
+    required: false,
     placeholder: 'ชั่วโมง'
   },
   {

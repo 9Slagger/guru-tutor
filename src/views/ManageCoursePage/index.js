@@ -56,7 +56,12 @@ class ManageCoursePage extends Component {
     let temp = await values
     let { time } = await values
     time = await parseInt(time, 10)
-    temp.time = time
+    temp.time = await time
+    if (values.publish === 'true') {
+      temp.publish = await true
+    } else {
+      temp.publish = await false
+    }
     this.props.editLecture(id, temp, this.props.match.params.id)
   }
 
