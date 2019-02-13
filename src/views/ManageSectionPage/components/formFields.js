@@ -34,6 +34,7 @@ export const LectureFormFields = [
     label: 'Video ตัวอย่าง',
     name: 'publish',
     type: 'select',
+    required: true,
     option: [
       { value: false, name: 'ไม่เผยแพร่' },
       { value: true, name: 'เผยแพร่' }

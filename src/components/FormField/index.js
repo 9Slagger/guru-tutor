@@ -6,6 +6,7 @@ export default ({
   type,
   placeholder,
   hidden,
+  required,
   meta: { error, touched }
 }) => {
   if (hidden) {
@@ -25,7 +26,14 @@ export default ({
   } else {
     return (
       <div className="form-group">
-        <label className="title">{label}</label>
+        {required ? (
+          <label className="title">
+            {label}
+            <span className="text-danger"> *</span>
+          </label>
+        ) : (
+          <label className="title">{label}</label>
+        )}
         <input
           className="form-control"
           {...input}

@@ -38,6 +38,7 @@ export const CourseFormFields = [
     label: 'ประเภท',
     name: 'type',
     type: 'select',
+    required: true,
     option: [
       { value: '-', name: 'ประเภท', hidden: true },
       { value: 'juniorhighschool', name: 'ม.ต้น' },
