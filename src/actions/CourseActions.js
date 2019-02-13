@@ -82,7 +82,6 @@ export const createCourse = data => {
 }
 
 export const editCourse = (id, data) => {
- 
   const course = {
     name: data.name,
     price: data.price,
@@ -90,7 +89,7 @@ export const editCourse = (id, data) => {
     thumbnail: data.thumbnail,
     type: data.type
   }
-  console.log("data >>>>",course)
+  console.log('data >>>>', course)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
