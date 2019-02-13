@@ -7,7 +7,7 @@ import {
   editCoursePublic,
   editLecture,
   editSection,
-  fetchOneCourse,
+  fetchOneCoursePublish,
   fetchOneLecture,
   fetchOneSection
 } from '../../actions'
@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-dom'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
+import Swal from 'sweetalert2'
 
 class WatchCousePage extends Component {
   constructor() {
@@ -28,15 +29,7 @@ class WatchCousePage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchOneCourse(this.props.match.params.id)
-  }
-
-  makeid() {
-    var text = ''
-    var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-    for (var i = 0; i < 15; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length))
-    return text
+    this.props.fetchOneCoursePublish(this.props.match.params.id)
   }
 
   renderCourse(course) {
@@ -85,13 +78,25 @@ class WatchCousePage extends Component {
   }
 
   renderPlayerLecture(lecture) {
-    return (
+    return lecture.link ? (
       <Link
         className="btn btn-success btn-sm float-right ml-2"
         to={`/watch/video/${lecture.id}`}
       >
         ดู Video
       </Link>
+    ) : (
+      <button
+        className="btn btn-warning btn-sm float-right ml-2"
+        onClick={() =>
+          Swal({
+            type: 'warning',
+            title: 'สำหรับผู้ที่ซื้อคอร์สเท่านั้น !'
+          })
+        }
+      >
+        ดู Video
+      </button>
     )
   }
 
@@ -123,7 +128,7 @@ const mapStateToProps = ({ courses, sections }) => {
 }
 
 const mapDispatchToProps = {
-  fetchOneCourse,
+  fetchOneCoursePublish,
   createSection,
   editSection,
   fetchOneSection,
