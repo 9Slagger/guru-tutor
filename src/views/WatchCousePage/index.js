@@ -36,7 +36,14 @@ class WatchCousePage extends Component {
     return (
       <div>
         <div>
-          <Link className="btn btn-primary" to="/dashboard/course">
+          <Link
+            className="btn btn-primary"
+            to={
+              course && course.type === 'university'
+                ? '/roomuniversity'
+                : '/roomhighschool'
+            }
+          >
             กลับ
           </Link>
           <div className="text-center">
