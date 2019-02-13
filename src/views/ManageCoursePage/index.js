@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import {
-  fetchOneCourse,
-  createSection,
-  editSection,
-  fetchOneSection,
-  fetchOneLecture,
   createLecture,
-  editLecture,
-  deleteSection,
+  createSection,
   deleteLecture,
-  editCoursePublic
+  deleteSection,
+  editCoursePublic,
+  editLecture,
+  editSection,
+  fetchOneCourse,
+  fetchOneLecture,
+  fetchOneSection
 } from '../../actions'
+
 import { Link } from 'react-router-dom'
-import Switch from 'react-switch'
+import PlayVideo from '../PlayVideoPage'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SectionFormFields from '../ManageSectionPage/AddSectionPage/Components/SectionFormFields'
-import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
-import PlayVideo from '../PlayVideoPage'
+import Switch from 'react-switch'
 import UploadFile from '../../components/UploadFile'
+import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
+import { connect } from 'react-redux'
 
 class ManageCoursePage extends Component {
   constructor() {
@@ -107,13 +108,18 @@ class ManageCoursePage extends Component {
         </div>
         <button
           type="button"
-          className="btn btn-primary"
+          className="btn btn-primary mr-2"
           data-toggle="modal"
           data-target=".bd-example-modal-xl"
         >
           เพิ่ม Section
         </button>
-
+        <Link
+          className="btn btn-primary"
+          to={`/dashboard/adduserforcourse/${id}`}
+        >
+          เพิ่ม User
+        </Link>
         <div
           className="modal fade bd-example-modal-xl"
           role="dialog"

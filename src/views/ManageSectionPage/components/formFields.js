@@ -4,7 +4,7 @@ export const SectionFormFields = [
     name: 'name',
     type: 'text',
     required: true,
-    placeholder: 'ตรีโกณมิติ'
+    placeholder: 'ชื่อ Section'
   }
 ]
 
@@ -14,14 +14,14 @@ export const LectureFormFields = [
     name: 'name',
     type: 'text',
     required: true,
-    placeholder: 'กราฟของสมการอิงตัวแปรเสริม'
+    placeholder: 'ชื่อ Video'
   },
   {
     label: 'เวลา Video',
     name: 'time',
     type: 'number',
     required: true,
-    placeholder: '12.31'
+    placeholder: 'เวลา'
   },
   {
     label: 'Link ของ Video',
@@ -29,5 +29,15 @@ export const LectureFormFields = [
     type: 'text',
     required: true,
     placeholder: 'https://www.youtube.com/watch?v=w4JKq3PIKJk'
+  },
+  {
+    label: 'Video ตัวอย่าง',
+    name: 'publish',
+    type: 'select',
+    option: [
+      { value: false, name: 'Video ตัวอย่าง', hidden: true },
+      { value: false, name: 'ไม่เผยแพร่' },
+      { value: true, name: 'เผยแพร่' }
+    ]
   }
 ]

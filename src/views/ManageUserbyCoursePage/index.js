@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import {
+  fetchOneCourse,
   userDelete,
   userEditTpye,
   usersChangeEditStatus,
-  usersFetch
+  usersFetch,
+  addUserBuyCourse
 } from '../../actions'
 
 import Fuse from 'fuse.js'
@@ -23,6 +25,7 @@ class User extends Component {
   }
 
   componentDidMount() {
+    this.props.fetchOneCourse(this.props.match.params.id)
     this.props.usersFetch()
   }
 
@@ -35,10 +38,6 @@ class User extends Component {
     if (this.props.users.data !== prevProps.users.data) {
       this.SelectPage(1, this.props.users.data)
     }
-  }
-
-  userEditTpye(id, name, selectType) {
-    this.props.userEditTpye(id, name, selectType)
   }
 
   async onSelect(e, id, name, oldtype) {
@@ -77,10 +76,6 @@ class User extends Component {
     this.setState({ stateuser: tempUsers })
   }
 
-  deleteUser(id) {
-    this.props.userDelete(id)
-  }
-
   SelectPage(value, users) {
     if (value < 1) {
       console.log('ถอยเยอะเกิน')
@@ -96,6 +91,10 @@ class User extends Component {
         })
       })
     }
+  }
+
+  AddUser(iduser) {
+    this.props.addUserBuyCourse(iduser, this.props.match.params.id)
   }
 
   renderUser(users) {
@@ -139,6 +138,14 @@ class User extends Component {
     return (
       result &&
       result.map((user, index) => {
+        if (this.props.courses.dataone.claimuser !== null) {
+          var checkby = this.props.courses.dataone.claimuser.filter(claim => {
+            if (claim.iduser === user.item.ID) return true
+            else return false
+          })
+        } else {
+          checkby = []
+        }
         return (
           <tr key={index}>
             <th scope="row">{index + 1}</th>
@@ -147,63 +154,27 @@ class User extends Component {
             <td>{user.item.TelephoneNumber}</td>
             <td>{user.item.Email}</td>
             {user.item.EditStatus && user.item.EditStatus ? (
-              <td>
-                <select
-                  onChange={e =>
-                    this.onSelect(
-                      e,
-                      user.item.ID,
-                      `${user.item.FirstName} ${user.item.LastName}`,
-                      user.item.UserType
-                    )
-                  }
-                  name="selectType"
-                  id={`select${user.item.ID}`}
-                  className="form-control"
-                  defaultValue={user.item.UserType}
-                >
-                  <option value="admin">admin</option>
-                  <option value="tutor">tutor</option>
-                  <option value="member">member</option>
-                </select>
-              </td>
+              <td />
             ) : (
               <td>{user.item.UserType}</td>
             )}
             <td>
-              {user.item.EditStatus && user.item.EditStatus ? (
+              {checkby === undefined || checkby.length === 0 ? (
                 <button
                   type="button"
-                  className="btn btn-success mr-3"
-                  onClick={() => this.ReWriteState(user.item.ID, false)}
+                  className="btn btn-warning"
+                  onClick={() => this.AddUser(user.item.ID)}
                 >
-                  ยกเลิก
+                  Add
                 </button>
               ) : (
                 <button
                   type="button"
-                  className="btn btn-warning mr-3"
-                  onClick={() => this.ReWriteState(user.item.ID, true)}
-                >
-                  แก้ไข
-                </button>
-              )}
-              {user.item.UserType === 'admin' ? (
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => this.deleteUser(user.item.ID)}
+                  className="btn btn-warning"
+                  onClick={() => this.AddUser(user.item.ID)}
                   disabled
                 >
-                  ลบ
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => this.deleteUser(user.item.ID)}
-                >
-                  ลบ
+                  Add
                 </button>
               )}
             </td>
@@ -215,7 +186,7 @@ class User extends Component {
 
   render() {
     const { selectusers, stateuser } = this.state
-    const { users } = this.props
+    const { users, courses } = this.props
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
@@ -285,6 +256,11 @@ class User extends Component {
               />
             </div>
           </div>
+          <div className="mb-1 text-center">
+            <h3>
+              เพิ่มผู้ใช้เข้าคอร์ส {courses.dataone && courses.dataone.name}
+            </h3>
+          </div>
           {users.data && users.isFetching ? (
             <h1 className="text-center">กำลังโหลดข้อมูล</h1>
           ) : (
@@ -303,8 +279,13 @@ class User extends Component {
               </tr>
             </thead>
             <tbody>
-              {users.data &&
-                users.data.length > 0 &&
+              {!users.isFetching &&
+                !courses.isFetching &&
+                !(
+                  Object.entries(courses.dataone).length === 0 &&
+                  courses.dataone.constructor === Object
+                ) &&
+                !(users.data === undefined || users.data.length === 0) &&
                 this.renderUser(stateuser)}
             </tbody>
           </table>
@@ -314,15 +295,17 @@ class User extends Component {
   }
 }
 
-const mapStateToProps = ({ users, form }) => {
-  return { users, form }
+const mapStateToProps = ({ users, form, courses }) => {
+  return { users, form, courses }
 }
 
 const mapDispatchToProps = {
   usersChangeEditStatus,
   usersFetch,
   userDelete,
-  userEditTpye
+  userEditTpye,
+  fetchOneCourse,
+  addUserBuyCourse
 }
 
 export default connect(

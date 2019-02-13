@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+
 import { ArrowTurn } from 'react-burgers'
-import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { SignoutAuth } from '../../actions'
+import { connect } from 'react-redux'
 
 class PrivateMainLayout extends Component {
   showSettings(event) {
@@ -138,19 +139,7 @@ class PrivateMainLayout extends Component {
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
-                    <span data-feather="file-text" />
-                    แก้ไขรายวิชา
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
-                    <span data-feather="file-text" />
-                    ลบรายวิชา
-                  </NavLink>
-                </li>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/dashbord">
+                  <NavLink className="nav-link" to="/dashboard/bycourse">
                     <span data-feather="file-text" />
                     สิทธิการเข้าถึงรายวิชา
                   </NavLink>

@@ -29,7 +29,21 @@ export const usersFetch = () => {
         headers: { Authorization: token }
       })
       .then(response => {
-        dispatch({ type: USERS_FETCH_SUCESS, payload: response.data })
+        let result = response.data
+        result.map(data => {
+          if (data.UserType === 'admin') {
+            data.sort = 100000000000 + parseInt(data.TelephoneNumber, 10)
+            return data
+          } else if (data.UserType === 'tutor') {
+            data.sort = 200000000000 + parseInt(data.TelephoneNumber, 10)
+            return data
+          } else {
+            data.sort = 300000000000 + parseInt(data.TelephoneNumber, 10)
+            return data
+          }
+        })
+        result.sort((a, b) => parseInt(a.sort, 10) - parseInt(b.sort, 10))
+        dispatch({ type: USERS_FETCH_SUCESS, payload: result })
       })
       .catch(error => {
         dispatch({ type: USERS_FETCH_FAILURE })
@@ -55,9 +69,9 @@ export const userCreate = user => {
           alert(response.data.Message)
         }
       })
-      .catch(error => {
+      .catch(() => {
         dispatch({ type: USERS_CREATE_FAILURE })
-        alert(error)
+        alert('สมัครสมาชิกล้มเหลว !')
       })
   }
 }

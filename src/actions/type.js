@@ -18,6 +18,10 @@ export const USER_EDIT_TYPE_FAILURE = 'user_edittype_fail'
 export const USER_DELETE = 'user_delete'
 export const USER_DELETE_SUCESS = 'user_delete_sucess'
 export const USER_DELETE_FAILURE = 'user_delete_fail'
+// ADD_USER_BUY_COURSE
+export const ADD_USER_BUY_COURSE = 'ADD_USER_BUY_COURSE'
+export const ADD_USER_BUY_COURSE_SUCESS = 'ADD_USER_BUY_COURSE_sucess'
+export const ADD_USER_BUY_COURSE_FAILURE = 'ADD_USER_BUY_COURSE_fail'
 // LOGIN_AUTH
 export const LOGIN_AUTH = 'login_auth'
 export const LOGIN_AUTH_SUCESS = 'login_auth_sucess'

@@ -36,6 +36,9 @@ export const fetchOneLecture = id => {
 }
 
 export const editLecture = (idlec, data, id) => {
+  var values = data
+  values.publish = Boolean(values.publish)
+  console.log(values)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_LECTURE })

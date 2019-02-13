@@ -13,9 +13,13 @@ import {
   FETCH_COURSE_SUCESS,
   FETCH_ONE_COURSE,
   FETCH_ONE_COURSE_FAILURE,
-  FETCH_ONE_COURSE_SUCESS
+  FETCH_ONE_COURSE_SUCESS,
+  ADD_USER_BUY_COURSE,
+  ADD_USER_BUY_COURSE_FAILURE,
+  ADD_USER_BUY_COURSE_SUCESS
 } from './type'
 
+import { usersFetch } from './UserActions'
 import Swal from 'sweetalert2'
 import { api } from './api'
 import axios from 'axios'
@@ -87,18 +91,19 @@ export const editCourse = (id, data) => {
     price: data.price,
     detail: data.detail,
     thumbnail: data.thumbnail,
+    hour: data.hour,
     type: data.type
   }
-  console.log('data >>>>', course)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(`http://localhost:80/restricted/course?id=${id}`, course, {
+      .put(`${api}/restricted/course?id=${id}`, course, {
         headers: { Authorization: token }
       })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
+        dispatch(fetchCourse(id))
         dispatch(push('/dashboard/course'))
         Swal({
           type: 'success',
@@ -117,19 +122,20 @@ export const editCourse = (id, data) => {
 }
 
 export const editCoursePublic = (id, status) => {
+  const masess = status === 'true' ? 'เผยแพร่คอร์ส' : 'หยุดเผยแพร่คอร์ส'
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: EDIT_COURSE })
     axios
-      .put(`${api}/restricted/course/publish?id=${id}&p=${status}`, {
+      .get(`${api}/restricted/course/publish?id=${id}&p=${status}`, {
         headers: { Authorization: token }
       })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
-        dispatch(push('/dashboard/course'))
+        dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
-          title: 'แก้ไขคอร์สสำเร็จ!'
+          title: masess
         })
       })
       .catch(error => {
@@ -165,6 +171,40 @@ export const deleteCourse = id => {
         Swal({
           type: 'error',
           title: 'ลบคอร์สล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const addUserBuyCourse = (iduser, idcourse) => {
+  const data = {
+    time: 30
+  }
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: ADD_USER_BUY_COURSE })
+    axios
+      .post(
+        `${api}/restricted/buy?iduser=${iduser}&idcourse=${idcourse}`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        dispatch({ type: ADD_USER_BUY_COURSE_SUCESS })
+        dispatch(usersFetch())
+        Swal({
+          type: 'success',
+          title: 'เพิ่มผู้ใช้เข้าคอร์สสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: ADD_USER_BUY_COURSE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มผู้ใช้เข้าคอร์สล้มเหลว!'
         })
       })
   }
