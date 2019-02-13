@@ -59,7 +59,6 @@ export const usersChangeEditStatus = data => {
 }
 
 export const userCreate = user => {
-  console.log('user', user)
   return async dispatch => {
     dispatch({ type: USERS_CREATE })
     axios

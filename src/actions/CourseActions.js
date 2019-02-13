@@ -13,9 +13,13 @@ import {
   FETCH_COURSE_SUCESS,
   FETCH_ONE_COURSE,
   FETCH_ONE_COURSE_FAILURE,
-  FETCH_ONE_COURSE_SUCESS
+  FETCH_ONE_COURSE_SUCESS,
+  ADD_USER_BUY_COURSE,
+  ADD_USER_BUY_COURSE_FAILURE,
+  ADD_USER_BUY_COURSE_SUCESS
 } from './type'
 
+import { usersFetch } from './UserActions'
 import Swal from 'sweetalert2'
 import { api } from './api'
 import axios from 'axios'
@@ -167,6 +171,40 @@ export const deleteCourse = id => {
         Swal({
           type: 'error',
           title: 'ลบคอร์สล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const addUserBuyCourse = (iduser, idcourse) => {
+  const data = {
+    time: 30
+  }
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: ADD_USER_BUY_COURSE })
+    axios
+      .post(
+        `${api}/restricted/buy?iduser=${iduser}&idcourse=${idcourse}`,
+        data,
+        {
+          headers: { Authorization: token }
+        }
+      )
+      .then(() => {
+        dispatch({ type: ADD_USER_BUY_COURSE_SUCESS })
+        dispatch(usersFetch())
+        Swal({
+          type: 'success',
+          title: 'เพิ่มผู้ใช้เข้าคอร์สสำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: ADD_USER_BUY_COURSE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มผู้ใช้เข้าคอร์สล้มเหลว!'
         })
       })
   }

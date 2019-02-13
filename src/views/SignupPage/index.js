@@ -9,7 +9,7 @@ class SignupPage extends Component {
     this.state = {
       email: '',
       password: '',
-      firsname: '',
+      firstname: '',
       lastname: '',
       nickname: '',
       telephonenumber: '',
@@ -46,7 +46,7 @@ class SignupPage extends Component {
     if (
       this.state.email &&
       this.state.password &&
-      this.state.firsname &&
+      this.state.firstname &&
       this.state.lastname &&
       this.state.nickname &&
       this.state.telephonenumber &&
@@ -60,7 +60,7 @@ class SignupPage extends Component {
       const user = await {
         email: this.state.email,
         password: this.state.password,
-        firsname: this.state.firsname,
+        firstname: this.state.firstname,
         lastname: this.state.lastname,
         nickname: this.state.nickname,
         telephonenumber: this.state.telephonenumber,
@@ -110,9 +110,9 @@ class SignupPage extends Component {
               <div className="col-md-6 mb-3">
                 <input
                   type="text"
-                  name="firsname"
-                  id="firsname"
-                  value={this.state.firsname}
+                  name="firstname"
+                  id="firstname"
+                  value={this.state.firstname}
                   onChange={this.handleChange}
                   placeholder="ชื่อ"
                   required

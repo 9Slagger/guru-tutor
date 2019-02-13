@@ -11,7 +11,6 @@ import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SearchUser from './SearchUser'
 import Swal from 'sweetalert2'
 import { connect } from 'react-redux'
-// import _ from 'lodash'
 
 class User extends Component {
   constructor(props) {

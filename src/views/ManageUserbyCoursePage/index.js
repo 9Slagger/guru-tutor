@@ -4,22 +4,23 @@ import {
   userDelete,
   userEditTpye,
   usersChangeEditStatus,
-  usersFetch
+  usersFetch,
+  addUserBuyCourse
 } from '../../actions'
 
 import Fuse from 'fuse.js'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import SearchUser from './SearchUser'
 import Swal from 'sweetalert2'
-import { api } from '../../actions/api'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 class User extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keyword: ''
+      keyword: '',
+      selectusers: 1,
+      stateuser: []
     }
   }
 
@@ -31,6 +32,12 @@ class User extends Component {
   componentWillReceiveProps(nextProps) {
     nextProps.form.SearchUser.values &&
       this.setState({ keyword: nextProps.form.SearchUser.values.keyword })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.users.data !== prevProps.users.data) {
+      this.SelectPage(1, this.props.users.data)
+    }
   }
 
   async onSelect(e, id, name, oldtype) {
@@ -53,46 +60,41 @@ class User extends Component {
     })
   }
 
-  async ReWriteState(index, status) {
-    let tempUser = await this.props.users.data[index]
-    const tempUsers = await this.props.users.data
-    if (tempUser.EditStatus || !tempUser.EditStatus) {
-      tempUser.EditStatus = status
+  async ReWriteState(ID, status) {
+    let tempUser = await this.state.stateuser.filter(user => user.ID === ID)
+    if (tempUser[0].hasOwnProperty('EditStatus')) {
+      tempUser[0].EditStatus = status
     } else {
-      tempUser = Object.assign({ EditStatus: status }, tempUser)
+      tempUser[0] = Object.assign({ EditStatus: status }, tempUser[0])
     }
-    tempUsers[index] = tempUser
-    this.props.usersChangeEditStatus(tempUsers)
+    let tempUsers = await this.state.stateuser
+    this.state.stateuser.forEach((user, index) => {
+      if (user.ID === tempUser[0].ID) {
+        tempUsers[index] = tempUser[0]
+      }
+    })
+    this.setState({ stateuser: tempUsers })
   }
 
-  async AddUser(iduser) {
-    const data = {
-      time: 30
+  SelectPage(value, users) {
+    if (value < 1) {
+      console.log('ถอยเยอะเกิน')
+    } else {
+      const DomainUser = value * 50 - 49
+      const RangUser = value * 50
+      this.setState({
+        selectusers: value,
+        stateuser: users.filter((user, index) => {
+          if (index + 1 >= DomainUser && index + 1 <= RangUser) {
+            return user
+          } else return false
+        })
+      })
     }
-    const token = await localStorage.getItem('token')
-    axios
-      .post(
-        `${api}/restricted/buy?iduser=${iduser}&idcourse=${
-          this.props.match.params.id
-        }`,
-        data,
-        {
-          headers: { Authorization: token }
-        }
-      )
-      .then(() => {
-        Swal({
-          type: 'success',
-          title: 'WTF!'
-        })
-      })
-      .catch(error => {
-        console.log(error)
-        Swal({
-          type: 'error',
-          title: 'WTF ERROR!'
-        })
-      })
+  }
+
+  AddUser(iduser) {
+    this.props.addUserBuyCourse(iduser, this.props.match.params.id)
   }
 
   renderUser(users) {
@@ -114,9 +116,25 @@ class User extends Component {
       ]
     }
     var fuse = new Fuse(users, options)
-    var result = this.state.keyword
+    var resultusers = this.state.keyword
       ? fuse.search(this.state.keyword)
       : fuse.search('@')
+
+    let result = resultusers
+    result.map(data => {
+      if (data.UserType === 'admin') {
+        data.sort = 100000000000 + parseInt(data.TelephoneNumber, 10)
+        return data
+      } else if (data.UserType === 'tutor') {
+        data.sort = 200000000000 + parseInt(data.TelephoneNumber, 10)
+        return data
+      } else {
+        data.sort = 300000000000 + parseInt(data.TelephoneNumber, 10)
+        return data
+      }
+    })
+    result.sort((a, b) => parseInt(a.sort, 10) - parseInt(b.sort, 10))
+
     return (
       result &&
       result.map((user, index) => {
@@ -167,18 +185,82 @@ class User extends Component {
   }
 
   render() {
+    const { selectusers, stateuser } = this.state
     const { users, courses } = this.props
     return (
       <PrivateMainLayout>
         <div className="container-fluid">
+          <div className="row">
+            <div className="col-4">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      onClick={() =>
+                        this.SelectPage(selectusers - 1, users.data)
+                      }
+                    >
+                      Previous
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      onClick={() => this.SelectPage(1, users.data)}
+                    >
+                      1
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      onClick={() => this.SelectPage(2, users.data)}
+                    >
+                      2
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button className="page-link">...</button>
+                  </li>
+                  <li className="page-item" />
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      onClick={() =>
+                        this.SelectPage(
+                          Math.ceil(users.data.length / 50, 10),
+                          users.data
+                        )
+                      }
+                    >
+                      {Math.ceil(users.data.length / 50, 10)}
+                    </button>
+                  </li>
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      onClick={() =>
+                        this.SelectPage(selectusers + 1, users.data)
+                      }
+                    >
+                      Next
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div className="col-4">
+              <SearchUser
+                Search={fuse => this.setState({ keyword: fuse.keyword })}
+              />
+            </div>
+          </div>
           <div className="mb-1 text-center">
             <h3>
               เพิ่มผู้ใช้เข้าคอร์ส {courses.dataone && courses.dataone.name}
             </h3>
           </div>
-          <SearchUser
-            Search={fuse => this.setState({ keyword: fuse.keyword })}
-          />
           {users.data && users.isFetching ? (
             <h1 className="text-center">กำลังโหลดข้อมูล</h1>
           ) : (
@@ -204,7 +286,7 @@ class User extends Component {
                   courses.dataone.constructor === Object
                 ) &&
                 !(users.data === undefined || users.data.length === 0) &&
-                this.renderUser(users.data)}
+                this.renderUser(stateuser)}
             </tbody>
           </table>
         </div>
@@ -222,7 +304,8 @@ const mapDispatchToProps = {
   usersFetch,
   userDelete,
   userEditTpye,
-  fetchOneCourse
+  fetchOneCourse,
+  addUserBuyCourse
 }
 
 export default connect(
