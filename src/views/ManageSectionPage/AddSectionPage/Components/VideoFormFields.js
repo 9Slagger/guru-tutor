@@ -7,11 +7,11 @@ import { LectureFormFields } from '../../components/formFields'
 class VideoFormFields extends Component {
   renderFields(LectureFormFields) {
     return LectureFormFields.map(
-      ({ label, name, type, required, placeholder, option }) => {
+      ({ label, name, type, required, placeholder, option }, index) => {
         if (type !== 'select') {
           return (
             <Field
-              key={name}
+              key={index}
               label={label}
               name={name}
               type={type}
@@ -22,20 +22,20 @@ class VideoFormFields extends Component {
           )
         } else {
           return (
-            <div className="form-group" key={name}>
+            <div className="form-group" key={index}>
               <label>{label}</label>
               <div>
                 <Field className="form-control" name={name} component="select">
                   {option.map(option => {
                     if (option.hidden) {
                       return (
-                        <option key={option.value} hidden value={option.value}>
+                        <option key={option.name} hidden value={option.value}>
                           {option.name}
                         </option>
                       )
                     } else {
                       return (
-                        <option key={option.value} value={option.value}>
+                        <option key={option.name} value={option.value}>
                           {option.name}
                         </option>
                       )

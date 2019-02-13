@@ -93,7 +93,7 @@ class User extends Component {
         stateuser: users.filter((user, index) => {
           if (index + 1 >= DomainUser && index + 1 <= RangUser) {
             return user
-          }
+          } else return false
         })
       })
     }
