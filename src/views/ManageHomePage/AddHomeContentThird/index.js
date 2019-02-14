@@ -28,7 +28,7 @@ class AddHomecontentFirst extends Component {
         {match.path.indexOf('add') > 0 ? (
           <div className="container-fluid">
             <h2 className="text-center">เพิ่มเนื้อหาส่วนสุดท้ายของหน้าแรก</h2>
-            <HomecontentThirdForm onSubmit={this.editHomecontentThird} />
+            <HomecontentThirdForm onSubmit={this.saveHomecontentThird} />
           </div>
         ) : (
           <div className="container-fluid">

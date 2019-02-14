@@ -31,13 +31,14 @@ export const CourseFormFields = [
     label: 'ชั่วโมง',
     name: 'hour',
     type: 'number',
-    required: true,
+    required: false,
     placeholder: 'ชั่วโมง'
   },
   {
     label: 'ประเภท',
     name: 'type',
     type: 'select',
+    required: true,
     option: [
       { value: '-', name: 'ประเภท', hidden: true },
       { value: 'juniorhighschool', name: 'ม.ต้น' },

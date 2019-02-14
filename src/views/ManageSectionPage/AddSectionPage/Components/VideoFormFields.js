@@ -23,7 +23,14 @@ class VideoFormFields extends Component {
         } else {
           return (
             <div className="form-group" key={index}>
-              <label>{label}</label>
+              {required ? (
+                <label className="title">
+                  {label}
+                  <span className="text-danger"> *</span>
+                </label>
+              ) : (
+                <label className="title">{label}</label>
+              )}
               <div>
                 <Field className="form-control" name={name} component="select">
                   {option.map(option => {

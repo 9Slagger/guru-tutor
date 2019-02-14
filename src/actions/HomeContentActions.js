@@ -150,10 +150,11 @@ export const createHomeContentFirst = data => {
         dispatch({
           type: CREATE_HOME_CONTENT_FIRST_FAILURE
         })
-        console.log(error)
+        console.log(error.response)
         Swal({
           type: 'error',
-          title: 'เพิ่มเนื้อหาล้มเหลว!'
+          title: 'เพิ่มเนื้อหาล้มเหลว!',
+          text: error.response.data.Err
         })
       })
   }
@@ -329,7 +330,8 @@ export const createHomeContentThird = data => {
         console.log(error)
         Swal({
           type: 'error',
-          title: 'เพิ่มเนื้อหาล้มเหลว!'
+          title: 'เพิ่มเนื้อหาล้มเหลว!',
+          text: error.response.data.Err
         })
       })
   }

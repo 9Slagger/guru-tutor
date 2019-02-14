@@ -20,7 +20,7 @@ export const LectureFormFields = [
     label: 'เวลา Video',
     name: 'time',
     type: 'number',
-    required: true,
+    required: false,
     placeholder: 'เวลา'
   },
   {
@@ -34,8 +34,8 @@ export const LectureFormFields = [
     label: 'Video ตัวอย่าง',
     name: 'publish',
     type: 'select',
+    required: true,
     option: [
-      { value: false, name: 'Video ตัวอย่าง', hidden: true },
       { value: false, name: 'ไม่เผยแพร่' },
       { value: true, name: 'เผยแพร่' }
     ]

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { deleteCourse, fetchCourse } from '../../actions'
+import { fetchCourse } from '../../actions'
 
 import Card from '../../components/Card'
 import MainLayout from '../../components/MainLayout'
@@ -8,10 +8,6 @@ import { connect } from 'react-redux'
 class RoomUniversityPage extends Component {
   componentDidMount() {
     this.props.fetchCourse()
-  }
-
-  onDelete(id) {
-    this.props.deleteCourse(id)
   }
 
   renderCrad(courses) {
@@ -33,7 +29,6 @@ class RoomUniversityPage extends Component {
               mes2={course.name}
               management={false}
               price={course.price}
-              delete={() => this.onDelete(course.id)}
             />
           )
         } else return false
@@ -70,8 +65,7 @@ const mapStateToProps = ({ courses }) => {
 }
 
 const mapDispatchToProps = {
-  fetchCourse,
-  deleteCourse
+  fetchCourse
 }
 
 export default connect(

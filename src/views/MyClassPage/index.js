@@ -1,74 +1,68 @@
 import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
 import Card from '../../components/Card'
-
-const card2 = [
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'คณิตศาสตร์',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'เข้าเรียน',
-    btnlink: '/myclass/class'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'ฟิสิกส์',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'เข้าเรียน',
-    btnlink: '/myclass/class'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'เคมี',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'เข้าเรียน',
-    btnlink: '/myclass/class'
-  },
-  {
-    src:
-      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80',
-    title: 'ชีววิทยา',
-    text:
-      '~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~',
-    btn: 'เข้าเรียน',
-    btnlink: '/myclass/class'
-  }
-]
+import { connect } from 'react-redux'
+import { fetchCourse } from '../../actions'
 
 class MyClassPage extends Component {
-  renderCrad(c) {
+  componentDidMount() {
+    this.props.fetchCourse()
+  }
+
+  renderCrad(courses, auth) {
+    auth.data[0].MyCourse.forEach(element => {
+      console.log(element.idcourse)
+    })
     return (
-      c &&
-      c.map((data, index) => {
+      courses &&
+      courses.map((course, index) => {
         return (
           <Card
             key={index}
-            src={data.src}
-            title={data.title}
-            text={data.text}
-            btn={data.btn}
-            btnlink={data.btnlink}
+            src={course.thumbnail}
+            title={course.name}
+            text={course.detail}
+            btn=""
+            btnlink=""
+            btn1=""
+            btnlink1={`/watch/course/${course.id}`}
+            btn2=""
+            mes2={course.name}
+            management={false}
+            price={course.price}
           />
         )
       })
     )
   }
+
   render() {
+    const { courses, auth } = this.props
     return (
       <MainLayout>
         <div className="text-center m-3 p-3">
           <h1>คอร์สเรียนของฉัน</h1>
-          <div className="card-container row">{this.renderCrad(card2)}</div>
+          <div className="card-container row">
+            {Array.isArray(courses.data) &&
+              courses &&
+              auth.data.length > 0 &&
+              this.renderCrad(courses.data, auth)}
+          </div>
         </div>
       </MainLayout>
     )
   }
 }
 
-export default MyClassPage
+const mapStateToProps = ({ courses, auth }) => {
+  return { courses, auth }
+}
+
+const mapDispatchToProps = {
+  fetchCourse
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyClassPage)
