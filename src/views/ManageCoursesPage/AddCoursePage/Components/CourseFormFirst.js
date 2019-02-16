@@ -80,8 +80,8 @@ const validate = values => {
   return errors
 }
 
-const mapStateToProps = ({ courses }) => {
-  if (courses.dataone && courses.dataone.id)
+const mapStateToProps = ({ courses, clear }) => {
+  if (courses.dataone && courses.dataone.id && !clear)
     return { initialValues: courses.dataone ? courses.dataone : null }
   else return {}
 }
