@@ -19,7 +19,8 @@ import {
   ADD_USER_BUY_COURSE_SUCESS,
   FETCH_ONE_COURSE_PUBLISH,
   FETCH_ONE_COURSE_PUBLISH_FAILURE,
-  FETCH_ONE_COURSE_PUBLISH_SUCESS
+  FETCH_ONE_COURSE_PUBLISH_SUCESS,
+  CLEAR_COURSE_ONE
 } from './type'
 
 import { usersFetch } from './UserActions'
@@ -125,7 +126,7 @@ export const editCourse = (id, data) => {
       })
       .then(() => {
         dispatch({ type: EDIT_COURSE_SUCESS })
-        dispatch(fetchCourse(id))
+        dispatch(fetchCourse())
         dispatch(push('/dashboard/course'))
         Swal({
           type: 'success',
@@ -229,5 +230,11 @@ export const addUserBuyCourse = (iduser, idcourse) => {
           title: 'เพิ่มผู้ใช้เข้าคอร์สล้มเหลว!'
         })
       })
+  }
+}
+
+export const clearCourseOne = () => {
+  return dispatch => {
+    dispatch({ type: CLEAR_COURSE_ONE })
   }
 }

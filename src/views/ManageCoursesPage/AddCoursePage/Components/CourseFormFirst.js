@@ -60,7 +60,7 @@ class CourseFormFirst extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="courseform">
         {this.renderFields(CourseFormFields)}
         <button className="btn btn-block btn-info title" type="submit">
           บันทึก
@@ -80,8 +80,8 @@ const validate = values => {
   return errors
 }
 
-const mapStateToProps = ({ courses, clear }) => {
-  if (courses.dataone && courses.dataone.id && !clear)
+const mapStateToProps = ({ courses }) => {
+  if (courses.dataone && courses.dataone.id)
     return { initialValues: courses.dataone ? courses.dataone : null }
   else return {}
 }

@@ -12,7 +12,6 @@ class AddCoursePage extends Component {
 
   saveCourse = values => {
     this.props.createCourse(values)
-    console.log(values)
   }
 
   editCourse = values => {
@@ -26,12 +25,12 @@ class AddCoursePage extends Component {
         {match.path.indexOf('add') > 0 ? (
           <div className="container-fluid">
             <h2 className="text-center">เพิ่มคอร์ส</h2>
-            <CourseFormFirst onSubmit={this.saveCourse} clear={true} />
+            <CourseFormFirst onSubmit={this.saveCourse} />
           </div>
         ) : (
           <div className="container-fluid">
             <h2 className="text-center">แก้ไขคอร์ส</h2>
-            <CourseFormFirst onSubmit={this.editCourse} clear={false} />
+            <CourseFormFirst onSubmit={this.editCourse} />
           </div>
         )}
       </PrivateMainLayout>

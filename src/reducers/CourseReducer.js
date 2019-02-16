@@ -7,7 +7,8 @@ import {
   FETCH_ONE_COURSE_SUCESS,
   FETCH_ONE_COURSE_PUBLISH,
   FETCH_ONE_COURSE_PUBLISH_FAILURE,
-  FETCH_ONE_COURSE_PUBLISH_SUCESS
+  FETCH_ONE_COURSE_PUBLISH_SUCESS,
+  CLEAR_COURSE_ONE
 } from '../actions/type'
 
 const initialState = {
@@ -39,6 +40,9 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, dataone: payload, isFetching: false, isError: false }
     case FETCH_ONE_COURSE_PUBLISH_FAILURE:
       return { ...state, isFetching: false, isError: true }
+
+    case CLEAR_COURSE_ONE:
+      return { ...state, dataone: {} }
 
     default:
       return state
