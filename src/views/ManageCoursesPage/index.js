@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { deleteCourse, fetchCourse, clearCourseOne } from '../../actions'
-
+import { deleteCourse, fetchCourse } from '../../actions'
 import Card from '../../components/Card'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
@@ -9,7 +8,6 @@ import { connect } from 'react-redux'
 class AddCoursePage extends Component {
   componentDidMount() {
     this.props.fetchCourse()
-    this.props.clearCourseOne()
   }
 
   onDelete(id) {
@@ -108,8 +106,7 @@ const mapStateToProps = ({ courses }) => {
 
 const mapDispatchToProps = {
   fetchCourse,
-  deleteCourse,
-  clearCourseOne
+  deleteCourse
 }
 
 export default connect(
