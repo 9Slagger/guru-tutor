@@ -9,11 +9,6 @@ class Content extends Component {
         <i className={homecontentsecond.Icon} />
         <h2>{homecontentsecond.Title}</h2>
         <p>{homecontentsecond.Detail}</p>
-        <p>
-          <a className="btn btn-secondary" href="#" role="button">
-            ดูรายละเอียดเพิ่มเติม &raquo;
-          </a>
-        </p>
       </div>
     ))
   }

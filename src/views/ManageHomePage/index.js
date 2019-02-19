@@ -68,13 +68,13 @@ class ManageHomePage extends Component {
           />
           <div className="carousel-caption d-none d-md-block">
             <Link
-              className="btn btn-outline-warning mt-2 mr-2"
+              className="btn btn-warning mt-2 mr-2"
               to={`managehome/homecontentfirst/edit/${homecontentfirst.ID}`}
             >
               แก้ไข
             </Link>
             <button
-              className="btn btn-outline-danger mt-2"
+              className="btn btn-danger mt-2"
               onClick={() => this.DeleteHomeContentFirst(homecontentfirst.ID)}
             >
               ลบ
@@ -97,11 +97,8 @@ class ManageHomePage extends Component {
           <h2>{homecontentsecond.Title}</h2>
           <p>{homecontentsecond.Detail}</p>
           <p>
-            <a className="btn btn-secondary" href="#" role="button">
-              ดูรายละเอียดเพิ่มเติม &raquo;
-            </a>
             <Link
-              className="btn btn-outline-warning ml-2"
+              className="btn btn-warning ml-2"
               to={`managehome/homecontentsecond/edit/${homecontentsecond.ID}`}
             >
               แก้ไข
@@ -121,13 +118,13 @@ class ManageHomePage extends Component {
           <hr className="featurette-divider" />
           <div className="text-right mb-2">
             <Link
-              className="btn btn-outline-warning mt-2 mr-2"
+              className="btn btn-warning mt-2 mr-2"
               to={`managehome/homecontentthird/edit/${homecontentthird.ID}`}
             >
               แก้ไข
             </Link>
             <button
-              className="btn btn-outline-danger mt-2"
+              className="btn btn-danger mt-2"
               onClick={() => this.DeleteHomeContentThird(homecontentthird.ID)}
             >
               ลบ
