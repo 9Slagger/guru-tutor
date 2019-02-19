@@ -22,7 +22,6 @@ class AddCoursePage extends Component {
       this.props.match.path.indexOf('add') > 0
     ) {
       this.props.clearCourseOne()
-      console.log('this.props.clearCourseOne()')
     }
   }
 
