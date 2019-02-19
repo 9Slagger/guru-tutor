@@ -20,10 +20,14 @@ import {
   FETCH_ONE_COURSE_PUBLISH,
   FETCH_ONE_COURSE_PUBLISH_FAILURE,
   FETCH_ONE_COURSE_PUBLISH_SUCESS,
-  CLEAR_COURSE_ONE
+  CLEAR_COURSE_ONE,
+  ADD_COURSE_TO_CART,
+  ADD_COURSE_TO_CART_FAILURE,
+  ADD_COURSE_TO_CART_SUCESS
 } from './type'
 
 import { usersFetch } from './UserActions'
+import { VerifyAuth } from './AuthActions'
 import Swal from 'sweetalert2'
 import { api } from './api'
 import axios from 'axios'
@@ -236,5 +240,34 @@ export const addUserBuyCourse = (iduser, idcourse) => {
 export const clearCourseOne = () => {
   return dispatch => {
     dispatch({ type: CLEAR_COURSE_ONE })
+  }
+}
+
+export const addCoursetoCart = (userid, data) => {
+  console.log('userid', userid)
+  console.log('data', data)
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: ADD_COURSE_TO_CART })
+    axios
+      .post(`${api}/restricted/cart?iduser=${userid}`, data, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: ADD_COURSE_TO_CART_SUCESS })
+        dispatch(VerifyAuth())
+        Swal({
+          type: 'success',
+          title: 'เพิ่มคอร์สเข้าตะกร้า สำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: ADD_COURSE_TO_CART_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'เพิ่มคอร์สเข้าตะกร้า ล้มเหลว!'
+        })
+      })
   }
 }

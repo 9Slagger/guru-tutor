@@ -1,16 +1,5 @@
 import React, { Component } from 'react'
-import {
-  createLecture,
-  createSection,
-  deleteLecture,
-  deleteSection,
-  editCoursePublic,
-  editLecture,
-  editSection,
-  fetchOneCoursePublish,
-  fetchOneLecture,
-  fetchOneSection
-} from '../../actions'
+import { fetchOneCoursePublish, addCoursetoCart } from '../../actions'
 
 import { Link } from 'react-router-dom'
 import MainLayout from '../../components/MainLayout'
@@ -24,12 +13,16 @@ class WatchCousePage extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
+  componentDidMount() {
+    this.props.fetchOneCoursePublish(this.props.match.params.id)
+  }
+
   handleChange(id, checked) {
     this.props.editCoursePublic(id, checked.toString())
   }
 
-  componentDidMount() {
-    this.props.fetchOneCoursePublish(this.props.match.params.id)
+  addCoursetoCart(userid, data) {
+    this.props.addCoursetoCart(userid, data)
   }
 
   renderCourse(course) {
@@ -61,7 +54,18 @@ class WatchCousePage extends Component {
         <div className="mt-3 mb-2">
           <h6>{course.detail}</h6>
           <span className="badge badge-danger">{course.price + ' บาท'}</span>
-          <button type="button" class="btn btn-primary btn-sm ml-3">
+          <button
+            type="button"
+            className="btn btn-primary btn-sm ml-3"
+            onClick={() =>
+              this.addCoursetoCart(this.props.auth.data[0].ID, {
+                courseid: course.id,
+                name: course.name,
+                price: parseInt(course.price, 10),
+                img: course.thumbnail
+              })
+            }
+          >
             ใส่ตะกร้าสินค้า
           </button>
         </div>
@@ -133,21 +137,13 @@ class WatchCousePage extends Component {
   }
 }
 
-const mapStateToProps = ({ courses, sections }) => {
-  return { courses, sections }
+const mapStateToProps = ({ courses, sections, auth }) => {
+  return { courses, sections, auth }
 }
 
 const mapDispatchToProps = {
   fetchOneCoursePublish,
-  createSection,
-  editSection,
-  fetchOneSection,
-  fetchOneLecture,
-  createLecture,
-  editLecture,
-  deleteSection,
-  deleteLecture,
-  editCoursePublic
+  addCoursetoCart
 }
 
 export default connect(
