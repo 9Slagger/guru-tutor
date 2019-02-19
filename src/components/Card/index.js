@@ -17,7 +17,8 @@ class Card extends Component {
       btn1,
       btnlink1,
       price,
-      management
+      management,
+      time
     } = this.props
     if (!management) {
       return (
@@ -32,8 +33,14 @@ class Card extends Component {
             <p className="card-text">{text}</p>
           </div>
           <div className="row">
-            <div className="col-12 mt-2">
-              <h5 className="text-right">{price} THB</h5>
+            <div className="col-12 text-right mt-2">
+              {price && <span className="text-left">{price} THB</span>}
+              {time && (
+                <p className="card-text text-warning">
+                  <i className="fas fa-exclamation-circle" />
+                  {` เหลือเวลา ${time} วัน`}
+                </p>
+              )}
             </div>
           </div>
         </Link>
