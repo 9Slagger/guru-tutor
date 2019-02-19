@@ -58,9 +58,12 @@ class WatchCousePage extends Component {
             height="100px"
           />
         </div>
-        <div className="mt-3">
+        <div className="mt-3 mb-2">
           <h6>{course.detail}</h6>
           <span className="badge badge-danger">{course.price + ' บาท'}</span>
+          <button type="button" class="btn btn-primary btn-sm ml-3">
+            ใส่ตะกร้าสินค้า
+          </button>
         </div>
         {this.renderSection(course.section, course.id)}
       </div>
