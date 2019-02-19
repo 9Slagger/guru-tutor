@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { deleteCourse, fetchCourse } from '../../actions'
-
 import Card from '../../components/Card'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'

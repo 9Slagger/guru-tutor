@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CourseFormFirst from './Components/CourseFormFirst'
-import { createCourse, fetchOneCourse, editCourse } from '../../../actions'
+import {
+  createCourse,
+  fetchOneCourse,
+  editCourse,
+  clearCourseOne
+} from '../../../actions'
 import PrivateMainLayout from '../../../components/PrivateMainLayout'
+import _ from 'lodash'
 
 class AddCoursePage extends Component {
   componentDidMount() {
@@ -10,9 +16,17 @@ class AddCoursePage extends Component {
       this.props.fetchOneCourse(this.props.match.params.id)
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (
+      !_.isEmpty(nextProps.courses.dataone) &&
+      this.props.match.path.indexOf('add') > 0
+    ) {
+      this.props.clearCourseOne()
+    }
+  }
+
   saveCourse = values => {
     this.props.createCourse(values)
-    console.log(values)
   }
 
   editCourse = values => {
@@ -46,7 +60,8 @@ const mapStateToProps = ({ courses }) => {
 const mapDispatchToProps = {
   createCourse,
   fetchOneCourse,
-  editCourse
+  editCourse,
+  clearCourseOne
 }
 
 export default connect(

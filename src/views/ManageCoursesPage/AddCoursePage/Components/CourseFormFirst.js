@@ -60,7 +60,7 @@ class CourseFormFirst extends Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="courseform">
         {this.renderFields(CourseFormFields)}
         <button className="btn btn-block btn-info title" type="submit">
           บันทึก
