@@ -13,6 +13,11 @@ class MenuAfterSignin extends Component {
       <React.Fragment>
         <li className="nav-item">
           <NavLink className="nav-link" to="/myclass">
+            <i class="fas fa-shopping-cart" />
+          </NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/myclass">
             คอร์สเรียนของฉัน
           </NavLink>
         </li>
