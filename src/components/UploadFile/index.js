@@ -60,7 +60,11 @@ class SimpleReactFileUpload extends React.Component {
       axios
         .post(url, formData, config)
         .then(() => {
-          this.setState({ error: 'อัพโหลดสำเร็จ' })
+          this.setState({
+            error: 'อัพโหลดสำเร็จ',
+            statusupload: false,
+            loading: 0
+          })
           Swal({
             type: 'success',
             title: 'อัพโหลด Video สำเร็จ'
@@ -79,7 +83,7 @@ class SimpleReactFileUpload extends React.Component {
 
   render() {
     const percent = parseInt(this.state.loading, 10)
-    const { error, statusupload, size } = this.state
+    const { error, statusupload, size, loading } = this.state
     return (
       <form onSubmit={this.onFormSubmit}>
         <h1>File Upload</h1>
@@ -106,7 +110,15 @@ class SimpleReactFileUpload extends React.Component {
             </button>
           </div>
         </div>
-        <div>{error && <p className="text-danger">{error}</p>}</div>
+        <div>
+          {error && statusupload && <p className="text-danger">{error}</p>}
+        </div>
+        <div>
+          {loading === 100 &&
+            statusupload && (
+              <p className="text-danger">กำลังประมวลผลวิดิโอ...</p>
+            )}
+        </div>
         {statusupload ? (
           <div>
             <label>กำลังอัพโหลดไฟล์ขนาด {size} MB</label>
