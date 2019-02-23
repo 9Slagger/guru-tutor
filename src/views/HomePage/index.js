@@ -71,7 +71,11 @@ const mapStateToProps = ({ homecontent }) => {
   return { homecontent }
 }
 
+const mapDispatchToProps = {
+  fetchHomeContent
+}
+
 export default connect(
   mapStateToProps,
-  { fetchHomeContent }
+  mapDispatchToProps
 )(HomePage)

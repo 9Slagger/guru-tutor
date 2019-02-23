@@ -244,8 +244,6 @@ export const clearCourseOne = () => {
 }
 
 export const addCoursetoCart = (userid, data) => {
-  console.log('userid', userid)
-  console.log('data', data)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: ADD_COURSE_TO_CART })
@@ -267,6 +265,34 @@ export const addCoursetoCart = (userid, data) => {
         Swal({
           type: 'error',
           title: 'เพิ่มคอร์สเข้าตะกร้า ล้มเหลว!'
+        })
+      })
+  }
+}
+
+// แก้ type
+export const deleteCourseInCart = (userid, data) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: ADD_COURSE_TO_CART })
+    axios
+      .post(`${api}/restricted/oo?iduser=${userid}`, data, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: ADD_COURSE_TO_CART_SUCESS })
+        dispatch(VerifyAuth())
+        Swal({
+          type: 'success',
+          title: 'ลบคอร์สเข้าตะกร้า สำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: ADD_COURSE_TO_CART_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'ลบคอร์สเข้าตะกร้า ล้มเหลว!'
         })
       })
   }
