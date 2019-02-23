@@ -12,8 +12,8 @@ class MenuAfterSignin extends Component {
     return (
       <React.Fragment>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/myclass">
-            <i class="fas fa-shopping-cart" />
+          <NavLink className="nav-link" to="/cart">
+            <i className="fas fa-shopping-cart" />
           </NavLink>
         </li>
         <li className="nav-item">
