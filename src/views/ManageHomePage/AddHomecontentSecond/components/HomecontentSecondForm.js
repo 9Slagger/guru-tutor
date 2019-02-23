@@ -7,17 +7,53 @@ import { HomecontentSecondFormFields } from '../../components/formFields'
 class AddHomecontentSecond extends Component {
   renderFields(HomecontentSecondFormFields) {
     return HomecontentSecondFormFields.map(
-      ({ label, name, type, required, placeholder }) => (
-        <Field
-          key={name}
-          label={label}
-          name={name}
-          type={type}
-          required={required}
-          placeholder={placeholder}
-          component={FormField}
-        />
-      )
+      ({ label, name, type, required, placeholder, option }) => {
+        if (type !== 'select') {
+          return (
+            <Field
+              key={name}
+              label={label}
+              name={name}
+              type={type}
+              required={required}
+              placeholder={placeholder}
+              component={FormField}
+            />
+          )
+        } else {
+          return (
+            <div className="form-group" key={name}>
+              {required ? (
+                <label className="title">
+                  {label}
+                  <span className="text-danger"> *</span>
+                </label>
+              ) : (
+                <label className="title">{label}</label>
+              )}
+              <div>
+                <Field className="form-control" name={name} component="select">
+                  {option.map(option => {
+                    if (option.hidden) {
+                      return (
+                        <option key={option.value} hidden value={option.value}>
+                          {option.name}
+                        </option>
+                      )
+                    } else {
+                      return (
+                        <option key={option.value} value={option.value}>
+                          {option.name}
+                        </option>
+                      )
+                    }
+                  })}
+                </Field>
+              </div>
+            </div>
+          )
+        }
+      }
     )
   }
 

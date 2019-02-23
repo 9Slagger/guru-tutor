@@ -19,8 +19,6 @@ export default ({
           type="hidden"
           placeholder={placeholder}
         />
-        {error &&
-          touched && <div className="mt-2 text-danger title">{error}</div>}
       </div>
     )
   } else {

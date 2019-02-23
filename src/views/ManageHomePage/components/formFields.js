@@ -42,6 +42,11 @@ export const HomecontentSecondFormFields = [
     name: 'Icon',
     type: 'select',
     required: true,
-    placeholder: 'ไอคอน'
+    option: [
+      { value: '-', name: 'ไอคอน', hidden: true },
+      { value: 'fas fa-tv fa-8x mb-5', name: 'มอนิเตอร์' },
+      { value: 'fas fa-graduation-cap fa-8x mb-5', name: 'บัณฑิต' },
+      { value: 'fas fa-comments fa-8x mb-5', name: 'แชทสนทนา' }
+    ]
   }
 ]
