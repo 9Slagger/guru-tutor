@@ -4,41 +4,20 @@ import MainLayout from '../../components/MainLayout'
 import _ from 'lodash'
 
 class MyOrderPage extends Component {
-  renderOrder(orders, userid) {
+  renderOrder(orders) {
     return (
       orders &&
       orders.map((order, index) => (
-        <div className="col-md-12" key={index}>
-          <div className="card mb-3">
-            <div className="row no-gutters">
-              <div className="col-md-4">
-                <img src={order.img} alt="..." className="img-thumbnail mr-3" />
-              </div>
-              <div className="col-md-4">
-                <div className="card-body">
-                  <h5 className="card-title">{order.name}</h5>
-                  <p className="card-text">
-                    <button
-                      className="btn btn-sm btn-danger"
-                      onClick={() => this.deleteItem(userid, { index: index })}
-                    >
-                      หยิบออกจากตะกร้า
-                    </button>
-                  </p>
-                </div>
-              </div>
-
-              <div className="col-md-4">
-                <div className="card-body">
-                  <h6 className="card-title text-danger text-right">
-                    {'ราคา ' + order.price + ' '}
-                    <i className="fas fa-tag" />
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <tr key={index}>
+          <th scope="row">{index + 1}</th>
+          <td>{order.ID}</td>
+          <td>{order.timestamp}</td>
+          <td>{order.total}</td>
+          <td>{order.status}</td>
+          <td>
+            <button className="btn btn-primary">แจ้งชำระเงิน</button>
+          </td>
+        </tr>
       ))
     )
   }
@@ -55,7 +34,21 @@ class MyOrderPage extends Component {
             <div className="text-left">
               {!_.isEmpty(auth.data) && (
                 <div className="row">
-                  {this.renderOrder(auth.data[0].cart, auth.data[0].ID)}
+                  <div className="col-md-12">
+                    <table className="table table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">หมายเลขออเดอร์</th>
+                          <th scope="col">เวลาสั่งซื้อ</th>
+                          <th scope="col">ยอดรวม(บาท)</th>
+                          <th scope="col">สถานะ</th>
+                          <th scope="col">จัดการออเดอร์</th>
+                        </tr>
+                      </thead>
+                      <tbody>{this.renderOrder(auth.data[0].order)}</tbody>
+                    </table>
+                  </div>
                 </div>
               )}
             </div>
