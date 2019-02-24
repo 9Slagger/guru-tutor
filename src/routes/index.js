@@ -34,6 +34,7 @@ import WatchVideoPage from '../views/WatchVideoPage'
 import TestPage from '../views/TestPage'
 import CartPage from '../views/CartPage'
 import MyOrderPage from '../views/MyOrderPage'
+import PaymentPage from '../views/PaymentPage'
 
 const Routing = () => (
   <Switch>
@@ -124,6 +125,7 @@ const Routing = () => (
     <Route exact path="/watch/mycourse/:id" component={WatchCousePage} />
     <Route exact path="/watch/video/:id" component={WatchVideoPage} />
     <Route exact path="/upload" component={UploadFile} />
+    <Route exact path="/payment/:id" component={PaymentPage} />
     <Route component={NotFoundPage} />
   </Switch>
 )

@@ -19,7 +19,7 @@ class MyOrderPage extends Component {
             <Link to="#" className="btn btn-primary mr-2">
               ดูรายละเอียด
             </Link>
-            <Link to="#" className="btn btn-warning">
+            <Link to={`/payment/${order.ID}`} className="btn btn-warning">
               แจ้งชำระเงิน
             </Link>
           </td>
