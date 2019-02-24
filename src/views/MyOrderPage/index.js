@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import MainLayout from '../../components/MainLayout'
+import { Link } from 'react-router-dom'
 import _ from 'lodash'
 
 class MyOrderPage extends Component {
@@ -15,7 +16,12 @@ class MyOrderPage extends Component {
           <td>{order.total}</td>
           <td>{order.status}</td>
           <td>
-            <button className="btn btn-primary">แจ้งชำระเงิน</button>
+            <Link to="#" className="btn btn-primary mr-2">
+              ดูรายละเอียด
+            </Link>
+            <Link to="#" className="btn btn-warning">
+              แจ้งชำระเงิน
+            </Link>
           </td>
         </tr>
       ))
@@ -28,7 +34,7 @@ class MyOrderPage extends Component {
       <MainLayout>
         <div className="container mt-3 mb-3">
           <div>
-            <div className="">
+            <div className="text-center">
               <h1>ออเดอร์</h1>
             </div>
             <div className="text-left">

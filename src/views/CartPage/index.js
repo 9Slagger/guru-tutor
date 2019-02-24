@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
-import { deleteCourseInCart } from '../../actions'
+import { deleteCourseInCart, createOrder } from '../../actions'
+import Swal from 'sweetalert2'
 import _ from 'lodash'
 
 class CartPage extends Component {
@@ -9,7 +10,18 @@ class CartPage extends Component {
     this.props.deleteCourseInCart(userid, data)
   }
 
-  renderOrder(orders, userid) {
+  confirmOrder(userid, cart) {
+    if (!_.isEmpty(cart)) {
+      this.props.createOrder(userid)
+    } else {
+      Swal({
+        type: 'success',
+        title: 'กรุณาหยิบคอร์สใส่ตะกร้า !'
+      })
+    }
+  }
+
+  renderCart(orders, userid) {
     return (
       orders &&
       orders.map((order, index) => (
@@ -65,13 +77,18 @@ class CartPage extends Component {
             <div className="text-left">
               {!_.isEmpty(auth.data) && (
                 <div className="row">
-                  {this.renderOrder(auth.data[0].cart, auth.data[0].ID)}
+                  {this.renderCart(auth.data[0].cart, auth.data[0].ID)}
                   <div className="col-md-4">
                     <div className="card-body">
                       <h6>ยอดสุทธิ:</h6>
                       <h2>{`${totalprice} บาท`}</h2>
-                      <button className="btn btn-lg btn-danger">
-                        ชำระเงิน
+                      <button
+                        className="btn btn-lg btn-danger"
+                        onClick={() =>
+                          this.confirmOrder(auth.data[0].ID, auth.data[0].cart)
+                        }
+                      >
+                        สั่งซื้อ
                       </button>
                     </div>
                   </div>
@@ -90,7 +107,8 @@ const mapStateToProps = ({ auth }) => {
 }
 
 const mapDispatchToProps = {
-  deleteCourseInCart
+  deleteCourseInCart,
+  createOrder
 }
 
 export default connect(
