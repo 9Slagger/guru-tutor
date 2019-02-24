@@ -3,6 +3,7 @@ import Content from './components/Content'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
 import { fetchHomeContent } from '../../actions'
+import Progress from '../../components/Progress'
 
 class HomePage extends Component {
   componentDidMount() {
@@ -29,41 +30,46 @@ class HomePage extends Component {
   }
 
   render() {
-    return (
-      <MainLayout>
-        <div
-          id="carouselExampleIndicators"
-          className="carousel slide"
-          data-ride="carousel"
-        >
-          <div className="carousel-inner">
-            {this.props.homecontent.data.homecontentfirst &&
-              this.renderHomeContentFirst(
-                this.props.homecontent.data.homecontentfirst
-              )}
+    const { homecontent } = this.props
+    if (homecontent.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div
+            id="carouselExampleIndicators"
+            className="carousel slide"
+            data-ride="carousel"
+          >
+            <div className="carousel-inner">
+              {this.props.homecontent.data.homecontentfirst &&
+                this.renderHomeContentFirst(
+                  this.props.homecontent.data.homecontentfirst
+                )}
+            </div>
+            <a
+              className="carousel-control-prev"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span className="carousel-control-prev-icon" aria-hidden="true" />
+              <span className="sr-only">Previous</span>
+            </a>
+            <a
+              className="carousel-control-next"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span className="carousel-control-next-icon" aria-hidden="true" />
+              <span className="sr-only">Next</span>
+            </a>
           </div>
-          <a
-            className="carousel-control-prev"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="prev"
-          >
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="sr-only">Previous</span>
-          </a>
-          <a
-            className="carousel-control-next"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="next"
-          >
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="sr-only">Next</span>
-          </a>
-        </div>
-        <Content />
-      </MainLayout>
-    )
+          <Content />
+        </MainLayout>
+      )
+    }
   }
 }
 
