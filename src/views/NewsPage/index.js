@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
 import { fetchNewContent } from '../../actions'
+import Progress from '../../components/Progress'
 
 class NewsPage extends Component {
   componentDidMount() {
@@ -35,14 +36,18 @@ class NewsPage extends Component {
 
   render() {
     const { newcontent } = this.props
-    return (
-      <MainLayout>
-        <div className="mt-5 container">
-          <h1 className="mb-3">ข่าวสาร</h1>
-          {this.props.newcontent.data && this.renderNews(newcontent.data)}
-        </div>
-      </MainLayout>
-    )
+    if (newcontent.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="mt-5 container">
+            <h1 className="mb-3">ข่าวสาร</h1>
+            {this.props.newcontent.data && this.renderNews(newcontent.data)}
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
 
