@@ -44,9 +44,11 @@ export const HomecontentSecondFormFields = [
     required: true,
     option: [
       { value: '-', name: 'ไอคอน', hidden: true },
-      { value: 'fas fa-tv fa-8x mb-5', name: 'มอนิเตอร์' },
-      { value: 'fas fa-graduation-cap fa-8x mb-5', name: 'บัณฑิต' },
-      { value: 'fas fa-comments fa-8x mb-5', name: 'แชทสนทนา' }
+      { value: 'fas fa-tv fa-8x mb-5', name: 'TV' },
+      { value: 'fas fa-graduation-cap fa-8x mb-5', name: 'Graduation Cap' },
+      { value: 'fas fa-comments fa-8x mb-5', name: 'Comments' },
+      { value: 'fas fa-address-card fa-8x mb-5', name: 'Address Card' },
+      { value: 'fas fa-university fa-8x mb-5', name: 'University' }
     ]
   }
 ]
