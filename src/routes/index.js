@@ -33,11 +33,13 @@ import WatchCousePage from '../views/WatchCousePage'
 import WatchVideoPage from '../views/WatchVideoPage'
 import TestPage from '../views/TestPage'
 import CartPage from '../views/CartPage'
+import MyOrderPage from '../views/MyOrderPage'
 
 const Routing = () => (
   <Switch>
     <Route exact path="/" component={HomePage} />
     <Route exact path="/test" component={TestPage} />
+    <Route exact path="/myorder" component={MyOrderPage} />
     <Route exact path="/cart" component={CartPage} />
     <Route exact path="/signin" component={SignPage} />
     <Route exact path="/signup" component={SignupPage} />
@@ -119,6 +121,7 @@ const Routing = () => (
     <Route exact path="/dashboard/course/edit/:id" component={AddCoursePage} />
     <Route exact path="/dashboard/course/:id" component={ManageCoursePage} />
     <Route exact path="/watch/course/:id" component={WatchCousePage} />
+    <Route exact path="/watch/mycourse/:id" component={WatchCousePage} />
     <Route exact path="/watch/video/:id" component={WatchVideoPage} />
     <Route exact path="/upload" component={UploadFile} />
     <Route component={NotFoundPage} />

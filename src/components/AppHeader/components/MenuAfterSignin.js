@@ -37,6 +37,9 @@ class MenuAfterSignin extends Component {
             <NavLink className="dropdown-item" to="/profile">
               โปรไฟล์
             </NavLink>
+            <NavLink className="dropdown-item" to="/myorder">
+              ออเดอร์
+            </NavLink>
             {this.props.auth.data[0].UserType === 'admin' ? (
               <NavLink className="dropdown-item" to="/dashboard">
                 จัดการเว็บไซต์
