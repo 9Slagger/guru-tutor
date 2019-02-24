@@ -23,7 +23,10 @@ import {
   CLEAR_COURSE_ONE,
   ADD_COURSE_TO_CART,
   ADD_COURSE_TO_CART_FAILURE,
-  ADD_COURSE_TO_CART_SUCESS
+  ADD_COURSE_TO_CART_SUCESS,
+  DELETE_COURSE_TO_CART,
+  DELETE_COURSE_TO_CART_FAILURE,
+  DELETE_COURSE_TO_CART_SUCESS
 } from './type'
 
 import { usersFetch } from './UserActions'
@@ -274,13 +277,13 @@ export const addCoursetoCart = (userid, data) => {
 export const deleteCourseInCart = (userid, data) => {
   return async dispatch => {
     const token = await localStorage.getItem('token')
-    dispatch({ type: ADD_COURSE_TO_CART })
+    dispatch({ type: DELETE_COURSE_TO_CART })
     axios
       .post(`${api}/restricted/oo?iduser=${userid}`, data, {
         headers: { Authorization: token }
       })
       .then(() => {
-        dispatch({ type: ADD_COURSE_TO_CART_SUCESS })
+        dispatch({ type: DELETE_COURSE_TO_CART_SUCESS })
         dispatch(VerifyAuth())
         Swal({
           type: 'success',
@@ -288,7 +291,7 @@ export const deleteCourseInCart = (userid, data) => {
         })
       })
       .catch(error => {
-        dispatch({ type: ADD_COURSE_TO_CART_FAILURE })
+        dispatch({ type: DELETE_COURSE_TO_CART_FAILURE })
         console.log(error)
         Swal({
           type: 'error',
