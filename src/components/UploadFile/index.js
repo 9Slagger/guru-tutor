@@ -32,7 +32,7 @@ class SimpleReactFileUpload extends React.Component {
     const token = await localStorage.getItem('token')
     if (!file) {
       this.setState({ error: 'กรุณาเลือกไฟล์ที่ต้องการอัพโหลด' })
-    } else if (file.size / 1024 / 1014 > 3000) {
+    } else if (file.size / 1024 / 1014 > 300) {
       Swal({
         type: 'warning',
         title: 'ไฟล์ขนาดใหญ่เกิน 300 MB'
