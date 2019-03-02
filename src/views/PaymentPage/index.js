@@ -123,33 +123,40 @@ class PaymentPage extends Component {
                     </h4>
                   </div>
                 ) : (
-                  <form onSubmit={this.onFormSubmit}>
-                    <h2>อัพโหลดหลักฐานการโอน</h2>
-                    <div className="input-group">
-                      <div className="custom-file">
-                        <label />
-                        <input
-                          type="file"
-                          className="custom-file-input"
-                          id="inputGroupFile04"
-                          aria-describedby="inputGroupFileAddon04"
-                          onChange={this.onChange}
-                        />
-                        <label className="custom-file-label">
-                          เลือกรูปที่ต้องการอัพโหลด
-                        </label>
+                  <div>
+                    <form onSubmit={this.onFormSubmit}>
+                      <h2>อัพโหลดหลักฐานการโอน</h2>
+                      <div className="input-group">
+                        <div className="custom-file">
+                          <label />
+                          <input
+                            type="file"
+                            className="custom-file-input"
+                            id="inputGroupFile04"
+                            aria-describedby="inputGroupFileAddon04"
+                            onChange={this.onChange}
+                          />
+                          <label className="custom-file-label">
+                            เลือกรูปที่ต้องการอัพโหลด
+                          </label>
+                        </div>
+                        <div className="input-group-append">
+                          <button
+                            className="btn btn-outline-primary"
+                            type="submit"
+                            id="inputGroupFileAddon04"
+                          >
+                            Upload
+                          </button>
+                        </div>
                       </div>
-                      <div className="input-group-append">
-                        <button
-                          className="btn btn-outline-primary"
-                          type="submit"
-                          id="inputGroupFileAddon04"
-                        >
-                          Upload
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+                    </form>
+                    <h4>ตัวอย่างสลิปโอนเงิน</h4>
+                    <img
+                      alt=""
+                      src="https://f.ptcdn.info/821/052/000/ou20kw2efXvlUQ24J4f-o.jpg"
+                    />
+                  </div>
                 )}
               </div>
             </div>
