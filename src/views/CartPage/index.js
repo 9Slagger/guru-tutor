@@ -70,32 +70,56 @@ class CartPage extends Component {
     return (
       <MainLayout>
         <div className="container mt-3 mb-3">
-          <div>
-            <div className="">
+          {!_.isEmpty(auth.data) && _.isEmpty(auth.data[0].cart) ? (
+            <div>
               <h1>ตะกร้าสินค้า</h1>
+              <div
+                className="alert alert-warning alert-dismissible fade show"
+                role="alert"
+              >
+                <strong>ไม่มีสินค้าตะกร้า!</strong>
+                {` กรุณาหยิบคอร์สใส่ตะกร้า`}
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="alert"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
             </div>
-            <div className="text-left">
-              {!_.isEmpty(auth.data) && (
-                <div className="row">
-                  {this.renderCart(auth.data[0].cart, auth.data[0].ID)}
-                  <div className="col-md-4">
-                    <div className="card-body">
-                      <h6>ยอดสุทธิ:</h6>
-                      <h2>{`${totalprice} บาท`}</h2>
-                      <button
-                        className="btn btn-lg btn-danger"
-                        onClick={() =>
-                          this.confirmOrder(auth.data[0].ID, auth.data[0].cart)
-                        }
-                      >
-                        สั่งซื้อ
-                      </button>
+          ) : (
+            <div>
+              <div className="">
+                <h1>ตะกร้าสินค้า</h1>
+              </div>
+              <div className="text-left">
+                {!_.isEmpty(auth.data) && (
+                  <div className="row">
+                    {this.renderCart(auth.data[0].cart, auth.data[0].ID)}
+                    <div className="col-md-4">
+                      <div className="card-body">
+                        <h6>ยอดสุทธิ:</h6>
+                        <h2>{`${totalprice} บาท`}</h2>
+                        <button
+                          className="btn btn-lg btn-danger"
+                          onClick={() =>
+                            this.confirmOrder(
+                              auth.data[0].ID,
+                              auth.data[0].cart
+                            )
+                          }
+                        >
+                          สั่งซื้อ
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </MainLayout>
     )
