@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
 import { fetchPromotionContent } from '../../actions'
+import Progress from '../../components/Progress'
 
 class PromotionPage extends Component {
   componentDidMount() {
@@ -27,14 +28,19 @@ class PromotionPage extends Component {
 
   render() {
     const { promotioncontent } = this.props
-    return (
-      <MainLayout>
-        <div className="mt-5 px-5 mx-5">
-          <h1 className="mb-3">โปรโมชั่น</h1>
-          {promotioncontent.data && this.renderPromotion(promotioncontent.data)}
-        </div>
-      </MainLayout>
-    )
+    if (promotioncontent.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="mt-5 px-5 mx-5">
+            <h1 className="mb-3">โปรโมชั่น</h1>
+            {promotioncontent.data &&
+              this.renderPromotion(promotioncontent.data)}
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
 
