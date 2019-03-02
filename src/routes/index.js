@@ -35,11 +35,13 @@ import TestPage from '../views/TestPage'
 import CartPage from '../views/CartPage'
 import MyOrderPage from '../views/MyOrderPage'
 import PaymentPage from '../views/PaymentPage'
+import UploadImagePage from '../views/UploadImagePage'
 
 const Routing = () => (
   <Switch>
     <Route exact path="/" component={HomePage} />
     <Route exact path="/test" component={TestPage} />
+    <Route exact path="/upload/image" component={UploadImagePage} />
     <Route exact path="/myorder" component={MyOrderPage} />
     <Route exact path="/cart" component={CartPage} />
     <Route exact path="/signin" component={SignPage} />

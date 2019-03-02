@@ -51,6 +51,13 @@ class MenuAfterSignin extends Component {
             ) : (
               false
             )}
+            {this.props.auth.data[0].UserType === 'admin' ? (
+              <NavLink className="dropdown-item" to="/upload/image">
+                อัพโหลดรูป
+              </NavLink>
+            ) : (
+              false
+            )}
             <div className="dropdown-divider" />
             <button className="dropdown-item" onClick={() => this.signout()}>
               ออกจากระบบ
