@@ -72,10 +72,10 @@ class UploadImagePage extends Component {
           })
         })
         .catch(error => {
-          console.log(error)
+          console.log(error.response)
           Swal({
             type: 'error',
-            title: 'อัพโหลดรูปภาพ !'
+            title: `${error.response.data.message} !`
           })
         })
     }
