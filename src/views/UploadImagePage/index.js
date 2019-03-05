@@ -3,8 +3,11 @@ import MainLayout from '../../components/MainLayout'
 import Swal from 'sweetalert2'
 import { api } from '../../actions/api'
 import axios from 'axios'
+import { fetchImage } from '../../actions'
+import { connect } from 'react-redux'
+import Progress from '../../components/Progress'
 
-export default class UploadImagePage extends Component {
+class UploadImagePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,6 +20,9 @@ export default class UploadImagePage extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
     this.fileUpload = this.fileUpload.bind(this)
+  }
+  componentDidMount() {
+    this.props.fetchImage()
   }
   onFormSubmit(e) {
     e.preventDefault()
@@ -75,43 +81,75 @@ export default class UploadImagePage extends Component {
     }
   }
 
+  renderImage(images) {
+    return images.map((image, index) => (
+      <img
+        style={{ width: '300px' }}
+        alt=""
+        src={`${api}${image.img}`}
+        key={index}
+      />
+    ))
+  }
+
   render() {
-    return (
-      <MainLayout>
-        <div className="container mt-3 text-center">
-          <div className="col-md-12">
-            <div>
-              <form onSubmit={this.onFormSubmit}>
-                <h2>อัพโหลดรูปภาพไว้ใช้ภายในเว็บไซต์</h2>
-                <div className="input-group">
-                  <div className="custom-file">
-                    <label />
-                    <input
-                      type="file"
-                      className="custom-file-input"
-                      id="inputGroupFile04"
-                      aria-describedby="inputGroupFileAddon04"
-                      onChange={this.onChange}
-                    />
-                    <label className="custom-file-label">
-                      เลือกรูปที่ต้องการอัพโหลด
-                    </label>
+    const { image } = this.props
+    if (image.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="container mt-3 text-center">
+            <div className="col-md-12">
+              <div>
+                <form onSubmit={this.onFormSubmit}>
+                  <h2>อัพโหลดรูปภาพไว้ใช้ภายในเว็บไซต์</h2>
+                  <div className="input-group">
+                    <div className="custom-file">
+                      <label />
+                      <input
+                        type="file"
+                        className="custom-file-input"
+                        id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04"
+                        onChange={this.onChange}
+                      />
+                      <label className="custom-file-label">
+                        เลือกรูปที่ต้องการอัพโหลด
+                      </label>
+                    </div>
+                    <div className="input-group-append">
+                      <button
+                        className="btn btn-outline-primary"
+                        type="submit"
+                        id="inputGroupFileAddon04"
+                      >
+                        Upload
+                      </button>
+                    </div>
                   </div>
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-outline-primary"
-                      type="submit"
-                      id="inputGroupFileAddon04"
-                    >
-                      Upload
-                    </button>
-                  </div>
-                </div>
-              </form>
+                </form>
+              </div>
+            </div>
+            <div className="col-md-12 mt-3">
+              {image.data && this.renderImage(image.data)}
             </div>
           </div>
-        </div>
-      </MainLayout>
-    )
+        </MainLayout>
+      )
+    }
   }
 }
+
+const mapStateToProps = ({ image }) => {
+  return { image }
+}
+
+const mapDispatchToProps = {
+  fetchImage
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UploadImagePage)

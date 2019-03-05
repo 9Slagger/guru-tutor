@@ -10,6 +10,7 @@ import CourseReducer from './CourseReducer'
 import SectionReducer from './SectionReducer'
 import LectureReducer from './LectureReducer'
 import OrderReducer from './OrderReducer'
+import ImageReducer from './ImageReducer'
 
 export default history =>
   combineReducers({
@@ -22,6 +23,7 @@ export default history =>
     sections: SectionReducer,
     lectures: LectureReducer,
     order: OrderReducer,
+    image: ImageReducer,
     form: reduxForm,
     router: connectRouter(history)
   })
