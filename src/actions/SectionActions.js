@@ -107,7 +107,7 @@ export const deleteSection = (idsec, idcourse, id) => {
       })
       .catch(error => {
         dispatch({ type: DELETE_SECTION_FAILURE })
-        console.log(error)
+        console.log(error.response)
         Swal({
           type: 'error',
           title: 'ลบSectionล้มเหลว!'

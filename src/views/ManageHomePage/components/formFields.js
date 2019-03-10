@@ -42,6 +42,13 @@ export const HomecontentSecondFormFields = [
     name: 'Icon',
     type: 'select',
     required: true,
-    placeholder: 'ไอคอน'
+    option: [
+      { value: '-', name: 'ไอคอน', hidden: true },
+      { value: 'fas fa-tv fa-8x mb-5', name: 'TV' },
+      { value: 'fas fa-graduation-cap fa-8x mb-5', name: 'Graduation Cap' },
+      { value: 'fas fa-comments fa-8x mb-5', name: 'Comments' },
+      { value: 'fas fa-address-card fa-8x mb-5', name: 'Address Card' },
+      { value: 'fas fa-university fa-8x mb-5', name: 'University' }
+    ]
   }
 ]

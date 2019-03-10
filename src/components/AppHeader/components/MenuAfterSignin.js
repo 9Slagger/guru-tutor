@@ -12,8 +12,8 @@ class MenuAfterSignin extends Component {
     return (
       <React.Fragment>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/myclass">
-            <i class="fas fa-shopping-cart" />
+          <NavLink className="nav-link" to="/cart">
+            <i className="fas fa-shopping-cart" />
           </NavLink>
         </li>
         <li className="nav-item">
@@ -37,6 +37,9 @@ class MenuAfterSignin extends Component {
             <NavLink className="dropdown-item" to="/profile">
               โปรไฟล์
             </NavLink>
+            <NavLink className="dropdown-item" to="/myorder">
+              ออเดอร์
+            </NavLink>
             {this.props.auth.data[0].UserType === 'admin' ? (
               <NavLink className="dropdown-item" to="/dashboard">
                 จัดการเว็บไซต์
@@ -44,6 +47,13 @@ class MenuAfterSignin extends Component {
             ) : this.props.auth.data[0].UserType === 'tutor' ? (
               <NavLink className="dropdown-item" to="/dashboard">
                 จัดการเว็บไซต์
+              </NavLink>
+            ) : (
+              false
+            )}
+            {this.props.auth.data[0].UserType === 'admin' ? (
+              <NavLink className="dropdown-item" to="/upload/image">
+                อัพโหลดรูป
               </NavLink>
             ) : (
               false

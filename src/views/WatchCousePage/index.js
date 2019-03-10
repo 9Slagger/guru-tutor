@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { fetchOneCoursePublish, addCoursetoCart } from '../../actions'
+import {
+  fetchOneCoursePublish,
+  addCoursetoCart,
+  fetchOneMyCourse
+} from '../../actions'
 
 import { Link } from 'react-router-dom'
 import MainLayout from '../../components/MainLayout'
@@ -14,7 +18,11 @@ class WatchCousePage extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchOneCoursePublish(this.props.match.params.id)
+    if (this.props.location.pathname.indexOf('mycourse') > 0) {
+      this.props.fetchOneMyCourse(this.props.match.params.id)
+    } else {
+      this.props.fetchOneCoursePublish(this.props.match.params.id)
+    }
   }
 
   handleChange(id, checked) {
@@ -32,9 +40,11 @@ class WatchCousePage extends Component {
           <Link
             className="btn btn-primary"
             to={
-              course && course.type === 'university'
-                ? '/roomuniversity'
-                : '/roomhighschool'
+              this.props.location.pathname.indexOf('/mycourse') > 0
+                ? '/myclass'
+                : course && course.type === 'university'
+                  ? '/roomuniversity'
+                  : '/roomhighschool'
             }
           >
             กลับ
@@ -54,20 +64,24 @@ class WatchCousePage extends Component {
         <div className="mt-3 mb-2">
           <h6>{course.detail}</h6>
           <span className="badge badge-danger">{course.price + ' บาท'}</span>
-          <button
-            type="button"
-            className="btn btn-primary btn-sm ml-3"
-            onClick={() =>
-              this.addCoursetoCart(this.props.auth.data[0].ID, {
-                courseid: course.id,
-                name: course.name,
-                price: parseInt(course.price, 10),
-                img: course.thumbnail
-              })
-            }
-          >
-            ใส่ตะกร้าสินค้า
-          </button>
+          {this.props.location.pathname.indexOf('mycourse') > 0 ? (
+            false
+          ) : (
+            <button
+              type="button"
+              className="btn btn-primary btn-sm ml-3"
+              onClick={() =>
+                this.addCoursetoCart(this.props.auth.data[0].ID, {
+                  courseid: course.id,
+                  name: course.name,
+                  price: parseInt(course.price, 10),
+                  img: course.thumbnail
+                })
+              }
+            >
+              ใส่ตะกร้าสินค้า
+            </button>
+          )}
         </div>
         {this.renderSection(course.section, course.id)}
       </div>
@@ -143,7 +157,8 @@ const mapStateToProps = ({ courses, sections, auth }) => {
 
 const mapDispatchToProps = {
   fetchOneCoursePublish,
-  addCoursetoCart
+  addCoursetoCart,
+  fetchOneMyCourse
 }
 
 export default connect(

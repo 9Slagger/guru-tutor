@@ -23,7 +23,10 @@ import {
   CLEAR_COURSE_ONE,
   ADD_COURSE_TO_CART,
   ADD_COURSE_TO_CART_FAILURE,
-  ADD_COURSE_TO_CART_SUCESS
+  ADD_COURSE_TO_CART_SUCESS,
+  DELETE_COURSE_TO_CART,
+  DELETE_COURSE_TO_CART_FAILURE,
+  DELETE_COURSE_TO_CART_SUCESS
 } from './type'
 
 import { usersFetch } from './UserActions'
@@ -244,8 +247,6 @@ export const clearCourseOne = () => {
 }
 
 export const addCoursetoCart = (userid, data) => {
-  console.log('userid', userid)
-  console.log('data', data)
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: ADD_COURSE_TO_CART })
@@ -267,6 +268,55 @@ export const addCoursetoCart = (userid, data) => {
         Swal({
           type: 'error',
           title: 'เพิ่มคอร์สเข้าตะกร้า ล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const deleteCourseInCart = (userid, data) => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: DELETE_COURSE_TO_CART })
+    axios
+      .post(`${api}/restricted/oo?iduser=${userid}`, data, {
+        headers: { Authorization: token }
+      })
+      .then(() => {
+        dispatch({ type: DELETE_COURSE_TO_CART_SUCESS })
+        dispatch(VerifyAuth())
+        Swal({
+          type: 'success',
+          title: 'ลบคอร์สเข้าตะกร้า สำเร็จ!'
+        })
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_COURSE_TO_CART_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'ลบคอร์สเข้าตะกร้า ล้มเหลว!'
+        })
+      })
+  }
+}
+
+export const fetchOneMyCourse = id => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: FETCH_ONE_COURSE })
+    axios
+      .get(`${api}/restricted/mycourse?id=${id}`, {
+        headers: { Authorization: token }
+      })
+      .then(res => {
+        dispatch({ type: FETCH_ONE_COURSE_SUCESS, payload: res.data })
+      })
+      .catch(error => {
+        dispatch({ type: FETCH_ONE_COURSE_FAILURE })
+        console.log(error)
+        Swal({
+          type: 'error',
+          title: 'ดึงข้อมูลคอร์สนี้ ล้มเหลว!'
         })
       })
   }

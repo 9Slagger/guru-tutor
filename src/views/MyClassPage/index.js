@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
 import Card from '../../components/Card'
 import { connect } from 'react-redux'
-import { fetchCourse, VerifyAuth } from '../../actions'
+import { fetchCourse, VerifyAuth, fetchOneMyCourse } from '../../actions'
 
 class MyClassPage extends Component {
   componentDidMount() {
@@ -22,7 +22,7 @@ class MyClassPage extends Component {
             btn=""
             btnlink=""
             btn1=""
-            btnlink1={`/watch/course/${course.course.id}`}
+            btnlink1={`/watch/mycourse/${course.id}`}
             btn2=""
             mes2={course.course.name}
             management={false}
@@ -58,7 +58,8 @@ const mapStateToProps = ({ courses, auth }) => {
 
 const mapDispatchToProps = {
   fetchCourse,
-  VerifyAuth
+  VerifyAuth,
+  fetchOneMyCourse
 }
 
 export default connect(
