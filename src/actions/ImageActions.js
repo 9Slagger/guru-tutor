@@ -18,7 +18,7 @@ export const fetchImage = () => {
       })
       .catch(error => {
         dispatch({ type: FETCH_IMAGE_FAILURE })
-        console.log(error)
+        console.log(error.response)
       })
   }
 }

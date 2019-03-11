@@ -70,6 +70,7 @@ class UploadImagePage extends Component {
             type: 'success',
             title: 'อัพโหลดรูปภาพ สำเร็จ'
           })
+          this.props.fetchImage()
         })
         .catch(error => {
           console.log(error.response)
@@ -83,12 +84,15 @@ class UploadImagePage extends Component {
 
   renderImage(images) {
     return images.map((image, index) => (
-      <img
-        style={{ width: '300px' }}
-        alt=""
-        src={`${api}${image.img}`}
-        key={index}
-      />
+      <div className="card" style={{ width: '18rem' }} key={index}>
+        <img src={`${api}${image.img}`} className="card-img-top" alt="" />
+        <div className="card-body">
+          <p className="card-text">{image.name}</p>
+          <button href="#" className="btn btn-primary">
+            Delete
+          </button>
+        </div>
+      </div>
     ))
   }
 
