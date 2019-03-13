@@ -269,3 +269,9 @@ small {
   color: #000000;
   text-decoration: none;
 }
+
+.max-min-height340 {
+  max-height: 250px;
+  min-height: 250px;
+  overflow-y: scroll;
+}

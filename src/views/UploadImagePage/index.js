@@ -11,6 +11,7 @@ class UploadImagePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      image: [],
       loading: 0,
       file: null,
       error: '',
@@ -23,6 +24,17 @@ class UploadImagePage extends Component {
   }
   componentDidMount() {
     this.props.fetchImage()
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.image !== nextProps.image) {
+      let tempImage = nextProps.image
+      let tempDataImage = nextProps.image.data.map(img => {
+        img.status = false
+        return img
+      })
+      tempImage.data = tempDataImage
+      this.setState({ image: tempImage })
+    }
   }
   onFormSubmit(e) {
     e.preventDefault()
@@ -82,22 +94,50 @@ class UploadImagePage extends Component {
     }
   }
 
+  EditStateImage(image) {
+    image.status = true
+    this.setState(prevState => ({
+      image: {
+        ...prevState.image,
+        status: !prevState.status
+      }
+    }))
+  }
+
   renderImage(images) {
     return images.map((image, index) => (
-      <div className="card" style={{ width: '18rem' }} key={index}>
-        <img src={`${api}${image.img}`} className="card-img-top" alt="" />
-        <div className="card-body">
-          <p className="card-text">{image.name}</p>
-          <button href="#" className="btn btn-primary">
-            Delete
-          </button>
+      <div
+        className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-3"
+        key={index}
+      >
+        <div className="card" style={{ width: '15rem' }}>
+          <div className="card-header">
+            {!image.status ? (
+              <p
+                className="card-text"
+                onClick={() => this.EditStateImage(image)}
+              >
+                {image.name}
+              </p>
+            ) : (
+              <input value={image.name} />
+            )}
+          </div>
+          <div className="max-min-height340">
+            <img src={`${api}${image.img}`} className="card-img-top" alt="" />
+          </div>
+          <div className="card-body">
+            <button href="#" className="btn btn-primary">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     ))
   }
 
   render() {
-    const { image } = this.props
+    const { image } = this.state
     if (image.isFetching) {
       return <Progress />
     } else {
@@ -135,7 +175,7 @@ class UploadImagePage extends Component {
                 </form>
               </div>
             </div>
-            <div className="col-md-12 mt-3">
+            <div className="row mt-3">
               {image.data && this.renderImage(image.data)}
             </div>
           </div>
