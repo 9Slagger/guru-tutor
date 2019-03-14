@@ -110,6 +110,24 @@ class UploadImagePage extends Component {
     alert('coming soon')
   }
 
+  Delete(id) {
+    axios
+      .delete(`${api}/restricted/img?idimg=${id}`)
+      .then(() => {
+        Swal({
+          type: 'error',
+          title: `ลบรูปภาพสำเร็จ !`
+        })
+      })
+      .catch(error => {
+        Swal({
+          type: 'error',
+          title: `${error.response.data.message &&
+            error.response.data.message} !`
+        })
+      })
+  }
+
   renderImage(images) {
     return images.map((image, index) => (
       <div
@@ -140,7 +158,12 @@ class UploadImagePage extends Component {
                 >
                   Edit
                 </button>
-                <button className="btn btn-danger">Delete</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => this.Delete(image.id)}
+                >
+                  Delete
+                </button>
               </div>
             ) : (
               <div>
