@@ -112,6 +112,15 @@ class PaymentPage extends Component {
                     alt=""
                     src="http://www.greenerald.com/wp-content/uploads/2014/12/bank.png"
                   />
+                  <h3 className="mt-3">พร้อมเพย์</h3>
+                  <img
+                    className="mt-2"
+                    alt=""
+                    src={`https://promptpay.io/0994671777/${
+                      order.dataone.total
+                    }.png`}
+                    style={{ height: '500px', width: '500px' }}
+                  />
                 </div>
               </div>
               <div className="col-md-6">

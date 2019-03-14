@@ -3,11 +3,15 @@ import MainLayout from '../../components/MainLayout'
 import Swal from 'sweetalert2'
 import { api } from '../../actions/api'
 import axios from 'axios'
+import { fetchImage } from '../../actions'
+import { connect } from 'react-redux'
+import Progress from '../../components/Progress'
 
-export default class UploadImagePage extends Component {
+class UploadImagePage extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      image: [],
       loading: 0,
       file: null,
       error: '',
@@ -17,6 +21,20 @@ export default class UploadImagePage extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
     this.fileUpload = this.fileUpload.bind(this)
+  }
+  componentDidMount() {
+    this.props.fetchImage()
+  }
+  componentWillReceiveProps(nextProps) {
+    if (this.props.image !== nextProps.image) {
+      let tempImage = nextProps.image
+      let tempDataImage = nextProps.image.data.map(img => {
+        img.status = false
+        return img
+      })
+      tempImage.data = tempDataImage
+      this.setState({ image: tempImage.data })
+    }
   }
   onFormSubmit(e) {
     e.preventDefault()
@@ -64,54 +82,167 @@ export default class UploadImagePage extends Component {
             type: 'success',
             title: 'อัพโหลดรูปภาพ สำเร็จ'
           })
+          this.props.fetchImage()
         })
         .catch(error => {
-          console.log(error)
+          console.log(error.response)
           Swal({
             type: 'error',
-            title: 'อัพโหลดรูปภาพ !'
+            title: `${error.response.data.message} !`
           })
         })
     }
   }
 
-  render() {
-    return (
-      <MainLayout>
-        <div className="container mt-3 text-center">
-          <div className="col-md-12">
-            <div>
-              <form onSubmit={this.onFormSubmit}>
-                <h2>อัพโหลดรูปภาพไว้ใช้ภายในเว็บไซต์</h2>
-                <div className="input-group">
-                  <div className="custom-file">
-                    <label />
-                    <input
-                      type="file"
-                      className="custom-file-input"
-                      id="inputGroupFile04"
-                      aria-describedby="inputGroupFileAddon04"
-                      onChange={this.onChange}
-                    />
-                    <label className="custom-file-label">
-                      เลือกรูปที่ต้องการอัพโหลด
-                    </label>
-                  </div>
-                  <div className="input-group-append">
-                    <button
-                      className="btn btn-outline-primary"
-                      type="submit"
-                      id="inputGroupFileAddon04"
-                    >
-                      Upload
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
+  EditStateImage(index, images) {
+    let tempImages = images
+    tempImages[index].status = !tempImages[index].status
+    this.setState({ image: tempImages })
+  }
+
+  handleChange(index, images, value) {
+    let tempImages = images
+    tempImages[index].name = value
+    this.setState({ image: tempImages })
+  }
+
+  Save(name) {
+    alert('coming soon')
+  }
+
+  Delete(id) {
+    axios
+      .delete(`${api}/restricted/img?idimg=${id}`)
+      .then(() => {
+        Swal({
+          type: 'error',
+          title: `ลบรูปภาพสำเร็จ !`
+        })
+      })
+      .catch(error => {
+        Swal({
+          type: 'error',
+          title: `${error.response.data.message &&
+            error.response.data.message} !`
+        })
+      })
+  }
+
+  renderImage(images) {
+    return images.map((image, index) => (
+      <div
+        className="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mt-3"
+        key={index}
+      >
+        <div className="card" style={{ width: '15rem' }}>
+          <div className="card-header">
+            {!image.status ? (
+              <p className="card-text">{image.name}</p>
+            ) : (
+              <input
+                type="text"
+                value={image.name}
+                onChange={e => this.handleChange(index, images, e.target.value)}
+              />
+            )}
+          </div>
+          <div className="max-min-height250">
+            <img src={`${api}${image.img}`} className="card-img-top" alt="" />
+          </div>
+          <div className="card-body">
+            {!image.status ? (
+              <div>
+                <button
+                  className="btn btn-warning mr-2"
+                  onClick={() => this.EditStateImage(index, images)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => this.Delete(image.id)}
+                >
+                  Delete
+                </button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  className="btn btn-success mr-2"
+                  onClick={() => this.Save(image.name)}
+                >
+                  Save
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => this.EditStateImage(index, images)}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      </MainLayout>
-    )
+      </div>
+    ))
+  }
+
+  render() {
+    const { image } = this.state
+    if (this.props.image.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="container mt-3 text-center">
+            <div className="col-md-12">
+              <div>
+                <form onSubmit={this.onFormSubmit}>
+                  <h2>อัพโหลดรูปภาพไว้ใช้ภายในเว็บไซต์</h2>
+                  <div className="input-group">
+                    <div className="custom-file">
+                      <label />
+                      <input
+                        type="file"
+                        className="custom-file-input"
+                        id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04"
+                        onChange={this.onChange}
+                      />
+                      <label className="custom-file-label">
+                        เลือกรูปที่ต้องการอัพโหลด
+                      </label>
+                    </div>
+                    <div className="input-group-append">
+                      <button
+                        className="btn btn-outline-primary"
+                        type="submit"
+                        id="inputGroupFileAddon04"
+                      >
+                        Upload
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div className="row mt-3">{image && this.renderImage(image)}</div>
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
+
+const mapStateToProps = ({ image }) => {
+  return { image }
+}
+
+const mapDispatchToProps = {
+  fetchImage
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UploadImagePage)
