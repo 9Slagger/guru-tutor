@@ -33,7 +33,7 @@ class UploadImagePage extends Component {
         return img
       })
       tempImage.data = tempDataImage
-      this.setState({ image: tempImage })
+      this.setState({ image: tempImage.data })
     }
   }
   onFormSubmit(e) {
@@ -94,14 +94,20 @@ class UploadImagePage extends Component {
     }
   }
 
-  EditStateImage(image) {
-    image.status = true
-    this.setState(prevState => ({
-      image: {
-        ...prevState.image,
-        status: !prevState.status
-      }
-    }))
+  EditStateImage(index, images) {
+    let tempImages = images
+    tempImages[index].status = !tempImages[index].status
+    this.setState({ image: tempImages })
+  }
+
+  handleChange(index, images, value) {
+    let tempImages = images
+    tempImages[index].name = value
+    this.setState({ image: tempImages })
+  }
+
+  Save(name) {
+    alert('coming soon')
   }
 
   renderImage(images) {
@@ -113,23 +119,45 @@ class UploadImagePage extends Component {
         <div className="card" style={{ width: '15rem' }}>
           <div className="card-header">
             {!image.status ? (
-              <p
-                className="card-text"
-                onClick={() => this.EditStateImage(image)}
-              >
-                {image.name}
-              </p>
+              <p className="card-text">{image.name}</p>
             ) : (
-              <input value={image.name} />
+              <input
+                type="text"
+                value={image.name}
+                onChange={e => this.handleChange(index, images, e.target.value)}
+              />
             )}
           </div>
-          <div className="max-min-height340">
+          <div className="max-min-height250">
             <img src={`${api}${image.img}`} className="card-img-top" alt="" />
           </div>
           <div className="card-body">
-            <button href="#" className="btn btn-primary">
-              Delete
-            </button>
+            {!image.status ? (
+              <div>
+                <button
+                  className="btn btn-warning mr-2"
+                  onClick={() => this.EditStateImage(index, images)}
+                >
+                  Edit
+                </button>
+                <button className="btn btn-danger">Delete</button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  className="btn btn-success mr-2"
+                  onClick={() => this.Save(image.name)}
+                >
+                  Save
+                </button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => this.EditStateImage(index, images)}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -138,7 +166,7 @@ class UploadImagePage extends Component {
 
   render() {
     const { image } = this.state
-    if (image.isFetching) {
+    if (this.props.image.isFetching) {
       return <Progress />
     } else {
       return (
@@ -175,9 +203,7 @@ class UploadImagePage extends Component {
                 </form>
               </div>
             </div>
-            <div className="row mt-3">
-              {image.data && this.renderImage(image.data)}
-            </div>
+            <div className="row mt-3">{image && this.renderImage(image)}</div>
           </div>
         </MainLayout>
       )

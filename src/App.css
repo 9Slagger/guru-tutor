@@ -270,7 +270,7 @@ small {
   text-decoration: none;
 }
 
-.max-min-height340 {
+.max-min-height250 {
   max-height: 250px;
   min-height: 250px;
   overflow-y: scroll;
