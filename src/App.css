@@ -88,15 +88,20 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 32rem;
   background-color: #777;
   overflow: hidden;
 }
-.carousel-item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 100%;
+
+figure{
+  width: 100%;
+   overflow:hidden; /*hide bounds of image */
+   margin:0;   /*reset margin of figure tag*/
+   max-block-size: 32rem;
+}
+figure img{
+  display:block; /*remove inline-block spaces*/
+  width:100%; /*make image streatch*/
+ 
 }
 
 /* MARKETING CONTENT
@@ -274,4 +279,37 @@ small {
   max-height: 250px;
   min-height: 250px;
   overflow-y: scroll;
+}
+.plyr *:focus {
+  outline: 0;
+}
+.plyr__play-large {
+  cursor: pointer;
+}
+.plyr {
+  border-radius: 6px
+}
+
+/* PLYR COLOR */
+.plyr--audio .plyr__controls button.tab-focus:focus, .plyr--audio .plyr__controls button:hover, .plyr__play-large {
+  background: #ffbb46;
+}
+.plyr__progress--played, .plyr__volume--display {
+  color: #ffbb46;
+}
+
+.plyr input[type=range]::-ms-fill-lower {
+  background: #ffbb46
+}
+.plyr input[type=range]:active::-webkit-slider-thumb {
+  background: #ffbb46;
+}
+.plyr input[type=range]:active::-moz-range-thumb {
+  background: #ffbb46;
+}
+.plyr input[type=range]:active::-ms-thumb {
+  background: #ffbb46;
+}
+.plyr--video .plyr__controls button.tab-focus:focus, .plyr--video .plyr__controls button:hover {
+  background: #ffbb46;
 }

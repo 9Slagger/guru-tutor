@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { fetchHomeContent } from '../../actions'
 import Progress from '../../components/Progress'
 
+// import Plyr from 'react-plyr';
+
 class HomePage extends Component {
   componentDidMount() {
     this.props.fetchHomeContent()
@@ -16,11 +18,9 @@ class HomePage extends Component {
         className={index === 0 ? 'carousel-item active' : 'carousel-item'}
         key={index}
       >
-        <img
-          className="d-block w-100"
-          src={homecontentfirst.Thumbnail}
-          alt={homecontentfirst.Title}
-        />
+        <figure>
+          <img src={homecontentfirst.Thumbnail} alt={homecontentfirst.Title} />
+        </figure>
         <div className="carousel-caption d-none d-md-block">
           <h1>{homecontentfirst.Title}</h1>
           <p>{homecontentfirst.Detail}</p>
@@ -47,6 +47,11 @@ class HomePage extends Component {
                   this.props.homecontent.data.homecontentfirst
                 )}
             </div>
+
+            {/* <Plyr
+      type="youtube" // or "vimeo"
+      videoId="xN9Pv7mPjIo"
+    /> */}
             <a
               className="carousel-control-prev"
               href="#carouselExampleIndicators"
