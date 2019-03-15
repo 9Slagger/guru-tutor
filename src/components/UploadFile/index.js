@@ -24,6 +24,8 @@ class SimpleReactFileUpload extends React.Component {
   onFormSubmit(e) {
     e.preventDefault()
     this.fileUpload(this.state.file)
+    console.log('e', e)
+    console.log('this.state.file', this.state.file)
   }
   onChange(e) {
     this.setState({ file: e.target.files[0] })
@@ -32,10 +34,10 @@ class SimpleReactFileUpload extends React.Component {
     const token = await localStorage.getItem('token')
     if (!file) {
       this.setState({ error: 'กรุณาเลือกไฟล์ที่ต้องการอัพโหลด' })
-    } else if (file.size / 1024 / 1014 > 3000) {
+    } else if (file.size / 1024 / 1014 > 310) {
       Swal({
         type: 'warning',
-        title: 'ไฟล์ขนาดใหญ่เกิน 300 MB'
+        title: 'ไฟล์ขนาดใหญ่เกิน 310 MB'
       })
     } else {
       this.setState({
@@ -83,7 +85,7 @@ class SimpleReactFileUpload extends React.Component {
 
   render() {
     const percent = parseInt(this.state.loading, 10)
-    const { error, statusupload, size, loading } = this.state
+    const { error, statusupload, loading, file } = this.state
     return (
       <form onSubmit={this.onFormSubmit}>
         <h1>File Upload</h1>
@@ -97,7 +99,7 @@ class SimpleReactFileUpload extends React.Component {
               onChange={this.onChange}
             />
             <label className="custom-file-label">
-              เลือกไฟล์ที่ต้องการอัพโหลด
+              {file && file.name ? file.name : 'เลือกไฟล์ที่ต้องการอัพโหลด'}
             </label>
           </div>
           <div className="input-group-append">
@@ -121,7 +123,11 @@ class SimpleReactFileUpload extends React.Component {
         </div>
         {statusupload ? (
           <div>
-            <label>กำลังอัพโหลดไฟล์ขนาด {size} MB</label>
+            <label>
+              กำลังอัพโหลดไฟล์ขนาด{' '}
+              {file && file.size ? (file.size / 1024 / 1024).toFixed(2) : false}{' '}
+              MB
+            </label>
             <Progress
               percent={percent}
               status="error"

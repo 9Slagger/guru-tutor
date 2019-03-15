@@ -50,7 +50,7 @@ export const signinAuth = user => {
       })
       .catch(error => {
         dispatch({ type: LOGIN_AUTH_FAILURE })
-        console.log(error)
+        console.log(error.response)
         alert('Error')
       })
   }
