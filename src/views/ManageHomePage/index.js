@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import Swal from 'sweetalert2'
+import Progress from '../../components/Progress'
 
 class ManageHomePage extends Component {
   componentDidMount() {
@@ -153,137 +154,140 @@ class ManageHomePage extends Component {
   }
 
   render() {
-    return (
-      <PrivateMainLayout>
-        <div className="container-fluid">
-          <div id="content1" className="text-right">
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content1')}
-              disabled
-            >
-              ไปที่สไลด์บาร์
-            </button>
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content2')}
-            >
-              ไปที่คำอธิบาย
-            </button>
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content3')}
-            >
-              ไปที่คอลัมน์
-            </button>
-            <Link
-              className="btn btn-primary"
-              to="/dashboard/managehome/homecontentfirst/add"
-            >
-              เพิ่มสไลด์บาร์
-            </Link>
-            <div
-              id="carouselExampleIndicators"
-              className="carousel slide"
-              data-ride="carousel"
-            >
-              <div className="carousel-inner">
-                {this.props.homecontent.data.homecontentfirst &&
-                  this.renderHomeContentFirst(
-                    this.props.homecontent.data.homecontentfirst
-                  )}
-              </div>
-              <a
-                className="carousel-control-prev"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="prev"
+    const { homecontent } = this.props
+    if (homecontent.isFetching) {
+      return <Progress Private={true} />
+    } else {
+      return (
+        <PrivateMainLayout>
+          <div className="container-fluid">
+            <div id="content1" className="text-right">
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content1')}
+                disabled
               >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                />
-                <span className="sr-only">Previous</span>
-              </a>
-              <a
-                className="carousel-control-next"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="next"
+                ไปที่สไลด์บาร์
+              </button>
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content2')}
               >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                />
-                <span className="sr-only">Next</span>
-              </a>
-            </div>
-          </div>
-          <hr className="featurette-divider" />
-          <div id="content2" className="text-right">
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content1')}
-            >
-              ไปที่สไลด์บาร์
-            </button>
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content2')}
-              disabled
-            >
-              ไปที่คำอธิบาย
-            </button>
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content3')}
-            >
-              ไปที่คอลัมน์
-            </button>
-            <div className="container marketing">
-              <div className="row">
-                {this.props.homecontent.data.homecontentsecond &&
-                  this.renderHomeContentsecond(
-                    this.props.homecontent.data.homecontentsecond
-                  )}
+                ไปที่คำอธิบาย
+              </button>
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content3')}
+              >
+                ไปที่คอลัมน์
+              </button>
+              <Link
+                className="btn btn-primary"
+                to="/dashboard/managehome/homecontentfirst/add"
+              >
+                เพิ่มสไลด์บาร์
+              </Link>
+              <div
+                id="carouselExampleIndicators"
+                className="carousel slide"
+                data-ride="carousel"
+              >
+                <div className="carousel-inner">
+                  {homecontent.data.homecontentfirst &&
+                    this.renderHomeContentFirst(
+                      homecontent.data.homecontentfirst
+                    )}
+                </div>
+                <a
+                  className="carousel-control-prev"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-slide="prev"
+                >
+                  <span
+                    className="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">Previous</span>
+                </a>
+                <a
+                  className="carousel-control-next"
+                  href="#carouselExampleIndicators"
+                  role="button"
+                  data-slide="next"
+                >
+                  <span
+                    className="carousel-control-next-icon"
+                    aria-hidden="true"
+                  />
+                  <span className="sr-only">Next</span>
+                </a>
               </div>
             </div>
+            <hr className="featurette-divider" />
+            <div id="content2" className="text-right">
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content1')}
+              >
+                ไปที่สไลด์บาร์
+              </button>
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content2')}
+                disabled
+              >
+                ไปที่คำอธิบาย
+              </button>
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content3')}
+              >
+                ไปที่คอลัมน์
+              </button>
+              <div className="container marketing">
+                <div className="row">
+                  {homecontent.data.homecontentsecond &&
+                    this.renderHomeContentsecond(
+                      homecontent.data.homecontentsecond
+                    )}
+                </div>
+              </div>
+            </div>
+            <hr className="featurette-divider" />
+            <div id="content3" className="text-right">
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content1')}
+              >
+                ไปที่สไลด์บาร์
+              </button>
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content2')}
+              >
+                ไปที่คำอธิบาย
+              </button>
+              <button
+                className="btn btn-info mr-2"
+                onClick={() => this.scrollToSection('content3')}
+                disabled
+              >
+                ไปที่คอลัมน์
+              </button>
+              <Link
+                className="btn btn-primary"
+                to="/dashboard/managehome/homecontentthird/add"
+              >
+                เพิ่มคอลัมน์
+              </Link>
+              {homecontent.data.homecontentthird &&
+                this.renderHomeContentthird(homecontent.data.homecontentthird)}
+            </div>
           </div>
-          <hr className="featurette-divider" />
-          <div id="content3" className="text-right">
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content1')}
-            >
-              ไปที่สไลด์บาร์
-            </button>
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content2')}
-            >
-              ไปที่คำอธิบาย
-            </button>
-            <button
-              className="btn btn-info mr-2"
-              onClick={() => this.scrollToSection('content3')}
-              disabled
-            >
-              ไปที่คอลัมน์
-            </button>
-            <Link
-              className="btn btn-primary"
-              to="/dashboard/managehome/homecontentthird/add"
-            >
-              เพิ่มคอลัมน์
-            </Link>
-            {this.props.homecontent.data.homecontentthird &&
-              this.renderHomeContentthird(
-                this.props.homecontent.data.homecontentthird
-              )}
-          </div>
-        </div>
-      </PrivateMainLayout>
-    )
+        </PrivateMainLayout>
+      )
+    }
   }
 }
 

@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 import { fetchHomeContent } from '../../actions'
 import Progress from '../../components/Progress'
 
-// import Plyr from 'react-plyr';
-
 class HomePage extends Component {
   componentDidMount() {
     this.props.fetchHomeContent()
@@ -47,11 +45,6 @@ class HomePage extends Component {
                   this.props.homecontent.data.homecontentfirst
                 )}
             </div>
-
-            {/* <Plyr
-      type="youtube" // or "vimeo"
-      videoId="xN9Pv7mPjIo"
-    /> */}
             <a
               className="carousel-control-prev"
               href="#carouselExampleIndicators"
