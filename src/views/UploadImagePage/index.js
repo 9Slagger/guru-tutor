@@ -6,6 +6,7 @@ import axios from 'axios'
 import { fetchImage } from '../../actions'
 import { connect } from 'react-redux'
 import Progress from '../../components/Progress'
+import _ from 'lodash'
 
 class UploadImagePage extends Component {
   constructor(props) {
@@ -26,7 +27,10 @@ class UploadImagePage extends Component {
     this.props.fetchImage()
   }
   componentWillReceiveProps(nextProps) {
-    if (this.props.image !== nextProps.image) {
+    if (
+      this.props.image !== nextProps.image &&
+      !_.isEmpty(nextProps.image.data)
+    ) {
       let tempImage = nextProps.image
       let tempDataImage = nextProps.image.data.map(img => {
         img.status = false
