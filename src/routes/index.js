@@ -36,7 +36,7 @@ import CartPage from '../views/CartPage'
 import MyOrderPage from '../views/MyOrderPage'
 import PaymentPage from '../views/PaymentPage'
 import UploadImagePage from '../views/UploadImagePage'
-import ManageOrderPage from './video/ManageOrderPage'
+import ManageOrderPage from '../views/ManageOrderPage'
 
 const Routing = () => (
   <Switch>

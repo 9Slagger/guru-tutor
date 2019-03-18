@@ -74,6 +74,7 @@ export const fetchOrder = () => {
         headers: { Authorization: token }
       })
       .then(response => {
+        console.warn(response)
         dispatch({
           type: FETCH_ORDER_SUCESS,
           payload: response.data

@@ -12,7 +12,7 @@ import {
   VERIFY_AUTH_SUCESS,
   VERIFY_AUTH_FAILURE
 } from './type'
-
+import Swal from 'sweetalert2'
 import { api } from './api'
 
 // check token
@@ -51,7 +51,12 @@ export const signinAuth = user => {
       .catch(error => {
         dispatch({ type: LOGIN_AUTH_FAILURE })
         console.log(error.response)
-        alert('Error')
+        Swal({
+          type: 'error',
+          title: `${error.response.data &&
+            error.response.data.message &&
+            error.response.data.message}`
+        })
       })
   }
 }
