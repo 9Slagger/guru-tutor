@@ -4,6 +4,7 @@ import { fetchCourse } from '../../actions'
 import Card from '../../components/Card'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
+import Progress from '../../components/Progress'
 
 class AddCoursePage extends Component {
   componentDidMount() {
@@ -50,28 +51,32 @@ class AddCoursePage extends Component {
       courses.data.filter(course => {
         return course.type === 'seniorhighschool'
       })
-    return (
-      <MainLayout>
-        <div className="container mt-5">
-          <h1>ห้องเรียนมัธยมต้น</h1>
-        </div>
+    if (courses.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="container mt-5">
+            <h1>ห้องเรียนมัธยมต้น</h1>
+          </div>
 
-        <div className="card-container row">
-          {Array.isArray(juniorhighschool) &&
-            juniorhighschool &&
-            this.renderCrad(juniorhighschool)}
-        </div>
-        <div className="container mt-5">
-          <h1>ห้องเรียนมัธยมปลาย</h1>
-        </div>
+          <div className="card-container row">
+            {Array.isArray(juniorhighschool) &&
+              juniorhighschool &&
+              this.renderCrad(juniorhighschool)}
+          </div>
+          <div className="container mt-5">
+            <h1>ห้องเรียนมัธยมปลาย</h1>
+          </div>
 
-        <div className="card-container row">
-          {Array.isArray(seniorhighschool) &&
-            seniorhighschool &&
-            this.renderCrad(seniorhighschool)}
-        </div>
-      </MainLayout>
-    )
+          <div className="card-container row">
+            {Array.isArray(seniorhighschool) &&
+              seniorhighschool &&
+              this.renderCrad(seniorhighschool)}
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
 

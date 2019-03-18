@@ -24,8 +24,6 @@ class SimpleReactFileUpload extends React.Component {
   onFormSubmit(e) {
     e.preventDefault()
     this.fileUpload(this.state.file)
-    console.log('e', e)
-    console.log('this.state.file', this.state.file)
   }
   onChange(e) {
     this.setState({ file: e.target.files[0] })
@@ -34,10 +32,10 @@ class SimpleReactFileUpload extends React.Component {
     const token = await localStorage.getItem('token')
     if (!file) {
       this.setState({ error: 'กรุณาเลือกไฟล์ที่ต้องการอัพโหลด' })
-    } else if (file.size / 1024 / 1014 > 310) {
+    } else if (file.size / 1024 / 1024 > 280) {
       Swal({
         type: 'warning',
-        title: 'ไฟล์ขนาดใหญ่เกิน 310 MB'
+        title: 'ไฟล์ขนาดใหญ่เกิน 280 MB'
       })
     } else {
       this.setState({
@@ -63,7 +61,6 @@ class SimpleReactFileUpload extends React.Component {
         .post(url, formData, config)
         .then(() => {
           this.setState({
-            error: 'อัพโหลดสำเร็จ',
             statusupload: false,
             loading: 0
           })

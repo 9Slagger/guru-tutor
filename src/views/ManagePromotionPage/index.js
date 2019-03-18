@@ -4,6 +4,7 @@ import { fetchPromotionContent, deletePromotionContent } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import Swal from 'sweetalert2'
+import Progress from '../../components/Progress'
 
 class ManagePromotionPage extends Component {
   componentDidMount() {
@@ -68,19 +69,27 @@ class ManagePromotionPage extends Component {
 
   render() {
     const { promotioncontent } = this.props
-    return (
-      <PrivateMainLayout>
-        <div id="news" className="text-right">
-          <Link className="btn btn-primary" to="/dashboard/managepromotion/add">
-            เพิ่มโปรโมชัน
-          </Link>
-        </div>
-        <div className="mt-5 px-5 mx-5">
-          <h1 className="mb-3">โปรโมชั่น</h1>
-          {promotioncontent.data && this.renderPromotion(promotioncontent.data)}
-        </div>
-      </PrivateMainLayout>
-    )
+    if (promotioncontent.isFetching) {
+      return <Progress Private={true} />
+    } else {
+      return (
+        <PrivateMainLayout>
+          <div id="news" className="text-right">
+            <Link
+              className="btn btn-primary"
+              to="/dashboard/managepromotion/add"
+            >
+              เพิ่มโปรโมชัน
+            </Link>
+          </div>
+          <div className="mt-5 px-5 mx-5">
+            <h1 className="mb-3">โปรโมชั่น</h1>
+            {promotioncontent.data &&
+              this.renderPromotion(promotioncontent.data)}
+          </div>
+        </PrivateMainLayout>
+      )
+    }
   }
 }
 

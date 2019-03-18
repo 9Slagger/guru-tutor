@@ -6,6 +6,7 @@ import PlayVideo from '../PlayVideoPage'
 import { connect } from 'react-redux'
 import { fetchOneLecture } from '../../actions'
 import { isEmpty } from 'lodash'
+import Progress from '../../components/Progress'
 
 class WatchVideoPage extends Component {
   componentDidMount() {
@@ -13,21 +14,26 @@ class WatchVideoPage extends Component {
   }
 
   render() {
-    return (
-      <MainLayout>
-        <div className="container mt-5">
-          <Link
-            className="btn btn-primary mb-2 ml-3"
-            to={`/watch/course/${this.props.courses.dataone.id}`}
-          >
-            กลับ
-          </Link>
-          {!isEmpty(this.props.lectures.dataone) && (
-            <PlayVideo link={this.props.lectures.dataone.link} />
-          )}
-        </div>
-      </MainLayout>
-    )
+    const { courses, lectures } = this.props
+    if (courses.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="container mt-5">
+            <Link
+              className="btn btn-primary mb-2 ml-3"
+              to={`/watch/course/${courses.dataone.id}`}
+            >
+              กลับ
+            </Link>
+            {!isEmpty(lectures.dataone) && (
+              <PlayVideo link={lectures.dataone.link} />
+            )}
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
 

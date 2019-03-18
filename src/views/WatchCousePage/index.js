@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
 import Swal from 'sweetalert2'
+import Progress from '../../components/Progress'
 
 class WatchCousePage extends Component {
   constructor() {
@@ -139,15 +140,19 @@ class WatchCousePage extends Component {
 
   render() {
     const { courses } = this.props
-    return (
-      <MainLayout>
-        <div className="container mt-5">
-          {!Array.isArray(courses.dataone) &&
-            courses.dataone &&
-            this.renderCourse(courses.dataone)}
-        </div>
-      </MainLayout>
-    )
+    if (courses.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="container mt-5">
+            {!Array.isArray(courses.dataone) &&
+              courses.dataone &&
+              this.renderCourse(courses.dataone)}
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
 

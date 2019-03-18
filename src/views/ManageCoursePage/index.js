@@ -20,6 +20,7 @@ import Switch from 'react-switch'
 import UploadFile from '../../components/UploadFile'
 import VideoFormFields from '../ManageSectionPage/AddSectionPage/Components/VideoFormFields'
 import { connect } from 'react-redux'
+import Progress from '../../components/Progress'
 
 class ManageCoursePage extends Component {
   constructor() {
@@ -454,13 +455,17 @@ class ManageCoursePage extends Component {
 
   render() {
     const { courses } = this.props
-    return (
-      <PrivateMainLayout>
-        {!Array.isArray(courses.dataone) &&
-          courses.dataone &&
-          this.renderCourse(courses.dataone)}
-      </PrivateMainLayout>
-    )
+    if (courses.isFetching) {
+      return <Progress Private={true} />
+    } else {
+      return (
+        <PrivateMainLayout>
+          {!Array.isArray(courses.dataone) &&
+            courses.dataone &&
+            this.renderCourse(courses.dataone)}
+        </PrivateMainLayout>
+      )
+    }
   }
 }
 

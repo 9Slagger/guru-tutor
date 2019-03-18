@@ -4,6 +4,7 @@ import { fetchNewContent, deleteNewContent } from '../../actions'
 import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import Swal from 'sweetalert2'
+import Progress from '../../components/Progress'
 
 class ManageHomePage extends Component {
   componentDidMount() {
@@ -66,19 +67,23 @@ class ManageHomePage extends Component {
 
   render() {
     const { newcontent } = this.props
-    return (
-      <PrivateMainLayout>
-        <div id="news" className="text-right">
-          <Link className="btn btn-primary" to="/dashboard/managenew/add">
-            เพิ่มข่าวสาร
-          </Link>
-        </div>
-        <div className="mt-5 container">
-          <h1 className="mb-3">ข่าวสาร</h1>
-          {newcontent.data && this.renderNews(newcontent.data)}
-        </div>
-      </PrivateMainLayout>
-    )
+    if (newcontent.isFetching) {
+      return <Progress Private={true} />
+    } else {
+      return (
+        <PrivateMainLayout>
+          <div id="news" className="text-right">
+            <Link className="btn btn-primary" to="/dashboard/managenew/add">
+              เพิ่มข่าวสาร
+            </Link>
+          </div>
+          <div className="mt-5 container">
+            <h1 className="mb-3">ข่าวสาร</h1>
+            {newcontent.data && this.renderNews(newcontent.data)}
+          </div>
+        </PrivateMainLayout>
+      )
+    }
   }
 }
 

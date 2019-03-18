@@ -4,6 +4,7 @@ import { fetchCourse } from '../../actions'
 import Card from '../../components/Card'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
+import Progress from '../../components/Progress'
 
 class RoomUniversityPage extends Component {
   componentDidMount() {
@@ -44,19 +45,23 @@ class RoomUniversityPage extends Component {
       courses.data.filter(course => {
         return course.type === 'university'
       })
-    return (
-      <MainLayout>
-        <div className="container mt-5">
-          <h1>ห้องเรียนมหาลัย</h1>
-        </div>
+    if (courses.isFetching) {
+      return <Progress />
+    } else {
+      return (
+        <MainLayout>
+          <div className="container mt-5">
+            <h1>ห้องเรียนมหาลัย</h1>
+          </div>
 
-        <div className="card-container row">
-          {Array.isArray(university) &&
-            university &&
-            this.renderCrad(university)}
-        </div>
-      </MainLayout>
-    )
+          <div className="card-container row">
+            {Array.isArray(university) &&
+              university &&
+              this.renderCrad(university)}
+          </div>
+        </MainLayout>
+      )
+    }
   }
 }
 
