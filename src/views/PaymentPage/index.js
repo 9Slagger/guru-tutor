@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
-import { fetchOneOrder } from '../../actions'
+import { fetchOneOrder, VerifyAuth } from '../../actions'
 import Progress from '../../components/Progress'
 import Swal from 'sweetalert2'
 import { api } from '../../actions/api'
@@ -70,6 +70,7 @@ class PaymentPage extends Component {
             statusupload: false,
             loading: 0
           })
+          this.props.VerifyAuth()
           Swal({
             type: 'success',
             title: 'อัพโหลดหลักฐานการโอนเงิน สำเร็จ'
@@ -183,7 +184,8 @@ const mapStateToProps = ({ order }) => {
 }
 
 const mapDispatchToProps = {
-  fetchOneOrder
+  fetchOneOrder,
+  VerifyAuth
 }
 
 export default connect(

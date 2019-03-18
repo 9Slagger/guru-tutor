@@ -1,27 +1,25 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { SignoutAuth } from '../../../actions'
+import { SignoutAuth, fetchOrder } from '../../../actions'
 
 class MenuAfterSignin extends Component {
+  componentDidMount() {
+    this.props.fetchOrder()
+  }
+
   signout() {
     this.props.SignoutAuth()
   }
 
   render() {
-    console.log(this.props.auth.data[0].cart)
     return (
       <React.Fragment>
         <li className="nav-item">
-          {/* <NavLink className="nav-link" to="/cart">
-            <i className="fas fa-shopping-cart" />
-          </NavLink> */}
-
-          <NavLink className="nav-link mr-3" to="/Cart">
+          <NavLink className="nav-link mr-3" to="/cart">
             <span className="icon">
               <i className="fas fa-shopping-cart" />
             </span>
-
             {this.props.auth.data[0].cart.length > 0 ? (
               <span className="notify-badge-cart">
                 {this.props.auth.data[0].cart.length}
@@ -29,6 +27,23 @@ class MenuAfterSignin extends Component {
             ) : null}
           </NavLink>
         </li>
+        {this.props.auth.data &&
+        this.props.auth.data[0].UserType === 'admin' ? (
+          <li className="nav-item">
+            <NavLink className="nav-link mr-3" to="/manage/order">
+              <span className="icon">
+                <i className="fas fa-bell" />
+              </span>
+              {this.props.order.data.length > 0 ? (
+                <span className="notify-badge-cart">
+                  {this.props.order.data.length}
+                </span>
+              ) : null}
+            </NavLink>
+          </li>
+        ) : (
+          false
+        )}
         <li className="nav-item">
           <NavLink className="nav-link" to="/myclass">
             คอร์สเรียนของฉัน
@@ -82,11 +97,11 @@ class MenuAfterSignin extends Component {
   }
 }
 
-const mapStateToProps = ({ auth }) => {
-  return { auth }
+const mapStateToProps = ({ auth, order }) => {
+  return { auth, order }
 }
 
 export default connect(
   mapStateToProps,
-  { SignoutAuth }
+  { SignoutAuth, fetchOrder }
 )(MenuAfterSignin)

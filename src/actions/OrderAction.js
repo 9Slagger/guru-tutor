@@ -7,9 +7,13 @@ import {
   CREATE_ORDER_FAILURE,
   FETCH_ONE_ORDER,
   FETCH_ONE_ORDER_FAILURE,
-  FETCH_ONE_ORDER_SUCESS
+  FETCH_ONE_ORDER_SUCESS,
+  FETCH_ORDER,
+  FETCH_ORDER_FAILURE,
+  FETCH_ORDER_SUCESS
 } from './type'
 import { api } from './api'
+import { VerifyAuth } from './AuthActions'
 
 export const createOrder = userid => {
   return async dispatch => {
@@ -20,6 +24,7 @@ export const createOrder = userid => {
         headers: { Authorization: token }
       })
       .then(response => {
+        dispatch(VerifyAuth())
         dispatch({
           type: CREATE_ORDER_SUCESS,
           payload: response.data
@@ -55,6 +60,27 @@ export const fetchOneOrder = idorder => {
       })
       .catch(error => {
         dispatch({ type: FETCH_ONE_ORDER_FAILURE })
+        console.log(error)
+      })
+  }
+}
+
+export const fetchOrder = () => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: FETCH_ORDER })
+    axios
+      .get(`${api}/restricted/orders`, {
+        headers: { Authorization: token }
+      })
+      .then(response => {
+        dispatch({
+          type: FETCH_ORDER_SUCESS,
+          payload: response.data
+        })
+      })
+      .catch(error => {
+        dispatch({ type: FETCH_ORDER_FAILURE })
         console.log(error)
       })
   }
