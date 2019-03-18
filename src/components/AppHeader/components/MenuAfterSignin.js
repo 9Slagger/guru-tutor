@@ -9,11 +9,24 @@ class MenuAfterSignin extends Component {
   }
 
   render() {
+    console.log(this.props.auth.data[0].cart)
     return (
       <React.Fragment>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/cart">
+          {/* <NavLink className="nav-link" to="/cart">
             <i className="fas fa-shopping-cart" />
+          </NavLink> */}
+
+          <NavLink className="nav-link mr-3" to="/Cart">
+            <span className="icon">
+              <i className="fas fa-shopping-cart" />
+            </span>
+
+            {this.props.auth.data[0].cart.length > 0 ? (
+              <span className="notify-badge-cart">
+                {this.props.auth.data[0].cart.length}
+              </span>
+            ) : null}
           </NavLink>
         </li>
         <li className="nav-item">

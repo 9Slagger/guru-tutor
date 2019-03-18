@@ -313,3 +313,15 @@ small {
 .plyr--video .plyr__controls button.tab-focus:focus, .plyr--video .plyr__controls button:hover {
   background: #ffbb46;
 }
+
+
+  .notify-badge-cart{
+    position: absolute;
+    top: 6px;
+    background:#D65353;
+    text-align: center;
+    border-radius: 50px 50px 50px 50px;
+    color:white;
+    padding:1px 8px;
+    font-size:15px;
+  }
