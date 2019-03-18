@@ -4,6 +4,16 @@ import { reduxForm, Field } from 'redux-form'
 import FormField from '../../../../components/FormField'
 import { CourseFormFields } from '../../components/formFields'
 
+// const course = value =>
+//   value && /[^a-zA-Z0-9ก-๙ ]/i.test(value)
+//     ? 'ชื่อคอร์สต้องเป็นภาษาอังกฤษ,ไทย,ตัวเลข เท่านั้น'
+//     : undefined
+
+// const detail = value =>
+//   value && /[^a-zA-Z0-9ก-๙ ]/i.test(value)
+//     ? 'รายละเอียดต้องเป็นภาษาอังกฤษ,ไทย,ตัวเลข เท่านั้น'
+//     : undefined
+
 class CourseFormFirst extends Component {
   renderFields(CourseFormFields) {
     return CourseFormFields.map(
@@ -18,6 +28,7 @@ class CourseFormFirst extends Component {
               required={required}
               placeholder={placeholder}
               component={FormField}
+              // validate={course}
             />
           )
         } else {
