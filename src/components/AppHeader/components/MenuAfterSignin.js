@@ -2,10 +2,34 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { SignoutAuth, fetchOrder } from '../../../actions'
+import _ from 'lodash'
 
 class MenuAfterSignin extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      order: {},
+      auth: {},
+      alert: 0
+    }
+  }
+
   componentDidMount() {
     this.props.fetchOrder()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    let alert = 0
+    nextProps.order.data.forEach(order => {
+      if (order.status === 'รอเช็คยอดเงิน') {
+        alert = alert + 1
+      }
+    })
+    this.setState({
+      auth: nextProps.auth,
+      order: nextProps.order,
+      alert: alert
+    })
   }
 
   signout() {
@@ -13,6 +37,7 @@ class MenuAfterSignin extends Component {
   }
 
   render() {
+    const { auth, alert } = this.state
     return (
       <React.Fragment>
         <li className="nav-item">
@@ -20,24 +45,21 @@ class MenuAfterSignin extends Component {
             <span className="icon">
               <i className="fas fa-shopping-cart" />
             </span>
-            {this.props.auth.data[0].cart.length > 0 ? (
+            {!_.isEmpty(auth.data) && auth.data[0].cart.length > 0 ? (
               <span className="notify-badge-cart">
-                {this.props.auth.data[0].cart.length}
+                {auth.data[0].cart.length}
               </span>
             ) : null}
           </NavLink>
         </li>
-        {this.props.auth.data &&
-        this.props.auth.data[0].UserType === 'admin' ? (
+        {!_.isEmpty(auth.data) && auth.data[0].UserType === 'admin' ? (
           <li className="nav-item">
             <NavLink className="nav-link mr-3" to="/manage/order">
               <span className="icon">
                 <i className="fas fa-bell" />
               </span>
-              {this.props.order.data.length > 0 ? (
-                <span className="notify-badge-cart">
-                  {this.props.order.data.length}
-                </span>
+              {alert > 0 ? (
+                <span className="notify-badge-cart">{alert}</span>
               ) : null}
             </NavLink>
           </li>
@@ -59,7 +81,7 @@ class MenuAfterSignin extends Component {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            {this.props.auth.data && this.props.auth.data[0].Email}
+            {!_.isEmpty(auth.data) && auth.data[0].Email}
           </NavLink>
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
             <NavLink className="dropdown-item" to="/profile">
@@ -68,18 +90,18 @@ class MenuAfterSignin extends Component {
             <NavLink className="dropdown-item" to="/myorder">
               ออเดอร์
             </NavLink>
-            {this.props.auth.data[0].UserType === 'admin' ? (
+            {!_.isEmpty(auth.data) && auth.data[0].UserType === 'admin' ? (
               <NavLink className="dropdown-item" to="/dashboard">
                 จัดการเว็บไซต์
               </NavLink>
-            ) : this.props.auth.data[0].UserType === 'tutor' ? (
+            ) : !_.isEmpty(auth.data) && auth.data[0].UserType === 'tutor' ? (
               <NavLink className="dropdown-item" to="/dashboard">
                 จัดการเว็บไซต์
               </NavLink>
             ) : (
               false
             )}
-            {this.props.auth.data[0].UserType === 'admin' ? (
+            {!_.isEmpty(auth.data) && auth.data[0].UserType === 'admin' ? (
               <NavLink className="dropdown-item" to="/upload/image">
                 อัพโหลดรูป
               </NavLink>
