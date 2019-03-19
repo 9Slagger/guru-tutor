@@ -224,9 +224,15 @@ export const addUserBuyCourse = (iduser, idcourse) => {
       .then(() => {
         dispatch({ type: ADD_USER_BUY_COURSE_SUCESS })
         dispatch(usersFetch())
-        Swal({
-          type: 'success',
-          title: 'เพิ่มผู้ใช้เข้าคอร์สสำเร็จ!'
+        Swal.fire({
+          title: 'เพิ่มผู้ใช้เข้าคอร์สสำเร็จ !',
+          type: 'success'
+        }).then(result => {
+          if (result.value) {
+            window.location.reload()
+          } else {
+            window.location.reload()
+          }
         })
       })
       .catch(error => {

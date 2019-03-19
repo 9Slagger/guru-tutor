@@ -140,8 +140,11 @@ class User extends Component {
       result.map((user, index) => {
         if (this.props.courses.dataone.claimuser !== null) {
           var checkby = this.props.courses.dataone.claimuser.filter(claim => {
-            if (claim.iduser === user.item.ID) return true
-            else return false
+            if (claim.iduser === user.item.ID) {
+              return true
+            } else {
+              return false
+            }
           })
         } else {
           checkby = []
