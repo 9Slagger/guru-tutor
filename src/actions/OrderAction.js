@@ -10,7 +10,10 @@ import {
   FETCH_ONE_ORDER_SUCESS,
   FETCH_ORDER,
   FETCH_ORDER_FAILURE,
-  FETCH_ORDER_SUCESS
+  FETCH_ORDER_SUCESS,
+  CONFIRM_ORDER,
+  CONFIRM_ORDER_FAILURE,
+  CONFIRM_ORDER_SUCESS
 } from './type'
 import { api } from './api'
 import { VerifyAuth } from './AuthActions'
@@ -82,6 +85,41 @@ export const fetchOrder = () => {
       .catch(error => {
         dispatch({ type: FETCH_ORDER_FAILURE })
         console.log(error)
+      })
+  }
+}
+
+export const ConfirmOrder = orderid => {
+  return async dispatch => {
+    const token = await localStorage.getItem('token')
+    dispatch({ type: CONFIRM_ORDER })
+    axios
+      .get(`${api}/restricted/ooo?idorder=${orderid}`, {
+        headers: { Authorization: token }
+      })
+      .then(response => {
+        dispatch(VerifyAuth())
+        dispatch({
+          type: CONFIRM_ORDER_SUCESS,
+          payload: response.data
+        })
+        dispatch(push('/myorder'))
+        Swal({
+          type: 'success',
+          title: 'ยืนยันออเดอร์สำเร็จ !',
+          text: `ออเดอร์ ${orderid}`
+        })
+      })
+      .catch(error => {
+        dispatch({
+          type: CONFIRM_ORDER_FAILURE
+        })
+        Swal({
+          type: 'success',
+          title: 'ยืนยันออเดอร์ล้มเหลว !',
+          text: `${error.response.data.message && error.response.data.message}`
+        })
+        console.log(error.response)
       })
   }
 }

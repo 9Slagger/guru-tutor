@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import _ from 'lodash'
-import { fetchOrder } from '../../actions'
+import { fetchOrder, ConfirmOrder } from '../../actions'
 import { api } from '../../actions/api'
+import Swal from 'sweetalert2'
 
 class MyOrderPage extends Component {
   constructor(props) {
@@ -16,6 +17,10 @@ class MyOrderPage extends Component {
     this.props.fetchOrder()
   }
   componentWillReceiveProps(nextProps) {
+    let OrderSortbyDate = nextProps.order.data.sort(function(a, b) {
+      return new Date(b.timestamp) - new Date(a.timestamp)
+    })
+    nextProps.order.data = OrderSortbyDate
     this.setState({ order: nextProps.order })
   }
   makeid() {
@@ -26,7 +31,19 @@ class MyOrderPage extends Component {
     return text
   }
   Confirm(orderid) {
-    alert(orderid)
+    Swal.fire({
+      title: 'Are you sure?',
+      text: `ยืนยันความถูกต้องการโอนเงินของออเดอร์ ${orderid}`,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm !'
+    }).then(result => {
+      if (result.value) {
+        this.props.ConfirmOrder(orderid)
+      }
+    })
   }
   renderModal(order) {
     const makeid = this.makeid()
@@ -44,10 +61,9 @@ class MyOrderPage extends Component {
         ) : (
           <button
             type="button"
-            className="btn btn-primary mr-2"
+            className="btn btn-warning mr-2"
             data-toggle="modal"
             data-target={`.${makeid}`}
-            disabled
           >
             ดูสลิปโอนเงิน
           </button>
@@ -81,12 +97,28 @@ class MyOrderPage extends Component {
                 />
               </div>
               <div className="modal-footer">
+                {order.status === 'คำสั่งซื้อถูกอนุมัติแล้ว' ? (
+                  <button
+                    className="btn btn-success mr-2"
+                    onClick={() => this.Confirm(order.ID)}
+                    disabled
+                  >
+                    ยืนยัน
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-success mr-2"
+                    onClick={() => this.Confirm(order.ID)}
+                  >
+                    ยืนยัน
+                  </button>
+                )}
                 <button
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
                 >
-                  ยกเลิก
+                  ปิด
                 </button>
               </div>
             </div>
@@ -105,15 +137,7 @@ class MyOrderPage extends Component {
           <td>{order.timestamp}</td>
           <td>{order.total}</td>
           <td>{order.status}</td>
-          <td>
-            {this.renderModal(order)}
-            <button
-              className="btn btn-success mr-2"
-              onClick={() => this.Confirm(order.ID)}
-            >
-              ยืนยัน
-            </button>
-          </td>
+          <td>{this.renderModal(order)}</td>
         </tr>
       ))
     )
@@ -157,7 +181,10 @@ const mapStateToProps = ({ order }) => {
   return { order }
 }
 
-const mapDispatchToProps = { fetchOrder }
+const mapDispatchToProps = {
+  fetchOrder,
+  ConfirmOrder
+}
 
 export default connect(
   mapStateToProps,
