@@ -20,11 +20,12 @@ class MenuAfterSignin extends Component {
 
   componentWillReceiveProps(nextProps) {
     let alert = 0
-    nextProps.order.data.forEach(order => {
-      if (order.status === 'รอเช็คยอดเงิน') {
-        alert = alert + 1
-      }
-    })
+    nextProps.order.data &&
+      nextProps.order.data.forEach(order => {
+        if (order.status === 'รอเช็คยอดเงิน') {
+          alert = alert + 1
+        }
+      })
     this.setState({
       auth: nextProps.auth,
       order: nextProps.order,
