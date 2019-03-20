@@ -84,7 +84,7 @@ class WatchCousePage extends Component {
             </button>
           )}
         </div>
-        {this.renderSection(course.section, course.id)}
+        {course.section && this.renderSection(course.section, course.id)}
       </div>
     )
   }
@@ -98,7 +98,8 @@ class WatchCousePage extends Component {
           <div className="text-right mt-2 mr-1" />
           <div className="card-body">
             <div className="card">
-              {this.renderLecture(section.lectures, section.id)}
+              {section.lectures &&
+                this.renderLecture(section.lectures, section.id)}
             </div>
           </div>
         </div>

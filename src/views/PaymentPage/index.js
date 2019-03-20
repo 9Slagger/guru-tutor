@@ -77,7 +77,7 @@ class PaymentPage extends Component {
           })
         })
         .catch(error => {
-          console.log(error)
+          console.warn(error.response)
           Swal({
             type: 'error',
             title: 'อัพโหลดหลักฐานการโอนเงิน !'
