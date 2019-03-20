@@ -67,6 +67,12 @@ class SimpleReactFileUpload extends React.Component {
           Swal({
             type: 'success',
             title: 'อัพโหลด Video สำเร็จ'
+          }).then(result => {
+            if (result.value) {
+              window.location.reload()
+            } else {
+              window.location.reload()
+            }
           })
           this.props.fetchOneCourse(this.props.idcourse)
         })

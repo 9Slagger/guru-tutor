@@ -49,6 +49,12 @@ export const editLecture = (idlec, data, id) => {
         Swal({
           type: 'success',
           title: 'แก้ไขLectureสำเร็จ!'
+        }).then(result => {
+          if (result.value) {
+            window.location.reload()
+          } else {
+            window.location.reload()
+          }
         })
       })
       .catch(error => {
@@ -76,6 +82,12 @@ export const createLecture = (idsec, data, id) => {
         Swal({
           type: 'success',
           title: 'เพิ่มLectureสสำเร็จ!'
+        }).then(result => {
+          if (result.value) {
+            window.location.reload()
+          } else {
+            window.location.reload()
+          }
         })
       })
       .catch(error => {

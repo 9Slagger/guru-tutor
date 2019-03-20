@@ -49,6 +49,12 @@ export const editSection = (idsec, data, id) => {
         Swal({
           type: 'success',
           title: 'แก้ไขSectionสำเร็จ!'
+        }).then(result => {
+          if (result.value) {
+            window.location.reload()
+          } else {
+            window.location.reload()
+          }
         })
       })
       .catch(error => {
@@ -76,6 +82,12 @@ export const createSection = (idsec, data, id) => {
         Swal({
           type: 'success',
           title: 'เพิ่มSectionสสำเร็จ!'
+        }).then(result => {
+          if (result.value) {
+            window.location.reload()
+          } else {
+            window.location.reload()
+          }
         })
       })
       .catch(error => {
@@ -102,7 +114,7 @@ export const deleteSection = (idsec, idcourse, id) => {
         dispatch(fetchOneCourse(id))
         Swal({
           type: 'success',
-          title: 'ลบSectionสสำเร็จ!'
+          title: 'ลบSectionสำเร็จ!'
         })
       })
       .catch(error => {
