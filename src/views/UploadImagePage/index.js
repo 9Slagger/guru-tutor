@@ -111,7 +111,10 @@ class UploadImagePage extends Component {
   }
 
   Save(name) {
-    alert('coming soon')
+    Swal({
+      type: 'warning',
+      title: 'coming soon'
+    })
   }
 
   Delete(id) {

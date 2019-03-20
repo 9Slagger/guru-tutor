@@ -15,7 +15,7 @@ class CartPage extends Component {
       this.props.createOrder(userid)
     } else {
       Swal({
-        type: 'success',
+        type: 'warning',
         title: 'กรุณาหยิบคอร์สใส่ตะกร้า !'
       })
     }

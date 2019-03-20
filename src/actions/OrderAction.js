@@ -42,6 +42,10 @@ export const createOrder = userid => {
         dispatch({
           type: CREATE_ORDER_FAILURE
         })
+        Swal({
+          type: 'error',
+          title: 'สั่งซื้อ ล้มเหลว!'
+        })
         console.log(error)
       })
   }
@@ -115,7 +119,7 @@ export const ConfirmOrder = orderid => {
           type: CONFIRM_ORDER_FAILURE
         })
         Swal({
-          type: 'success',
+          type: 'error',
           title: 'ยืนยันออเดอร์ล้มเหลว !',
           text: `${error.response.data.message && error.response.data.message}`
         })

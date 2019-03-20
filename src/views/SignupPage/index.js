@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { userCreate } from '../../actions'
 import MainLayout from '../../components/MainLayout'
+import Swal from 'sweetalert2'
 
 class SignupPage extends Component {
   constructor(props) {
@@ -74,7 +75,10 @@ class SignupPage extends Component {
       }
       this.props.userCreate(user)
     } else {
-      alert('กรุณากรอกข้อมูลให้ครบ')
+      Swal.fire({
+        type: 'warning',
+        title: `กรุณากรอกข้อมูลให้ครบ`
+      })
     }
   }
 

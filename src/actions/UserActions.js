@@ -1,5 +1,6 @@
 import Swal from 'sweetalert2'
 import axios from 'axios'
+
 import {
   USERS_FETCH,
   USERS_FETCH_SUCESS,
@@ -66,12 +67,22 @@ export const userCreate = user => {
       .then(response => {
         if (response.status === 200) {
           dispatch({ type: USERS_CREATE_SUCESS })
-          alert(response.data.Message)
+          Swal.fire({
+            type: 'success',
+            title: `${response.data.Message}`
+          })
         }
       })
-      .catch(() => {
+      .catch(error => {
         dispatch({ type: USERS_CREATE_FAILURE })
-        alert('สมัครสมาชิกล้มเหลว !')
+        Swal.fire({
+          type: 'error',
+          title: `${
+            error.response.data.Message
+              ? error.response.data.Message
+              : 'สมัครสมาชิกล้มเหลว !'
+          }`
+        })
       })
   }
 }
@@ -116,7 +127,14 @@ export const userEditTpye = (id, name, selectType) => {
       })
       .catch(error => {
         dispatch({ type: USER_EDIT_TYPE_FAILURE })
-        alert(`แก้ไขสิทธิ ล้มเหลว`)
+        Swal.fire({
+          type: 'error',
+          title: `${
+            error.response.data.Message
+              ? error.response.data.Message
+              : 'แก้ไขสิทธิ ล้มเหลว'
+          }`
+        })
         console.log(error)
       })
   }
@@ -138,7 +156,14 @@ export const userEditProfile = (id, data) => {
       })
       .catch(error => {
         dispatch({ type: USER_EDIT_FAILURE })
-        alert(`แก้ไขโปรไฟล์ ล้มเหลว`)
+        Swal.fire({
+          type: 'error',
+          title: `${
+            error.response.data.Message
+              ? error.response.data.Message
+              : 'แก้ไขโปรไฟล์ ล้มเหลว'
+          }`
+        })
         console.log(error)
       })
   }
