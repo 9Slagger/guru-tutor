@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import plyr from 'plyr'
-import { api } from '../../actions/api'
+// import { api } from '../../actions/api'
 
 class PlayVideo extends Component {
   componentDidMount() {
@@ -40,7 +40,7 @@ class PlayVideo extends Component {
             id="plyr-player"
           >
             <source
-              src={`${api}${this.props.link}`}
+              src={`https://apiv2.akkarapong.xyz/api/v2${this.props.link}`}
               type="video/mp4"
               size="1080"
             />
