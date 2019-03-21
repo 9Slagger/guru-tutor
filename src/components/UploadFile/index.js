@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios'
 import { Progress } from 'react-sweet-progress'
 import 'react-sweet-progress/lib/style.css'
-import { api } from '../../actions/api'
 import { connect } from 'react-redux'
 import { fetchOneCourse } from '../../actions'
 import Swal from 'sweetalert2'
@@ -32,17 +31,17 @@ class SimpleReactFileUpload extends React.Component {
     const token = await localStorage.getItem('token')
     if (!file) {
       this.setState({ error: 'กรุณาเลือกไฟล์ที่ต้องการอัพโหลด' })
-    } else if (file.size / 1024 / 1024 > 280) {
+    } else if (file.size / 1024 / 1024 > 2000) {
       Swal({
         type: 'warning',
-        title: 'ไฟล์ขนาดใหญ่เกิน 280 MB'
+        title: 'ไฟล์ขนาดใหญ่เกิน 2 GB'
       })
     } else {
       this.setState({
         statusupload: true,
         size: (file.size / 1024 / 1014).toFixed(2)
       })
-      const url = `${api}/restricted/lectures?idsec=${
+      const url = `https://apiv2.akkarapong.xyz/api/v2/lectures?idsec=${
         this.props.idlec
       }&quality=1080`
       const formData = new FormData()
