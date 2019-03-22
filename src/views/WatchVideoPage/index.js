@@ -5,16 +5,16 @@ import MainLayout from '../../components/MainLayout'
 import PlayVideo from '../PlayVideoPage'
 import { connect } from 'react-redux'
 import { fetchOneLecture } from '../../actions'
-import { isEmpty } from 'lodash'
+// import { isEmpty } from 'lodash'
 import Progress from '../../components/Progress'
 
 class WatchVideoPage extends Component {
   componentDidMount() {
-    this.props.fetchOneLecture(this.props.match.params.id)
+    // this.props.fetchOneLecture(this.props.match.params.id)
   }
 
   render() {
-    const { courses, lectures } = this.props
+    const { courses } = this.props
     if (courses.isFetching) {
       return <Progress />
     } else {
@@ -27,9 +27,7 @@ class WatchVideoPage extends Component {
             >
               กลับ
             </Link>
-            {!isEmpty(lectures.dataone) && (
-              <PlayVideo link={lectures.dataone.link} />
-            )}
+            <PlayVideo link={`/video/${this.props.match.params.id}-1080.mp4`} />
           </div>
         </MainLayout>
       )
