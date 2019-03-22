@@ -30,7 +30,7 @@ export const fetchOneLecture = id => {
       })
       .catch(error => {
         dispatch({ type: FETCH_ONE_LECTURE_FAILURE })
-        console.log(error)
+        console.log(error.response)
       })
   }
 }
