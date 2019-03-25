@@ -217,7 +217,9 @@ class UploadImagePage extends Component {
                         onChange={this.onChange}
                       />
                       <label className="custom-file-label">
-                        เลือกรูปที่ต้องการอัพโหลด
+                        {file && file.name
+                          ? file.name
+                          : 'เลือกรูปที่ต้องการอัพโหลด'}
                       </label>
                     </div>
                     <div className="input-group-append">
