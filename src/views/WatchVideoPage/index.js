@@ -5,6 +5,7 @@ import MainLayout from '../../components/MainLayout'
 import PlayVideo from '../PlayVideoPage'
 import { connect } from 'react-redux'
 import { fetchOneLecture } from '../../actions'
+// import { isEmpty } from 'lodash'
 import Progress from '../../components/Progress'
 
 class WatchVideoPage extends Component {
