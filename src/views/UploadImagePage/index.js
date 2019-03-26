@@ -195,7 +195,7 @@ class UploadImagePage extends Component {
   }
 
   render() {
-    const { image } = this.state
+    const { image, file } = this.state
     if (this.props.image.isFetching) {
       return <Progress />
     } else {

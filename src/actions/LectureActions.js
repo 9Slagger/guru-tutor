@@ -26,6 +26,7 @@ export const fetchOneLecture = id => {
         headers: { Authorization: token }
       })
       .then(res => {
+        console.warn(res.data)
         dispatch({ type: FETCH_ONE_LECTURE_SUCESS, payload: res.data })
       })
       .catch(error => {

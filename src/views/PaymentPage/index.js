@@ -88,6 +88,7 @@ class PaymentPage extends Component {
 
   render() {
     const { order } = this.props
+    const { file } = this.state
     if (order.isFetching) {
       return <Progress />
     } else {

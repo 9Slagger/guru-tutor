@@ -58,11 +58,7 @@ class ManageCoursePage extends Component {
     let { time } = await values
     time = await parseInt(time, 10)
     temp.time = await time
-    if (values.publish === 'true') {
-      temp.publish = await true
-    } else {
-      temp.publish = await false
-    }
+    temp.publish = await this.props.form.VideoFormFields.values.publish
     this.props.editLecture(id, temp, this.props.match.params.id)
   }
 
@@ -469,8 +465,8 @@ class ManageCoursePage extends Component {
   }
 }
 
-const mapStateToProps = ({ courses, sections }) => {
-  return { courses, sections }
+const mapStateToProps = ({ courses, sections, form }) => {
+  return { courses, sections, form }
 }
 
 const mapDispatchToProps = {
