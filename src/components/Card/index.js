@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-
 import { Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 class Card extends Component {
   onDelete = () => {
@@ -26,6 +26,14 @@ class Card extends Component {
           to={time > 0 ? btnlink1 : '#'}
           className="card col-lg-3 m-3 d-flex align-items-start flex-column link-not-active"
           style={{ width: '21rem' }}
+          onClick={() =>
+            time <= 0
+              ? Swal({
+                  type: 'warning',
+                  title: 'เวลาดูคอร์สนี้ของคุณหมดแล้ว !'
+                })
+              : ''
+          }
         >
           <img className="card-img-top mb-auto mt-3" src={src} alt="Card cap" />
           <div className="card-body align-self-start mb-auto p-2">
