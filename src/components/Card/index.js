@@ -23,7 +23,7 @@ class Card extends Component {
     if (!management) {
       return (
         <Link
-          to={time > 0 ? btnlink1 : '#'}
+          to={time && time <= 0 ? '#' : btnlink1}
           className="card col-lg-3 m-3 d-flex align-items-start flex-column link-not-active"
           style={{ width: '21rem' }}
           onClick={() =>
