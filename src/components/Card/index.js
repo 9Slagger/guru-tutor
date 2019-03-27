@@ -23,7 +23,7 @@ class Card extends Component {
     if (!management) {
       return (
         <Link
-          to={btnlink1}
+          to={time > 0 ? btnlink1 : '#'}
           className="card col-lg-3 m-3 d-flex align-items-start flex-column link-not-active"
           style={{ width: '21rem' }}
         >
@@ -36,9 +36,19 @@ class Card extends Component {
             <div className="col-12 text-right mt-2">
               {price && <span className="text-left">{price} THB</span>}
               {time && (
-                <p className="card-text text-warning">
+                <p
+                  className={
+                    time > 7
+                      ? 'card-text text-primary'
+                      : time > 0
+                        ? 'card-text text-warning'
+                        : 'card-text text-danger'
+                  }
+                >
                   <i className="fas fa-exclamation-circle" />
-                  {` เหลือเวลา ${time} วัน`}
+                  {time > 0
+                    ? ` เหลือเวลา ${time} วัน`
+                    : ` หมดเวลาเมื่อ ${time * -1} วันก่อน`}
                 </p>
               )}
             </div>
