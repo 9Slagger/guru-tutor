@@ -58,7 +58,9 @@ class ManageCoursePage extends Component {
     let { time } = await values
     time = await parseInt(time, 10)
     temp.time = await time
-    temp.publish = await this.props.form.VideoFormFields.values.publish
+    if (this.props.form.VideoFormFields.values.publish === 'true')
+      temp.publish = await true
+    else temp.publish = await false
     this.props.editLecture(id, temp, this.props.match.params.id)
   }
 
