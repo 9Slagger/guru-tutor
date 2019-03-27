@@ -32,12 +32,23 @@ export default ({
         ) : (
           <label className="title">{label}</label>
         )}
-        <input
-          className="form-control"
-          {...input}
-          type={type}
-          placeholder={placeholder}
-        />
+        {type === 'textarea' ? (
+          <textarea
+            className="form-control"
+            rows="4"
+            {...input}
+            type={type}
+            placeholder={placeholder}
+          />
+        ) : (
+          <input
+            className="form-control"
+            {...input}
+            type={type}
+            placeholder={placeholder}
+          />
+        )}
+
         {error &&
           touched && <div className="mt-2 text-danger title">{error}</div>}
       </div>

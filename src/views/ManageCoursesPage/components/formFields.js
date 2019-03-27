@@ -9,7 +9,7 @@ export const CourseFormFields = [
   {
     label: 'รายละเอียด',
     name: 'detail',
-    type: 'text',
+    type: 'textarea',
     required: true,
     placeholder: 'รายละเอียด'
   },
