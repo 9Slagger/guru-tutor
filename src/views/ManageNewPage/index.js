@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import PrivateMainLayout from '../../components/PrivateMainLayout'
 import Swal from 'sweetalert2'
 import Progress from '../../components/Progress'
+import moment from 'moment'
 
 class ManageHomePage extends Component {
   componentDidMount() {
@@ -43,7 +44,7 @@ class ManageHomePage extends Component {
             <h5 className="card-title">{newcontent.Title}</h5>
             <p className="card-text">{newcontent.Detail}</p>
             <p className="card-text">
-              <small className="text-muted">{newcontent.Timestamp}</small>
+              <small className="text-muted">{moment(newcontent.Timestamp).format("DD/MM/YYYY HH:mm")}</small>
             </p>
             <div id="news" className="text-right">
               <Link

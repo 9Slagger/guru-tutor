@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import MainLayout from '../../components/MainLayout'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
+import moment from 'moment'
 
 class MyOrderPage extends Component {
   renderOrder(orders) {
@@ -12,7 +13,7 @@ class MyOrderPage extends Component {
         <tr key={index}>
           <th scope="row">{index + 1}</th>
           <td>{order.ID}</td>
-          <td>{order.timestamp}</td>
+          <td>{moment(order.timestamp).format("DD/MM/YYYY HH:mm")}</td>
           <td>{order.total}</td>
           <td>{order.status}</td>
           <td>

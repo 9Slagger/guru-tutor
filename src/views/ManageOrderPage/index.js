@@ -5,6 +5,7 @@ import _ from 'lodash'
 import { fetchOrder, ConfirmOrder } from '../../actions'
 import { api } from '../../actions/api'
 import Swal from 'sweetalert2'
+import moment from 'moment'
 
 class MyOrderPage extends Component {
   constructor(props) {
@@ -134,7 +135,7 @@ class MyOrderPage extends Component {
         <tr key={index}>
           <th scope="row">{index + 1}</th>
           <td>{order.ID}</td>
-          <td>{order.timestamp}</td>
+          <td>{moment(order.timestamp).format("DD/MM/YYYY HH:mm")}</td>
           <td>{order.total}</td>
           <td>{order.status}</td>
           <td>{this.renderModal(order)}</td>
