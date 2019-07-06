@@ -3,6 +3,7 @@ import MainLayout from '../../components/MainLayout'
 import { connect } from 'react-redux'
 import { fetchNewContent } from '../../actions'
 import Progress from '../../components/Progress'
+import moment from 'moment'
 
 class NewsPage extends Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class NewsPage extends Component {
             <h5 className="card-title">{newcontent.Title}</h5>
             <p className="card-text">{newcontent.Detail}</p>
             <p className="card-text">
-              <small className="text-muted">{newcontent.Timestamp}</small>
+              <small className="text-muted">{moment(newcontent.Timestamp).format("DD/MM/YYYY HH:mm")}</small>
             </p>
           </div>
         </div>
