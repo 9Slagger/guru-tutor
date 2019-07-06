@@ -112,7 +112,7 @@ class PaymentPage extends Component {
                   </h6>
                   <img
                     alt=""
-                    src="http://www.greenerald.com/wp-content/uploads/2014/12/bank.png"
+                    src="https://scontent.fbkk8-3.fna.fbcdn.net/v/t31.0-8/19983641_1449016661830694_2247026061840826742_o.jpg?_nc_cat=100&_nc_eui2=AeGutUTsw2VQBXjXMH99huGiq1zf402o3ISsLLqmms-kFwWVST2gfqGhAYVKKMo9C14dsYONGx6cQ-DmAGNunTC-qqOJRvuaC9YWMNOktDmiTw&_nc_oc=AQnT8KpON2WSWVQEmOJWcX8QVmckRYB8bz8lTeb-pVPzvcTrhURbD9eLYqWu8VgoddVg-9SkYDTZrTc4IxQvIHeF&_nc_ht=scontent.fbkk8-3.fna&oh=9da9efd76f19663ac49120f085b966ce&oe=5DC15305"
                   />
                   <h3 className="mt-3">พร้อมเพย์</h3>
                   <img
