@@ -42,7 +42,9 @@ class ManagePromotionPage extends Component {
             <div className="card-img-overlay text_left">
               <h1 className="card-title">{promotioncontent.Title}</h1>
               <p className="card-text">{promotioncontent.Detail}</p>
-              <p className="card-text">{moment(promotioncontent.Timestamp).format("DD/MM/YYYY HH:mm")}</p>
+              <p className="card-text">
+                {moment(promotioncontent.Timestamp).format('DD/MM/YYYY HH:mm')}
+              </p>
             </div>
           </div>
           <div id="news" className="text-right mb-2">

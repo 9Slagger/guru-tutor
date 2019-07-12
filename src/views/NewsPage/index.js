@@ -27,7 +27,9 @@ class NewsPage extends Component {
             <h5 className="card-title">{newcontent.Title}</h5>
             <p className="card-text">{newcontent.Detail}</p>
             <p className="card-text">
-              <small className="text-muted">{moment(newcontent.Timestamp).format("DD/MM/YYYY HH:mm")}</small>
+              <small className="text-muted">
+                {moment(newcontent.Timestamp).format('DD/MM/YYYY HH:mm')}
+              </small>
             </p>
           </div>
         </div>

@@ -53,7 +53,8 @@ export const signinAuth = user => {
         console.log(error.response)
         Swal({
           type: 'error',
-          title: `${error.response.data &&
+          title: `${error.response &&
+            error.response.data &&
             error.response.data.message &&
             error.response.data.message}`
         })
