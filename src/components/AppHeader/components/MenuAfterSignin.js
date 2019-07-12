@@ -15,16 +15,10 @@ class MenuAfterSignin extends Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
-    // this.props.auth.data &&
-    //   this.props.auth.data[0].UserType === 'admin' &&
-    //   this.props.fetchOrder()
-=======
     console.warn('debug')
     this.props.auth.data &&
       this.props.auth.data[0].UserType === 'admin' &&
       this.props.fetchOrder()
->>>>>>> 1170d94285d522095ec7756611237bc229e5b8fd
   }
 
   componentWillReceiveProps(nextProps) {
