@@ -52,6 +52,7 @@ export const createOrder = userid => {
 }
 
 export const fetchOneOrder = idorder => {
+  console.error('fetchOneOrder')
   return async dispatch => {
     const token = await localStorage.getItem('token')
     dispatch({ type: FETCH_ONE_ORDER })

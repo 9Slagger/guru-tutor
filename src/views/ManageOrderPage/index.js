@@ -135,7 +135,7 @@ class MyOrderPage extends Component {
         <tr key={index}>
           <th scope="row">{index + 1}</th>
           <td>{order.ID}</td>
-          <td>{moment(order.timestamp).format("DD/MM/YYYY HH:mm")}</td>
+          <td>{moment(order.timestamp).format('DD/MM/YYYY HH:mm')}</td>
           <td>{order.total}</td>
           <td>{order.status}</td>
           <td>{this.renderModal(order)}</td>
